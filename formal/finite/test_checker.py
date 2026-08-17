@@ -23,6 +23,7 @@ from gate8_fitting_minimality import (
 )
 from gate8_fitting_comp import validate_indiscernibility_route_without_comp
 from gate8_fitting_profile_saturation import validate_profile_saturation_route_without_comp
+from gate8_fitting_algebra import validate_fde_algebra_does_not_force_profile_saturation
 
 
 class Gate7Tests(unittest.TestCase):
@@ -91,6 +92,9 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_fitting_profile_saturation_derives_indiscernibility_without_comp(self):
         self.assertTrue(validate_profile_saturation_route_without_comp())
+
+    def test_gate8_fitting_fde_algebra_closure_does_not_force_profile_saturation(self):
+        self.assertTrue(validate_fde_algebra_does_not_force_profile_saturation())
 
 
 if __name__ == "__main__":
