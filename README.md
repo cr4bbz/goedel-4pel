@@ -57,7 +57,7 @@ T2+ + T3+ + G-sup + CONST
 
 The central support-theory question remains global T2 minimality: can the verified recovery package be weakened outside the bounded model families already searched?
 
-Gate 8 now shows that the bottleneck is definition-sensitive along more than one axis:
+Gate 8 shows that the bottleneck is definition-sensitive along more than one axis:
 
 ```text
 G-sup+:
@@ -185,29 +185,19 @@ Finite regressions show that exact positive Godlikeness is compatible with genui
 
 `G-exact+` remains a project-internal comparison name. It is not Anderson or Fitting.
 
-#### Anderson comparison
+#### Bilateral Anderson candidate
 
-A literature-grounded positive Anderson interface and a project bilateral lift are now mechanized.
+The Anderson comparison is frozen at `anderson-bilateral-v0.2` in `docs/ANDERSON_BILATERAL.md`.
 
-The positive Anderson pattern is represented without introducing an object-language biconditional:
+The positive source pattern is represented without introducing an object-language biconditional:
 
 ```text
 +P(phi) <-> necessary +phi(x)
 ```
 
-for the same fixed individual.
+for the same fixed individual. Anderson essence and necessary existence are lifted separately.
 
-Lean machine-checks:
-
-- on reflexive frames, Anderson positive Godlikeness implies `G-sup+`;
-- Anderson positive Godlikeness and `G-exact+` are not identified;
-- the positive Anderson essence bridge from `A2+`, `R+`, positive `G_A`, realization, and reflexivity;
-- the positive Anderson necessary-existence chain;
-- positive necessary actual Godlike existence from explicit possible Godlikeness on the S5 control frames.
-
-The bilateral candidate is frozen as `anderson-bilateral-v0.1` in `docs/ANDERSON_BILATERAL.md`.
-
-Its negative clauses record explicit mismatch evidence for Anderson's two equivalence directions rather than mere meta-level failure. Under classical coherence Lean proves:
+The negative clauses record explicit mismatch evidence for the two Anderson equivalence directions rather than mere meta-level failure. Under classical coherence Lean proves:
 
 ```text
 -AndNecEx(phi,x) <-> not +AndNecEx(phi,x)
@@ -217,13 +207,31 @@ Its negative clauses record explicit mismatch evidence for Anderson's two equiva
 -NE_A(x)         <-> not +NE_A(x)
 ```
 
-A two-world complete-S5 executable model satisfies the currently encoded bilateral Anderson candidate, including bilateral realization of `G_A` and `NE_A`, and has positive necessary Godlike existence while positive modal collapse fails for a contingent formula application `Q(a)`:
+A two-world complete-S5 executable model satisfies the bilateral Anderson candidate and has positive necessary Godlike existence while positive modal collapse fails for a contingent formula application `Q(a)`:
 
 ```text
 +Q(a) @ w0
 not +Box Q(a) @ w0
 P(Q) = P(notQ) = N.
 ```
+
+The frame analysis has now reduced the positive Anderson T3 theorem further. Lean proves:
+
+```text
+Symmetric(R)
++ Possible +G_A
++ AndersonGRealization
++ AndersonGPositive
++ A2+
++ AndersonNERealization
++ AndersonNEPositive
+--------------------------------
+AndersonT3+
+```
+
+No reflexivity, transitivity, or separate `R+` premise occurs in this theorem. Anderson's own necessary-exemplification structure supplies the modal return path.
+
+A finite S4-style model is reflexive and transitive but non-symmetric, satisfies the encoded Anderson stack plus possible Godlikeness, and refutes `AndersonT3+`. Thus S4 alone does not replace symmetry in the current semantics.
 
 This is a theorem/model result for the project's bilateral Anderson candidate, not a claim that Anderson historically specified a unique four-valued semantics.
 
@@ -241,6 +249,7 @@ python3 formal/finite/checker.py
 python3 formal/finite/gate7_search.py
 python3 formal/finite/gate8_compare.py
 python3 formal/finite/gate8_anderson.py
+python3 formal/finite/gate8_frames.py
 ```
 
 Lean:
@@ -255,7 +264,7 @@ The Lean package is pinned to Lean 4.30.0 and uses `lakefile.toml`. GitHub Actio
 ## Research gates
 
 - **Gates 0–7:** complete for the current S5 control theory.
-- **Gate 8:** in progress. Current frontier: exact modal-frame dependencies of the Scott and Anderson routes, followed by the Fitting intension/extension split and paired neighborhoods.
+- **Gate 8:** in progress. Current frontier: whether symmetry can be weakened further for Anderson, the minimal frame package for Scott T3, then the Fitting intension/extension split and paired neighborhoods.
 - **Gate 9:** publication consolidation and dedicated prior-art / exact-HOL correspondence audit.
 
 ## Paper
@@ -299,6 +308,7 @@ latexmk -pdf main.tex
 │   │   ├── gate7_search.py
 │   │   ├── gate8_compare.py
 │   │   ├── gate8_anderson.py
+│   │   ├── gate8_frames.py
 │   │   └── test_checker.py
 │   └── lean/
 │       ├── lean-toolchain
@@ -328,4 +338,4 @@ latexmk -pdf main.tex
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; bilateral Anderson milestone green; `paper-v0.7` remains the synchronized manuscript baseline.
+**Phase:** Gate 7 complete; Gate 8 in progress; bilateral Anderson and symmetry-frame milestones green; `paper-v0.7` remains the manuscript baseline.
