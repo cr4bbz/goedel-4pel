@@ -44,9 +44,9 @@ theorem t1T_of_a1R_a2Plus
     (M : Semantics World Entity Property)
     (hA1R : A1R M) (hA2 : A2Plus M) :
     T1T M := by
-  classical
   intro w φ hPosT
-  by_contra hNoPossible
+  apply Classical.byContradiction
+  intro hNoPossible
   have hNEnt : NEntPlus M w φ (M.negProp φ) := by
     intro z hwz y hyExists hφy
     exact False.elim (hNoPossible ⟨z, hwz, y, hyExists, hφy⟩)
