@@ -7,13 +7,7 @@ universe u v e
 
 variable {World : Type u} {Entity : Type v} {Property : Type e}
 
-/--
-Positive necessary exemplification of a fixed individual.
-
-This mirrors the modal shape `Box (Y x)` in Anderson's Godlikeness definition.
-It is deliberately not guarded by actual existence: Anderson's `Box (Y x)`
-and the actualist quantifier inside his essence definition play different roles.
--/
+/-- Positive necessary exemplification of a fixed individual. -/
 def AndersonNecExPlus (M : Semantics World Entity Property)
     (w : World) (x : Entity) (φ : Property) : Prop :=
   ∀ z, M.R w z → M.exPos z x φ
@@ -37,28 +31,16 @@ def AndersonGodPlus (M : Semantics World Entity Property)
 def AndersonGRealization (M : Semantics World Entity Property) : Prop :=
   ∀ w x, M.exPos w x M.G ↔ AndersonGodPlus M w x
 
-/--
-Positive support for the distinguished Anderson Godlikeness property.
-
-In the literature-grounded Anderson presentation this corresponds to the
-premise labelled `T2`, namely positivity of `G_A`; it is not Scott's theorem
-that Godlikeness is an essence.
--/
+/-- Positive support for the distinguished Anderson Godlikeness property. -/
 def AndersonGPositive (M : Semantics World Entity Property) : Prop :=
   ∀ w, M.pPos w M.G
 
-/--
-First Anderson essence direction:
-necessary positive possession by x implies necessary positive entailment from φ.
--/
+/-- First Anderson essence direction. -/
 def AndersonEAForward (M : Semantics World Entity Property)
     (w : World) (φ : Property) (x : Entity) : Prop :=
   ∀ ψ, AndersonNecExPlus M w x ψ → NEntPlus M w φ ψ
 
-/--
-Reverse Anderson essence direction:
-necessary positive entailment from φ implies necessary positive possession by x.
--/
+/-- Reverse Anderson essence direction. -/
 def AndersonEABackward (M : Semantics World Entity Property)
     (w : World) (φ : Property) (x : Entity) : Prop :=
   ∀ ψ, NEntPlus M w φ ψ → AndersonNecExPlus M w x ψ
@@ -67,6 +49,30 @@ def AndersonEABackward (M : Semantics World Entity Property)
 def AndersonEssPlus (M : Semantics World Entity Property)
     (w : World) (φ : Property) (x : Entity) : Prop :=
   AndersonEAForward M w φ x ∧ AndersonEABackward M w φ x
+
+/-- Positive necessary actual exemplification of a property. -/
+def AndersonBoxExistsPlus (M : Semantics World Entity Property)
+    (w : World) (φ : Property) : Prop :=
+  ∀ z, M.R w z → ExistsPropPlus M z φ
+
+/-- Positive Anderson necessary existence. -/
+def AndersonNEPlus (M : Semantics World Entity Property)
+    (w : World) (x : Entity) : Prop :=
+  ∀ φ, AndersonEssPlus M w φ x → AndersonBoxExistsPlus M w φ
+
+/-- A distinguished property realizes Anderson necessary existence. -/
+def AndersonNERealization (M : Semantics World Entity Property)
+    (NEA : Property) : Prop :=
+  ∀ w x, M.exPos w x NEA ↔ AndersonNEPlus M w x
+
+/-- Positive support for the Anderson necessary-existence property. -/
+def AndersonNEPositive (M : Semantics World Entity Property)
+    (NEA : Property) : Prop :=
+  ∀ w, M.pPos w NEA
+
+/-- Positive Anderson analogue of necessary Godlike existence. -/
+def AndersonT3Plus (M : Semantics World Entity Property) : Prop :=
+  ∀ w, AndersonBoxExistsPlus M w M.G
 
 /-- The split interfaces are equivalent to the corresponding meta-level iff form. -/
 theorem andersonGodPlus_iff
@@ -99,13 +105,7 @@ theorem andersonEssPlus_iff
     · intro ψ hEnt
       exact (h ψ).2 hEnt
 
-/--
-On reflexive frames, Anderson positive Godlikeness entails the weaker
-support-based positive Godlikeness interface.
-
-The converse is not built in: `GodPlus` requires only current exemplification,
-whereas Anderson's forward direction requires necessary exemplification.
--/
+/-- On reflexive frames, Anderson positive Godlikeness entails support Godlikeness. -/
 theorem andersonGodPlus_implies_godPlus_of_reflexive
     (M : Semantics World Entity Property)
     (hRefl : Goedel4PEL.Modal.Reflexive M.R)
@@ -116,22 +116,7 @@ theorem andersonGodPlus_implies_godPlus_of_reflexive
   have hNec : AndersonNecExPlus M w x φ := hGodA.1 φ hPφ
   exact hNec w (hRefl w)
 
-/--
-Literature-grounded positive Anderson essence bridge.
-
-Assume the distinguished `G` realizes Anderson positive Godlikeness, `G` is
-positive (the premise labelled `T2` in the Anderson presentation), A2+ holds,
-positivity is positively rigid, and the frame is reflexive. Then every positive
-Anderson-Godlike entity has `G` as a positive Anderson essence.
-
-No Scott-style `A1-L`, `COMP_P^G`, or `CONS_G^G` premise is used. The two
-Anderson essence directions are supplied differently:
-
-* necessary possession -> positivity by the backward Godlikeness direction,
-  then rigidity transports positivity to accessible worlds;
-* necessary entailment -> positivity by A2+ using positivity of `G`, then the
-  forward Godlikeness direction turns positivity into necessary possession.
--/
+/-- Positive Anderson Godlikeness makes `G` an Anderson essence under A2+/R+. -/
 theorem andersonGod_has_andersonEssence
     (M : Semantics World Entity Property)
     (hReal : AndersonGRealization M)
@@ -152,5 +137,48 @@ theorem andersonGod_has_andersonEssence
   · intro ψ hNEnt
     have hPψ : M.pPos w ψ := hA2 w M.G ψ (hGPos w) hNEnt
     exact hGodA.1 ψ hPψ
+
+/-- Local positive Anderson necessary-existence core. -/
+theorem andersonGod_implies_boxGodExists
+    (M : Semantics World Entity Property)
+    (NEA : Property)
+    (hReal : AndersonGRealization M)
+    (hGPos : AndersonGPositive M)
+    (hA2 : A2Plus M)
+    (hRPlus : RPlus M)
+    (hRefl : Goedel4PEL.Modal.Reflexive M.R)
+    (hNEReal : AndersonNERealization M NEA)
+    (hNEPos : AndersonNEPositive M NEA) :
+    ∀ w x, AndersonGodPlus M w x → AndersonBoxExistsPlus M w M.G := by
+  intro w x hGodA
+  have hGEss : AndersonEssPlus M w M.G x :=
+    andersonGod_has_andersonEssence M hReal hGPos hA2 hRPlus hRefl w x hGodA
+  have hNecNE : AndersonNecExPlus M w x NEA := hGodA.1 NEA (hNEPos w)
+  have hNEAtW : M.exPos w x NEA := hNecNE w (hRefl w)
+  have hNE : AndersonNEPlus M w x := (hNEReal w x).1 hNEAtW
+  exact hNE M.G hGEss
+
+/-- Positive Anderson necessary Godlike existence from possible actual Godlikeness. -/
+theorem andersonT3Plus_of_possibleGod
+    (M : Semantics World Entity Property)
+    (NEA : Property)
+    (hReal : AndersonGRealization M)
+    (hGPos : AndersonGPositive M)
+    (hA2 : A2Plus M)
+    (hRPlus : RPlus M)
+    (hNEReal : AndersonNERealization M NEA)
+    (hNEPos : AndersonNEPositive M NEA)
+    (hS5 : Goedel4PEL.Modal.S5 M.R)
+    (hPossible : ∀ w, PossibleExemplification M w M.G) :
+    AndersonT3Plus M := by
+  intro w z hwz
+  rcases hPossible w with ⟨v, hwv, x, hxExists, hGx⟩
+  have hGodA : AndersonGodPlus M v x := (hReal v x).1 hGx
+  have hBoxAtV : AndersonBoxExistsPlus M v M.G :=
+    andersonGod_implies_boxGodExists
+      M NEA hReal hGPos hA2 hRPlus hS5.1 hNEReal hNEPos v x hGodA
+  have hvw : M.R v w := hS5.2.1 hwv
+  have hvz : M.R v z := hS5.2.2 hvw hwz
+  exact hBoxAtV z hvz
 
 end Goedel4PEL.GoedelScott
