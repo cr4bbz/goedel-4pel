@@ -13,6 +13,7 @@ import Goedel4PEL.GoedelScott.FittingNecessaryExistence
 import Goedel4PEL.GoedelScott.FittingRecovery
 import Goedel4PEL.GoedelScott.FittingDeDicto
 import Goedel4PEL.GoedelScott.FittingAdmissible
+import Goedel4PEL.GoedelScott.FittingAdmissibleRecovery
 import Goedel4PEL.GoedelScott.FittingAdmissibleNecessaryExistence
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2
