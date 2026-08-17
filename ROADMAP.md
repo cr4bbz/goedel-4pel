@@ -16,7 +16,7 @@ The propositional kernel is frozen as `kernel-v0.1` in `docs/FOUR_VALUED_KERNEL.
 
 ### Gate 2 status
 
-The modal layer is frozen as `modal-v0.1` in `docs/MODAL_LIFT.md`. The control semantics is bilateral relational S5, with paired-neighborhood generalization deferred.
+The modal layer is frozen as `modal-v0.1` in `docs/MODAL_LIFT.md`. The original control semantics is bilateral relational S5, with paired-neighborhood generalization deferred. Gate 8 later minimizes selected theorem dependencies below S5 without revising this frozen baseline.
 
 ### Gate 3 status
 
@@ -58,7 +58,7 @@ Formal verification is frozen as `formal-v0.1` in `docs/FORMAL_VERIFICATION.md`.
 
 Gate 7 establishes with green CI:
 
-- Lean 4.30.0 formalization of the current bilateral S5 control theory;
+- Lean 4.30.0 formalization of the current bilateral control theory;
 - general machine proofs of schema-level `MC+ <-> MC-`, `T1-T`, conditional `T2+`, conditional `T3+`, `T3+ => GW`, and essence-compressed positive collapse;
 - interface-level classical recovery of `Pos_T`, `NEnt`, Godlikeness, essence, and necessary existence;
 - executable T1/T2 glut-gap countermodels;
@@ -94,7 +94,9 @@ Lean proves classical recovery of its negative-support clauses for necessary exe
 
 An executable two-world complete-S5 model satisfies the currently encoded bilateral Anderson candidate while positive necessary Godlike existence holds and positive modal collapse fails for a contingent `Q(a)`.
 
-Gate 8 then reduces the Anderson frame dependency sharply. Lean proves:
+The modal-frame comparison is frozen as `frames-v0.1` in `docs/FRAME_MINIMIZATION.md`.
+
+Lean proves the Anderson T3 route from symmetry alone:
 
 ```text
 Symmetric(R)
@@ -108,9 +110,22 @@ Symmetric(R)
 AndersonT3+
 ```
 
-No reflexivity, transitivity, or separate `R+` premise is required by this route.
+and the Scott-support T3 route, after positive T2 is available, from symmetry alone:
 
-A finite S4-style model is reflexive and transitive but non-symmetric, satisfies the encoded Anderson stack plus possible Godlikeness, and refutes `AndersonT3+`. Thus S4 alone does not replace symmetry in the current semantics. This is bounded countermodel evidence; the Lean theorem establishes sufficiency of symmetry, not global minimality.
+```text
+Symmetric(R)
++ PossibleGod
++ T2+
++ A5+
++ NE-sup
++ G-sup
+--------------
+T3+
+```
+
+No reflexivity or transitivity premise is required by either T3 theorem. Separate two-world S4-style models are reflexive and transitive but non-symmetric, satisfy the remaining encoded premises, and refute the corresponding T3 conclusion. These finite countermodels show that S4 alone does not replace symmetry in the current routes. The Lean theorems establish sufficiency of symmetry, not global uniqueness/minimality.
+
+The first Fitting milestone is frozen as `fitting-types-v0.1` in `docs/FITTING_TYPES.md`. Lean now enforces distinct types for bilateral property extensions and world-indexed intensions, and the Fitting positivity shell consumes extensions rather than intensions. This is infrastructure, not yet a complete Fitting variant.
 
 The Anderson negative clauses remain a principled FDE reconstruction, not a claim that Anderson historically specified a unique bilateral semantics.
 
@@ -137,19 +152,24 @@ The Anderson negative clauses remain a principled FDE reconstruction, not a clai
 - [x] show T2 is not automatic and isolate a sufficient recovery package;
 - [x] freeze `NE-sup-v0.1` and lift A5;
 - [x] reconstruct `T3+` conditionally from `T2+`;
-- [x] discharge `GW`;
-- [x] classify the positive collapse consequence of `T2+ + T3+`;
+- [x] discharge `GW` on reflexive frames;
+- [x] classify the positive collapse consequence of `T2+ + T3+` on the current reflexive collapse route;
 - [ ] minimize the support-theory T2 recovery assumptions at the unbounded model-theoretic level;
 - [x] compare `G-sup-v0.1` with project-internal `G-exact+`;
 - [x] compare the Godlikeness/essence bottleneck with a literature-grounded Anderson variant;
-- [ ] test additional essence semantics and the Fitting intension/extension split.
+- [x] reduce the Scott and Anderson T3 frame routes to symmetry and exhibit non-symmetric S4 countermodels;
+- [x] introduce the Fitting intension/extension type split;
+- [ ] define Fitting extension-level necessary entailment;
+- [ ] reconstruct Fitting positive essence and necessary existence;
+- [ ] test Fitting necessary Godlike existence and modal-collapse behavior;
+- [ ] compare the finished Fitting route with Anderson at the bilateral level.
 
 ## Phase D — Mechanize and publish
 
 ### Gate 7 — Mechanization and finite-model verification — **complete**
 
 - [x] finite-model oracle and regression fixtures;
-- [x] Lean S5 control theory;
+- [x] Lean control theory;
 - [x] general T1/T2/T3/GW/collapse theorem spine;
 - [x] interface-level classical recovery;
 - [x] bounded T2 assumption-minimization search.
@@ -168,15 +188,19 @@ Finite exhaustive checks are always reported with their bounded model class; abs
 - [x] exhibit a bilateral two-world Anderson candidate with necessary Godlike existence and failure of positive modal collapse;
 - [x] reduce the Anderson T3 frame theorem from S5 to symmetry alone;
 - [x] exhibit an S4-style non-symmetric countermodel to Anderson T3;
-- [ ] determine whether symmetry itself can be replaced by a still weaker relational condition;
-- [ ] determine the corresponding minimal frame package for the Scott-support T3 route;
-- [ ] decide whether a bilateral negative exact-Godlikeness clause is still scientifically useful after the Anderson comparison;
-- [ ] introduce the type-level intension/extension distinction required for a faithful Fitting comparison;
+- [x] reduce the Scott-support T3 theorem to symmetry alone after `T2+`;
+- [x] exhibit an S4-style non-symmetric countermodel to Scott T3;
+- [x] introduce the type-level intension/extension distinction required for a faithful Fitting comparison;
+- [ ] determine whether symmetry itself can be replaced by a still weaker relational condition in either T3 route;
+- [ ] decide whether a bilateral negative exact-Godlikeness clause remains scientifically useful after the Anderson comparison;
+- [ ] implement extension-level Fitting entailment / essence / necessary existence;
+- [ ] obtain classical-recovery and countermodel checks for the Fitting candidate;
 - [ ] rerun selected results over broader paired-neighborhood frames.
 
 ### Gate 9 — Publication consolidation
 
 - [ ] perform a dedicated prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
 - [ ] audit exact correspondence with the frozen higher-order Scott baseline before final publication claims;
+- [ ] audit exact correspondence of the Anderson/Fitting comparison with the published formal developments;
 - [ ] write the paper around the strongest verified structural theorem;
 - [ ] distinguish semantic theorems, machine-checked results, countermodels, and open global-minimality questions explicitly.
