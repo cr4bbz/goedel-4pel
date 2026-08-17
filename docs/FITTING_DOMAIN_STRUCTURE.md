@@ -3,14 +3,14 @@
 ## Status
 
 **Gate:** 8 — Comparative variants  
-**Version:** `fitting-domain-v0.1`  
-**Scope:** principled reconstruction of the COMP-independent indiscernibility route  
+**Version:** `fitting-domain-v0.2`  
+**Scope:** principled reconstruction and algebraic analysis of the COMP-independent quotient route  
 **Verification:** Lean 4.30.0 + executable finite regression  
 **Literature anchor:** Benzmüller–Fuenmayor's extensional `delta`-ultrafilter analysis of Fitting positivity
 
 This milestone refines `fitting-minimality-v0.2`. It asks whether the previously primitive interface `GodlikeIndiscernibilityAdm` can be derived from a more structural condition on the selected admissible property domain.
 
-The answer is yes, by a quotient-style positive-profile saturation principle. A separate ultrafilter-style analysis explains why the classical Fitting architecture does not by itself provide the genuinely COMP-independent route in the bilateral setting.
+The answer is yes, by a quotient-style positive-profile saturation principle. Negation closure upgrades the positive quotient to a bilateral quotient, and the class of quotient-respecting bilateral extensions is closed under the basic FDE extension operations. A separate ultrafilter-style analysis explains why the classical Fitting architecture does not by itself provide the genuinely COMP-independent route in the bilateral setting.
 
 ---
 
@@ -35,17 +35,10 @@ Lean proves two interaction results:
 PositiveComplementDecisionAdm
 + ConsGGAdm
 => local positive reflection at Godlike witnesses
+=> CompPGAdm
 ```
 
-and therefore
-
-```text
-PositiveComplementDecisionAdm
-+ ConsGGAdm
-=> CompPGAdm.
-```
-
-Independently,
+and independently:
 
 ```text
 PositiveComplementDecisionAdm
@@ -87,7 +80,7 @@ x \approx_w^+ y.
 
 ## 3. Quotient-style saturation of `Adm`
 
-The new structural domain condition is:
+The structural domain condition is:
 
 ```text
 PositiveProfileSaturatedAdm:
@@ -96,7 +89,7 @@ PositiveProfileSaturatedAdm:
   -> (Y.pos(x) iff Y.pos(y))
 ```
 
-Equivalently, at each world every selected admissible rigid extension is a union of equivalence classes of the positive-profile relation.
+Equivalently, at each world every selected admissible rigid extension is a union of equivalence classes of the positive-profile relation in its positive membership channel.
 
 This is a property-domain condition rather than a positivity-classification condition. It does not require every admissible extension to receive positive or negative positivity support.
 
@@ -122,13 +115,79 @@ G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w).
 }
 \]
 
-The necessary-existence and de-re/de-dicto results then follow through the already machine-checked indiscernibility route.
-
-No A1 direction, `COMP_P^G(adm)`, or exemplification-consistency assumption is needed for this route.
+The necessary-existence and de-re/de-dicto results then follow through the already machine-checked indiscernibility route. No A1 direction, `COMP_P^G(adm)`, or exemplification-consistency assumption is needed for this route.
 
 ---
 
-## 4. Nontrivial finite witness with two Godlike individuals
+## 4. Negation closure upgrades the quotient to bilateral factorization
+
+`AdmissibleSemantics` already requires FDE-negation closure:
+
+```text
+Adm(Y) -> Adm(neg Y).
+```
+
+This has a stronger consequence than was initially apparent. Apply positive-profile saturation to `neg Y`. Since positive membership in `neg Y` is exactly negative membership in `Y`, the same profile classes must also be constant for the negative support channel.
+
+Define:
+
+```text
+BilateralProfileSaturatedAdm:
+  Adm(Y)
+  + PositiveProfileEqAdm(w,x,y)
+  ->
+     (Y.pos(x) iff Y.pos(y))
+     and
+     (Y.neg(x) iff Y.neg(y))
+```
+
+Lean proves the exact equivalence
+
+\[
+\boxed{
+PositiveProfileSaturatedAdm
+\Longleftrightarrow
+BilateralProfileSaturatedAdm.
+}
+\]
+
+Thus the selected bilateral extensions genuinely factor through one and the same entity quotient. The quotient interpretation is not confined to the positive half of the semantics.
+
+---
+
+## 5. FDE algebra on the quotient
+
+`FittingAdmissibleAlgebra.lean` defines pointwise extension-level FDE operations:
+
+```text
+X and_FDE Y:
+  pos = X.pos and Y.pos
+  neg = X.neg or  Y.neg
+
+X or_FDE Y:
+  pos = X.pos or  Y.pos
+  neg = X.neg and Y.neg
+```
+
+along with constant FDE top and bottom extensions.
+
+For a fixed world, let `RespectsProfileAt` mean that a bilateral extension is constant in both support channels on every positive-profile equivalence class.
+
+Lean proves that quotient-respecting bilateral extensions contain top and bottom and are closed under:
+
+```text
+FDE negation
+FDE conjunction
+FDE disjunction
+```
+
+Therefore the extensions that factor through the positive-profile quotient form a De-Morgan-style subalgebra of the full bilateral extension algebra.
+
+This is deliberately an **algebraic preservation result**, not a new closure axiom for `Adm`. It shows that extending a profile-respecting domain by these FDE operations does not destroy the quotient factorization. Whether the substantive Fitting candidate should require `Adm` itself to contain all such compounds remains a separate modeling question.
+
+---
+
+## 6. Nontrivial finite witness with two Godlike individuals
 
 `formal/finite/gate8_fitting_profile_saturation.py` supplies a one-world, three-entity witness.
 
@@ -161,7 +220,7 @@ C     : neither a nor b
 ALL   : both a and b
 ```
 
-so `PositiveProfileSaturatedAdm` and `GodlikeIndiscernibilityAdm` both hold non-vacuously.
+so positive and bilateral profile saturation, as well as `GodlikeIndiscernibilityAdm`, hold non-vacuously.
 
 At the same time, `ALL` contains both Godlike individuals but is a genuine positivity gap:
 
@@ -178,7 +237,7 @@ Thus quotient-style profile saturation is compatible with a genuine relevant pos
 
 ---
 
-## 5. Interpretation
+## 7. Interpretation
 
 The current Fitting branch now contains three conceptually different mechanisms:
 
@@ -193,24 +252,24 @@ ultrafilter-style route:
   -> positive reflection / COMP
   -> classification route
 
-profile-saturation route:
-  admissible extensions factor through positive-profile classes
+profile-quotient route:
+  admissible extensions factor bilaterally through positive-profile classes
   -> Godlike indiscernibility
   -> essence
 ```
 
 The third route is the genuinely non-classificatory one.
 
-It also gives `Adm` a more mathematical interpretation: the admissible property algebra can be viewed as living on a quotient of the entity domain by positive-property profile. This is currently a project-specific structural proposal, not a claim that Fitting historically imposed such a quotient semantics.
+It also gives `Adm` a more mathematical interpretation: the admissible property algebra can be viewed as living on a quotient of the entity domain by positive-property profile. The basic FDE operations preserve this factorization. This is currently a project-specific structural proposal, not a claim that Fitting historically imposed such a quotient semantics.
 
 ---
 
-## 6. Open questions
+## 8. Open questions
 
-1. Can positive-profile saturation be derived from independently motivated closure operations on `Adm` rather than postulated directly?
-2. Which algebraic operations on admissible extensions preserve profile saturation: FDE negation, conjunction/intersection, disjunction/union, and relevant entailment closure?
+1. Should the substantive admissible domain itself be required to contain FDE top/bottom and be closed under conjunction and disjunction, or is algebraic compatibility sufficient?
+2. Which additional operations, especially relevant entailment closure, preserve profile factorization?
 3. Can a four-valued analogue of the literature's `delta`-ultrafilter be defined on the quotient domain so that profile saturation becomes automatic without reinstating `COMP`?
-4. Does the quotient interpretation interact with genuine glutty extension membership in a principled way?
+4. Does the quotient interpretation interact with genuinely glutty extension membership in a principled way?
 5. Does the same construction survive paired-neighborhood modal semantics?
 6. What relation, if any, does positive-profile equivalence have to monotheism or identity principles? The published Fitting comparison leaves monotheism/polytheism as a separate research direction.
 
