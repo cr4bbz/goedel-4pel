@@ -7,7 +7,7 @@ G\"odel's ontological argument and Dana Scott's well-known modification form an 
 \]
 according to which every truth is necessary.
 
-Recent machine-checked work sharpens the diagnosis of this phenomenon. In particular, the existence of an ultrafilter-like structure among positive properties does not by itself force collapse; rigidity of positivity is a principal modal ingredient \cite{Benzmueller2026Collapse}. This raises a natural question that classical two-valued semantics cannot express: which information flows inside positivity and rigidity are actually responsible for the collapse mechanism?
+Recent machine-checked work sharpens the diagnosis of this phenomenon. In particular, the existence of an ultrafilter-like structure among positive properties does not by itself force collapse; rigidity of positivity is a principal modal ingredient \cite{Benzmueller2026Collapse}. This raises a natural question that classical two-valued semantics cannot express: which information flows inside positivity, essence, and necessary existence are actually responsible for reconstructing the collapse mechanism?
 
 I study this question in a bilateral four-valued setting. Instead of assigning a single Boolean value to a formula, I track positive and negative support independently. A formula may therefore be supported only, opposed only, both supported and opposed, or neither. This gives the four values
 \[
@@ -21,7 +21,7 @@ following the Belnap--Dunn/FDE tradition \cite{Belnap1977,Dunn1976}.
 The central research question is:
 
 \begin{question}[Upstream structure of modal collapse]
-Under a four-valued bilateral modal semantics, which components of positivity-negation transfer, positivity rigidity, informational regularity, and higher-order witness structure reconstruct the classical G\"odel--Scott modal-collapse mechanism?
+Under a four-valued bilateral modal semantics, which components of positivity-negation transfer, positivity rigidity, informational regularity, essence, and higher-order witness structure reconstruct the classical G\"odel--Scott modal-collapse mechanism?
 \end{question}
 
 The informative signed collapse pair is
@@ -30,23 +30,25 @@ The informative signed collapse pair is
   \qquad
   \MCm:\quad \neginfo{\chi}\Rightarrow\pos{\Box\neg\chi}.
 \]
-Gate 4 shows that these are not independent in the fixed FDE setting. Since \(\neginfo{\chi}\) is equivalent to \(\pos{\neg\chi}\), \(\MCm\) is exactly \(\MCp\) instantiated at \(\neg\chi\), and conversely by involutive negation. The original collapse-separation conjecture is therefore falsified rather than preserved by an ad hoc semantic modification.
+These are not independent in the fixed FDE setting. Since \(\neginfo{\chi}\) is equivalent to \(\pos{\neg\chi}\), \(\MCm\) is exactly \(\MCp\) instantiated at \(\neg\chi\), and conversely by involutive negation. The original collapse-separation conjecture is therefore falsified rather than preserved by an ad hoc semantic modification.
 
 The decomposition instead occurs upstream. Scott's A1 splits into two independent directional information flows,
 \[
   A1_L:\quad \neginfo{P(\varphi)}\Rightarrow\pos{P(\neg\varphi)},
 \]
 \[
-  A1_R:\quad \pos{P(\neg\varphi)}\Rightarrow\neginfo{P(\varphi)},
+  A1_R:\quad \pos{P(\neg\varphi)}\Rightarrow\neginfo{P(\varphi)}.
 \]
-while positive and universal-negative positivity rigidity are independent without A1 but become interderivable under strong A1. The local classical reflection step from God-like exemplification to positivity additionally fails through distinct glut and gap mechanisms.
+The two directions acquire different jobs. \(A1_R\), together with a semantic positive-support form of A2, yields possible exemplification for truth-only positive properties. \(A1_L\) participates in the reflection and essence branch. A positivity glut blocks the unrestricted T1 analogue because the negative support produced by the classical reductio may already be present.
 
-Gate 5 shows that this directional split persists into the existence branch. A semantic positive-support lifting of A2 together with \(A1_R\) proves possible exemplification for \emph{truth-only} positive properties, but not for arbitrary designated positivity. A positivity glut can absorb the negative support produced by the classical reductio. This motivates a control version of A3 in which Godlikeness is truth-only positive and a support-based bilateral definition of Godlikeness that recovers Scott D1 on the classical fragment while preserving all four information states outside it.
+Gate 6 pushes this upstream diagnosis further. A natural bilateral reconstruction of Scott's essence definition does not make Godlikeness an essence automatically. Two finite S5 models satisfy the earlier control axioms, strong A1, and positive rigidity while refuting positive T2: one fails through inconsistent exemplification and one through incomplete positivity information. A targeted regularity package recovers positive T2, after which the necessary-existence branch becomes comparatively robust. Positive support for A5 suffices for a positive T3 in S5, even if necessary existence itself is glutty.
 
-The contribution sought is therefore not a ``stronger proof of God''. The intended contribution is an explanatory dependency analysis showing where four-valued inconsistency and incompleteness alter the inferential architecture of the Scott theory, including negative results that identify seemingly natural decompositions as impossible under the chosen semantics.
+Once positive T2 and T3 are available, modal collapse follows directly from essence and constant-property embedding. The central non-classical difficulty is therefore no longer modal collapse itself, nor even T3. It is the weakest principled recovery of Godlikeness-as-essence from the lower-level four-valued Scott machinery.
+
+The contribution sought is not a ``stronger proof of God''. The intended contribution is an explanatory dependency analysis showing where four-valued inconsistency and incompleteness alter the inferential architecture of the Scott theory, including negative results and countermodels that locate hidden classical regularity assumptions.
 
 \paragraph{Methodological discipline.}
-The development proceeds conservatively. I freeze a classical Scott baseline, fix a standard four-valued propositional kernel, extend it with a bilateral Kripke modal control semantics, and only then lift individual G\"odel--Scott principles. Failed conjectures are retained as results rather than repaired by changing the semantics after the fact. Gate 5 introduces actualist quantifier clauses and semantic necessary entailment only where the reconstruction requires them, while the object-language conditional remains deliberately unfixed.
+The development proceeds conservatively. I freeze a classical Scott baseline, fix the propositional and modal semantics, and then lift individual G\"odel--Scott principles only when their semantic prerequisites are explicit. Failed conjectures are retained as results rather than repaired by changing the semantics after the fact. Implication-sensitive clauses are represented by signed semantic entailment relations rather than by prematurely choosing a four-valued object-language conditional.
 
 \paragraph{Status of this manuscript.}
-Version 0.5 reports Gates 0--5: the classical baseline, propositional and modal semantics, A1/A4 decomposition, collapse and reflection analysis, the A2/T1 reconstruction, the A3 split, possible God-like existence, and the support-based control definition of Godlikeness. The remaining main branch begins with essence, necessary existence, and A5, where the key question is whether the theory can supply the global God-like witness condition required by the collapse interface.
+Version 0.6 reports Gates 0--6: the classical baseline; propositional, modal, and positivity semantics; the collapse and reflection analyses; the A2/T1/A3/Godlikeness reconstruction; bilateral essence and necessary existence; finite glut/gap countermodels to positive T2; a sufficient T2 recovery theorem; conditional positive T3; discharge of the global witness interface; and the essence-compressed modal-collapse theorem. The next phase is mechanization and semantic-minimality analysis centered on T2.
