@@ -1,35 +1,140 @@
 \section{Reconstructing the G\"odel--Scott Chain}
 \label{sec:reconstruction}
 
-\statusopen
+Gate 5 reconstructs the first higher-order branch of the Scott theory: A2, positive-property exemplification, A3, and Godlikeness. Essence and necessary existence remain open.
 
-With the propositional, modal, positivity, and collapse-interface analyses fixed, the next stage is to reconstruct the remaining higher-order G\"odel--Scott machinery. The planned order is deliberately incremental:
+\subsection{Actualist quantification and necessary positive entailment}
+
+I retain Scott's actualist quantification over individuals by using a classical metalanguage existence relation \(E(w,x)\). Positive and negative existential satisfaction are
 \[
-  A2
-  \longrightarrow
-  \text{possible exemplification}
-  \longrightarrow
-  A3
-  \longrightarrow
-  G
-  \longrightarrow
+  w\models^+\exists^E x\,\varphi(x)
+  \quad\Longleftrightarrow\quad
+  \exists x\,(E(w,x)\land w\models^+\varphi(x)),
+\]
+\[
+  w\models^-\exists^E x\,\varphi(x)
+  \quad\Longleftrightarrow\quad
+  \forall x\,(E(w,x)\Rightarrow w\models^-\varphi(x)),
+\]
+with the dual universal clauses. These reduce to ordinary actualist quantification on the classical fragment.
+
+Rather than introduce an object-language four-valued conditional, define semantic necessary positive entailment by
+\[
+  \operatorname{NEnt}^{+}_{E}(\varphi,\psi,w)
+\]
+iff, at every world \(v\) accessible from \(w\), every actually existing positive instance of \(\varphi\) is a positive instance of \(\psi\). The Gate-5 lifting of A2 is
+\[
+  A2^+:\quad
+  \pos{P(\varphi)}\land
+  \operatorname{NEnt}^{+}_{E}(\varphi,\psi)
+  \Rightarrow
+  \pos{P(\psi)}.
+\]
+On the \(\{\True,\False\}\) fragment this recovers the truth-support content of Scott's classical A2.
+
+\subsection{Truth-only positivity and possible exemplification}
+
+Positive support and unopposed positivity must be distinguished. Define
+\[
+  \operatorname{Pos}_{T}(\varphi)
+  \quad:\Longleftrightarrow\quad
+  \pos{P(\varphi)}
+  \text{ and not }\neginfo{P(\varphi)},
+\]
+where ``not'' is metalanguage denial. Thus \(\operatorname{Pos}_{T}\) picks out value \(\True\) for the positivity statement rather than the designated pair \(\{\True,\Both\}\).
+
+\begin{theorem}[Truth-only positive properties are possibly exemplified]
+Assume globally \(A1_R\) and \(A2^+\). Then
+\[
+  \operatorname{Pos}_{T}(\varphi)
+  \Rightarrow
+  \pos{\Diamond\exists^E x\,\varphi(x)}.
+\]
+\end{theorem}
+\begin{proof}
+Fix \(w\) with \(\operatorname{Pos}_{T}(\varphi)\) and suppose, at the metalanguage level, that \(\pos{\Diamond\exists^E x\,\varphi(x)}\) fails. Then no accessible world contains an actually existing positive instance of \(\varphi\), so \(\operatorname{NEnt}^{+}_{E}(\varphi,\neg\varphi,w)\) holds vacuously. By \(A2^+\), \(\pos{P(\neg\varphi)}\). By \(A1_R\), \(\neginfo{P(\varphi)}\), contradicting the truth-only assumption. Hence positive possible exemplification follows.
+\end{proof}
+
+This result is denoted \(T1_T\). It reveals a directional division of labor inside Scott A1: \(A1_R\) drives the possible-exemplification branch, whereas \(A1_L\) drives the Gate-4 local reflection argument.
+
+\paragraph{Glut countermodel.}
+The stronger schema \(\pos{P(\varphi)}\Rightarrow\pos{\Diamond\exists^E x\,\varphi(x)}\) fails. Consider a one-world reflexive frame with an empty actual domain and assign \(\Both\) to every relevant positivity statement. Strong A1 and \(A2^+\) hold, while \(\pos{P(\varphi)}\) is true and the actualist existential has no positive witness. The classical reductio only generates the negative support already present in the positivity glut.
+
+Thus the four-valued analogue of T1 naturally applies to unopposed, truth-only positivity rather than to arbitrary designated positivity.
+
+\subsection{A3 and possible God-like existence}
+
+Scott's A3 admits two conservative readings:
+\[
+  A3^+:\quad \pos{P(G)},
+\]
+which allows \(P(G)=\Both\), and the stronger Scott-control clause
+\[
+  A3_T:\quad \operatorname{Pos}_{T}(G).
+\]
+I retain \(A3^+\) as a robustness variant and adopt \(A3_T\) for the control reconstruction. From \(A3_T\) and \(T1_T\),
+\[
+  \boxed{
+  \pos{\Diamond\exists^E x\,G(x)}
+  }.
+\]
+This recovers the classical possibility branch without imposing global consistency on every positivity assignment.
+
+\subsection{Support-based Godlikeness}
+
+The Gate-5 control definition, \(G\text{-sup-v0.1}\), is bilateral:
+\[
+  w\models^+G(x)
+  \quad\Longleftrightarrow\quad
+  \forall\varphi\,
+  \bigl(w\models^+P(\varphi)\Rightarrow w\models^+\varphi(x)\bigr),
+\]
+\[
+  w\models^-G(x)
+  \quad\Longleftrightarrow\quad
+  \exists\varphi\,
+  \bigl(w\models^+P(\varphi)\land w\models^-\varphi(x)\bigr).
+\]
+This immediately yields the previously abstract interface
+\[
+  D1^+:\quad
+  \pos{G(x)}\land\pos{P(\varphi)}
+  \Rightarrow
+  \pos{\varphi(x)}.
+\]
+On the classical fragment the two clauses reduce to Scott's definition of Godlikeness.
+
+The definition deliberately does not enforce consistency. All four information values remain possible for \(G(x)\): a positive property instantiated gluttily can make Godlikeness both positive and negative, while a positively supported positive property instantiated as \(\Neither\) can make Godlikeness neither positive nor negative.
+
+\subsection{Audit of the Gate-4 collapse interfaces}
+
+Gate 4 used \(D1^+\), \(GW\), and \(CONST\) as higher-order placeholders. Gate 5 resolves them asymmetrically.
+
+First, \(D1^+\) follows directly from \(G\text{-sup-v0.1}\). Second, the full intensional property domain inherited from the HOL control setting supports lambda abstraction, so for every modal proposition \(\chi\) the constant property
+\[
+  Z_\chi:=\lambda x.\chi
+\]
+is available. Consequently the \(CONST\) interface is a higher-order comprehension assumption rather than an additional G\"odel axiom.
+
+By contrast, \(GW\) is not yet available. A3 and T1 provide only possible positive God-like existence, not a positively supported God-like witness at every world. The required global witness supply belongs to the later T3 branch.
+
+Nor do the remaining Gate-4 regularity assumptions follow from Godlikeness. Strong A1 still permits \(N/N\) gaps in positivity, so it does not yield \(COMP_P\). Likewise, if \(P(Z)=\Neither\) and \(Z(x)=\Both\), support-based Godlikeness places no constraint on \(Z\); therefore \(\pos{G(x)}\) and a glutty arbitrary exemplification can coexist, and \(CONS_G\) is not derived.
+
+Thus Gate 5 reconstructs
+\[
+  A1_R+A2^++A3_T
+  \Longrightarrow
+  \pos{\Diamond\exists^E x\,G(x)},
+\]
+and discharges \(D1^+\) and \(CONST\), but it does not yet reconstruct the full collapse package. The next pressure point is the essence/necessary-existence branch:
+\[
   \operatorname{Ess}
   \longrightarrow
   NE
   \longrightarrow
+  A5
+  \longrightarrow
   \Box\exists^E x\,G(x).
 \]
 
-At each stage the aim is to classify not merely whether a theorem is derivable, but which information status its conclusion may receive and which assumptions control that status. In particular, gluts \(\Both\) and gaps \(\Neither\) in positivity must not be collapsed into a single notion of failure.
-
-Gate 4 leaves three interfaces that must now be justified rather than treated as free assumptions:
-
-\begin{itemize}
-  \item \(D1^+\), the positive-support behavior expected from Godlikeness;
-  \item \(GW\), global supply of positively supported God-like witnesses;
-  \item \(CONST\), embedding of arbitrary modal propositions as constant intensional properties.
-\end{itemize}
-
-The first two depend directly on the lifting of A2, A3, quantification, and the final definition of \(G\). The third is a higher-order expressivity requirement that must be checked against the selected property domain rather than silently inherited from the classical embedding.
-
-Version 0.4 therefore leaves the final object-language definitions of Godlikeness, essence, and necessary existence open, as well as the conditional/consequence policy required to lift A2 and the definitional occurrences of implication. Gate 5 will begin with A2 and the possible-exemplification theorem before promoting any temporary interface to the final theory.
+The full Gate-5 specification is maintained in \texttt{docs/GODLIKENESS\_AND\_POSSIBILITY.md}.
