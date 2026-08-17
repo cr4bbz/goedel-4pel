@@ -71,7 +71,7 @@ The bounded indispensability result is not promoted to a global model-theoretic 
 
 Comparative variants are in progress.
 
-The project-internal support/exact comparison is frozen as `variants-v0.2` in `docs/GODLIKENESS_VARIANTS.md`:
+The project-internal support/exact comparison is frozen in `docs/GODLIKENESS_VARIANTS.md`:
 
 ```text
 G-sup+    : +P(phi) -> current +phi(x)
@@ -86,22 +86,33 @@ Established comparison results:
 - `G-exact+` remains compatible with genuine gluts;
 - finite models separate `G-exact+` and Anderson positive Godlikeness in both directions;
 - on reflexive frames Anderson positive Godlikeness implies `G-sup+`;
-- the literature-grounded positive Anderson Godlikeness/essence/NE chain is reconstructed in Lean;
-- positive Anderson necessary Godlike existence follows from explicit possible Godlikeness plus the Anderson positive stack on the S5 control frames.
+- the literature-grounded Anderson Godlikeness/essence/NE interfaces are reconstructed in Lean.
 
-A bilateral Anderson candidate is frozen as `anderson-bilateral-v0.1` in `docs/ANDERSON_BILATERAL.md`.
+The bilateral Anderson candidate is frozen as `anderson-bilateral-v0.2` in `docs/ANDERSON_BILATERAL.md`.
 
-Lean proves classical recovery of its negative-support clauses for:
+Lean proves classical recovery of its negative-support clauses for necessary exemplification, Godlikeness, essence, necessary actual exemplification, and necessary existence.
 
-- fixed-individual necessary exemplification;
-- Anderson Godlikeness;
-- Anderson essence;
-- necessary actual exemplification;
-- Anderson necessary existence.
+An executable two-world complete-S5 model satisfies the currently encoded bilateral Anderson candidate while positive necessary Godlike existence holds and positive modal collapse fails for a contingent `Q(a)`.
 
-An executable two-world complete-S5 model satisfies the currently encoded bilateral Anderson candidate, including bilateral realization of Godlikeness and necessary existence, while positive necessary Godlike existence holds and positive modal collapse fails for a contingent `Q(a)`.
+Gate 8 then reduces the Anderson frame dependency sharply. Lean proves:
 
-The Anderson negative clauses are a principled FDE reconstruction, not a claim that Anderson historically specified a unique bilateral semantics.
+```text
+Symmetric(R)
++ Possible +G_A
++ AndersonGRealization
++ AndersonGPositive
++ A2+
++ AndersonNERealization
++ AndersonNEPositive
+--------------------------------
+AndersonT3+
+```
+
+No reflexivity, transitivity, or separate `R+` premise is required by this route.
+
+A finite S4-style model is reflexive and transitive but non-symmetric, satisfies the encoded Anderson stack plus possible Godlikeness, and refutes `AndersonT3+`. Thus S4 alone does not replace symmetry in the current semantics. This is bounded countermodel evidence; the Lean theorem establishes sufficiency of symmetry, not global minimality.
+
+The Anderson negative clauses remain a principled FDE reconstruction, not a claim that Anderson historically specified a unique bilateral semantics.
 
 ## Phase B — The key experiment
 
@@ -151,12 +162,15 @@ Finite exhaustive checks are always reported with their bounded model class; abs
 - [x] show exact positive Godlikeness compresses the T2 recovery route to `G-exact+ + R+`;
 - [x] show exact positive Godlikeness remains compatible with gluts;
 - [x] source-ground the distinction between `G-exact+`, Anderson, and Fitting;
-- [x] formalize a literature-grounded positive Anderson interface;
-- [x] reconstruct its positive essence and necessary-existence chain in Lean;
+- [x] formalize literature-grounded positive Anderson interfaces;
+- [x] reconstruct the positive Anderson essence and necessary-existence chain in Lean;
 - [x] freeze a bilateral Anderson candidate with classically recovering negative evidence clauses;
 - [x] exhibit a bilateral two-world Anderson candidate with necessary Godlike existence and failure of positive modal collapse;
+- [x] reduce the Anderson T3 frame theorem from S5 to symmetry alone;
+- [x] exhibit an S4-style non-symmetric countermodel to Anderson T3;
+- [ ] determine whether symmetry itself can be replaced by a still weaker relational condition;
+- [ ] determine the corresponding minimal frame package for the Scott-support T3 route;
 - [ ] decide whether a bilateral negative exact-Godlikeness clause is still scientifically useful after the Anderson comparison;
-- [ ] vary K / KB / S4 / S5 and identify the exact frame dependencies of the Anderson and Scott routes;
 - [ ] introduce the type-level intension/extension distinction required for a faithful Fitting comparison;
 - [ ] rerun selected results over broader paired-neighborhood frames.
 
