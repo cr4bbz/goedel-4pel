@@ -28,25 +28,89 @@ Gödel–Scott is unusually suitable because:
 
 ## 3. Strongest candidate contribution
 
-The first paper-worthy target is not the final existence theorem. It is the relationship between bilateral positivity rigidity and bilateral modal collapse.
+The first paper-worthy target is not the final existence theorem. It is the relationship among:
 
-Let `+φ` mean that `φ` has positive support and `-φ` that it has negative support. Candidate collapse principles are:
+- the two directional information flows hidden in Scott's A1;
+- positive rigidity from A4;
+- derived negative rigidity;
+- the positive and negative persistence components of modal collapse.
+
+Let `+φ` mean that `φ` has positive support and `-φ` that it has negative support.
+
+After Gate 3, the informative collapse pair is:
 
 ```text
-MC+ : +φ  => +□φ
-MC- : -φ  => -□φ
+MC+ : +φ => +□φ
+MC- : -φ => +□¬φ
 ```
 
-Candidate rigidity principles for positivity include:
+Using modal duality, the negative clause is equivalently:
+
+```text
+MC- : -φ => -◇φ
+```
+
+The earlier candidate `-φ => -□φ` is retired because it follows automatically on reflexive frames and therefore cannot diagnose Gödelian modal collapse in the fixed S5 control setting.
+
+Scott A1 is decomposed directionally:
+
+```text
+A1-L : -P(φ)  => +P(¬φ)
+A1-R : +P(¬φ) => -P(φ)
+```
+
+Strong A1 is the conjunction of these directions. It swaps `T/F` and preserves `B/N` under property negation.
+
+The direct A4 lifting is:
 
 ```text
 R+ : +P(φ) => +□P(φ)
-R- : -P(φ) => -□P(φ)
 ```
 
-The core experiment asks which combinations of `R+`, `R-`, and the remaining Gödel–Scott assumptions force `MC+`, `MC-`, both, or neither.
+Informative negative persistence is:
 
-## 4. Required results before any novelty claim
+```text
+R-nec- : -P(φ) => +□¬P(φ)
+```
+
+and Gate 3 establishes semantically:
+
+```text
+A1-L + A1-R + R+ => R-nec-
+```
+
+Thus strong A1 is already a channel-coupling principle.
+
+## 4. The local reflection obstruction
+
+The classical modal-collapse spine uses a local move of the form:
+
+```text
+G(x), Z(x) => P(Z)
+```
+
+At the minimal bilateral interface, even strong A1 together with
+
+```text
+D1+ : +G(x) and +P(φ) => +φ(x)
+```
+
+does not force
+
+```text
+REF+ : +G(x) and +Z(x) => +P(Z)
+```
+
+Two distinct obstruction patterns already exist:
+
+- **glut obstruction:** the complement forced by A1 can coexist with `Z(x)` without explosion;
+- **gap obstruction:** `P(Z)` and `P(¬Z)` may both lack positive support, so the classical positivity dichotomy is unavailable.
+
+A meta-level recovery of `REF+` requires additional structure, including consistency of the relevant God-like exemplification and completeness of the relevant positivity information.
+
+This means Gate 4 must track consistency/completeness explicitly rather than treating the classical reductio as semantically free.
+
+## 5. Required results before any novelty claim
 
 A strong result should include at least:
 
@@ -59,25 +123,46 @@ A strong result should include at least:
 - comparison with the standard Scott theory;
 - a dedicated prior-art search focused on four-valued/paraconsistent ontological arguments and non-classical positivity predicates.
 
-## 5. Possible result shapes
+## 6. Possible result shapes
 
 ### Result type A — Decomposition theorem
-Classical modal collapse is equivalent, under classical recovery assumptions, to the conjunction of two independent bilateral collapse principles.
+Classical modal collapse decomposes into distinct universal positive and universal negative persistence conditions under the chosen bilateral semantics.
 
 ### Result type B — Separation theorem
-There are models satisfying the four-valued Gödel–Scott lift in which `MC+` holds but `MC-` fails, and conversely.
+There are models satisfying a natural four-valued Gödel–Scott lift in which corrected `MC+` holds but corrected `MC-` fails, or conversely.
 
-### Result type C — Rigidity theorem
-Only one bilateral component of positivity rigidity is necessary for a corresponding collapse component.
+### Result type C — Channel-coupling theorem
+A natural combination of A1 and A4 forces one persistence channel from the other. Gate 3 already provides a first instance at the level of positivity rigidity.
 
-### Result type D — Robustness theorem
+### Result type D — Reflection-obstruction theorem
+The classical `G + Z -> P(Z)` step fails under the minimal paraconsistent/paracomplete lift, with distinct glut and gap countermodels.
+
+### Result type E — Robustness theorem
 The existence chain survives specific gluts or gaps in positivity assignments without explosion or triviality.
 
-### Result type E — Failure theorem
-A natural-looking four-valued lift of a Gödel–Scott axiom is too strong and recreates classical collapse or triviality. This would still be valuable because it identifies the wrong lifting principle.
+### Result type F — Failure theorem
+A natural-looking four-valued lifting is too strong and recreates classical collapse or otherwise destroys the intended separation. Such a result remains valuable because it identifies the wrong lifting principle.
 
-## 6. Design discipline
+## 7. Design discipline
 
-Every non-classical axiom must be given an explicit name and version. Do not write "the four-valued version of A4" until the translation has been fixed. There may be several inequivalent A4 candidates.
+Every non-classical axiom must be given an explicit name and version. Do not write "the four-valued version of A4" until the translation has been fixed.
+
+Do not use `-□φ` as a synonym for "φ is necessarily negatively supported". Under the fixed bilateral modal semantics:
+
+```text
+-□φ
+```
+
+means only that **some** accessible world negatively supports `φ`, whereas universal negative persistence is represented by:
+
+```text
++□¬φ
+```
+
+or equivalently:
+
+```text
+-◇φ
+```
 
 Countermodels are first-class research objects. A failed theorem with a minimal explanatory countermodel is a positive result.
