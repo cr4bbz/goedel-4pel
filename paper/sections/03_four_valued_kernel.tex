@@ -1,0 +1,64 @@
+\section{Four-Valued Propositional Kernel}
+\label{sec:kernel}
+
+\statusestablished
+
+The propositional base follows the information structure of Belnap--Dunn First-Degree Entailment \cite{Belnap1977,Dunn1976}. Every formula \(\varphi\) receives two independent bits
+\[
+  v(\varphi)=(t(\varphi),f(\varphi))\in\{0,1\}^2,
+\]
+where \(t(\varphi)=1\) represents positive support and \(f(\varphi)=1\) negative support. We write \(\pos{\varphi}\) and \(\neginfo{\varphi}\) for these two satisfaction conditions.
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+Value & Pair & Reading \\
+\midrule
+\(\True\) & \((1,0)\) & positive support only \\
+\(\False\) & \((0,1)\) & negative support only \\
+\(\Both\) & \((1,1)\) & both positive and negative support \\
+\(\Neither\) & \((0,0)\) & neither positive nor negative support \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Atoms receive positive and negative support independently. The connectives are fixed by the bilateral clauses
+\begin{align*}
+\pos{\neg\varphi} &\iff \neginfo{\varphi}, &
+\neginfo{\neg\varphi} &\iff \pos{\varphi},\\
+\pos{(\varphi\land\psi)} &\iff \pos{\varphi}\land\pos{\psi}, &
+\neginfo{(\varphi\land\psi)} &\iff \neginfo{\varphi}\lor\neginfo{\psi},\\
+\pos{(\varphi\lor\psi)} &\iff \pos{\varphi}\lor\pos{\psi}, &
+\neginfo{(\varphi\lor\psi)} &\iff \neginfo{\varphi}\land\neginfo{\psi}.
+\end{align*}
+
+Positive semantic consequence preserves positive satisfaction:
+\[
+  \Gamma\models_{\FDE}\varphi
+\]
+iff every valuation positively satisfying every member of \(\Gamma\) also positively satisfies \(\varphi\). Equivalently, the positively designated values are \(\{\True,\Both\}\). Negative satisfaction remains separately observable and will be used for bilateral meta-conditions in later sections.
+
+Crucially, no object-language implication is fixed at this stage. Although \(\neg\varphi\lor\psi\) is definable, treating it as \emph{the} conditional would prematurely determine the lifting of A2, D1, D2, and D3.
+
+\begin{proposition}[Paraconsistency]
+The kernel is non-explosive: \(p,\neg p\not\models_{\FDE}q\).
+\end{proposition}
+\begin{proof}
+Let \(v(p)=\Both\) and \(v(q)=\Neither\). Then \(p\) and \(\neg p\) are both positively satisfied, while \(q\) is not.
+\end{proof}
+
+\begin{proposition}[Paracompleteness]
+Excluded middle is not valid: \(\not\models_{\FDE}p\lor\neg p\).
+\end{proposition}
+\begin{proof}
+Let \(v(p)=\Neither\). Negation preserves \(\Neither\), so neither disjunct is positively satisfied and hence neither is their disjunction.
+\end{proof}
+
+\begin{proposition}[Classical recovery of the propositional fragment]
+If atomic valuations are restricted to \(\{\True,\False\}\), then the clauses for \(\neg\), \(\land\), and \(\lor\) remain inside \(\{\True,\False\}\) and coincide with the classical truth tables.
+\end{proposition}
+\begin{proof}
+Immediate by structural induction on formulas using the bilateral clauses above.
+\end{proof}
+
+The full gate specification is maintained in \texttt{docs/FOUR\_VALUED\_KERNEL.md}.

@@ -1,0 +1,50 @@
+\section{From Positivity Rigidity to Modal Collapse}
+\label{sec:collapse}
+
+The classical proof structure already identifies a narrow pressure point for the four-valued analysis. Fix a world \(w\), an individual \(x\), and a property \(Z\). In the Scott theory,
+\[
+  G(x)@w,\; Z(x)@w
+\]
+forces \(P(Z)@w\): if \(Z\) were non-positive, A1 would make \(\neg Z\) positive, while D1 would then force the God-like \(x\) to exemplify \(\neg Z\), contradicting \(Z(x)\). A4 then yields \(\Box P(Z)\), and D1 propagates \(Z\) to God-like entities at accessible worlds. Thus the local spine is
+\[
+  G(x),Z(x)
+  \xRightarrow{A1+D1} P(Z)
+  \xRightarrow{A4} \Box P(Z)
+  \xRightarrow{D1} \Box\forall z\,(G(z)\rightarrow Z(z)).
+\]
+
+Substituting the constant-in-individuals property \(Z:=\lambda z.\chi\) embeds an arbitrary proposition \(\chi\) into this mechanism. Together with T3, which supplies necessarily existing God-like witnesses, and suitable frame conditions, the standard Scott setting yields
+\[
+  \chi\rightarrow\Box\chi.
+\]
+The detailed dependency analysis is maintained in \texttt{docs/MODAL\_COLLAPSE\_SPINE.md}. This local structure is consonant with the recent machine-checked diagnosis that positivity rigidity, rather than ultrafilter structure alone, is a principal driver of collapse \cite{Benzmueller2026Collapse}.
+
+\subsection{Four-valued target}
+
+\statusopen
+
+The first target is to separate
+\[
+  \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi}
+\]
+from
+\[
+  \MCm:\quad \neginfo{\chi}\Rightarrow\neginfo{\Box\chi}.
+\]
+The initial factorial experiment will vary four provisional switches
+\[
+  (A1^{+},A1^{-},\Rp,\Rm)
+\]
+while keeping the remaining background assumptions explicit. This gives sixteen basic configurations before varying the conditional, quantification policy, or modal frame.
+
+\begin{conjecture}[Bilateral separation]
+There is a natural four-valued lift of the Scott theory in which \(\MCp\) and \(\MCm\) are not equivalent.
+\end{conjecture}
+\statusconjectural
+
+\begin{conjecture}[Asymmetric rigidity dependence]
+The positive and negative components of positivity rigidity have different consequences for \(\MCp\) and \(\MCm\).
+\end{conjecture}
+\statusconjectural
+
+Countermodels are first-class results: failure of either conjecture under a natural lifting would identify a hidden channel coupling and would therefore remain structurally informative.

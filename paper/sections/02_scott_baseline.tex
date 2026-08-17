@@ -1,0 +1,34 @@
+\section{Classical Scott Baseline}
+\label{sec:scott}
+
+\statusestablished
+
+We use Scott's variant as the classical control theory, following the modern formal presentation of Benzm\"uller and Scott \cite{BenzmuellerScott2025}. The reference environment uses intensional properties over possible worlds, actualist quantification over individuals, possibilist quantification over properties, and an S5 reference frame. Later experiments may weaken the modal frame, but such changes are not part of the baseline.
+
+Let \(P(\varphi)\) mean that property \(\varphi\) is positive. The relevant axioms and definitions are:
+
+\begin{align}
+\mathrm{A1}\quad & \neg P(\varphi) \leftrightarrow P(\neg\varphi),\\
+\mathrm{A2}\quad & P(\varphi)\land \Box\forall^E y\,(\varphi(y)\rightarrow\psi(y))\rightarrow P(\psi),\\
+\mathrm{D1}\quad & G(x) \equiv \forall\varphi\,(P(\varphi)\rightarrow\varphi(x)),\\
+\mathrm{A3}\quad & P(G),\\
+\mathrm{A4}\quad & P(\varphi)\rightarrow\Box P(\varphi),\\
+\mathrm{D2}\quad & \varphi\operatorname{Ess}x \equiv \varphi(x)\land
+  \forall\psi\bigl(\psi(x)\rightarrow\Box\forall^E y(\varphi(y)\rightarrow\psi(y))\bigr),\\
+\mathrm{D3}\quad & NE(x) \equiv \forall\varphi\bigl(\varphi\operatorname{Ess}x\rightarrow
+  \Box\exists^E y\,\varphi(y)\bigr),\\
+\mathrm{A5}\quad & P(NE).
+\end{align}
+
+The standard theorem chain includes
+\begin{align}
+\mathrm{T1}\quad & P(\varphi)\rightarrow\Diamond\exists^E x\,\varphi(x),\\
+& \Diamond\exists^E x\,G(x),\\
+\mathrm{T2}\quad & G(x)\rightarrow G\operatorname{Ess}x,\\
+\mathrm{T3}\quad & \Box\exists^E x\,G(x),\\
+\mathrm{MC}\quad & \chi\rightarrow\Box\chi.
+\end{align}
+
+For the present project, T3 is a control theorem while MC is the main structural target. A proposed four-valued theory must state precisely in what sense this classical system is recovered when all relevant valuations are restricted to the consistent and complete values \(\True\) and \(\False\).
+
+The project-level baseline, including quantifier conventions and dependency notes, is maintained in \texttt{docs/SCOTT\_BASELINE.md}.

@@ -1,0 +1,35 @@
+\section{Bilateral Positivity}
+\label{sec:positivity}
+
+\statusopen
+
+The positivity predicate \(P\) is the central non-logical primitive of the Scott theory. In the four-valued reconstruction, statements of the form \(P(\varphi)\) may themselves carry positive and negative information independently.
+
+Two classical axioms are immediate decomposition targets. Scott's A1,
+\[
+  \neg P(\varphi)\leftrightarrow P(\neg\varphi),
+\]
+may conceal separate constraints connecting positive and negative information under property negation. Candidate components include
+\[
+  A1^{+}:\quad \pos{P(\neg\varphi)}\Leftrightarrow\neginfo{P(\varphi)},
+\]
+\[
+  A1^{-}:\quad \neginfo{P(\neg\varphi)}\Leftrightarrow\pos{P(\varphi)}.
+\]
+Likewise A4,
+\[
+  P(\varphi)\rightarrow\Box P(\varphi),
+\]
+suggests the provisional rigidity components
+\[
+  \Rp:\quad \pos{P(\varphi)}\Rightarrow\pos{\Box P(\varphi)},
+\]
+\[
+  \Rm:\quad \neginfo{P(\varphi)}\Rightarrow\neginfo{\Box P(\varphi)}.
+\]
+These are research candidates, not yet axioms of the final theory.
+
+\begin{conjecture}[Gap/glut asymmetry for positivity]
+Assignments \(P(\varphi)=\Both\) and \(P(\varphi)=\Neither\) propagate differently through Godlikeness and possible exemplification.
+\end{conjecture}
+\statusconjectural

@@ -1,0 +1,60 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Research Question}
+
+\newcommand{\True}{\mathbf{T}}
+\newcommand{\False}{\mathbf{F}}
+\newcommand{\Both}{\mathbf{B}}
+\newcommand{\Neither}{\mathbf{N}}
+\newcommand{\pos}[1]{+\!#1}
+\newcommand{\neginfo}[1]{-\!#1}
+\newcommand{\FDE}{\mathrm{FDE}}
+\newcommand{\MCp}{\mathrm{MC}^{+}}
+\newcommand{\MCm}{\mathrm{MC}^{-}}
+\newcommand{\Rp}{R^{+}}
+\newcommand{\Rm}{R^{-}}
+\newcommand{\statusestablished}{\textsc{Status: established at the semantic level.}}
+\newcommand{\statusopen}{\textsc{Status: open.}}
+\newcommand{\statusconjectural}{\textsc{Status: conjectural.}}
+
+\title{Decomposing Modal Collapse:\\A Four-Valued Analysis of G\"odel--Scott Positivity}
+\author{Julian Voigt}
+\date{Working manuscript, version 0.1}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study the inferential architecture of the G\"odel--Scott ontological theory under a bilateral four-valued semantics that admits both inconsistent and incomplete information. The aim is not to strengthen the ontological conclusion, but to determine whether classically unitary principles, in particular positivity rigidity and modal collapse, decompose into logically distinct positive and negative information channels. We fix Scott's classical theory as a control system and adopt a conservative Belnap--Dunn/FDE propositional kernel with values \(\True=(1,0)\), \(\False=(0,1)\), \(\Both=(1,1)\), and \(\Neither=(0,0)\). The propositional fragment is paraconsistent, paracomplete, and classically recoverable on the consistent and complete fragment. We then isolate a classical proof spine linking positivity, rigidity, Godlikeness, and modal collapse, which identifies the principal sites for a four-valued decomposition. The modal, higher-order, and positivity liftings remain open in this version; the manuscript is designed to evolve with the formal development.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_scott_baseline}
+\input{sections/03_four_valued_kernel}
+\input{sections/04_modal_semantics}
+\input{sections/05_positivity}
+\input{sections/06_collapse_analysis}
+\input{sections/07_goedel_reconstruction}
+\input{sections/08_mechanization}
+\input{sections/09_related_work}
+\input{sections/10_conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

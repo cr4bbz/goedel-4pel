@@ -1,0 +1,28 @@
+\section{Four-Valued Modal Semantics}
+\label{sec:modal}
+
+\statusopen
+
+This section is the dependency of Gate 2 and is intentionally not frozen in version 0.1. The first conservative candidate is a relational bilateral Kripke semantics in which
+\[
+  w\models^{+}\Box\varphi
+  \quad\text{iff}\quad
+  \forall v\,(wRv\Rightarrow v\models^{+}\varphi),
+\]
+and
+\[
+  w\models^{-}\Box\varphi
+  \quad\text{iff}\quad
+  \exists v\,(wRv\land v\models^{-}\varphi).
+\]
+A corresponding treatment of \(\Diamond\) must be stated independently rather than assumed by classical duality.
+
+The relational candidate will be compared with a neighborhood-style formulation before either is adopted as the project semantics. Four-valued modal logics with Belnapian truth values already have substantial semantic and proof-theoretic literature \cite{OdintsovWansing2010,RivieccioJungJansana2017}, and recent work develops an S5-based four-valued treatment of essence and accident modalities \cite{Petrukhin2026}. The purpose of Gate 2 is therefore not to reinvent four-valued modality, but to determine which established or conservative modal lift best exposes the later G\"odel--Scott decomposition.
+
+\begin{question}
+Under what conditions does the modal lift recover classical \(\Box\) and \(\Diamond\) on the \(\{\True,\False\}\) fragment?
+\end{question}
+
+\begin{question}
+Which dualities between necessity, possibility, and negation survive in the presence of \(\Both\) and \(\Neither\)?
+\end{question}

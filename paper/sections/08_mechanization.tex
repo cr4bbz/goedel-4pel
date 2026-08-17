@@ -1,0 +1,18 @@
+\section{Mechanization and Countermodels}
+\label{sec:mechanization}
+
+\statusopen
+
+Mechanization is intentionally downstream of the semantic design. Once the modal and higher-order clauses are stable, the project will formalize the settled theory in Lean and add finite-model or countermodel tooling where useful.
+
+The minimum mechanization goals are:
+\begin{enumerate}[label=(M\arabic*)]
+  \item machine-check the propositional kernel and its classical recovery;
+  \item encode the selected modal semantics;
+  \item verify each promoted bilateral axiom separately;
+  \item prove positive dependency results;
+  \item retain explicit finite countermodels for every claimed non-implication;
+  \item recover the frozen Scott baseline on the classical fragment.
+\end{enumerate}
+
+The repository treats a minimal countermodel as a result rather than as a failed proof attempt.

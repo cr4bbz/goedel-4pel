@@ -1,0 +1,45 @@
+\section{Introduction}
+\label{sec:introduction}
+
+G\"odel's ontological argument and Dana Scott's well-known modification form an unusually compact laboratory for higher-order modal reasoning. Their interest for the present paper is structural rather than theological. The theory combines a primitive predicate of positive properties, modal rigidity, higher-order quantification, essence, and necessary existence, while its derivational behavior has been studied extensively with automated and interactive theorem provers \cite{BenzmuellerScott2025,BenzmuellerFuenmayor2019}. In Scott's variant the main existence theorem is accompanied by the well-known phenomenon of \emph{modal collapse}, schematically
+\[
+  \chi \rightarrow \Box\chi,
+\]
+according to which every truth is necessary.
+
+Recent machine-checked work sharpens the diagnosis of this phenomenon. In particular, the existence of an ultrafilter-like structure among positive properties does not by itself force collapse; rigidity of positivity is a principal modal ingredient \cite{Benzmueller2026Collapse}. This raises a natural question that classical two-valued semantics cannot express: is the relevant rigidity itself informationally unitary?
+
+The present project studies this question in a bilateral four-valued setting. Instead of assigning a single Boolean value to a formula, we track positive and negative support independently. A formula may therefore be supported only, opposed only, both supported and opposed, or neither. This gives the four values
+\[
+  \True=(1,0),\qquad
+  \False=(0,1),\qquad
+  \Both=(1,1),\qquad
+  \Neither=(0,0),
+\]
+following the Belnap--Dunn/FDE tradition \cite{Belnap1977,Dunn1976}.
+
+The central research question is:
+
+\begin{question}[Bilateral rigidity and collapse]
+Under a four-valued bilateral modal semantics, which positive and negative components of the G\"odel--Scott positivity principles are necessary or sufficient for corresponding positive and negative components of modal collapse?
+\end{question}
+
+The first candidate decomposition is
+\[
+  \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi},
+  \qquad
+  \MCm:\quad \neginfo{\chi}\Rightarrow\neginfo{\Box\chi},
+\]
+where \(\Rightarrow\) is, at this stage, a metalanguage condition rather than an object-language conditional. Likewise, Scott's rigidity axiom
+\[
+  P(\varphi)\rightarrow\Box P(\varphi)
+\]
+may admit distinct bilateral components \(\Rp\) and \(\Rm\).
+
+The contribution sought is therefore not a ``stronger proof of God''. The intended contribution is a structural decomposition theorem, separation result, robustness result, or explanatory countermodel showing exactly how inconsistency and incompleteness alter the inferential architecture of the Scott theory.
+
+\paragraph{Methodological discipline.}
+The development proceeds conservatively. We first freeze a classical Scott baseline, then fix only the propositional four-valued kernel. Modal semantics, the lifting of positivity, higher-order quantification, and any four-valued conditional are treated as separate design decisions. This prevents a syntactically convenient translation from silently deciding the main research question.
+
+\paragraph{Status of this manuscript.}
+Version 0.1 reports the frozen classical baseline, the propositional kernel, and the classical proof spine that motivates the later decomposition. Sections whose content depends on Gate 2 or later are explicitly marked open.
