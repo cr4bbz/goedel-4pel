@@ -1,6 +1,6 @@
 # Formalization
 
-Gate 7 is complete at `formal-v0.1`. The frozen verification record is `docs/FORMAL_VERIFICATION.md`. Gate 8 extends that verified control theory with comparative variants, modal-frame minimization, and the first Fitting-specific type boundary.
+Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, and a substantive bilateral Fitting branch.
 
 The formal layer deliberately has two roles:
 
@@ -9,14 +9,15 @@ The formal layer deliberately has two roles:
 
 ## Finite-model oracle
 
-The Gate-7 Python regression suite machine-checks the T1/T2 glut-gap countermodels, collapse-schema regression, the original 204-model T2 control search, and the broader 873-model bounded assumption search.
+Gate 7 regression-checks the T1/T2 glut-gap countermodels, collapse-schema equivalence, the original 204-model T2 control search, and the broader 873-model bounded Scott assumption search.
 
-Gate 8 adds comparative and frame regressions:
+Gate 8 adds:
 
-- `gate8_compare.py` separates support-based, exact-positive, and Anderson positive Godlikeness and shows exact positive Godlikeness remains compatible with genuine `B` gluts;
-- `gate8_anderson.py` validates the bilateral Anderson necessary-God / no-positive-collapse fixture;
-- `gate8_frames.py` validates an Anderson S4-style non-symmetric countermodel to `AndersonT3+`;
-- `gate8_scott_frames.py` validates the corresponding Scott-support S4-style non-symmetric countermodel to `T3+`.
+- `gate8_compare.py` for support/exact/Anderson comparison;
+- `gate8_anderson.py` for the bilateral Anderson necessary-God / no-positive-collapse fixture;
+- `gate8_frames.py` and `gate8_scott_frames.py` for non-symmetric S4 countermodels;
+- `gate8_fitting.py` for the admissible Fitting de-re/de-dicto separation;
+- `gate8_fitting_no_collapse.py` for a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse.
 
 Run from the repository root:
 
@@ -28,76 +29,55 @@ python3 formal/finite/gate8_compare.py
 python3 formal/finite/gate8_anderson.py
 python3 formal/finite/gate8_frames.py
 python3 formal/finite/gate8_scott_frames.py
+python3 formal/finite/gate8_fitting.py
+python3 formal/finite/gate8_fitting_no_collapse.py
 ```
 
 ## Lean layer
 
-The package under `formal/lean/` is pinned to Lean 4.30.0 and uses declarative `lakefile.toml` configuration.
+The package is pinned to Lean 4.30.0 and uses declarative `lakefile.toml` configuration.
 
-Current modules include:
+Current comparative modules include:
 
 ```text
-Goedel4PEL/FourValued/Truth.lean
-Goedel4PEL/FourValued/Connectives.lean
-Goedel4PEL/FourValued/Modal.lean
-Goedel4PEL/FourValued/Actualist.lean
-Goedel4PEL/GoedelScott/Semantics.lean
 Goedel4PEL/GoedelScott/GodlikeVariants.lean
 Goedel4PEL/GoedelScott/AndersonInterfaces.lean
 Goedel4PEL/GoedelScott/AndersonBilateral.lean
 Goedel4PEL/GoedelScott/AndersonFrames.lean
-Goedel4PEL/GoedelScott/FittingTypes.lean
-Goedel4PEL/GoedelScott/T1.lean
-Goedel4PEL/GoedelScott/T2.lean
-Goedel4PEL/GoedelScott/T3Collapse.lean
 Goedel4PEL/GoedelScott/ScottFrames.lean
-Goedel4PEL/Analysis/Collapse.lean
-Goedel4PEL/Analysis/Recovery.lean
+Goedel4PEL/GoedelScott/FittingTypes.lean
+Goedel4PEL/GoedelScott/FittingSemantics.lean
+Goedel4PEL/GoedelScott/FittingRecovery.lean
+Goedel4PEL/GoedelScott/FittingNecessaryExistence.lean
+Goedel4PEL/GoedelScott/FittingDeDicto.lean
+Goedel4PEL/GoedelScott/FittingAdmissible.lean
+Goedel4PEL/GoedelScott/FittingAdmissibleRecovery.lean
+Goedel4PEL/GoedelScott/FittingAdmissibleNecessaryExistence.lean
 ```
 
-### Gate-7 machine-proved spine
+### Gate-7 control spine
 
-The original Gate-7 control proofs include:
+Lean machine-proves the current Scott control results, including:
 
 ```text
 MC+ <-> MC-
 A1-R + A2+ => T1-T
 NegExemplification + G-sup + A1-L + R+ + REG_G => T2+
-PossibleGod + T2+ + A5+ + NE-sup + G-sup + S5 => T3+
 T3+ + Reflexive(R) => GW
 T2+ + T3+ + G-sup + CONST + Reflexive(R) => MC+
 ```
 
-Under explicit classical coherence, Lean also proves complementary positive/negative recovery for `Pos_T`, `NEnt`, Godlikeness, essence, and necessary existence.
+Gate 8 strengthens the later Scott T3 dependency to symmetry alone once `T2+` is available.
 
-### Gate-8 support / exact comparison
+### Gate-8 Scott / Anderson frame results
 
-`GodlikeVariants.lean` introduces the project-internal positive comparison condition:
-
-```text
-G-exact+(x): +phi(x) iff +P(phi)
-```
-
-This name is internal to the repository and is not identified with Anderson or Fitting.
-
-Lean proves:
+Lean proves both current T3 routes from symmetry alone:
 
 ```text
-G-exact+ => G-sup+
-G-exact+ + R+ => T2-exact+
-```
+Scott after T2+:
+Symmetric(R) + PossibleGod + T2+ + A5+ + NE-sup + G-sup => T3+
 
-Thus the exact-positive definition internalizes the positive reflection step that the support theory recovers using `A1-L + COMP_P^G + CONS_G^G`.
-
-### Gate-8 Anderson branch
-
-`AndersonInterfaces.lean` reconstructs the literature-grounded positive Anderson interfaces through necessary exemplification of the same individual. `AndersonBilateral.lean` adds the project's explicit negative mismatch evidence and proves classical recovery under classical coherence.
-
-The finite oracle supplies a bilateral complete-S5 fixture with positive necessary Godlike existence and failure of positive modal collapse for a contingent `Q(a)`.
-
-`AndersonFrames.lean` then removes unnecessary S5 frame assumptions. Lean proves:
-
-```text
+Anderson:
 Symmetric(R)
 + Possible +G_A
 + AndersonGRealization
@@ -105,43 +85,102 @@ Symmetric(R)
 + A2+
 + AndersonNERealization
 + AndersonNEPositive
---------------------------------
-AndersonT3+
+=> AndersonT3+
 ```
 
-No reflexivity, transitivity, or separate `R+` premise occurs in this theorem.
+Reflexivity and transitivity are absent from those theorems. Separate finite S4-style models show that reflexivity plus transitivity do not replace symmetry in either current route.
 
-### Gate-8 Scott frame reduction
+### Gate-8 Fitting: unrestricted obstruction
 
-`ScottFrames.lean` proves, once Scott `T2+` is already available:
-
-```text
-Symmetric(R)
-+ PossibleGod
-+ T2+
-+ A5+
-+ NE-sup
-+ G-sup
---------------
-T3+
-```
-
-Again, reflexivity and transitivity are absent. The separate finite Anderson and Scott S4-style fixtures show that reflexivity plus transitivity do not replace symmetry in these current routes.
-
-This is a local theorem-level minimization. It does not show that the complete primitive Scott theory needs only symmetry, because the reduced Scott theorem takes `T2+` as a premise, and it does not establish symmetry as globally unique/minimal.
-
-### Gate-8 Fitting type boundary
-
-`FittingTypes.lean` introduces distinct Lean types for bilateral extensions and world-indexed intensions:
+The initial Fitting type split is retained:
 
 ```text
 Extension Entity
 Intension World Entity := World -> Extension Entity
 ```
 
-The Fitting semantic shell types positivity over `Extension Entity`, not over `Intension World Entity`. `extensionAt` and `rigidify` make the bridge explicit.
+and positivity consumes extensions rather than intensions.
 
-This is intentionally infrastructure only. The next formal tasks are extension-level necessary entailment, Fitting essence, Fitting necessary existence, classical recovery, and then necessary-God / modal-collapse tests.
+A naive unrestricted bilateral extension domain turned out to be too strong for the intended `REG_G` recovery route. Because the full `Extension` type contains a universal glut extension, Lean proves:
+
+```text
+ConsGG M -> forall w x, not GodPlus M w x
+RegG  M -> forall w x, not GodPlus M w x
+```
+
+Thus the earlier unrestricted Fitting recovery implication remains logically valid but is not used as a substantive non-vacuous theorem.
+
+### Gate-8 Fitting: admissible extensional domain
+
+The substantive candidate introduces:
+
+```text
+AdmissibleSemantics
+  base          : Fitting.Semantics
+  admissible    : Extension Entity -> Prop
+  negate_closed : admissible X -> admissible (negate X)
+```
+
+This does not globally require consistency. The finite oracle contains a negation-closed admissible domain with a genuine `B` extension.
+
+Lean proves the non-vacuous extensional essence recovery theorem:
+
+```text
+GAdmissible
++ GRealizationAdm
++ A1LAdm
++ RegGAdm
+----------------
+GodPlusAdm(x) => EssPlusAdm(current G extension, x)
+```
+
+No `R+` premise occurs.
+
+Under classical coherence on the selected extensional domain Lean proves:
+
+```text
+EntailMinus    <-> not EntailPlus
+GodMinusAdm    <-> not GodPlusAdm
+EssMinusAdm    <-> not EssPlusAdm
+BoxExistsMinus <-> not BoxExistsPlus
+NEMinusAdm     <-> not NEPlusAdm
+```
+
+### Fitting de re and de dicto
+
+The admissible necessary-existence chain yields a frame-free de-re theorem:
+
+```text
+admissible Fitting stack
++ de-re possible actual current-G extension
+-------------------------------------------
+  de-re necessary actual current-G extension
+```
+
+No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise is used.
+
+De-dicto lifting is kept separate. Define:
+
+```text
+STAB_G:
+  w R z -> extensionAt G w equivalent to extensionAt G z
+```
+
+Then Lean proves:
+
+```text
+admissible Fitting stack
++ STAB_G
++ de-dicto possible actual Godlikeness
+--------------------------------------
+  de-dicto necessary actual Godlikeness
+```
+
+again with no S4/S5 frame premise.
+
+The three-world finite model shows the bridge is substantive: de-re necessity and de-dicto possibility hold while de-dicto necessity and `STAB_G` fail.
+
+A second complete-S5 model satisfies the encoded admissible Fitting stack, `STAB_G`, and positive necessary actual Godlikeness while a contingent `Q(a)` refutes `MC+`. The same admissible extensional domain contains genuine inconsistent `B` information.
 
 Build locally:
 
@@ -152,17 +191,16 @@ lake build
 
 ## CI and discipline
 
-GitHub Actions runs both finite-model regressions and `lake build`. The Scott S4 countermodel and the imported Fitting type boundary are both green in CI.
+GitHub Actions runs both finite regressions and `lake build`. The complete admissible Fitting recovery interface and both new finite Fitting fixtures are green in CI.
 
-Finite exhaustive checks are always reported with their exact bounded domain. No absence of a bounded countermodel is promoted to a general theorem.
+Finite searches and fixtures are always reported with their exact bounds. General claims are promoted to machine-checked status only when represented by Lean theorems.
 
 ## Next Gate-8 formal work
 
-The next comparison is the extension-level Fitting chain. The type boundary is now fixed, so the safe order is:
+The main remaining work is no longer basic Fitting reconstruction. It is:
 
-1. extension-level necessary entailment;
-2. positive Fitting essence;
-3. extension-typed necessary existence;
-4. classical recovery where appropriate;
-5. necessary Godlike existence and modal-collapse countermodels/theorems;
-6. direct comparison with the bilateral Anderson branch.
+1. minimize `REG_G^adm` without reintroducing unrestricted-comprehension vacuity;
+2. justify additional principled closure conditions for the admissible extension domain;
+3. search for a weaker replacement of `STAB_G`;
+4. rerun selected Scott/Anderson/Fitting results over paired-neighborhood semantics;
+5. complete the source-level publication audit.
