@@ -4,9 +4,9 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.11`  
-**Research gates represented:** Gate 0 through the current Gate-8 comparative/minimality milestone  
-**Next manuscript dependency:** principled analysis of the alternative Fitting recovery assumptions / paired-neighborhood generalization and Gate-9 source/prior-art audit
+**Version:** `paper-v0.12`  
+**Research gates represented:** Gate 0 through the current Gate-8 comparative/minimality/domain-structure milestone  
+**Next manuscript dependency:** algebraic analysis of the profile-saturated Fitting domain / paired-neighborhood generalization and Gate-9 source/prior-art audit
 
 The manuscript is deliberately separated from `docs/`:
 
@@ -29,14 +29,17 @@ Gate 8 adds:
 - a minimized A1-L Fitting classification route in which exemplification consistency is required only on the negatively classified branch;
 - a Lean theorem showing that restoring `A1-R` reconstructs the older full consistency condition from this targeted package;
 - a second machine-checked Fitting recovery route based on admissible-property indiscernibility among Godlike individuals, with no A1, `COMP_P^G(adm)`, or consistency premise;
-- a finite model in which both A1 directions and full relevant consistency hold, a relevant admissible extension has positivity value `N`, `COMP_P^G(adm)` fails, but the indiscernibility route still yields essence and the necessary-existence chain;
+- a structural derivation of that indiscernibility interface from positive-profile saturation of the admissible domain;
+- a Lean theorem showing that, because `Adm` is FDE-negation-closed, positive-profile saturation is equivalent to full bilateral saturation on the same quotient classes;
+- a nontrivial finite profile-saturation model with two distinct positive Godlike individuals, a relevant positivity gap, failure of `COMP_P^G(adm)`, and successful essence/NE recovery;
+- a literature-facing ultrafilter comparison showing that complement decision plus relevant consistency or `A1-R` reconstructs positive reflection / `COMP`, rather than the classification-free quotient route;
 - finite fixtures separating positive-only G stability from full bilateral G stability even under a stronger S5 control stack;
 - a finite de-re/de-dicto separation model when positive extension stability fails;
 - a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` extension information, and failure of positive modal collapse.
 
-The central manuscript thesis is therefore now comparative: under involutive FDE negation the final signed collapse schemata are coupled, while the decisive variation lies upstream in where positivity, reflection, necessary exemplification, extensional indiscernibility, and intension/extension stability are placed.
+The central manuscript thesis is therefore now comparative: under involutive FDE negation the final signed collapse schemata are coupled, while the decisive variation lies upstream in where positivity, reflection, necessary exemplification, property-domain quotient structure, and intension/extension stability are placed.
 
-The open minimality claims remain explicit. The Scott T2 finite search does not establish global minimality; the symmetry-only T3 theorems establish sufficiency rather than unique weakest frame conditions; and the new Fitting indiscernibility route is an alternative structural mechanism rather than a globally weakest replacement for positivity completeness. Positive persistence and positive reflection also remain candidates for further derivation or weakening.
+The open minimality claims remain explicit. The Scott T2 finite search does not establish global minimality; the symmetry-only T3 theorems establish sufficiency rather than unique weakest frame conditions; and the Fitting quotient route is an alternative structural mechanism rather than a globally weakest replacement for positivity completeness. The next Fitting question is algebraic: which closure principles make the profile quotient natural or derivable, and whether a genuinely four-valued `delta`-ultrafilter can live on that quotient without restoring `COMP`.
 
 ## Build
 
