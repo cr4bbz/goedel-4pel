@@ -18,26 +18,26 @@ def pos(extension, x):
     return extension[idx(x)].pos
 
 
-def neg(extension, x):
-    return extension[idx(x)].neg
-
-
 def fde_neg(extension):
     return tuple(v.negate() for v in extension)
 
 
+def val(pos_support, neg_support):
+    return Val((int(bool(pos_support)), int(bool(neg_support))))
+
+
 def fde_conj(x, y):
-    out = []
-    for vx, vy in zip(x, y):
-        out.append(Val.from_bits(vx.pos and vy.pos, vx.neg or vy.neg))
-    return tuple(out)
+    return tuple(
+        val(vx.pos and vy.pos, vx.neg or vy.neg)
+        for vx, vy in zip(x, y)
+    )
 
 
 def fde_disj(x, y):
-    out = []
-    for vx, vy in zip(x, y):
-        out.append(Val.from_bits(vx.pos or vy.pos, vx.neg and vy.neg))
-    return tuple(out)
+    return tuple(
+        val(vx.pos or vy.pos, vx.neg and vy.neg)
+        for vx, vy in zip(x, y)
+    )
 
 
 def p_pos(extension):
