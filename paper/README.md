@@ -4,14 +4,14 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.6`  
-**Research gates represented:** Gate 0 through Gate 6  
-**Next manuscript dependency:** Gate 7 mechanization and T2 minimality
+**Version:** `paper-v0.7`  
+**Research gates represented:** Gate 0 through Gate 7  
+**Next manuscript dependency:** Gate 8 comparative variants
 
 The manuscript is deliberately separated from `docs/`:
 
 - `docs/` is the research laboratory: alternatives, rejected definitions, conjectures, countermodels, and gate notes belong there.
-- `paper/` contains only claims that are already established at the current semantic level, supported by explicit finite countermodels, or explicitly marked open/conjectural.
+- `paper/` contains only claims that are established at the current semantic level, machine-checked, supported by explicit finite countermodels, or explicitly marked open/conjectural.
 
 Gate 2 adds the bilateral relational modal control semantics and paired-neighborhood representation.
 
@@ -21,18 +21,18 @@ Gate 4 adds collapse-channel equivalence, rigidity countermodels, and the local 
 
 Gate 5 adds bilateral actualist quantification, semantic necessary positive entailment, `T1-T`, the A3 split, possible positive God-like existence, and `G-sup-v0.1`.
 
-Gate 6 adds:
+Gate 6 adds bilateral essence and necessary existence, glut/gap T2 countermodels, a sufficient T2 recovery route, conditional positive T3, discharge of `GW`, and the essence-compressed modal-collapse theorem.
 
-- signed necessary-entailment counter-support `NEnt-_E`;
-- bilateral `Ess-sup-v0.1` and `NE-sup-v0.1`;
-- two explicit two-world S5 countermodels refuting automatic `T2+` by glut and gap mechanisms;
-- a sufficient relevant-regularity route to `T2+`;
-- the result that `A5+` alone suffices for the positive T3 branch once a God-like witness exists;
-- conditional `T3+ : +□∃ᴱx G(x)` and discharge of `GW`;
-- the essence-compressed theorem `T2+ + T3+ + CONST => MC+`, with `MC-` following by Gate 4;
-- a concrete inconsistency-tolerance pattern in which glutty positivity of `NE` does not destroy the positive T3 branch.
+Gate 7 adds two verification layers:
 
-The central manuscript thesis is now sharper: under symmetric FDE negation the final collapse schemata are coupled, while the decisive non-classical obstruction is the recovery of positive Godlikeness-as-essence. The next phase is therefore mechanization plus minimization of the assumptions sufficient for `T2+`.
+- Lean 4.30.0 machine proofs of schema-level `MC+ <-> MC-`, `T1-T`, the conditional T2 recovery theorem, conditional T3, `T3+ => GW`, essence-compressed positive modal collapse, and classical bilateral recovery interfaces;
+- executable finite-model regressions for the T1 glut obstruction and both T2 countermodels;
+- a broader bounded T2 assumption search with 873 full-antecedent models, all satisfying `T2+`;
+- bounded individual indispensability of `A1-L`, `R+`, `COMP_P^G`, and `CONS_G^G` in that generated family.
+
+The central manuscript thesis is now mechanically supported for the fixed S5 control theory: under symmetric FDE negation the final collapse schemata are coupled, while the decisive non-classical structure lies upstream in positivity, possible exemplification, and especially the derivation of positive Godlikeness-as-essence.
+
+The open minimality question is explicitly unbounded. The finite search does not show that the current T2 recovery package is globally weakest.
 
 ## Build
 
@@ -55,10 +55,11 @@ Generated PDF and auxiliary files should not be treated as source-of-truth artif
 
 ## Status discipline
 
-The manuscript uses three conceptual labels:
+The manuscript distinguishes:
 
-- `established`: follows from the currently fixed semantics or frozen classical baseline;
+- `established`: follows from the fixed semantics or frozen classical baseline;
+- `machine-checked`: represented by a general Lean theorem or executable named countermodel/regression with an explicit bound;
 - `open`: explicitly not yet settled;
 - `conjectural`: a research hypothesis awaiting proof or countermodel.
 
-No result should be promoted from `open` or `conjectural` without a corresponding proof, model analysis, or mechanized check recorded in the repository.
+No bounded finite search is promoted to an unbounded theorem. Exact higher-order correspondence with the frozen Scott/AFP control development remains part of the publication audit.
