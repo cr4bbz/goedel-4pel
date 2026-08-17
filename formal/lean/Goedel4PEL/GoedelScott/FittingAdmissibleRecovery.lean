@@ -11,7 +11,7 @@ theorem entailMinusAdm_iff_not_entailPlus
     (M : AdmissibleSemantics World Entity)
     (hExt : ExtensionClassicalAdm M)
     (w : World) (X Y : Extension Entity)
-    (hXAdm : M.admissible X) (hYAdm : M.admissible Y) :
+    (_hXAdm : M.admissible X) (hYAdm : M.admissible Y) :
     EntailMinus M.base w X Y ↔ ¬ EntailPlus M.base w X Y := by
   constructor
   · intro hMinus hPlus
