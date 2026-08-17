@@ -3,7 +3,7 @@
 
 \statusestablished
 
-Gate 7 adds two complementary verification layers. I use a finite-model oracle for concrete countermodels and bounded exhaustive searches, and Lean for general semantic theorems that must not depend on a finite bound. Gate 8 extends the same discipline to comparative variants and frame minimization. This separation prevents the absence of a small countermodel from being mistaken for a proof.
+Gate 7 adds two complementary verification layers. I use a finite-model oracle for concrete countermodels and bounded exhaustive searches, and Lean for general semantic theorems that must not depend on a finite bound. Gate 8 extends the same discipline to comparative variants, modal-frame minimization, and the Fitting intension/extension reconstruction. This separation prevents the absence of a small countermodel from being mistaken for a proof and, conversely, allows an apparently successful proof interface to be tested for semantic vacuity.
 
 \subsection{Finite-model regression layer}
 
@@ -17,29 +17,37 @@ A first bounded search retains 204 models satisfying the original small control 
 \[
  A1_L,\qquad R^+,\qquad COMP_P^G,\qquad CONS_G^G,
 \]
-and every one of them satisfies \(T2^+\).
-
-More importantly, dropping any one of these four assumptions while retaining the other three produces a \(T2^+\) countermodel within the same bounded family. Thus the search establishes bounded individual indispensability of the four recovery assumptions relative to the fixed semantic laws. I do not promote this result to global model-theoretic minimality.
+and every one of them satisfies \(T2^+\). Dropping any one of these four assumptions while retaining the other three produces a \(T2^+\) countermodel within the same bounded family. I therefore treat this as bounded individual indispensability, not global model-theoretic minimality.
 
 The checker also verifies the schema-level equivalence
 \[
   \MCp\leftrightarrow\MCm
 \]
-on a negation-closed two-world test family. This regression records an important typing distinction: the equivalence is a result about schemata closed under substitution by negation, not a pointwise identity for one isolated formula valuation.
+on a negation-closed two-world test family. The equivalence concerns schemata closed under substitution by negation, not a pointwise identity for one isolated formula valuation.
 
-Gate 8 adds three further families of executable witnesses. First, the support/exact comparison confirms that both Gate-6 T2 countermodels are support-Godlike but fail project-internal exact positive Godlikeness, while a separate exact-Godlike fixture still permits genuine \(\Both\) gluts. Second, a complete-S5 bilateral Anderson fixture has positive necessary Godlike existence while a contingent formula application refutes positive modal collapse. Third, both the Scott-support and Anderson branches have S4-style two-world countermodels: the frames are reflexive and transitive but not symmetric, satisfy the remaining encoded premises of the reduced T3 routes, and refute the corresponding positive T3 conclusion. These are explicit countermodels to replacing symmetry by S4 in the current routes; they are not global minimality proofs.
+Gate 8 adds comparative witnesses. The support/exact comparison confirms that both Gate-6 T2 countermodels are support-Godlike but fail project-internal exact positive Godlikeness, while a separate exact-Godlike fixture still permits genuine \(\Both\) gluts. A complete-S5 bilateral Anderson fixture has positive necessary Godlike existence while a contingent formula application refutes positive modal collapse. Separate Scott and Anderson S4-style two-world models are reflexive and transitive but not symmetric and refute the corresponding reduced T3 conclusions.
+
+The Fitting branch adds two further finite witnesses. First, a three-world two-entity model uses a selected negation-closed extensional property domain and satisfies the admissible Fitting recovery stack. At the root world the current frozen \(G\)-extension is both possibly and necessarily actually exemplified de re, and de-dicto Godlikeness is possible, but de-dicto necessary Godlikeness fails because the extension of \(G\) changes at another accessible world. The model therefore separates the two readings when the explicit extension-stability condition introduced below is absent.
+
+Second, a complete two-world S5 model satisfies the encoded admissible Fitting stack, extension stability, and positive necessary actual Godlikeness. Its selected extension domain nevertheless contains genuine inconsistent information: one admissible extension takes value \(\Both\) on an entity, together with its FDE negation. A separate contingent intension \(Q\) satisfies
+\[
+  \pos{Q(a)}@w_0
+\]
+but not
+\[
+  \pos{\Box Q(a)}@w_0.
+\]
+Thus the present admissible bilateral Fitting candidate has an explicit necessary-God / no-positive-collapse model. This is a finite countermodel to collapse for the candidate, not an unbounded theorem about every Fitting semantics.
 
 \subsection{Lean layer}
 
-The Lean package is pinned to Lean 4.30.0 and uses a declarative Lake TOML configuration. It formalizes the four-valued carrier, FDE negation, conjunction and disjunction, bilateral relational modality, bilateral actualist quantification, signed necessary entailment, support-based Godlikeness, bilateral essence, and the positive necessary-existence interface.
+The Lean package is pinned to Lean 4.30.0. It formalizes the four-valued carrier, FDE negation, conjunction and disjunction, bilateral relational modality, bilateral actualist quantification, signed necessary entailment, support-based Godlikeness, bilateral essence, and necessary-existence interfaces.
 
-Lean proves the collapse-channel theorem generally at schema level. It also proves the Gate-5 truth-only possibility theorem
+Lean proves the collapse-channel theorem generally at schema level and the Gate-5 truth-only possibility theorem
 \[
-  A1_R+A2^+\Longrightarrow T1_T,
+  A1_R+A2^+\Longrightarrow T1_T.
 \]
-using classical reductio only at the semantic metalevel.
-
-The principal Gate-6 recovery theorem is machine-checked without a finite bound:
+The principal Gate-6 Scott recovery theorem is machine-checked without a finite bound:
 \[
   NegExemplification
   +G\text{-sup}
@@ -48,7 +56,6 @@ The principal Gate-6 recovery theorem is machine-checked without a finite bound:
   +REG_G
   \Longrightarrow T2^+.
 \]
-The proof therefore confirms that no additional Scott axiom is hidden in the paper derivation.
 
 Gate 8 sharpens the later modal dependency. Once Scott \(T2^+\) is available, Lean proves
 \[
@@ -60,7 +67,7 @@ Gate 8 sharpens the later modal dependency. Once Scott \(T2^+\) is available, Le
   +G\text{-sup}
   \Longrightarrow T3^+.
 \]
-Reflexivity and transitivity are absent from this theorem. Reflexivity is required only for the separate implication \(T3^+\Rightarrow GW\) and for the current essence-compressed collapse theorem, which Lean proves as
+Reflexivity and transitivity are absent. Reflexivity enters only in the separate implication \(T3^+\Rightarrow GW\) and in the current essence-compressed collapse theorem
 \[
   \operatorname{Refl}(R)
   +T2^+
@@ -70,7 +77,7 @@ Reflexivity and transitivity are absent from this theorem. Reflexivity is requir
   \Longrightarrow\MCp.
 \]
 
-The comparative branch is also mechanized. For project-internal exact positive Godlikeness, Lean proves
+For project-internal exact positive Godlikeness, Lean proves
 \[
   G\text{-exact}^+\Rightarrow G\text{-sup}^+
 \]
@@ -78,11 +85,7 @@ and
 \[
   G\text{-exact}^+ + R^+\Longrightarrow T2_{\mathrm{exact}}^+.
 \]
-The latter theorem has no \(A1_L\), \(COMP_P^G\), or \(CONS_G^G\) premise because local positive reflection is built into exactness.
-
-For the Anderson comparison I first encode the literature-grounded positive interfaces using directional metalanguage clauses rather than a four-valued object-language biconditional. A project-specific bilateral negative-evidence reconstruction then adds explicit mismatch witnesses. Under classical coherence Lean proves that negative Anderson necessary exemplification, Godlikeness, essence, necessary actual exemplification, and necessary existence are exactly the complements of their positive counterparts.
-
-The positive Anderson necessary-existence branch is also machine-checked. Its frame assumption can be reduced to symmetry alone:
+For Anderson, the literature-grounded positive interfaces and project-specific bilateral negative evidence are mechanized separately. Under classical coherence the negative necessary-exemplification, Godlikeness, essence, necessary-actual-exemplification, and necessary-existence clauses recover the complements of their positive counterparts. The positive Anderson necessary-existence branch reduces to symmetry alone:
 \[
 \begin{split}
   &\operatorname{Sym}(R)
@@ -96,49 +99,110 @@ The positive Anderson necessary-existence branch is also machine-checked. Its fr
   \Longrightarrow T3_A^+.
 \end{split}
 \]
-No reflexivity, transitivity, or separate \(R^+\) premise occurs in that theorem.
 
-The Fitting comparison now goes beyond the type boundary. Lean distinguishes bilateral property extensions from intensions, represents an intension as a world-indexed extension, provides explicit \(extensionAt\) and rigidification operations, and types Fitting positivity over extensions rather than intensions. Over that typed interface I define signed necessary entailment between rigid extensions, bilateral extensional essence, and bilateral necessary existence.
+\subsection{Fitting: from a type distinction to a domain obstruction}
 
-The first general Fitting theorem is
+The Fitting comparison begins by distinguishing bilateral extensions from intensions:
+\[
+  Extension(Entity)
+  \qquad\text{and}\qquad
+  Intension(World,Entity)=World\to Extension(Entity).
+\]
+The positivity predicate is typed over extensions, and \(extensionAt\) makes the passage from an intension to its extension at a world explicit. Signed necessary entailment, essence, and necessary existence are then reconstructed over rigid extensions, reflecting the extensional architecture of the mechanized Fitting variant \cite{BenzmuellerFuenmayor2019}.
+
+A naive first lift quantified Fitting Godlikeness and the relevant consistency/completeness package over every inhabitant of the bilateral extension type. Lean exposes a problem with that choice. The unrestricted type contains the extension \(B\) satisfying
+\[
+  \pos{B(x)}\quad\text{and}\quad\neginfo{B(x)}
+\]
+for every individual. Consequently Lean proves
+\[
+  CONS_{G,F}^{\mathrm{all}}
+  \Longrightarrow
+  \forall w\forall x\,\neg G_F^+(x,w),
+\]
+and therefore also
+\[
+  REG_{G,F}^{\mathrm{all}}
+  \Longrightarrow
+  \forall w\forall x\,\neg G_F^+(x,w).
+\]
+The earlier unrestricted implication from this regularity package to extensional essence remains a valid implication, but its intended Godlike antecedent is excluded by the package itself. I therefore do not count that unrestricted route as the substantive Fitting recovery result. The failed modeling choice is retained in the formal development because the obstruction is itself informative.
+
+\subsection{Admissible Fitting extensions}
+
+The corrected candidate uses a selected domain of admissible extensions, written \(Adm(X)\), with FDE-negation closure
+\[
+  Adm(X)\Longrightarrow Adm(\neg X).
+\]
+This is a property-domain restriction rather than a global consistency postulate. In particular, admissible extensions may remain glutty, as the finite S5 witness above demonstrates.
+
+Positive Fitting Godlikeness becomes
+\[
+  G_F^+(x,w)
+  \quad\text{iff}\quad
+  \forall X\bigl(Adm(X)\land \pos{P(X)}@w
+  \Rightarrow \pos{X(x)}\bigr).
+\]
+The relevant Fitting regularity package is likewise restricted to admissible extensions. Lean then proves the non-vacuous extensional essence theorem
 \[
 \begin{split}
-  &G_F\text{-realization}
-  +A1_{L,F}
-  +REG_G^{\mathrm{ext}}\\
+  &G\text{-admissible}
+  +G_F\text{-realization}
+  +A1_{L,F}^{adm}
+  +REG_{G,F}^{adm}\\
   &\qquad\Longrightarrow
   \bigl(G_F^+(x,w)\Rightarrow
-  Ess_F^+(\operatorname{ext}_w G,x,w)\bigr).
+  Ess_F^+(ext_wG,x,w)\bigr).
 \end{split}
 \]
-Unlike the verified Scott-support T2 recovery theorem, this result has no \(R^+\) premise. The reason is structural rather than syntactic: Fitting entailment compares rigid extensions, so after local positive reflection has recovered \(P(Y)\) at \(w\), membership in the frozen current \(G\)-extension is evaluated against the same extensional \(Y\) at every accessible world. No transport of positivity to that accessible world is required.
+Unlike the current Scott-support T2 recovery theorem, no \(R^+\) premise occurs. Once local positivity of an admissible rigid extension has been recovered, its membership relation does not itself vary across accessible worlds.
 
-With an intensional \(NE\) realizing the extension-typed necessary-existence condition and positive A5 applied to its current extension, Lean further proves a de-re possibility-to-necessity theorem:
+The bilateral negative evidence is also audited. Under classical coherence on the selected extension domain, Lean proves the recovery schemata
+\[
+\begin{array}{rcl}
+ Ent_F^-&\leftrightarrow&\neg Ent_F^+,\\
+ G_F^-&\leftrightarrow&\neg G_F^+,\\
+ Ess_F^-&\leftrightarrow&\neg Ess_F^+,\\
+ BoxExists_F^-&\leftrightarrow&\neg BoxExists_F^+,\\
+ NE_F^-&\leftrightarrow&\neg NE_F^+.
+\end{array}
+\]
+These results validate the project-specific negative clauses at the classical boundary without imposing classicality on the four-valued candidate itself.
+
+\subsection{Fitting de re and de dicto}
+
+Let \(ext_wG\) denote the extension of the Godlikeness intension frozen at the evaluation world. With a distinguished \(NE\) intension realizing admissible-domain necessary existence and positive A5 on its current extension, Lean proves
 \[
 \begin{split}
-  &G_F\text{-realization}
-  +A1_{L,F}
-  +REG_G^{\mathrm{ext}}
-  +NE_F\text{-realization}
-  +A5_F^+\\
-  &\qquad
-  +\Diamond_{\mathrm{de\,re}}^+\exists^E x\,\operatorname{ext}_wG(x)
-  \Longrightarrow
-  \Box_{\mathrm{de\,re}}^+\exists^E x\,\operatorname{ext}_wG(x).
+  &\text{admissible Fitting stack}
+  +\Diamond_{de\,re}^+\exists^E x\,ext_wG(x)\\
+  &\qquad\Longrightarrow
+  \Box_{de\,re}^+\exists^E x\,ext_wG(x).
 \end{split}
 \]
-No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise occurs. The extension of \(G\) is frozen at the evaluation world throughout this theorem. I do not identify this with the de-dicto claim in which \(G\) is re-evaluated at each accessible world; the published Fitting formalization itself distinguishes these readings and reports non-equivalences between tempting formulations \cite{BenzmuellerFuenmayor2019}.
+No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise occurs. This is the project's four-valued counterpart of the K-level de-re behavior emphasized in the mechanized Fitting analysis \cite{BenzmuellerFuenmayor2019}.
 
-\subsection{Classical recovery}
+The de-dicto claim is intentionally not identified with this theorem. It re-evaluates \(G\) at each accessible world. I isolate the required intension/extension bridge as
+\[
+  STAB_G:\qquad
+  wRz\Rightarrow ext_wG\equiv ext_zG.
+\]
+Lean proves that \(STAB_G\) converts de-dicto possibility to the frozen de-re premise and converts the de-re necessary conclusion back to de-dicto necessary Godlikeness. Hence
+\[
+\begin{split}
+  &\text{admissible Fitting stack}
+  +STAB_G
+  +\Diamond^+\exists^E x\,G_F(x)\\
+  &\qquad\Longrightarrow
+  \Box^+\exists^E x\,G_F(x),
+\end{split}
+\]
+again without an S4 or S5 frame premise. The three-world finite witness shows that the stability condition is not merely decorative for this proof interface.
 
-I also formalize the recovery boundary explicitly. Under classical coherence of the positive and negative exemplification channels, Lean proves that negative support for necessary entailment is exactly failure of positive necessary entailment, and that the negative Godlikeness, essence, and necessary-existence clauses are the complements of their positive clauses. With classical coherence of positivity, truth-only positivity reduces to ordinary positive positivity support. Thus the bilateral D1/D2/D3 interfaces collapse to ordinary bivalent behavior on the classical fragment.
+\subsection{Classical recovery and verification discipline}
 
-The Anderson bilateral candidate has an analogous machine-checked recovery layer. This is important methodologically: its negative clauses are a project reconstruction, so their classical limit is tested rather than assumed. The corresponding full Fitting recovery audit remains open at this version; the new Fitting positive theorems are therefore stated only for the explicitly defined signed interfaces.
+The Scott, Anderson, and admissible Fitting branches each have explicit recovery interfaces rather than relying on an informal assertion that the bilateral semantics ``becomes classical.'' Exact higher-order correspondence with the complete AFP/HOL developments is nevertheless a separate publication audit item.
 
-These are interface-level recovery results rather than a claim that the entire AFP/HOL developments have been reimplemented line by line. Exact higher-order correspondence with the frozen Scott baseline and published Anderson/Fitting formalizations remains a publication audit item.
+The repository treats a countermodel or an obstruction theorem as a result rather than as a failed proof attempt. The unrestricted Fitting-comprehension obstruction is a particularly useful example: a theorem initially looked stronger because it lacked \(R^+\), but mechanization plus domain analysis revealed that the unrestricted regularity package excluded its intended witnesses. The admissible-domain reconstruction makes the subsequent theorem non-vacuous and is independently checked by finite models.
 
-\subsection{Verification discipline}
-
-The repository treats a minimal countermodel as a result rather than as a failed proof attempt. Conversely, every exhaustive finite search is reported with its exact model bound. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present.
-
-The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates. Gate 7 closes the first verification phase; Gate 8 now uses the same machinery to compare definitions, expose modal-frame dependencies, and isolate the intension/extension choices that distinguish literature variants.
+All executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present, while finite witnesses are reported as finite witnesses with their model bounds explicit.
