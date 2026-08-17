@@ -3,11 +3,11 @@
 ## Status
 
 **Gate:** 8 — Comparative variants  
-**Version:** `anderson-bilateral-v0.1`  
+**Version:** `anderson-bilateral-v0.2`  
 **Scope:** bilateral four-valued candidate reconstruction of the Anderson variant  
-**Verification:** Lean 4.30.0 + executable two-world finite regression
+**Verification:** Lean 4.30.0 + executable finite regressions
 
-This file freezes the first bilateral Anderson candidate used by `goedel-4pel`.
+This file freezes the current bilateral Anderson candidate used by `goedel-4pel`.
 
 It is literature-grounded on the positive/classical side, but the negative-support clauses are a project reconstruction. Anderson's historical theory does not itself prescribe an FDE bilateral semantics. The candidate is therefore not presented as the unique four-valued Anderson logic.
 
@@ -66,7 +66,7 @@ NE_A^+(x,w)
 \Box^+\exists^E y\,\varphi(y)\bigr).
 \]
 
-The positive branch is recorded in `docs/ANDERSON_POSITIVE_FRAGMENT.md` and machine-checked in `AndersonInterfaces.lean`.
+The positive definitions are machine-checked in `AndersonInterfaces.lean`.
 
 ---
 
@@ -84,11 +84,7 @@ AndNecEx^-(\varphi,x,w)
 \exists v\,(wRv\land-\varphi(x)@v).
 \]
 
-This is the bilateral dual of universal positive necessary exemplification.
-
 ### Negative Anderson Godlikeness
-
-A failure witness may attack either direction of the positive equivalence:
 
 \[
 -G_A(x)@w
@@ -100,8 +96,6 @@ A failure witness may attack either direction of the positive equivalence:
 (AndNecEx^+(\varphi,x,w)\land-P(\varphi)@w)
 \Bigr].
 \]
-
-This admits all four informational states. In particular, positive and negative Anderson Godlikeness may coexist when an equivalence direction has both positive support and explicit counter-support.
 
 ### Negative Anderson essence
 
@@ -115,8 +109,6 @@ This admits all four informational states. In particular, positive and negative 
 (NEnt_E^+(\varphi,\psi,w)\land AndNecEx^-(\psi,x,w))
 \Bigr].
 \]
-
-Again, negative support witnesses a mismatch in one of the two Anderson essence directions.
 
 ### Negative necessary actual exemplification
 
@@ -139,78 +131,82 @@ AndBoxExists^-(\varphi,w)
 \bigr).
 \]
 
-The definitions live in:
-
-```text
-formal/lean/Goedel4PEL/GoedelScott/AndersonBilateral.lean
-```
+The definitions live in `formal/lean/Goedel4PEL/GoedelScott/AndersonBilateral.lean`.
 
 ---
 
 ## 3. Classical recovery
 
-Assume classical coherence of exemplification:
+Assume classical coherence of exemplification and, where needed, positivity:
 
 ```text
 -phi(x) iff not +phi(x)
-```
-
-and, for Godlikeness, classical coherence of positivity:
-
-```text
 -P(phi) iff not +P(phi).
 ```
 
 Lean proves generally:
 
 ```text
-AndersonNecExMinus(phi,x) iff not AndersonNecExPlus(phi,x)
-AndersonGodMinus(x)        iff not AndersonGodPlus(x)
-AndersonEssMinus(phi,x)    iff not AndersonEssPlus(phi,x)
+AndersonNecExMinus(phi,x)  iff not AndersonNecExPlus(phi,x)
+AndersonGodMinus(x)         iff not AndersonGodPlus(x)
+AndersonEssMinus(phi,x)     iff not AndersonEssPlus(phi,x)
 AndersonBoxExistsMinus(phi) iff not AndersonBoxExistsPlus(phi)
-AndersonNEMinus(x)         iff not AndersonNEPlus(x)
+AndersonNEMinus(x)          iff not AndersonNEPlus(x)
 ```
 
 Thus the project-specific bilateral evidence semantics collapses to the intended Boolean equivalence behavior when both information channels are classically coherent.
 
-These are general proof-assistant theorems, not finite-model observations.
-
 ---
 
-## 4. Positive theorem chain retained
+## 4. Positive theorem chain and frame reduction
 
-The already machine-checked positive Anderson chain remains valid inside the bilateral candidate.
+The first Anderson mechanization used the S5 control frame, mirroring the Scott control environment. Gate 8 has now reduced that modal requirement substantially.
 
-On the current control assumptions:
+### Essence on symmetric frames
+
+Lean proves:
 
 ```text
 AndersonGRealization
 + AndersonGPositive
 + A2+
-+ R+
-+ Reflexivity
++ Symmetric(R)
 ---------------------
 AndersonGod+(x) => AndersonEss+(G,x)
 ```
 
-With a realized and positively supported `NEA`:
+No reflexivity, transitivity, or separate `R+` premise is used.
+
+The reason is specific to Anderson's necessary-exemplification definition. If an accessible witness `y` is Godlike at `z`, positivity of `G` makes `G(y)` necessary from `z`. Symmetry sends this Godlikeness back to `w`; realization makes `y` Godlike at `w`, from which positivity information at `w` is sent forward again to `z`.
+
+### Necessary Godlike existence on symmetric frames
+
+With a realized and positively supported `NEA`, and keeping possible actual Godlikeness explicit, Lean proves:
+
+\[
+\boxed{
+Symmetric(R)
++ Possible\,G_A
++ AndersonGRealization
++ AndersonGPositive
++ A2^+
++ AndersonNERealization
++ AndersonNEPositive
+\Rightarrow AndersonT3^+.
+}
+\]
+
+No reflexivity, transitivity, or `R+` premise occurs in this theorem.
+
+The proof uses the reverse edge from a possible Godlike world to transport both `G` and `NEA` back to the current world. There the realization clauses and symmetric essence theorem activate positive necessary existence directly.
+
+The theorem is machine-checked in:
 
 ```text
-AndersonGod+(x)
-=> AndersonBoxExists+(G)
+formal/lean/Goedel4PEL/GoedelScott/AndersonFrames.lean
 ```
 
-and, with possible actual Godlikeness plus the S5 control frame:
-
-```text
-Possible +G
-+ Anderson positive stack
-+ S5
--------------------------
-AndersonT3+
-```
-
-The theorem does not use the newly introduced negative clauses. Their role is to give the variant a bilateral informational interpretation and to permit later glut/gap analysis.
+This changes the interpretation of the earlier S5 result: S5 was a convenient control envelope, not the minimal frame package for the current Anderson route.
 
 ---
 
@@ -245,25 +241,7 @@ P(Q)    = N
 P(notQ) = N.
 ```
 
-The executable regression verifies:
-
-- FDE complement exemplification;
-- Anderson-retained A1 direction;
-- `A2+`;
-- `R+`;
-- bilateral realization of `G_A`;
-- positive support for `G_A`;
-- bilateral realization of `NE_A`;
-- positive support for `NE_A`;
-- positive Anderson essence of `G`;
-- no negative Anderson essence support for `G` in the fixture;
-- possible actual Godlike existence;
-- positive necessary actual Godlike existence;
-- no negative support for `G_A` or `NE_A` in the fixture;
-- positivity gaps for `Q` and `notQ`;
-- failure of positive modal collapse at `Q(a)`.
-
-Concretely:
+The executable regression verifies the currently encoded bilateral Anderson candidate, positive necessary actual Godlike existence, and failure of positive modal collapse:
 
 \[
 +Q(a)@w_0
@@ -275,33 +253,62 @@ but
 \neg(+\Box Q(a)@w_0).
 \]
 
-The regression is implemented in:
-
-```text
-formal/finite/gate8_anderson.py
-```
-
-and runs in CI.
+The regression is implemented in `formal/finite/gate8_anderson.py` and runs in CI.
 
 ---
 
-## 6. Result and limitation
+## 6. Symmetry boundary: S4 is insufficient
 
-The current result can now be stated more strongly than the earlier positive-fragment result:
+The finite oracle also contains a two-world frame that is:
 
-> The frozen bilateral Anderson candidate admits a concrete two-world S5 model satisfying its currently encoded Anderson Godlikeness and necessary-existence interfaces, including their negative-support realizations, while positive necessary Godlike existence holds and positive modal collapse fails for a concrete formula application.
+```text
+reflexive    = true
+transitive   = true
+symmetric    = false
+```
 
-However, two qualifications remain mandatory.
+so it is an S4-style frame but not symmetric.
+
+The model satisfies the currently encoded bilateral Anderson stack, including:
+
+- Anderson-retained A1 direction;
+- `A2+`;
+- `R+`;
+- bilateral `G_A` realization;
+- positive `G_A`;
+- bilateral `NE_A` realization;
+- positive `NE_A`;
+- possible actual Godlikeness at every world.
+
+Nevertheless:
+
+\[
+\neg AndersonT3^+.
+\]
+
+This finite result does not prove global logical necessity of symmetry, but it shows that even reflexivity plus transitivity does not replace the symmetry used by the general Lean theorem.
+
+The attempted search for a symmetric non-reflexive countermodel instead exposed the stronger symmetry-only proof above: `A2+` and Anderson's own necessary-exemplification directions prevented the intended countermodel construction.
+
+---
+
+## 7. Result and limitation
+
+The current result can be stated as follows:
+
+> The frozen bilateral Anderson candidate admits necessary positive Godlike existence under a symmetry-only frame theorem, while also admitting a concrete two-world model in which positive necessary Godlike existence coexists with failure of positive modal collapse.
+
+Moreover, a reflexive/transitive non-symmetric finite model shows that the S4 package alone does not force the Anderson T3 target in the current semantic stack.
+
+Two qualifications remain mandatory.
 
 First, the negative clauses are a principled FDE reconstruction, not a historically fixed Anderson semantics. Other bilateral lifts may be possible.
 
-Second, the project still represents the Anderson axioms through signed semantic interfaces rather than a complete object-language axiom system with a fixed four-valued implication/biconditional. The result is therefore a semantic variant theorem, not yet a line-for-line non-classical translation of the full Isabelle/HOL theory.
+Second, the project represents the Anderson axioms through signed semantic interfaces rather than a complete object-language axiom system with a fixed four-valued implication/biconditional. The result is therefore a semantic variant theorem, not yet a line-for-line non-classical translation of the full Isabelle/HOL theory.
 
 ---
 
-## 7. Comparison with the other Godlikeness variants
-
-The three positive notions now differ along two independent axes:
+## 8. Comparison with the other Godlikeness variants
 
 ```text
 G-sup+:
@@ -322,17 +329,18 @@ Thus:
 
 Finite models separate `G-exact+` and Anderson in both directions.
 
+The frame reduction adds another distinction: Anderson's own modal persistence is strong enough to replace the generic S5 `Diamond Box -> Box` transport used by the Scott-control T3 route.
+
 ---
 
-## 8. Next research frontier
+## 9. Next research frontier
 
-The next Gate-8 question should vary the modal frame rather than strengthen Anderson further.
+The next frame questions are now narrower:
 
-Current proof dependencies suggest separate tests for:
+1. Is symmetry globally minimal for the current Anderson T3 interface, or can a weaker relational condition replace it?
+2. Which exact frame condition is required by the Scott T3 route, and does it remain strictly stronger than the Anderson route?
+3. Can the Anderson no-collapse fixture be reproduced directly on a merely symmetric non-S5 frame?
+4. How do these results compare with K, KB, S4, and standard modal-system nomenclature once the source-level frame audit is completed?
+5. Which frame-dependent results survive the later paired-neighborhood generalization?
 
-1. **Reflexivity**, used to recover current possession from Anderson necessary possession and in the local NE branch;
-2. **Symmetry + transitivity**, used to transport a possible-world necessary-existence result back to the original world's accessible cluster;
-3. the full S5 package versus K, KB, and S4;
-4. comparison with the classical Anderson result, which is known to require less than an arbitrary S5 presentation in parts of the literature.
-
-This frame analysis can distinguish which modal assumptions belong to Anderson's definitions themselves and which are artifacts of the current S5 control route.
+After the frame comparison, Gate 8 should introduce the intension/extension type distinction required for a faithful Fitting reconstruction.
