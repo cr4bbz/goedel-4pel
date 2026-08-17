@@ -98,13 +98,42 @@ The positive Anderson necessary-existence branch is also machine-checked. Its fr
 \]
 No reflexivity, transitivity, or separate \(R^+\) premise occurs in that theorem.
 
-Finally, Gate 8 introduces the first Fitting-specific type boundary. Lean now distinguishes bilateral property extensions from intensions, represents an intension as a world-indexed extension, provides explicit \(extensionAt\) and rigidification operations, and types the Fitting positivity predicate over extensions rather than intensions. This is infrastructure rather than a completed Fitting variant, but it prevents later mechanization from silently erasing the distinction that motivates Fitting's revision.
+The Fitting comparison now goes beyond the type boundary. Lean distinguishes bilateral property extensions from intensions, represents an intension as a world-indexed extension, provides explicit \(extensionAt\) and rigidification operations, and types Fitting positivity over extensions rather than intensions. Over that typed interface I define signed necessary entailment between rigid extensions, bilateral extensional essence, and bilateral necessary existence.
+
+The first general Fitting theorem is
+\[
+\begin{split}
+  &G_F\text{-realization}
+  +A1_{L,F}
+  +REG_G^{\mathrm{ext}}\\
+  &\qquad\Longrightarrow
+  \bigl(G_F^+(x,w)\Rightarrow
+  Ess_F^+(\operatorname{ext}_w G,x,w)\bigr).
+\end{split}
+\]
+Unlike the verified Scott-support T2 recovery theorem, this result has no \(R^+\) premise. The reason is structural rather than syntactic: Fitting entailment compares rigid extensions, so after local positive reflection has recovered \(P(Y)\) at \(w\), membership in the frozen current \(G\)-extension is evaluated against the same extensional \(Y\) at every accessible world. No transport of positivity to that accessible world is required.
+
+With an intensional \(NE\) realizing the extension-typed necessary-existence condition and positive A5 applied to its current extension, Lean further proves a de-re possibility-to-necessity theorem:
+\[
+\begin{split}
+  &G_F\text{-realization}
+  +A1_{L,F}
+  +REG_G^{\mathrm{ext}}
+  +NE_F\text{-realization}
+  +A5_F^+\\
+  &\qquad
+  +\Diamond_{\mathrm{de\,re}}^+\exists^E x\,\operatorname{ext}_wG(x)
+  \Longrightarrow
+  \Box_{\mathrm{de\,re}}^+\exists^E x\,\operatorname{ext}_wG(x).
+\end{split}
+\]
+No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise occurs. The extension of \(G\) is frozen at the evaluation world throughout this theorem. I do not identify this with the de-dicto claim in which \(G\) is re-evaluated at each accessible world; the published Fitting formalization itself distinguishes these readings and reports non-equivalences between tempting formulations \cite{BenzmuellerFuenmayor2019}.
 
 \subsection{Classical recovery}
 
 I also formalize the recovery boundary explicitly. Under classical coherence of the positive and negative exemplification channels, Lean proves that negative support for necessary entailment is exactly failure of positive necessary entailment, and that the negative Godlikeness, essence, and necessary-existence clauses are the complements of their positive clauses. With classical coherence of positivity, truth-only positivity reduces to ordinary positive positivity support. Thus the bilateral D1/D2/D3 interfaces collapse to ordinary bivalent behavior on the classical fragment.
 
-The Anderson bilateral candidate has an analogous machine-checked recovery layer. This is important methodologically: its negative clauses are a project reconstruction, so their classical limit is tested rather than assumed.
+The Anderson bilateral candidate has an analogous machine-checked recovery layer. This is important methodologically: its negative clauses are a project reconstruction, so their classical limit is tested rather than assumed. The corresponding full Fitting recovery audit remains open at this version; the new Fitting positive theorems are therefore stated only for the explicitly defined signed interfaces.
 
 These are interface-level recovery results rather than a claim that the entire AFP/HOL developments have been reimplemented line by line. Exact higher-order correspondence with the frozen Scott baseline and published Anderson/Fitting formalizations remains a publication audit item.
 
@@ -112,4 +141,4 @@ These are interface-level recovery results rather than a claim that the entire A
 
 The repository treats a minimal countermodel as a result rather than as a failed proof attempt. Conversely, every exhaustive finite search is reported with its exact model bound. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present.
 
-The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates. Gate 7 closes the first verification phase; Gate 8 now uses the same machinery to compare definitions, expose modal-frame dependencies, and introduce the type distinctions needed by literature variants.
+The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates. Gate 7 closes the first verification phase; Gate 8 now uses the same machinery to compare definitions, expose modal-frame dependencies, and isolate the intension/extension choices that distinguish literature variants.
