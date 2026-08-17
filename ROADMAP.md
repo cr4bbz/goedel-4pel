@@ -44,51 +44,13 @@ Main results:
 
 The Godlikeness / possibility reconstruction is frozen as `godlike-v0.1` in `docs/GODLIKENESS_AND_POSSIBILITY.md`.
 
-Gate 5 establishes:
-
-- bilateral actualist quantifier clauses;
-- semantic `NEnt+_E` rather than an object-language conditional;
-- `A2+` and truth-only positivity `Pos_T`;
-- `A1-R + A2+ => T1-T`;
-- a glut countermodel showing mere `+P` does not suffice for T1;
-- `A3-T + T1-T => +◇∃ᴱx G(x)`;
-- `G-sup-v0.1`, which discharges `D1+`;
-- all four values remain possible for Godlikeness;
-- full property comprehension discharges `CONST`;
-- `GW` remains open after Gate 5.
+Gate 5 establishes bilateral actualist quantification, semantic `NEnt+_E`, `A2+`, truth-only positivity, `T1-T`, `A3-T`, possible positive God-like existence, and `G-sup-v0.1`.
 
 ### Gate 6 status
 
 The essence / necessary-existence reconstruction is frozen as `essence-ne-v0.1` in `docs/ESSENCE_AND_NECESSARY_EXISTENCE.md`.
 
-Gate 6 establishes:
-
-- signed counter-support `NEnt-_E` for necessary entailment;
-- bilateral `Ess-sup-v0.1` with classical recovery;
-- the positive T2 target
-  - `T2+ : +G(x) => +Ess(G,x)`;
-- **T2 is not automatic** under the Gate-5 control stack:
-  - a two-world S5 glut model satisfies strong A1, `A2+`, `A3-T`, `R+`, and `G-sup-v0.1` while refuting `T2+`;
-  - a second two-world S5 gap model does the same;
-- relevant God-like regularity
-  - `COMP_P^G`
-  - `CONS_G^G`
-  - `REG_G := COMP_P^G + CONS_G^G`;
-- a sufficient T2 recovery theorem:
-  - `A1-L + R+ + G-sup-v0.1 + REG_G => T2+`;
-- bilateral `NE-sup-v0.1` with classical recovery;
-- A5 splits into weak `A5+` and stronger `A5-T`;
-- **only `A5+` is required** for the positive T3 branch once a God-like witness exists;
-- from Gate-5 possible Godlikeness plus `T2+ + A5+ + NE-sup + S5`:
-  - `T3+ : +□∃ᴱx G(x)`;
-- `T3+` discharges `GW` on reflexive S5 frames;
-- an essence-compressed collapse theorem:
-  - `T2+ + T3+ + CONST => MC+`
-  - hence `MC-` by Gate 4;
-- `P(NE)=B` can coexist with the positive T3 branch, giving a concrete inconsistency-tolerance result;
-- global `CONS_G` / `COMP_P` are not necessary conditions for every model satisfying the positive T2/T3/collapse chain; they are sufficient ingredients of one lower-level recovery route.
-
-The decisive unresolved semantic question after Gate 6 is the weakest principled recovery of `T2+` from the primitive four-valued Scott machinery.
+Gate 6 establishes the bilateral essence/NE semantics, glut and gap countermodels to automatic `T2+`, the sufficient recovery package `REG_G`, conditional positive T3, discharge of `GW`, and the essence-compressed collapse theorem.
 
 ### Gate 7 status
 
@@ -96,21 +58,38 @@ Formal verification is frozen as `formal-v0.1` in `docs/FORMAL_VERIFICATION.md`.
 
 Gate 7 establishes with green CI:
 
-- a standard-library-only finite-model oracle and regression suite;
-- Lean 4.30.0 formalizations of the four-valued carrier, FDE negation, conjunction/disjunction, bilateral relational modality, and bilateral actualist quantification;
-- general Lean semantics for `NEnt±_E`, `G-sup-v0.1`, `Ess-sup-v0.1`, and the positive `NE-sup` interface;
-- a general machine proof of schema-level `MC+ <-> MC-`;
-- a general machine proof of `A1-R + A2+ => T1-T`;
-- an executable one-world glut countermodel to unrestricted `+P => +◇∃ᴱ`;
-- general machine proof of
-  - `NegExemplification + G-sup + A1-L + R+ + REG_G => T2+`;
-- executable glut and gap T2 countermodels;
-- general machine proofs of conditional `T3+`, `T3+ => GW`, and the essence-compressed positive collapse theorem;
-- interface-level classical recovery for `Pos_T`, `NEnt`, Godlikeness, essence, and necessary existence;
+- Lean 4.30.0 formalization of the current bilateral S5 control theory;
+- general machine proofs of schema-level `MC+ <-> MC-`, `T1-T`, conditional `T2+`, conditional `T3+`, `T3+ => GW`, and essence-compressed positive collapse;
+- interface-level classical recovery of `Pos_T`, `NEnt`, Godlikeness, essence, and necessary existence;
+- executable T1/T2 glut-gap countermodels;
 - a broader exhaustive two-world / one-entity `G,Z` search with 873 full-antecedent models, all satisfying `T2+`;
-- bounded individual indispensability: dropping any one of `A1-L`, `R+`, `COMP_P^G`, or `CONS_G^G` yields a T2 countermodel in that same family.
+- bounded individual indispensability of `A1-L`, `R+`, `COMP_P^G`, and `CONS_G^G` in that family.
 
 The bounded indispensability result is not promoted to a global model-theoretic minimality theorem.
+
+### Gate 8 status
+
+The first comparative Godlikeness result is frozen in `docs/GODLIKENESS_VARIANTS.md` as `variants-v0.1`.
+
+A project-internal positive exactness candidate is defined by:
+
+```text
+G-exact+(x): +phi(x) iff +P(phi), for every property phi.
+```
+
+It is deliberately not identified with Anderson or Fitting before a literature-grounded comparison.
+
+Gate 8 already establishes:
+
+- `G-exact+ => G-sup+`;
+- both Gate-6 T2 countermodels are support-Godlike but fail exact positive Godlikeness;
+- exact positive Godlikeness internalizes the positive reflection step;
+- general Lean theorem:
+  - `G-exact+ + R+ => T2-exact+`;
+- `A1-L`, `COMP_P^G`, and `CONS_G^G` are not premises of that exact-positive T2 route;
+- an executable exact-positive model retains genuine `B` gluts, so the comparison does not restore bivalence.
+
+This shows that the T2 bottleneck is definition-sensitive: `G-sup` leaves reflection to be derived, whereas `G-exact+` builds its positive direction into Godlikeness.
 
 ## Phase B — The key experiment
 
@@ -137,35 +116,31 @@ The bounded indispensability result is not promoted to a global model-theoretic 
 - [x] reconstruct `T3+` conditionally from `T2+`;
 - [x] discharge `GW`;
 - [x] classify the positive collapse consequence of `T2+ + T3+`;
-- [ ] minimize the T2 recovery assumptions beyond `REG_G` at the unbounded model-theoretic level;
-- [ ] compare `G-sup-v0.1` with `G-exact`;
+- [ ] minimize the support-theory T2 recovery assumptions at the unbounded model-theoretic level;
+- [x] begin the `G-sup-v0.1` versus `G-exact+` comparison;
 - [ ] test whether alternative essence semantics preserve the same T2 obstruction.
 
 ## Phase D — Mechanize and publish
 
 ### Gate 7 — Mechanization and finite-model verification — **complete**
 
-- [x] create a standard-library-only finite-model oracle under `formal/finite/`;
-- [x] machine-check both Gate-6 T2 countermodels against the encoded Gate-5 control stack;
-- [x] verify the glut/gap split of `CONS_G^G` and `COMP_P^G`;
-- [x] exhaustively verify schema-level `MC+ <-> MC-` on the negation-closed two-world test family;
-- [x] initialize and CI-build the Lean 4.30.0 package;
-- [x] formalize the four-valued kernel connectives needed by the current control theory;
-- [x] formalize relational bilateral modality and actualist quantification;
-- [x] formalize `NEnt±_E`, `G-sup-v0.1`, and `Ess-sup-v0.1`;
-- [x] prove the conditional T2 recovery theorem generally in Lean;
-- [x] machine-check `T1-T` and the unrestricted-`+P` glut countermodel;
-- [x] formalize conditional T3, GW, and essence-compressed modal collapse;
-- [x] verify interface-level classical recovery of the reconstructed D1/D2/D3 branch;
-- [x] add bounded assumption-minimization search around the T2 recovery package.
+- [x] finite-model oracle and regression fixtures;
+- [x] Lean S5 control theory;
+- [x] general T1/T2/T3/GW/collapse theorem spine;
+- [x] interface-level classical recovery;
+- [x] bounded T2 assumption-minimization search.
 
 Finite exhaustive checks are always reported with their bounded model class; absence of a finite countermodel is not promoted to a general theorem.
 
-### Gate 8 — Comparative variants — **next**
+### Gate 8 — Comparative variants — **in progress**
 
-- [ ] compare `G-sup` with `G-exact`;
-- [ ] compare at least one Anderson/Fitting-style variant;
-- [ ] vary K / KB / S4 / S5 after the S5 control theory is mechanized;
+- [x] define and machine-check the first `G-sup` versus project-internal `G-exact+` comparison;
+- [x] show exact positive Godlikeness compresses the T2 recovery route to `G-exact+ + R+`;
+- [x] show exact positive Godlikeness remains compatible with gluts;
+- [ ] freeze a principled bilateral negative clause for exact Godlikeness, if one survives comparison;
+- [ ] compare the internal candidate with Anderson/Fitting literature variants before naming any correspondence;
+- [ ] compare at least one literature-grounded Anderson/Fitting-style variant;
+- [ ] vary K / KB / S4 / S5;
 - [ ] rerun selected results over broader paired-neighborhood frames.
 
 ### Gate 9 — Publication consolidation
