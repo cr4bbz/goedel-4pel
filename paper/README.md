@@ -4,30 +4,35 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.5`  
-**Research gates represented:** Gate 0 through Gate 5  
-**Next manuscript dependency:** Gate 6 essence, necessary existence, A5, and the T3/GW branch
+**Version:** `paper-v0.6`  
+**Research gates represented:** Gate 0 through Gate 6  
+**Next manuscript dependency:** Gate 7 mechanization and T2 minimality
 
 The manuscript is deliberately separated from `docs/`:
 
 - `docs/` is the research laboratory: alternatives, rejected definitions, conjectures, countermodels, and gate notes belong there.
-- `paper/` contains only claims that are either already established at the current semantic level or explicitly marked as open/conjectural.
+- `paper/` contains only claims that are already established at the current semantic level, supported by explicit finite countermodels, or explicitly marked open/conjectural.
 
-Gate 2 adds the bilateral relational modal control semantics, modal duality and classical-recovery propositions, plus the paired-neighborhood representation.
+Gate 2 adds the bilateral relational modal control semantics and paired-neighborhood representation.
 
-Gate 3 adds the directional decomposition of A1, isolates the direct positive-support content of A4, corrects the negative modal-collapse target, and records local glut/gap obstructions to the classical `G + Z -> P(Z)` reflection step.
+Gate 3 adds the directional A1 decomposition and positivity-rigidity analysis.
 
-Gate 4 adds the collapse-channel equivalence theorem, two-world S5 countermodels separating the rigidity channels without A1, the strong-A1 rigidity-coupling theorem, the locally minimal `REF+` recovery package, and the conditional interface-level collapse theorem.
+Gate 4 adds collapse-channel equivalence, rigidity countermodels, and the local reflection/minimality analysis.
 
-Gate 5 adds bilateral actualist quantifier clauses, semantic necessary positive entailment `NEnt+_E`, the truth-only possible-exemplification theorem `T1-T`, a glut countermodel to unrestricted `+P -> +◇∃E`, the weak/control split `A3+` versus `A3-T`, possible positive God-like existence, and the support-based bilateral Godlikeness definition `G-sup-v0.1`.
+Gate 5 adds bilateral actualist quantification, semantic necessary positive entailment, `T1-T`, the A3 split, possible positive God-like existence, and `G-sup-v0.1`.
 
-Gate 5 also audits the Gate-4 higher-order interfaces:
+Gate 6 adds:
 
-- `D1+` is discharged by `G-sup-v0.1`;
-- `CONST` is discharged by full intensional property comprehension / lambda abstraction;
-- `GW`, `COMP_P`, and `CONS_G` remain unforced.
+- signed necessary-entailment counter-support `NEnt-_E`;
+- bilateral `Ess-sup-v0.1` and `NE-sup-v0.1`;
+- two explicit two-world S5 countermodels refuting automatic `T2+` by glut and gap mechanisms;
+- a sufficient relevant-regularity route to `T2+`;
+- the result that `A5+` alone suffices for the positive T3 branch once a God-like witness exists;
+- conditional `T3+ : +□∃ᴱx G(x)` and discharge of `GW`;
+- the essence-compressed theorem `T2+ + T3+ + CONST => MC+`, with `MC-` following by Gate 4;
+- a concrete inconsistency-tolerance pattern in which glutty positivity of `NE` does not destroy the positive T3 branch.
 
-The central manuscript thesis remains: under symmetric FDE negation, informative positive and negative modal collapse do not separate. The non-classical structure occurs upstream in A1 directionality, positivity rigidity, truth-only versus glutty positivity, reflection, and higher-order witness supply.
+The central manuscript thesis is now sharper: under symmetric FDE negation the final collapse schemata are coupled, while the decisive non-classical obstruction is the recovery of positive Godlikeness-as-essence. The next phase is therefore mechanization plus minimization of the assumptions sufficient for `T2+`.
 
 ## Build
 
