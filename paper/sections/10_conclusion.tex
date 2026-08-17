@@ -3,7 +3,7 @@
 
 This manuscript treats the G\"odel--Scott theory not merely as an object to be translated from two values to four, but as a controlled test case for locating informational dependencies that classical bivalence suppresses.
 
-By version 0.10 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
+By version 0.11 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
 
 Gate 6 identifies the sharper Scott bottleneck. A natural bilateral definition of essence recovers Scott D2 classically, but it does not make Godlikeness an essence automatically. Two explicit two-world S5 models satisfy the Gate-5 control conditions together with strong A1 and positive rigidity while refuting
 \[
@@ -79,6 +79,16 @@ Gate 8 then minimizes this Fitting route further. Full relevant exemplification 
 \]
 A finite glut model separates the targeted condition from full consistency on the A1-L-only route. The weakening is itself A1-sensitive: restoring \(A1_R\) allows Lean to reconstruct full relevant exemplification consistency from positivity completeness plus \(NegCons_{G,F}^{adm}\). Thus the two A1 channels again have distinct structural roles even inside the Fitting comparison.
 
+A second Fitting recovery route shows that positivity completeness is itself route-specific rather than globally necessary for the current essence/NE conclusion. Let \(Ind_G^{adm}\) require admissible rigid extensions to agree on positive membership across positive Fitting-Godlike individuals at the same world. Lean proves
+\[
+  G\text{-admissible}
+  +G_F\text{-realization}
+  +Ind_G^{adm}
+  \Longrightarrow
+  G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w),
+\]
+with no A1 direction, no \(COMP_P^{G,adm}\), and no exemplification-consistency premise. The same alternative route continues through frame-free de-re necessary existence. A one-world two-entity finite model satisfies both A1 directions and full relevant exemplification consistency while a relevant admissible extension containing the Godlike witness has positivity value \(\Neither\). Positivity completeness therefore fails, but the current Godlikeness extension is still an essence and the necessary-existence chain succeeds. This does not make indiscernibility globally weaker than completeness; it establishes a genuinely different extensional recovery architecture.
+
 The admissible bilateral negative clauses also recover classically. Lean proves complementary recovery for extensional entailment, Godlikeness, essence, necessary actual exemplification, and necessary existence under classical coherence of the selected extensions. Thus the repair is not merely a positive-fragment construction.
 
 The Fitting necessary-existence branch separates de re from de dicto explicitly. Freezing the current \(G\)-extension yields a frame-free theorem:
@@ -110,7 +120,7 @@ The comparative picture is therefore sharper than a hierarchy of stronger or wea
 \text{Scott support:} & \text{reflection recovery and }R^+\text{ precede }T2^+,\\
 \text{Anderson:} & \text{necessary exemplification is built into Godlikeness},\\
 \text{Fitting:} & \text{positivity/essence range over selected rigid extensions,}\\
-& \text{with A1-sensitive recovery and positive-only de-dicto stability.}
+& \text{with alternative classification and indiscernibility recovery routes.}
 \end{array}
 \]
 The accessibility relation matters, but it is not the only place where modal strength enters the theory.
@@ -124,7 +134,8 @@ The main open questions now separate accordingly. For Scott:
 For Fitting:
 \[
   \boxed{
-  \text{Can }COMP_P^{G,adm}\text{ be weakened, and can }Pers_G^+\text{ or }Refl_G^+\text{ be derived?}
+  \text{Can }Ind_G^{adm}\text{ be grounded in a more principled domain condition,}
+  \text{ and can }Pers_G^+\text{ or }Refl_G^+\text{ be derived?}
   }
 \]
 For the extensional domain:
@@ -136,7 +147,7 @@ For the extensional domain:
 For the comparison as a whole:
 \[
   \boxed{
-  \text{Which placements of positivity, necessity, and extensional stability determine collapse?}
+  \text{Which placements of positivity, necessity, extensional indiscernibility, and stability determine collapse?}
   }
 \]
 
