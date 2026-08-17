@@ -27,5 +27,4 @@ jobs:
           auto-config: false
           build: true
           test: false
-          leanchecker: true
           use-github-cache: false
