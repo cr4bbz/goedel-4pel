@@ -1,0 +1,45 @@
+\subsection{Fitting quotient-domain algebra}
+\label{sec:fitting-domain-algebra}
+
+The positive-profile saturation condition introduced above has a stronger bilateral consequence. The selected admissible domain is already closed under FDE negation. Hence, if an admissible extension \(Y\) is positively constant on a positive-profile equivalence class, then the admissible complement \(\neg Y\) is positively constant on that class as well. Since positive membership in \(\neg Y\) is negative membership in \(Y\), Lean proves
+\[
+  Sat_P^{adm}\Longleftrightarrow Sat_{\pm}^{adm},
+\]
+where \(Sat_{\pm}^{adm}\) requires both positive and negative membership of every admissible bilateral extension to be constant on the same positive-profile classes. Thus the quotient interpretation is genuinely bilateral rather than merely a statement about the positive projection of an extension.
+
+The quotient is also stable under the basic FDE extension operations. Define pointwise
+\[
+\begin{array}{rclcrcl}
+ +(X\wedge_FY)(x)&\Leftrightarrow&+X(x)\land+Y(x),&&
+ -(X\wedge_FY)(x)&\Leftrightarrow&-X(x)\lor-Y(x),\\
+ +(X\vee_FY)(x)&\Leftrightarrow&+X(x)\lor+Y(x),&&
+ -(X\vee_FY)(x)&\Leftrightarrow&-X(x)\land-Y(x).
+\end{array}
+\]
+Lean proves that, for each fixed positive-profile quotient, the bilateral extensions that factor through it contain the FDE top and bottom extensions and are closed under FDE negation, conjunction, and disjunction. In this preservation sense they form a De-Morgan-style subalgebra of the full bilateral extension algebra.
+
+This result does not derive profile saturation from ordinary algebraic closure. A finite countermodel makes the distinction explicit. Let the selected domain over two entities be the complete classical four-extension algebra
+\[
+  \varnothing,\qquad\{a\},\qquad\{b\},\qquad\{a,b\}.
+\]
+It contains top and bottom and is closed under FDE negation, conjunction, and disjunction. Let positivity support only the universal extension \(\{a,b\}\). Then \(a\) and \(b\) have the same positive-property profile, but the admissible singleton \(\{a\}\) distinguishes them. Therefore profile saturation fails although the selected extension domain is fully closed under the basic FDE algebra.
+
+Consequently the verified dependency is asymmetric:
+\[
+\boxed{
+  Sat_P^{adm}
+  \Longrightarrow
+  \text{algebraically stable quotient factorization},
+}
+\]
+while
+\[
+\boxed{
+  \text{FDE algebra closure}
+  \not\Longrightarrow
+  Sat_P^{adm}.
+}
+\]
+The quotient route therefore still requires an independent extensionality or saturation principle. Algebraic closure is compatible with that principle and preserves it, but does not explain its origin.
+
+This separation also sharpens the comparison with the classical Fitting ultrafilter result \cite{BenzmuellerFuenmayor2019}. Ultrafilter-style maximality constrains which extensions count as positive; profile saturation instead constrains how the selected extension domain may distinguish entities. The two mechanisms operate on different semantic interfaces, and neither should be silently identified with the other in the four-valued reconstruction.
