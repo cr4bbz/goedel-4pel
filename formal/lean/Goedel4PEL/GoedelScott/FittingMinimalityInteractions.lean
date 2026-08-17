@@ -36,7 +36,7 @@ theorem a1R_regGNegClassAdm_implies_consGGAdm
 
 /-- Under A1-R, the targeted recovery package reconstructs the old package. -/
 theorem a1R_regGNegClassAdm_implies_regGAdm
-    (M : AdmissSemantics World Entity)
+    (M : AdmissibleSemantics World Entity)
     (hA1R : A1RAdm M)
     (hReg : RegGNegClassAdm M) :
     RegGAdm M := by
