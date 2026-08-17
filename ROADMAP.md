@@ -22,8 +22,6 @@ Remaining implementation checks for Gate 1 are deferred to the mechanization wor
 - [ ] paraconsistency/paracompleteness countermodels are machine checked;
 - [ ] classical propositional recovery is machine checked.
 
-These checks do not block later semantic design.
-
 ### Gate 2 status
 
 The modal layer is frozen as `modal-v0.1` in `docs/MODAL_LIFT.md`.
@@ -53,25 +51,54 @@ Remaining implementation checks are deferred to mechanization:
 - [ ] regression models for `T/F/B/N` modal outputs are machine checked;
 - [ ] relational-to-neighborhood representation is machine checked.
 
-These checks do not block Gate 3.
+### Gate 3 status
+
+The positivity decomposition is frozen as `positivity-v0.1` in `docs/POSITIVITY_LIFT.md`.
+
+Gate 3 establishes semantically:
+
+- `P(φ)` is itself four-valued;
+- Scott A1 splits into two **directional** and independent clauses:
+  - `A1-L : -P(φ) => +P(¬φ)`
+  - `A1-R : +P(¬φ) => -P(φ)`
+- strong A1 (`A1-L + A1-R`) swaps `T/F` and preserves `B/N` under property negation;
+- the direct A4 lifting is `R+ : +P(φ) => +□P(φ)`;
+- the old `-P => -□P` candidate is reflexively trivial on S5 and is retired;
+- informative negative rigidity is `R-nec- : -P(φ) => +□¬P(φ)`;
+- strong A1 + `R+` entails `R-nec-`, so A1 couples the rigidity channels;
+- the old `MC- : -χ => -□χ` candidate is likewise reflexively trivial and is retired;
+- the corrected negative collapse target is `MC- : -χ => +□¬χ`, equivalently `-χ => -◇χ`;
+- even strong A1 plus the minimal `D1+` support interface does not recover the classical local reflection step `+G,+Z => +P(Z)`;
+- glut and gap counterassignments fail that reflection step for different reasons;
+- consistency of God-like exemplification plus completeness of positivity information are sufficient meta-level ingredients to recover the local classical reflection move.
+
+Remaining checks are deferred to mechanization:
+
+- [ ] machine-check A1 directional independence;
+- [ ] machine-check the A1/R+ channel-coupling theorem;
+- [ ] turn the local signed reflection counterassignments into explicit finite higher-order models once D1 is frozen.
+
+These checks do not block Gate 4.
 
 ## Phase B — The key experiment
 
-- [ ] Split A1 into bilateral components.
-- [ ] Split positivity rigidity into positive and negative components.
-- [ ] Define `MC+` and `MC-`.
-- [ ] Produce the initial 16-case `A1+/A1-/R+/R-` collapse matrix.
-- [ ] Find finite countermodels for every non-implication.
-- [ ] Identify minimal axiom sets forcing each collapse component.
+- [x] split A1 into independent directional components;
+- [x] isolate direct and derived positivity-rigidity channels;
+- [x] correct the bilateral `MC+` / `MC-` targets;
+- [ ] define the minimal Gate-4 assumption lattice, including consistency/completeness dimensions exposed by `REF+`;
+- [ ] determine which assumption sets force `MC+`, corrected `MC-`, both, or neither;
+- [ ] find finite countermodels for every non-implication;
+- [ ] identify minimal axiom sets forcing each collapse component.
 
 ## Phase C — Reconstruct Gödel–Scott
 
-- [ ] Lift `P`.
-- [ ] Lift `G`.
-- [ ] Prove/refute possible exemplification.
-- [ ] Lift `Ess`.
-- [ ] Lift `NE`.
-- [ ] Classify the status of `□∃x G(x)`.
+- [x] lift the positivity predicate and A1/A4 interfaces;
+- [ ] lift A2 and A3;
+- [ ] freeze the final four-valued definition of `G`;
+- [ ] prove/refute possible exemplification;
+- [ ] lift `Ess`;
+- [ ] lift `NE`;
+- [ ] classify the status of `□∃x G(x)`.
 
 ## Phase D — Mechanize and publish
 
