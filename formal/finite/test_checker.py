@@ -16,6 +16,7 @@ from gate8_anderson import validate_anderson_no_collapse_model
 from gate8_frames import validate_anderson_s4_countermodel
 from gate8_scott_frames import validate_scott_s4_countermodel
 from gate8_fitting import validate_fitting_admissible_de_re_de_dicto_model
+from gate8_fitting_no_collapse import validate_fitting_necessary_god_no_collapse_model
 
 
 class Gate7Tests(unittest.TestCase):
@@ -69,6 +70,9 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_fitting_admissible_de_re_de_dicto_separation(self):
         self.assertTrue(validate_fitting_admissible_de_re_de_dicto_model())
+
+    def test_gate8_fitting_necessary_god_without_modal_collapse(self):
+        self.assertTrue(validate_fitting_necessary_god_no_collapse_model())
 
 
 if __name__ == "__main__":
