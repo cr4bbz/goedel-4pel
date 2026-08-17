@@ -17,6 +17,10 @@ from gate8_frames import validate_anderson_s4_countermodel
 from gate8_scott_frames import validate_scott_s4_countermodel
 from gate8_fitting import validate_fitting_admissible_de_re_de_dicto_model
 from gate8_fitting_no_collapse import validate_fitting_necessary_god_no_collapse_model
+from gate8_fitting_minimality import (
+    validate_neg_class_consistency_strictness,
+    validate_positive_stability_strictness,
+)
 
 
 class Gate7Tests(unittest.TestCase):
@@ -73,6 +77,12 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_fitting_necessary_god_without_modal_collapse(self):
         self.assertTrue(validate_fitting_necessary_god_no_collapse_model())
+
+    def test_gate8_fitting_negative_class_consistency_is_strict_for_a1l_route(self):
+        self.assertTrue(validate_neg_class_consistency_strictness())
+
+    def test_gate8_fitting_positive_stability_is_strictly_weaker_than_bilateral(self):
+        self.assertTrue(validate_positive_stability_strictness())
 
 
 if __name__ == "__main__":
