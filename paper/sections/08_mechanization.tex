@@ -1,36 +1,71 @@
 \section{Mechanization and Countermodels}
 \label{sec:mechanization}
 
-\statusopen
+\statusestablished
 
-Gate 7 has begun with two complementary verification layers. A finite-model oracle records concrete countermodels and bounded exhaustive searches, while Lean is reserved for general semantic theorems that should not depend on a finite bound. This separation prevents the absence of a small countermodel from being mistaken for a proof.
+Gate 7 adds two complementary verification layers. I use a finite-model oracle for concrete countermodels and bounded exhaustive searches, and Lean for general semantic theorems that must not depend on a finite bound. This separation prevents the absence of a small countermodel from being mistaken for a proof.
 
 \subsection{Finite-model regression layer}
 
-The executable checker currently implements the four information values, involutive FDE negation, finite S5 accessibility, actualist existence, four-valued property extensions and positivity, semantic necessary entailment, support-based Godlikeness, positive essence, and the Gate-6 regularity conditions.
+The executable checker implements the four information values, involutive FDE negation, finite S5 accessibility, actualist existence, four-valued property extensions and positivity, signed necessary entailment, support-based Godlikeness, positive essence, and the Gate-6 regularity conditions.
 
-The first regression suite machine-checks both two-world T2 countermodels from Gate 6. The glut model satisfies the encoded Gate-5 control stack and \(COMP_P^G\) but violates \(CONS_G^G\), while the gap model satisfies the same control stack and \(CONS_G^G\) but violates \(COMP_P^G\). Both refute \(T2^+\).
+The regression suite machine-checks both two-world T2 countermodels from Gate 6. The glut model satisfies the encoded Gate-5 control stack and \(COMP_P^G\) but violates \(CONS_G^G\), while the gap model satisfies the same control stack and \(CONS_G^G\) but violates \(COMP_P^G\). Both refute \(T2^+\).
 
-A bounded exhaustive search over the complete currently generated two-world, one-entity \(G,Z\) fragment retains 204 models satisfying strong A1, positive rigidity, support-based Godlikeness, and \(REG_G\). Every retained model satisfies \(T2^+\). This is a regression result for that explicitly bounded model class, not a substitute for the general semantic proof.
+The checker also validates the Gate-5 obstruction to unrestricted positive T1. A one-world reflexive model with no actual entities and glutty positivity for a property and its complement satisfies strong A1 and \(A2^+\), while positive support for the property does not yield positive possible actual exemplification. This is the executable counterpart of the distinction between mere positive support and truth-only positivity.
 
-The checker also exposed a useful typing distinction in the collapse result. The statement
+A first bounded search retains 204 models satisfying the original small control antecedent and verifies \(T2^+\) in every retained model. A broader exhaustive two-world, one-entity \(G,Z\) family then varies positivity of \(Z\) and its complement independently while fixing FDE complement exemplification and full bilateral \(G\)-support semantics. In this broader family, 873 models satisfy
+\[
+ A1_L,\qquad R^+,\qquad COMP_P^G,\qquad CONS_G^G,
+\]
+and every one of them satisfies \(T2^+\).
+
+More importantly, dropping any one of these four assumptions while retaining the other three produces a \(T2^+\) countermodel within the same bounded family. Thus the search establishes bounded individual indispensability of the four recovery assumptions relative to the fixed semantic laws. I do not promote this result to global model-theoretic minimality.
+
+The checker also verifies the schema-level equivalence
 \[
   \MCp\leftrightarrow\MCm
 \]
-is an equivalence of schemata closed under substitution by negation; it is not a pointwise identity for one isolated formula valuation. The finite regression therefore carries a negation-closed formula family and checks all 16 two-world assignments to its generator.
+on a negation-closed two-world test family. This regression records an important typing distinction: the equivalence is a result about schemata closed under substitution by negation, not a pointwise identity for one isolated formula valuation.
 
 \subsection{Lean layer}
 
-The Lean package is pinned to Lean 4.30.0. Its first modules formalize the four-valued carrier and FDE negation, including involution and the \(\True/\False\) swap with fixed points \(\Both\) and \(\Neither\). A separate analysis module states positive modal collapse and universal negative persistence as schemata over arbitrary worlds and formulas and proves their equivalence from bilateral negation and involution.
+The Lean package is pinned to Lean 4.30.0 and uses a declarative Lake TOML configuration. It formalizes the four-valued carrier, FDE negation, conjunction and disjunction, bilateral relational modality, bilateral actualist quantification, signed necessary entailment, support-based Godlikeness, bilateral essence, and the positive necessary-existence interface.
 
-The next Lean targets are the relational bilateral modal clauses, actualist quantification, semantic necessary entailment, support-based Godlikeness, and positive essence. The principal theorem target is a general formal proof of the Gate-6 implication
+Lean proves the collapse-channel theorem generally at schema level. It also proves the Gate-5 truth-only possibility theorem
 \[
-  A1_L+R^++G\text{-sup}+REG_G\Longrightarrow T2^+,
+  A1_R+A2^+\Longrightarrow T1_T,
 \]
-followed by the positive T3, witness-supply, and essence-compressed collapse theorems.
+using classical reductio only at the semantic metalevel.
+
+The principal Gate-6 recovery theorem is machine-checked without a finite bound:
+\[
+  NegExemplification
+  +G\text{-sup}
+  +A1_L
+  +R^+
+  +REG_G
+  \Longrightarrow T2^+.
+\]
+The proof therefore confirms that no additional Scott axiom is hidden in the paper derivation.
+
+The later branch is also machine-checked. From possible positive Godlikeness, positive T2, \(A5^+\), the positive necessary-existence realization, support-based Godlikeness, and S5, Lean derives positive T3. On reflexive frames it then proves
+\[
+  T3^+\Longrightarrow GW.
+\]
+Finally, for an external modal formula language equipped with constant-property embedding, Lean proves the essence-compressed collapse theorem
+\[
+  T2^++T3^++G\text{-sup}+CONST\Longrightarrow\MCp
+\]
+on the fixed reflexive control frames.
+
+\subsection{Classical recovery}
+
+I also formalize the recovery boundary explicitly. Under classical coherence of the positive and negative exemplification channels, Lean proves that negative support for necessary entailment is exactly failure of positive necessary entailment, and that the negative Godlikeness, essence, and necessary-existence clauses are the complements of their positive clauses. With classical coherence of positivity, truth-only positivity reduces to ordinary positive positivity support. Thus the bilateral D1/D2/D3 interfaces collapse to ordinary bivalent behavior on the classical fragment.
+
+This is an interface-level recovery result rather than a claim that the entire AFP/HOL development has been reimplemented line by line. Exact higher-order correspondence with the frozen Scott baseline remains a publication audit item.
 
 \subsection{Verification discipline}
 
-The repository treats a minimal countermodel as a result rather than as a failed proof attempt. Conversely, every exhaustive finite search is reported with its exact model bound. General claims are promoted to machine-checked status only after a proof-assistant theorem or an equivalent unbounded verification argument is present.
+The repository treats a minimal countermodel as a result rather than as a failed proof attempt. Conversely, every exhaustive finite search is reported with its exact model bound. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present.
 
-The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates.
+The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates. Gate 7 therefore closes the verification phase for the present S5 control theory; the next stage compares semantic variants rather than changing the control semantics itself.
