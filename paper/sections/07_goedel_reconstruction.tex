@@ -194,18 +194,23 @@ Unlike A3, the positive T3 branch needs only \(A5^+\). Once \(\pos{G(x)}\) is av
 
 \subsection{Positive necessary God-like existence}
 
-\begin{theorem}[Positive T3]
-Assume positive possible God-like existence, \(T2^+\), \(A5^+\), \(G\text{-sup-v0.1}\), \(NE\text{-sup-v0.1}\), and the fixed S5 frame conditions. Then
+\begin{theorem}[Positive T3 with symmetry]
+Assume positive possible God-like existence, \(T2^+\), \(A5^+\), \(G\text{-sup-v0.1}\), \(NE\text{-sup-v0.1}\), and symmetry of the accessibility relation. Then
 \[
   T3^+:\quad
   \pos{\Box\exists^E x\,G(x)}.
 \]
+No reflexivity or transitivity premise is required by this T3 route.
 \end{theorem}
 \begin{proof}
-At an accessible world containing a positive God-like witness \(x\), A5 and Godlikeness yield \(\pos{NE(x)}\), while T2 gives \(\pos{G\operatorname{Ess}x}\). Positive necessary existence therefore yields \(\pos{\Box\exists^E y\,G(y)}\) at that world. Hence the original world satisfies \(\pos{\Diamond\Box\exists^E y\,G(y)}\). On S5 frames positive support validates \(\Diamond\Box\theta\Rightarrow\Box\theta\), so \(T3^+\) follows.
+Fix a world \(w\) and an arbitrary successor \(z\) of \(w\). Positive possible God-like existence supplies a world \(v\) accessible from \(w\) and an actual positive God-like witness \(x\) at \(v\). By A5 and Godlikeness, \(x\) positively exemplifies \(NE\); by T2, \(G\) is a positive essence of \(x\). Hence \(NE\text{-sup-v0.1}\) supplies an actual positive \(G\)-instance at every successor of \(v\).
+
+By symmetry, \(wRv\) gives \(vRw\), so one such actual positive \(G\)-instance exists already at \(w\). The \(G\)-realization turns it into a positive God-like witness at \(w\). Applying A5, T2, and \(NE\text{-sup-v0.1}\) once more at \(w\) supplies an actual positive \(G\)-instance at the arbitrary successor \(z\). Thus every successor of \(w\) has an actual positive God-like witness, establishing \(T3^+\).
 \end{proof}
 
-Because the S5 control frame is reflexive, \(T3^+\) immediately supplies an actually existing positive God-like witness at every world. Thus the former interface \(GW\) is discharged.
+A finite two-world countermodel shows that reflexivity plus transitivity do not replace symmetry for this route. The frame \(w_0Rw_0\), \(w_0Rw_1\), \(w_1Rw_1\) satisfies the encoded Scott premises of the reduced theorem other than symmetry, including \(T2^+\), \(A5^+\), \(NE\)-realization, \(G\)-realization, and possible Godlikeness, while \(T3^+\) fails at \(w_0\).
+
+On reflexive frames, \(T3^+\) additionally supplies an actually existing positive God-like witness at every world, so the former interface \(GW\) is discharged. Reflexivity is therefore needed for this particular \(T3^+\Rightarrow GW\) step, not for the symmetry-only T3 theorem itself.
 
 Combining the sufficient T2 route with Gate 5 gives the conditional positive Scott-control chain
 \[
@@ -215,6 +220,7 @@ Combining the sufficient T2 route with Gate 5 gives the conditional positive Sco
   +R^+
   +REG_G
   +A5^+
+  +\operatorname{Sym}(R)
   \Longrightarrow
   T3^+,
 \]
@@ -225,14 +231,14 @@ under the fixed higher-order semantics.
 Once \(T2^+\) and \(T3^+\) are available, the earlier reflection/rigidity proof can be compressed.
 
 \begin{theorem}[Essence-compressed collapse]
-Under \(T2^+\), \(T3^+\), and constant-property embedding,
+Under \(T2^+\), \(T3^+\), \(G\text{-sup-v0.1}\), constant-property embedding, and reflexivity of the accessibility relation,
 \[
   \MCp
 \]
 holds, and therefore \(\MCm\) holds by the Gate-4 collapse-equivalence theorem.
 \end{theorem}
 \begin{proof}
-Assume \(\pos{\chi}\) at \(w\). T3 supplies an actual positive God-like witness \(x\) at \(w\), and T2 makes \(G\) a positive essence of \(x\). For the constant property \(Z_\chi=\lambda y.\chi\), \(\pos{Z_\chi(x)}\). Positive essence gives \(\operatorname{NEnt}^{+}_{E}(G,Z_\chi,w)\). T3 supplies a positive God-like witness at every accessible world, so each such witness positively exemplifies \(Z_\chi\), hence each accessible world positively supports \(\chi\). Therefore \(\pos{\Box\chi}\).
+Assume \(\pos{\chi}\) at \(w\). Reflexivity together with T3 supplies an actual positive God-like witness \(x\) at \(w\), and T2 makes \(G\) a positive essence of \(x\). For the constant property \(Z_\chi=\lambda y.\chi\), \(\pos{Z_\chi(x)}\). Positive essence gives \(\operatorname{NEnt}^{+}_{E}(G,Z_\chi,w)\). T3 supplies a positive God-like witness at every accessible world; \(G\text{-sup-v0.1}\) identifies each such witness with a positive \(G\)-instance. Necessary entailment therefore makes each such witness positively exemplify \(Z_\chi\), hence each accessible world positively supports \(\chi\). Therefore \(\pos{\Box\chi}\).
 \end{proof}
 
 This result refines the Gate-4 dependency map. The earlier \(REF^+\), \(CONS_G\), \(COMP_P\), and \(R^+\) assumptions are ingredients of one route for deriving T2 from lower-level principles; they are not separate premises of the essence-compressed collapse theorem after T2 and T3 have already been established.
