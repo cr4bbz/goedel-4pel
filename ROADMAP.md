@@ -51,7 +51,7 @@ Gate 7 is complete. The broader two-world / one-entity `G,Z` search retains 873 
 
 ### Fitting branch
 
-The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level assumption reduction is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.1`.
+The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level assumption reduction is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.2`.
 
 - [x] introduce distinct Lean types for bilateral extensions and world-indexed intensions;
 - [x] type Fitting positivity over extensions rather than intensions;
@@ -71,7 +71,9 @@ The initial type boundary is `fitting-types-v0.1`; the substantive candidate is 
 - [x] prove that restoring `A1-R` reconstructs full `CONS_G^G(adm)` from that targeted package;
 - [x] split G-extension stability into positive persistence and positive reflection and prove that positive-only stability suffices for the positive de-dicto theorem;
 - [x] exhibit a complete-S5 fixture satisfying both A1 directions and the old full `REG_G^adm` while positive G stability holds and bilateral G stability fails;
-- [ ] weaken `COMP_P^G(adm)` without simply postulating the desired reflection conclusion;
+- [x] show that `COMP_P^G(adm)` is specific to the classification route by proving an alternative Godlike-indiscernibility essence/NE theorem with no A1, `COMP`, or consistency premise;
+- [x] exhibit a finite model satisfying both A1 directions and full relevant consistency in which a relevant extension has positivity value `N`, `COMP_P^G(adm)` fails, but the indiscernibility route still yields essence and necessary existence;
+- [ ] determine whether admissible-property Godlike indiscernibility follows from a more independently motivated property-domain condition;
 - [ ] determine principled closure conditions on the admissible extensional domain beyond negation closure;
 - [ ] determine whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed together.
 
@@ -93,8 +95,9 @@ Fitting admissible:
   positivity/essence range over selected rigid extensions
   no R+ in the extensional essence recovery theorem
   de-re possibility -> necessity is frame-free
-  A1-L needs only negative-branch consistency in the minimized recovery proof
-  A1-R restores the stronger consistency condition if retained
+  classification route: A1-L + COMP + negative-branch consistency
+  alternative route: admissible-property indiscernibility, with no COMP/A1/consistency
+  A1-R restores the stronger consistency condition only inside the classification route
   de-dicto lifting needs only positive G-extension stability
   necessary Godlikeness can coexist with MC+ failure
 ```
@@ -139,7 +142,7 @@ Fitting admissible:
 
 ### Gate 8 — Comparative variants — **in progress**
 
-The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now also has a theorem-level minimization layer separating A1-sensitive consistency requirements from genuinely positive-only intension/extension stability. Remaining Gate-8 work is primarily deeper assumption minimization, admissible-domain justification, and paired-neighborhood generalization.
+The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now has two machine-checked recovery architectures: a positivity-classification route with A1-sensitive local consistency, and a `COMP`-independent extensional indiscernibility route. Remaining Gate-8 work is primarily principled justification/minimization of the alternative assumptions, admissible-domain closure, and paired-neighborhood generalization.
 
 ### Gate 9 — Publication consolidation
 
