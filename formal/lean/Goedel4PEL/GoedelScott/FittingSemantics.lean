@@ -45,15 +45,16 @@ def EntailMinus
 
 /-- Fitting A1, left information-flow direction, now typed over extensions. -/
 def A1L (M : Semantics World Entity) : Prop :=
-  ∀ w X, M.pNeg w X → M.pPos w X.negate
+  ∀ w (X : Extension Entity), M.pNeg w X → M.pPos w X.negate
 
 /-- Fitting A1, right information-flow direction. -/
 def A1R (M : Semantics World Entity) : Prop :=
-  ∀ w X, M.pPos w X.negate → M.pNeg w X
+  ∀ w (X : Extension Entity), M.pPos w X.negate → M.pNeg w X
 
 /-- Positive Fitting A2 over extensional necessary entailment. -/
 def A2Plus (M : Semantics World Entity) : Prop :=
-  ∀ w X Y, M.pPos w X → EntailPlus M w X Y → M.pPos w Y
+  ∀ w (X Y : Extension Entity),
+    M.pPos w X → EntailPlus M w X Y → M.pPos w Y
 
 /--
 Positive Fitting essence of an individual by a rigid extension.
@@ -100,12 +101,12 @@ def NEMinus
 
 /-- Relevant positivity completeness at positive Fitting-Godlike witnesses. -/
 def CompPG (M : Semantics World Entity) : Prop :=
-  ∀ w x Y, GodPlus M w x → Y.pos x →
+  ∀ w x (Y : Extension Entity), GodPlus M w x → Y.pos x →
     M.pPos w Y ∨ M.pNeg w Y
 
 /-- Relevant extension-membership consistency at positive Fitting-Godlike witnesses. -/
 def ConsGG (M : Semantics World Entity) : Prop :=
-  ∀ w x Y, GodPlus M w x → Y.pos x → ¬ Y.neg x
+  ∀ w x (Y : Extension Entity), GodPlus M w x → Y.pos x → ¬ Y.neg x
 
 /-- Gate-8 regularity package for the Fitting comparison. -/
 def RegG (M : Semantics World Entity) : Prop :=
@@ -137,7 +138,8 @@ theorem god_has_currentExtension_essence
       · exact hPos
       · have hPNotY : M.pPos w Y.negate := hA1L w Y hNeg
         have hNotYx : Y.negate.pos x := hGodX Y.negate hPNotY
-        exact False.elim (hReg.2 w x Y hGodX hYx hNotYx)
+        have hNoNegY : ¬ Y.neg x := hReg.2 w x Y hGodX hYx
+        exact False.elim (hNoNegY hNotYx)
     intro z hwz y hyExists hGy
     have hGodY : GodPlus M w y := (hReal w y).1 hGy
     exact hGodY Y hPY
