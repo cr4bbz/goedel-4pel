@@ -48,7 +48,7 @@ python3 formal/finite/checker.py
 
 ## Lean layer
 
-The Lean package lives under `formal/lean/` and is pinned by `lean-toolchain`.
+The Lean package lives under `formal/lean/` and is pinned to Lean 4.30.0 by `lean-toolchain`.
 
 Current modules:
 
@@ -77,8 +77,9 @@ lake build
 `.github/workflows/formal.yml` runs both verification tracks on pushes and pull requests:
 
 - Python finite-model regressions;
-- `lake build` through `leanprover/lean-action`;
-- Lean environment checking through `leanchecker`.
+- `lake build` through `leanprover/lean-action`.
+
+The first combined Gate-7 CI milestone is green: both the finite-model job and the Lean build complete successfully on `main`.
 
 ## Planned module boundaries
 
