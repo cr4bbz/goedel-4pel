@@ -14,13 +14,9 @@
 
 The propositional kernel is frozen as `kernel-v0.1` in `docs/FOUR_VALUED_KERNEL.md`.
 
-The kernel deliberately does **not** adopt an object-language four-valued implication. Signed `+/-` propagation principles remain metalanguage constraints.
-
 ### Gate 2 status
 
-The modal layer is frozen as `modal-v0.1` in `docs/MODAL_LIFT.md`.
-
-The control semantics is bilateral relational Kripke semantics, with Scott S5 frames fixed through the first reconstruction experiments. Paired-neighborhood generalization remains a later experimental axis.
+The modal layer is frozen as `modal-v0.1` in `docs/MODAL_LIFT.md`. The control semantics is bilateral relational S5, with paired-neighborhood generalization deferred.
 
 ### Gate 3 status
 
@@ -41,9 +37,8 @@ Main results:
 
 - corrected `MC+` and `MC-` are equivalent under involutive FDE negation;
 - rigidity channels are independent without A1 and coupled by strong A1;
-- local reflection is recovered from `A1-L + D1+ + CONS_G + COMP_P`;
-- each member of that package is locally indispensable;
-- adding `R+ + GW + CONST` yields the interface-level collapse theorem.
+- a four-part regularity package recovers the local reflection route;
+- `R+ + GW + CONST` then yields the interface-level collapse theorem.
 
 ### Gate 5 status
 
@@ -51,68 +46,99 @@ The Godlikeness / possibility reconstruction is frozen as `godlike-v0.1` in `doc
 
 Gate 5 establishes:
 
-- bilateral actualist quantifier clauses while keeping existence itself classical at the metalanguage level;
-- semantic necessary positive entailment `NEnt+_E` instead of an object-language conditional;
-- `A2+ : +P(φ) and NEnt+_E(φ,ψ) => +P(ψ)`;
-- truth-only positivity
-  - `Pos_T(φ) := +P(φ) and not(-P(φ))`;
-- a four-valued T1 theorem
-  - `A1-R + A2+ => T1-T`
-  - `T1-T : Pos_T(φ) => +◇∃ᴱx φ(x)`;
-- mere `+P(φ)` does not suffice for T1, witnessed by a one-world empty-actual-domain model with glutty positivity;
-- A3 splits into
-  - weak `A3+ : +P(G)`
-  - Scott-control `A3-T : Pos_T(G)`;
-- `A3-T + T1-T` yields `+◇∃ᴱx G(x)` without globally banning positivity gluts;
-- support-based Godlikeness `G-sup-v0.1` is frozen:
-  - `+G(x)` iff every `+P(φ)` is `+φ(x)`;
-  - `-G(x)` iff some `+P(φ)` is `-φ(x)`;
-- `G-sup-v0.1` recovers classical D1 and discharges the Gate-4 `D1+` interface;
-- all four values `T/F/B/N` remain possible for Godlikeness;
-- full intensional property comprehension/lambda abstraction discharges `CONST`;
-- `GW` is **not** discharged: Gate 5 proves only possible God-like existence, not a witness at every world;
-- `COMP_P` is not implied by strong A1 because `N/N` positivity gaps remain possible;
-- `CONS_G` is not implied by support-based Godlikeness.
+- bilateral actualist quantifier clauses;
+- semantic `NEnt+_E` rather than an object-language conditional;
+- `A2+` and truth-only positivity `Pos_T`;
+- `A1-R + A2+ => T1-T`;
+- a glut countermodel showing mere `+P` does not suffice for T1;
+- `A3-T + T1-T => +◇∃ᴱx G(x)`;
+- `G-sup-v0.1`, which discharges `D1+`;
+- all four values remain possible for Godlikeness;
+- full property comprehension discharges `CONST`;
+- `GW` remains open after Gate 5.
 
-Remaining implementation checks are deferred to mechanization:
+### Gate 6 status
 
-- [ ] machine-check the T1-T proof and glut countermodel;
-- [ ] machine-check classical recovery of the actualist quantifier and `G-sup` clauses;
-- [ ] compare `G-sup-v0.1` with the later `G-exact` variant.
+The essence / necessary-existence reconstruction is frozen as `essence-ne-v0.1` in `docs/ESSENCE_AND_NECESSARY_EXISTENCE.md`.
 
-These checks do not block Gate 6.
+Gate 6 establishes:
+
+- signed counter-support `NEnt-_E` for necessary entailment;
+- bilateral `Ess-sup-v0.1` with classical recovery;
+- the positive T2 target
+  - `T2+ : +G(x) => +Ess(G,x)`;
+- **T2 is not automatic** under the Gate-5 control stack:
+  - a two-world S5 glut model satisfies strong A1, `A2+`, `A3-T`, `R+`, and `G-sup-v0.1` while refuting `T2+`;
+  - a second two-world S5 gap model does the same;
+- relevant God-like regularity
+  - `COMP_P^G`
+  - `CONS_G^G`
+  - `REG_G := COMP_P^G + CONS_G^G`;
+- a sufficient T2 recovery theorem:
+  - `A1-L + R+ + G-sup-v0.1 + REG_G => T2+`;
+- bilateral `NE-sup-v0.1` with classical recovery;
+- A5 splits into weak `A5+` and stronger `A5-T`;
+- **only `A5+` is required** for the positive T3 branch once a God-like witness exists;
+- from Gate-5 possible Godlikeness plus `T2+ + A5+ + NE-sup + S5`:
+  - `T3+ : +□∃ᴱx G(x)`;
+- `T3+` discharges `GW` on reflexive S5 frames;
+- an essence-compressed collapse theorem:
+  - `T2+ + T3+ + CONST => MC+`
+  - hence `MC-` by Gate 4;
+- `P(NE)=B` can coexist with the positive T3 branch, giving a concrete inconsistency-tolerance result;
+- global `CONS_G` / `COMP_P` are not necessary conditions for every model satisfying the positive T2/T3/collapse chain; they are sufficient ingredients of one lower-level recovery route.
+
+The decisive unresolved semantic question is now the weakest principled recovery of `T2+` from the primitive four-valued Scott machinery.
 
 ## Phase B — The key experiment
 
 - [x] split A1 into independent directional components;
-- [x] isolate direct and informative negative positivity-rigidity channels;
-- [x] correct the bilateral `MC+` / `MC-` targets;
-- [x] prove the corrected collapse schemata equivalent under FDE negation;
-- [x] separate the rigidity channels without A1 by finite S5 countermodels;
-- [x] prove strong A1 recouples the rigidity channels;
-- [x] identify and locally minimize the `REF+` assumption package;
-- [x] state the conditional interface-level collapse theorem.
+- [x] isolate positivity-rigidity channels;
+- [x] correct and classify modal-collapse channels;
+- [x] prove collapse-channel equivalence under FDE negation;
+- [x] identify local glut/gap reflection failures;
+- [x] reconstruct possible God-like existence;
+- [x] identify T2 as the later glut/gap bottleneck;
+- [x] reconstruct T3 conditionally from positive T2;
+- [x] derive the essence-compressed modal-collapse theorem.
 
 ## Phase C — Reconstruct Gödel–Scott
 
 - [x] lift the positivity predicate and A1/A4 interfaces;
 - [x] lift A2 for the Scott-control branch;
 - [x] split and select the A3 control lifting;
-- [x] freeze `G-sup-v0.1` as the control Godlikeness definition;
-- [x] reconstruct truth-only positive-property exemplification (`T1-T`);
-- [x] reconstruct possible God-like existence from `A3-T`;
-- [x] justify `CONST` from higher-order comprehension;
-- [ ] derive or refute the global witness interface `GW` via the essence / necessary-existence branch;
-- [ ] lift `Ess`;
-- [ ] lift `NE` and A5;
-- [ ] classify the status of `□∃ᴱx G(x)`;
-- [ ] determine whether any natural later axiom supplies principled substitutes for `CONS_G` or `COMP_P`.
+- [x] freeze `G-sup-v0.1`;
+- [x] reconstruct `T1-T` and possible God-like existence;
+- [x] freeze `Ess-sup-v0.1`;
+- [x] show T2 is not automatic and isolate a sufficient recovery package;
+- [x] freeze `NE-sup-v0.1` and lift A5;
+- [x] reconstruct `T3+` conditionally from `T2+`;
+- [x] discharge `GW`;
+- [x] classify the positive collapse consequence of `T2+ + T3+`;
+- [ ] minimize the T2 recovery assumptions beyond `REG_G`;
+- [ ] compare `G-sup-v0.1` with `G-exact`;
+- [ ] test whether alternative essence semantics preserve the same T2 obstruction.
 
 ## Phase D — Mechanize and publish
 
-- [ ] Implement settled semantics in Lean.
-- [ ] Add model/countermodel tests.
-- [ ] Verify classical recovery.
-- [ ] Compare at least one non-Scott variant.
-- [ ] Re-run the rigidity/collapse analysis over broader relational and paired-neighborhood frame classes.
-- [ ] Write paper around the strongest structural theorem.
+### Gate 7 — Mechanization and finite-model verification
+
+- [ ] implement the settled four-valued kernel, modal clauses, quantifiers, `G-sup`, `Ess-sup`, and `NE-sup` in Lean and/or a small executable model checker;
+- [ ] machine-check Gate-3/4 A1 and rigidity results;
+- [ ] machine-check T1-T and its glut countermodel;
+- [ ] machine-check both Gate-6 T2 countermodels;
+- [ ] machine-check the conditional T2, T3, GW, and modal-collapse theorems;
+- [ ] verify classical recovery end-to-end.
+
+### Gate 8 — Comparative variants
+
+- [ ] compare `G-sup` with `G-exact`;
+- [ ] compare at least one Anderson/Fitting-style variant;
+- [ ] vary K / KB / S4 / S5 after the S5 control theory is mechanized;
+- [ ] rerun selected results over broader paired-neighborhood frames.
+
+### Gate 9 — Publication consolidation
+
+- [ ] perform a dedicated prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
+- [ ] write the paper around the strongest verified structural theorem;
+- [ ] distinguish semantic theorems, machine-checked results, countermodels, and open minimality questions explicitly.
