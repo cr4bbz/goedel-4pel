@@ -1,0 +1,80 @@
+\subsection{Fitting assumption minimization}
+\label{sec:fitting-minimality}
+
+The admissible-domain reconstruction permits a second round of dependency analysis. The original recovery package
+\[
+  REG_{G,F}^{adm}
+  =COMP_{P,F}^{G,adm}+CONS_{G,F}^{G,adm}
+\]
+requires every admissible extension positively possessed by a positive Fitting-Godlike witness to be locally non-glutty. The proof of the extensional essence theorem, however, uses this consistency information only when positivity completeness classifies the possessed extension negatively. I therefore isolate the weaker condition
+\[
+\begin{split}
+  NegCons_{G,F}^{adm}:\quad
+  &Adm(Y)\land G_F^+(x,w)\land \pos{Y(x)}\land \neginfo{P(Y)}@w\\
+  &\qquad\Longrightarrow \neg\neginfo{Y(x)}.
+\end{split}
+\]
+Writing
+\[
+  REG_{G,F}^{neg}
+  :=COMP_{P,F}^{G,adm}+NegCons_{G,F}^{adm},
+\]
+Lean proves
+\[
+  CONS_{G,F}^{G,adm}\Longrightarrow NegCons_{G,F}^{adm}
+\]
+and the strengthened recovery theorem
+\[
+\begin{split}
+  &G\text{-admissible}
+  +G_F\text{-realization}
+  +A1_{L,F}^{adm}
+  +REG_{G,F}^{neg}\\
+  &\qquad\Longrightarrow
+  G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w).
+\end{split}
+\]
+The corresponding de-re necessary-existence chain is machine-checked with the same targeted package. A one-world one-entity finite model separates the two consistency notions on the A1-L-only route: the sole admissible extension is genuinely glutty, the targeted negative-classification condition holds, full relevant exemplification consistency fails, and the realized positive Godlike extension is nevertheless an essence.
+
+This weakening is itself directional. If the right A1 channel is restored, Lean proves
+\[
+  A1_{R,F}^{adm}
+  +COMP_{P,F}^{G,adm}
+  +NegCons_{G,F}^{adm}
+  \Longrightarrow
+  CONS_{G,F}^{G,adm}.
+\]
+Thus the reduction is not an unconditional weakening of a theory retaining both A1 directions. It instead exposes another division of labor between the two signed A1 flows: the A1-L recovery argument needs consistency only on the negative-classification branch, while A1-R supplies enough additional complement information to reconstruct the stronger consistency condition.
+
+A separate minimization concerns de-dicto stability. Full bilateral extension stability
+\[
+  STAB_G^{\pm}:\qquad
+  wRz\Rightarrow ext_wG\equiv ext_zG
+\]
+contains more information than the positive theorem uses. I split the positive channel into persistence and reflection:
+\[
+\begin{array}{rcl}
+  Pers_G^+&:&wRz\land \pos{ext_wG(x)}\Rightarrow\pos{ext_zG(x)},\\
+  Refl_G^+&:&wRz\land \pos{ext_zG(x)}\Rightarrow\pos{ext_wG(x)}.
+\end{array}
+\]
+Their conjunction is written \(STAB_G^+\). Lean proves that bilateral stability implies \(STAB_G^+\), but the two positive directions are exactly what the de-dicto proof consumes: reflection converts de-dicto possibility into frozen de-re possibility, whereas persistence converts frozen de-re necessity back into de-dicto necessity. Consequently the minimized theorem is
+\[
+\begin{split}
+  &G\text{-admissible}
+  +G_F\text{-realization}
+  +A1_{L,F}^{adm}
+  +REG_{G,F}^{neg}\\
+  &+NE_F\text{-realization}
+  +A5_F^+
+  +STAB_G^+
+  +\Diamond^+\exists^E x\,G_F(x)\\
+  &\qquad\Longrightarrow
+  \Box^+\exists^E x\,G_F(x).
+\end{split}
+\]
+No negative-extension stability and no S4/S5 frame condition occurs.
+
+The weakening of stability is strict even under a stronger surrounding control theory. A complete two-world S5 fixture satisfies both A1 directions and the original full admissible regularity package. The positive membership set of \(G\) is \(\{a\}\) at both worlds, but negative information about a non-Godlike individual changes from falsity support to a gap. Hence \(STAB_G^+\) holds while \(STAB_G^{\pm}\) fails, and positive necessary de-dicto Godlikeness still holds. This finite witness shows that the positive theorem is genuinely insensitive to drift confined to the negative extension channel.
+
+These results do not establish global minimality. They instead replace two coarse assumptions by proof-relevant interfaces and reveal a further interaction between the A1 split and the Fitting intension/extension architecture.
