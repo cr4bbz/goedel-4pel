@@ -13,6 +13,7 @@ from gate7_search import (
 )
 from gate8_compare import run_gate8_comparison
 from gate8_anderson import validate_anderson_no_collapse_model
+from gate8_frames import validate_anderson_s4_countermodel
 
 
 class Gate7Tests(unittest.TestCase):
@@ -55,8 +56,11 @@ class Gate7Tests(unittest.TestCase):
     def test_gate8_support_vs_exact_godlikeness(self):
         self.assertTrue(run_gate8_comparison())
 
-    def test_gate8_anderson_positive_chain_without_modal_collapse(self):
+    def test_gate8_anderson_bilateral_chain_without_modal_collapse(self):
         self.assertTrue(validate_anderson_no_collapse_model())
+
+    def test_gate8_anderson_s4_does_not_force_t3(self):
+        self.assertTrue(validate_anderson_s4_countermodel())
 
 
 if __name__ == "__main__":
