@@ -15,6 +15,7 @@ from gate8_compare import run_gate8_comparison
 from gate8_anderson import validate_anderson_no_collapse_model
 from gate8_frames import validate_anderson_s4_countermodel
 from gate8_scott_frames import validate_scott_s4_countermodel
+from gate8_fitting import validate_fitting_admissible_de_re_de_dicto_model
 
 
 class Gate7Tests(unittest.TestCase):
@@ -65,6 +66,9 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_scott_s4_without_symmetry_does_not_force_t3(self):
         self.assertTrue(validate_scott_s4_countermodel())
+
+    def test_gate8_fitting_admissible_de_re_de_dicto_separation(self):
+        self.assertTrue(validate_fitting_admissible_de_re_de_dicto_model())
 
 
 if __name__ == "__main__":
