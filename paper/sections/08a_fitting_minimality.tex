@@ -79,13 +79,49 @@ No A1 direction, no positivity completeness, and no exemplification-consistency 
 
 The same route continues through necessary existence. Lean machine-checks a frame-free de-re possibility-to-necessity theorem from \(G\)-admissibility, \(G\)-realization, \(Ind_G^{adm}\), NE-admissibility, NE-realization, and positive A5, with no \(COMP\), A1, or consistency premise. Positive \(G\)-extension persistence and reflection then provide the same de-dicto bridge as before.
 
-A one-world, two-entity reflexive finite fixture separates this route from positivity completeness. Its negation-closed admissible domain consists of the four classical rigid extensions \(\varnothing\), \(\{a\}\), \(\{b\}\), and \(\{a,b\}\). Both A1 directions and full relevant exemplification consistency hold. Entity \(a\) is the sole positive Godlike individual and the current \(G\)-extension is \(\{a\}\). Nevertheless the universal extension is a genuine positivity gap:
+\paragraph{Positive-profile quotient structure.}
+The indiscernibility premise can itself be derived from a more structural condition on the selected property domain. Define positive-profile equivalence at a world by
 \[
-  \neg\pos{P(\{a,b\})}
-  \qquad\text{and}\qquad
-  \neg\neginfo{P(\{a,b\})},
+  x\approx_w^+ y
 \]
-so \(COMP_{P,F}^{G,adm}\) fails at a relevant extension containing the Godlike witness. The current \(G\)-extension is still an essence of \(a\), NE is realized, A5 holds, and frozen current-G exemplification is both possible and necessary. Thus \(COMP_{P,F}^{G,adm}\) is not globally necessary for the current Fitting essence/NE conclusion; it is necessary only for the earlier classification-based route. I do not infer that indiscernibility is globally weaker than completeness, since the two principles constrain different semantic interfaces.
+iff every positively supported admissible extension contains \(x\) and \(y\) alike. Lean proves that \(\approx_w^+\) is reflexive, symmetric, and transitive. Positive Fitting-Godlike individuals automatically lie in the same \(\approx_w^+\)-class, because each of them positively exemplifies every positively supported admissible extension.
+
+I then impose the quotient-style saturation condition
+\[
+\begin{split}
+  Sat_P^{adm}:\quad
+  &Adm(Y)\land x\approx_w^+y\\
+  &\qquad\Longrightarrow
+  \bigl(\pos{Y(x)}\leftrightarrow\pos{Y(y)}\bigr).
+\end{split}
+\]
+Equivalently, every admissible rigid extension is a union of positive-profile equivalence classes. Lean proves
+\[
+  Sat_P^{adm}\Longrightarrow Ind_G^{adm},
+\]
+and therefore the entire alternative essence/NE route follows from this property-domain condition. This gives the previously primitive indiscernibility interface a quotient-semantical interpretation rather than treating it as an isolated recovery axiom.
+
+A one-world, three-entity finite fixture makes the result nontrivial. Two distinct entities \(a\) and \(b\) are both positive Godlike and form one non-singleton positive-profile class, while \(c\) is not Godlike. The negation-closed admissible domain consists of the rigid extensions
+\[
+  \varnothing,\qquad \{a,b\},\qquad \{c\},\qquad \{a,b,c\}.
+\]
+Every admissible extension respects the \(\{a,b\}\) profile class, so \(Sat_P^{adm}\) and \(Ind_G^{adm}\) hold. Nevertheless the universal extension is a genuine positivity gap:
+\[
+  \neg\pos{P(\{a,b,c\})}
+  \qquad\text{and}\qquad
+  \neg\neginfo{P(\{a,b,c\})},
+\]
+so \(COMP_{P,F}^{G,adm}\) fails at an extension containing both Godlike individuals. The current \(G\)-extension \(\{a,b\}\) is still an essence of each, and the finite NE/A5 interface remains satisfied. Hence the profile-saturation route bypasses positivity completeness non-vacuously even when Godlike indiscernibility has real two-individual content.
+
+\paragraph{Relation to Fitting's ultrafilter structure.}
+The published mechanized analysis proves that Fitting's extensional positivity predicate constitutes a \(\delta\)-ultrafilter \cite{BenzmuellerFuenmayor2019}. Its classical maximality component chooses an extension or its complement as positive. To compare that architecture with the bilateral reconstruction, I isolate a four-valued complement-decision interface:
+\[
+  Adm(Y)\Longrightarrow
+  \bigl(\pos{P(Y)}\lor\pos{P(\neg Y)}\bigr).
+\]
+This condition alone is not yet a four-valued ultrafilter definition. More importantly, the bilateral setting changes what the complement branch supplies: positive support for \(\neg Y\) yields negative support information about membership in \(Y\), but it does not by itself erase positive support for \(Y\).
+
+Lean shows that complement decision combined with full relevant exemplification consistency already recovers local positive reflection at Godlike witnesses, and hence \(COMP_{P,F}^{G,adm}\). Independently, complement decision together with \(A1_R\) also yields \(COMP_{P,F}^{G,adm}\). Thus the ultrafilter-style route explains why completeness is natural at the classical Fitting boundary, but it does not account for the genuinely classification-free route above. The quotient-saturation condition and ultrafilter maximality therefore locate two different ways of controlling the property domain.
 
 A separate minimization concerns de-dicto stability. Full bilateral extension stability
 \[
@@ -114,8 +150,8 @@ Their conjunction is written \(STAB_G^+\). Lean proves that bilateral stability 
   \Box^+\exists^E x\,G_F(x).
 \end{split}
 \]
-No negative-extension stability and no S4/S5 frame condition occurs. Replacing the classification block by \(Ind_G^{adm}\) gives an alternative theorem with the same positive stability interface.
+No negative-extension stability and no S4/S5 frame condition occurs. Replacing the classification block by \(Ind_G^{adm}\), or more structurally by \(Sat_P^{adm}\), gives an alternative theorem with the same positive stability interface.
 
 The weakening of stability is strict even under a stronger surrounding control theory. A complete two-world S5 fixture satisfies both A1 directions and the original full admissible regularity package. The positive membership set of \(G\) is \(\{a\}\) at both worlds, but negative information about a non-Godlike individual changes from falsity support to a gap. Hence \(STAB_G^+\) holds while \(STAB_G^{\pm}\) fails, and positive necessary de-dicto Godlikeness still holds. This finite witness shows that the positive theorem is genuinely insensitive to drift confined to the negative extension channel.
 
-These results do not establish global minimality. They instead reveal two distinct recovery architectures inside the same Fitting candidate: one resolves positivity gaps by classification, while the other bypasses positivity classification through extensional indiscernibility among Godlike individuals.
+These results do not establish global minimality. They reveal two distinct recovery architectures inside the same Fitting candidate: one resolves positivity gaps by classification, while the other quotients the admissible domain by positive-property profile and therefore makes the gap irrelevant to extensional essence.
