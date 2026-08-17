@@ -105,6 +105,18 @@ Compare Scott with selected Anderson/Fitting-style variants under the same four-
 ### Gate 9 — Paper
 Turn the strongest structural result into a paper. The target is not "Gödel in four values" but a precise theorem about bilateral rigidity, collapse, and/or inconsistency tolerance.
 
+## Paper workspace
+
+A living LaTeX manuscript now lives in `paper/`. Version `paper-v0.1` contains the defensible Gate 0–1 material, while Gate 2 and later sections are explicitly marked open rather than pre-filled with assumed results.
+
+Build from `paper/` with either:
+
+```bash
+latexmk -pdf main.tex
+```
+
+or the standard `pdflatex` / `bibtex` sequence documented in `paper/README.md`.
+
 ## Repository layout
 
 ```text
@@ -114,9 +126,18 @@ Turn the strongest structural result into a paper. The target is not "Gödel in 
 ├── docs/
 │   ├── RESEARCH_PROGRAM.md
 │   ├── AXIOM_MATRIX.md
-│   └── CONJECTURES.md
+│   ├── CONJECTURES.md
+│   ├── SCOTT_BASELINE.md
+│   ├── MODAL_COLLAPSE_SPINE.md
+│   └── FOUR_VALUED_KERNEL.md
 ├── formal/
 │   └── README.md
+├── paper/
+│   ├── main.tex
+│   ├── references.bib
+│   ├── README.md
+│   ├── sections/
+│   └── figures/
 └── .github/
     └── ISSUE_TEMPLATE/
         └── research-result.md
@@ -134,6 +155,6 @@ The belief operator is deliberately postponed. Four-valued modality and four-val
 
 ## Status
 
-**Phase:** research design / Gate 0.
+**Phase:** Gate 1 complete at the semantic-design level; `paper-v0.1` initialized; Gate 2 next.
 
-The next concrete task is to freeze the exact Scott baseline and complete the first version of `docs/AXIOM_MATRIX.md`.
+The next concrete task is to compare relational and neighborhood-style four-valued modal semantics in `docs/MODAL_LIFT.md` without silently assuming classical dualities.
