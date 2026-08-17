@@ -135,7 +135,7 @@ First executable milestone:
 - [x] formalize `T/F/B/N`, FDE negation, and involution in Lean;
 - [x] formalize the general schema-level `MC+ <-> MC-` theorem in Lean source;
 - [x] add GitHub Actions for finite-model tests and Lean builds;
-- [ ] obtain a green CI run for the initial Lean package;
+- [x] obtain a green CI run for the initial Lean package;
 - [ ] formalize relational bilateral modality, actualist quantification, and `NEnt+_E` in Lean;
 - [ ] formalize `G-sup-v0.1` and `Ess-sup-v0.1`;
 - [ ] prove the conditional `REG_G => T2+` theorem generally in Lean;
