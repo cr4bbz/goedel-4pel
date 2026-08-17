@@ -108,20 +108,47 @@ def CompPG (M : Semantics World Entity) : Prop :=
 def ConsGG (M : Semantics World Entity) : Prop :=
   ∀ w x (Y : Extension Entity), GodPlus M w x → Y.pos x → ¬ Y.neg x
 
-/-- Gate-8 regularity package for the Fitting comparison. -/
+/-- Gate-8 regularity package for the unrestricted Fitting comparison. -/
 def RegG (M : Semantics World Entity) : Prop :=
   CompPG M ∧ ConsGG M
+
+/-- The everywhere-glutty bilateral extension. -/
+def universalGlutExtension : Extension Entity :=
+  ⟨fun _ => True, fun _ => True⟩
+
+/--
+Unrestricted bilateral comprehension makes `ConsGG` incompatible with any
+positive Fitting-Godlike individual.
+
+The witness is the admissible-by-type universal glut extension itself: it
+contains every individual both positively and negatively. This theorem exposes
+a genuine obstruction in the naive unrestricted extension lift, not a Lean
+elaboration artifact.
+-/
+theorem consGG_excludes_god
+    (M : Semantics World Entity)
+    (hCons : ConsGG M) :
+    ∀ w x, ¬ GodPlus M w x := by
+  intro w x hGod
+  let B : Extension Entity := universalGlutExtension
+  have hNoNeg : ¬ B.neg x := hCons w x B hGod (by trivial)
+  exact hNoNeg (by trivial)
+
+/-- Consequently the unrestricted `RegG` recovery package excludes Godlikeness. -/
+theorem regG_excludes_god
+    (M : Semantics World Entity)
+    (hReg : RegG M) :
+    ∀ w x, ¬ GodPlus M w x := by
+  exact consGG_excludes_god M hReg.2
 
 /--
 The current extension of the distinguished intensional `G` is a positive
 Fitting essence of every positive Fitting-Godlike individual.
 
-Compared with the Scott-support recovery theorem, no positivity-rigidity
-premise is needed. The reason is structural: Fitting entailment ranges over
-rigid extensions. Once local reflection yields `pPos w Y`, every individual in
-the frozen current extension of `G` is Godlike at the same world `w` and hence
-belongs positively to `Y`; accessibility does not require transporting
-positivity to a new world.
+This theorem remains logically valid for the unrestricted lift, but the
+`regG_excludes_god` result above shows that its current `RegG` antecedent makes
+it unsuitable as a non-vacuous Fitting recovery theorem. Gate 8 therefore
+moves the substantive comparison to a selected admissible extension domain.
 -/
 theorem god_has_currentExtension_essence
     (M : Semantics World Entity)
