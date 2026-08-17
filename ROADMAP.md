@@ -51,7 +51,7 @@ Gate 7 is complete. The broader two-world / one-entity `G,Z` search retains 873 
 
 ### Fitting branch
 
-The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level assumption reduction is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.2`.
+The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level assumption reduction is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.2`; the domain-structure analysis is frozen in `docs/FITTING_DOMAIN_STRUCTURE.md` as `fitting-domain-v0.1`.
 
 - [x] introduce distinct Lean types for bilateral extensions and world-indexed intensions;
 - [x] type Fitting positivity over extensions rather than intensions;
@@ -73,8 +73,12 @@ The initial type boundary is `fitting-types-v0.1`; the substantive candidate is 
 - [x] exhibit a complete-S5 fixture satisfying both A1 directions and the old full `REG_G^adm` while positive G stability holds and bilateral G stability fails;
 - [x] show that `COMP_P^G(adm)` is specific to the classification route by proving an alternative Godlike-indiscernibility essence/NE theorem with no A1, `COMP`, or consistency premise;
 - [x] exhibit a finite model satisfying both A1 directions and full relevant consistency in which a relevant extension has positivity value `N`, `COMP_P^G(adm)` fails, but the indiscernibility route still yields essence and necessary existence;
-- [ ] determine whether admissible-property Godlike indiscernibility follows from a more independently motivated property-domain condition;
-- [ ] determine principled closure conditions on the admissible extensional domain beyond negation closure;
+- [x] define positive-profile equivalence on entities and machine-check that it is an equivalence relation;
+- [x] derive Godlike indiscernibility from quotient-style positive-profile saturation of the admissible extension domain;
+- [x] exhibit a nontrivial finite profile-saturation model with two distinct positive Godlike individuals, a genuine relevant positivity gap, failure of `COMP_P^G(adm)`, and successful essence/NE recovery;
+- [x] isolate an ultrafilter-style positive complement-decision interface and prove that, with relevant consistency or with `A1-R`, it reconstructs positive reflection / `COMP_P^G(adm)` rather than the classification-free route;
+- [ ] determine principled algebraic closure conditions on the profile-saturated admissible domain beyond negation closure;
+- [ ] define and assess a genuinely four-valued `delta`-ultrafilter on the profile quotient without automatically restoring `COMP`;
 - [ ] determine whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed together.
 
 ### Cross-variant comparison
@@ -96,7 +100,8 @@ Fitting admissible:
   no R+ in the extensional essence recovery theorem
   de-re possibility -> necessity is frame-free
   classification route: A1-L + COMP + negative-branch consistency
-  alternative route: admissible-property indiscernibility, with no COMP/A1/consistency
+  quotient route: positive-profile saturation -> Godlike indiscernibility, with no COMP/A1/consistency
+  ultrafilter-style complement decision + consistency/A1-R reconstructs classification rather than bypassing it
   A1-R restores the stronger consistency condition only inside the classification route
   de-dicto lifting needs only positive G-extension stability
   necessary Godlikeness can coexist with MC+ failure
@@ -142,7 +147,7 @@ Fitting admissible:
 
 ### Gate 8 — Comparative variants — **in progress**
 
-The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now has two machine-checked recovery architectures: a positivity-classification route with A1-sensitive local consistency, and a `COMP`-independent extensional indiscernibility route. Remaining Gate-8 work is primarily principled justification/minimization of the alternative assumptions, admissible-domain closure, and paired-neighborhood generalization.
+The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now has two machine-checked recovery architectures: a positivity-classification route with A1-sensitive local consistency, and a `COMP`-independent quotient route in which admissible extensions are saturated under positive-property profiles. Remaining Gate-8 work is primarily algebraic justification of the admissible quotient domain, a genuinely four-valued ultrafilter comparison, stability minimization, and paired-neighborhood generalization.
 
 ### Gate 9 — Publication consolidation
 
