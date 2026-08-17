@@ -7,6 +7,7 @@ import Goedel4PEL.GoedelScott.GodlikeVariants
 import Goedel4PEL.GoedelScott.AndersonInterfaces
 import Goedel4PEL.GoedelScott.AndersonBilateral
 import Goedel4PEL.GoedelScott.AndersonFrames
+import Goedel4PEL.GoedelScott.FittingTypes
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2
 import Goedel4PEL.GoedelScott.T3Collapse
