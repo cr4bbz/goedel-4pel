@@ -1,28 +1,28 @@
 \section{Reconstructing the G\"odel--Scott Chain}
 \label{sec:reconstruction}
 
-Gate 5 reconstructs the first higher-order branch of the Scott theory: A2, positive-property exemplification, A3, and Godlikeness. Essence and necessary existence remain open.
+Gates 5 and 6 reconstruct the higher-order existence branch through A2, A3, Godlikeness, essence, necessary existence, A5, and a positive analogue of Scott's T3. The reconstruction keeps the object-language four-valued conditional unfixed; implication-sensitive clauses are represented semantically.
 
 \subsection{Actualist quantification and necessary positive entailment}
 
-I retain Scott's actualist quantification over individuals by using a classical metalanguage existence relation \(E(w,x)\). Positive and negative existential satisfaction are
+I retain Scott's actualist quantification over individuals using a classical metalanguage existence relation \(E(w,x)\). Positive and negative existential satisfaction are
 \[
   w\models^+\exists^E x\,\varphi(x)
-  \quad\Longleftrightarrow\quad
+  \Longleftrightarrow
   \exists x\,(E(w,x)\land w\models^+\varphi(x)),
 \]
 \[
   w\models^-\exists^E x\,\varphi(x)
-  \quad\Longleftrightarrow\quad
+  \Longleftrightarrow
   \forall x\,(E(w,x)\Rightarrow w\models^-\varphi(x)),
 \]
-with the dual universal clauses. These reduce to ordinary actualist quantification on the classical fragment.
+with the dual universal clauses.
 
-Rather than introduce an object-language four-valued conditional, define semantic necessary positive entailment by
+Necessary positive entailment is the semantic relation
 \[
-  \operatorname{NEnt}^{+}_{E}(\varphi,\psi,w)
+  \operatorname{NEnt}^{+}_{E}(\varphi,\psi,w),
 \]
-iff, at every world \(v\) accessible from \(w\), every actually existing positive instance of \(\varphi\) is a positive instance of \(\psi\). The Gate-5 lifting of A2 is
+which holds iff at every world accessible from \(w\), every actually existing positive instance of \(\varphi\) is a positive instance of \(\psi\). The control lifting of A2 is
 \[
   A2^+:\quad
   \pos{P(\varphi)}\land
@@ -30,18 +30,23 @@ iff, at every world \(v\) accessible from \(w\), every actually existing positiv
   \Rightarrow
   \pos{P(\psi)}.
 \]
-On the \(\{\True,\False\}\) fragment this recovers the truth-support content of Scott's classical A2.
+
+For Gate 6 I also use negative evidence against necessary entailment:
+\[
+  \operatorname{NEnt}^{-}_{E}(\varphi,\psi,w)
+\]
+iff some accessible actually existing object positively exemplifies \(\varphi\) and negatively exemplifies \(\psi\). On the classical fragment these two relations reproduce truth and falsity of the necessary-entailment condition.
 
 \subsection{Truth-only positivity and possible exemplification}
 
-Positive support and unopposed positivity must be distinguished. Define
+Define
 \[
   \operatorname{Pos}_{T}(\varphi)
-  \quad:\Longleftrightarrow\quad
+  \Longleftrightarrow
   \pos{P(\varphi)}
   \text{ and not }\neginfo{P(\varphi)},
 \]
-where ``not'' is metalanguage denial. Thus \(\operatorname{Pos}_{T}\) picks out value \(\True\) for the positivity statement rather than the designated pair \(\{\True,\Both\}\).
+where ``not'' is metalanguage denial.
 
 \begin{theorem}[Truth-only positive properties are possibly exemplified]
 Assume globally \(A1_R\) and \(A2^+\). Then
@@ -51,90 +56,198 @@ Assume globally \(A1_R\) and \(A2^+\). Then
   \pos{\Diamond\exists^E x\,\varphi(x)}.
 \]
 \end{theorem}
-\begin{proof}
-Fix \(w\) with \(\operatorname{Pos}_{T}(\varphi)\) and suppose, at the metalanguage level, that \(\pos{\Diamond\exists^E x\,\varphi(x)}\) fails. Then no accessible world contains an actually existing positive instance of \(\varphi\), so \(\operatorname{NEnt}^{+}_{E}(\varphi,\neg\varphi,w)\) holds vacuously. By \(A2^+\), \(\pos{P(\neg\varphi)}\). By \(A1_R\), \(\neginfo{P(\varphi)}\), contradicting the truth-only assumption. Hence positive possible exemplification follows.
-\end{proof}
 
-This result is denoted \(T1_T\). It reveals a directional division of labor inside Scott A1: \(A1_R\) drives the possible-exemplification branch, whereas \(A1_L\) drives the Gate-4 local reflection argument.
+The proof is the Gate-5 reductio: failure of positive possible exemplification makes \(\operatorname{NEnt}^{+}_{E}(\varphi,\neg\varphi)\) vacuously true; A2 then gives \(\pos{P(\neg\varphi)}\), and \(A1_R\) yields \(\neginfo{P(\varphi)}\), contradicting truth-only positivity. A one-world model with an empty actual domain and glutty positivity shows that the stronger antecedent \(\pos{P(\varphi)}\) is insufficient.
 
-\paragraph{Glut countermodel.}
-The stronger schema \(\pos{P(\varphi)}\Rightarrow\pos{\Diamond\exists^E x\,\varphi(x)}\) fails. Consider a one-world reflexive frame with an empty actual domain and assign \(\Both\) to every relevant positivity statement. Strong A1 and \(A2^+\) hold, while \(\pos{P(\varphi)}\) is true and the actualist existential has no positive witness. The classical reductio only generates the negative support already present in the positivity glut.
-
-Thus the four-valued analogue of T1 naturally applies to unopposed, truth-only positivity rather than to arbitrary designated positivity.
-
-\subsection{A3 and possible God-like existence}
-
-Scott's A3 admits two conservative readings:
+Scott A3 is therefore split into
 \[
   A3^+:\quad \pos{P(G)},
-\]
-which allows \(P(G)=\Both\), and the stronger Scott-control clause
-\[
+  \qquad
   A3_T:\quad \operatorname{Pos}_{T}(G).
 \]
-I retain \(A3^+\) as a robustness variant and adopt \(A3_T\) for the control reconstruction. From \(A3_T\) and \(T1_T\),
+The control branch uses \(A3_T\), obtaining
 \[
-  \boxed{
-  \pos{\Diamond\exists^E x\,G(x)}
-  }.
+  \boxed{\pos{\Diamond\exists^E x\,G(x)}}.
 \]
-This recovers the classical possibility branch without imposing global consistency on every positivity assignment.
 
 \subsection{Support-based Godlikeness}
 
-The Gate-5 control definition, \(G\text{-sup-v0.1}\), is bilateral:
+The control definition \(G\text{-sup-v0.1}\) is
 \[
   w\models^+G(x)
-  \quad\Longleftrightarrow\quad
+  \Longleftrightarrow
   \forall\varphi\,
   \bigl(w\models^+P(\varphi)\Rightarrow w\models^+\varphi(x)\bigr),
 \]
 \[
   w\models^-G(x)
-  \quad\Longleftrightarrow\quad
+  \Longleftrightarrow
   \exists\varphi\,
   \bigl(w\models^+P(\varphi)\land w\models^-\varphi(x)\bigr).
 \]
-This immediately yields the previously abstract interface
+This recovers Scott D1 on the classical fragment, discharges the former \(D1^+\) interface, and permits all four information states for Godlikeness. Full higher-order lambda abstraction supplies the constant-property interface \(CONST\).
+
+\subsection{Bilateral essence}
+
+The Gate-6 control definition \(Ess\text{-sup-v0.1}\) is
 \[
-  D1^+:\quad
-  \pos{G(x)}\land\pos{P(\varphi)}
+\begin{split}
+  w\models^+(\varphi\operatorname{Ess}x)
+  \Longleftrightarrow{}&
+  w\models^+\varphi(x)\\
+  &\land
+  \forall\psi\,
+  \bigl(w\models^+\psi(x)
   \Rightarrow
-  \pos{\varphi(x)}.
+  \operatorname{NEnt}^{+}_{E}(\varphi,\psi,w)\bigr),
+\end{split}
 \]
-On the classical fragment the two clauses reduce to Scott's definition of Godlikeness.
-
-The definition deliberately does not enforce consistency. All four information values remain possible for \(G(x)\): a positive property instantiated gluttily can make Godlikeness both positive and negative, while a positively supported positive property instantiated as \(\Neither\) can make Godlikeness neither positive nor negative.
-
-\subsection{Audit of the Gate-4 collapse interfaces}
-
-Gate 4 used \(D1^+\), \(GW\), and \(CONST\) as higher-order placeholders. Gate 5 resolves them asymmetrically.
-
-First, \(D1^+\) follows directly from \(G\text{-sup-v0.1}\). Second, the full intensional property domain inherited from the HOL control setting supports lambda abstraction, so for every modal proposition \(\chi\) the constant property
+while
 \[
-  Z_\chi:=\lambda x.\chi
+\begin{split}
+  w\models^-(\varphi\operatorname{Ess}x)
+  \Longleftrightarrow{}&
+  w\models^-\varphi(x)\\
+  &\lor
+  \exists\psi\,
+  \bigl(w\models^+\psi(x)
+  \land
+  \operatorname{NEnt}^{-}_{E}(\varphi,\psi,w)\bigr).
+\end{split}
 \]
-is available. Consequently the \(CONST\) interface is a higher-order comprehension assumption rather than an additional G\"odel axiom.
+On the classical fragment these clauses recover Scott D2.
 
-By contrast, \(GW\) is not yet available. A3 and T1 provide only possible positive God-like existence, not a positively supported God-like witness at every world. The required global witness supply belongs to the later T3 branch.
-
-Nor do the remaining Gate-4 regularity assumptions follow from Godlikeness. Strong A1 still permits \(N/N\) gaps in positivity, so it does not yield \(COMP_P\). Likewise, if \(P(Z)=\Neither\) and \(Z(x)=\Both\), support-based Godlikeness places no constraint on \(Z\); therefore \(\pos{G(x)}\) and a glutty arbitrary exemplification can coexist, and \(CONS_G\) is not derived.
-
-Thus Gate 5 reconstructs
+The positive T2 target is
 \[
-  A1_R+A2^++A3_T
+  T2^+:\quad
+  \pos{G(x)}\Rightarrow\pos{G\operatorname{Ess}x}.
+\]
+
+\paragraph{T2 is not automatic.}
+Two explicit two-world S5 models refute \(T2^+\) while satisfying the Gate-5 control stack together with strong A1 and \(R^+\). In the glut model, a property \(Z\) is both positively and negatively exemplified by one positive God-like witness but lacks positive support at another accessible God-like witness. In the gap model, \(P(Z)=P(\neg Z)=\Neither\), while \(Z\) is positively exemplified locally but not necessarily shared. In both cases \(A2^+\), \(A3_T\), \(G\text{-sup-v0.1}\), strong A1, and positive rigidity hold, yet \(\operatorname{NEnt}^{+}_{E}(G,Z)\) fails. Hence positive Godlikeness does not imply positive Godlikeness-as-essence merely by choosing a natural bilateral D2.
+
+\subsection{A sufficient recovery route for T2}
+
+For properties actually positively exemplified by positive God-like witnesses, define
+\[
+  COMP_P^G:
+  \quad
+  \pos{G(x)}\land\pos{\psi(x)}
+  \Rightarrow
+  \bigl(\pos{P(\psi)}\text{ or }\neginfo{P(\psi)}\bigr),
+\]
+and
+\[
+  CONS_G^G:
+  \quad
+  \pos{G(x)}\land\pos{\psi(x)}
+  \Rightarrow
+  \text{not }\neginfo{\psi(x)}.
+\]
+Let \(REG_G\) be their conjunction.
+
+\begin{theorem}[Conditional recovery of positive T2]
+Under \(A1_L\), \(R^+\), \(G\text{-sup-v0.1}\), and \(REG_G\),
+\[
+  T2^+
+\]
+holds.
+\end{theorem}
+\begin{proof}
+Assume \(\pos{G(x)}\) and let \(\psi\) be positively exemplified by \(x\). Relevant positivity completeness gives \(\pos{P(\psi)}\) or \(\neginfo{P(\psi)}\). The latter alternative would, by \(A1_L\), make \(\neg\psi\) positively positive; Godlikeness would then yield \(\neginfo{\psi(x)}\), contradicting relevant exemplification consistency. Hence \(\pos{P(\psi)}\). Positive rigidity makes this support necessary, and every accessible positive God-like witness consequently positively exemplifies \(\psi\). Thus \(\operatorname{NEnt}^{+}_{E}(G,\psi)\), as required by positive essence.
+\end{proof}
+
+The glut and gap countermodels isolate the two regularity failures for this recovery route. I do not claim that \(REG_G\) is globally necessary for every model satisfying \(T2^+\).
+
+\subsection{Bilateral necessary existence and A5}
+
+Define \(NE\text{-sup-v0.1}\) by
+\[
+  w\models^+NE(x)
+  \Longleftrightarrow
+  \forall\varphi\,
+  \bigl(
+  w\models^+(\varphi\operatorname{Ess}x)
+  \Rightarrow
+  w\models^+\Box\exists^E y\,\varphi(y)
+  \bigr),
+\]
+\[
+  w\models^-NE(x)
+  \Longleftrightarrow
+  \exists\varphi\,
+  \bigl(
+  w\models^+(\varphi\operatorname{Ess}x)
+  \land
+  w\models^-\Box\exists^E y\,\varphi(y)
+  \bigr).
+\]
+These clauses recover Scott D3 classically.
+
+For A5 distinguish
+\[
+  A5^+:\quad \pos{P(NE)},
+  \qquad
+  A5_T:\quad \operatorname{Pos}_{T}(NE).
+\]
+Unlike A3, the positive T3 branch needs only \(A5^+\). Once \(\pos{G(x)}\) is available, \(G\text{-sup-v0.1}\) turns \(\pos{P(NE)}\) directly into \(\pos{NE(x)}\). Truth-only positivity of \(NE\) is unnecessary for that positive inference.
+
+\subsection{Positive necessary God-like existence}
+
+\begin{theorem}[Positive T3]
+Assume positive possible God-like existence, \(T2^+\), \(A5^+\), \(G\text{-sup-v0.1}\), \(NE\text{-sup-v0.1}\), and the fixed S5 frame conditions. Then
+\[
+  T3^+:\quad
+  \pos{\Box\exists^E x\,G(x)}.
+\]
+\end{theorem}
+\begin{proof}
+At an accessible world containing a positive God-like witness \(x\), A5 and Godlikeness yield \(\pos{NE(x)}\), while T2 gives \(\pos{G\operatorname{Ess}x}\). Positive necessary existence therefore yields \(\pos{\Box\exists^E y\,G(y)}\) at that world. Hence the original world satisfies \(\pos{\Diamond\Box\exists^E y\,G(y)}\). On S5 frames positive support validates \(\Diamond\Box\theta\Rightarrow\Box\theta\), so \(T3^+\) follows.
+\end{proof}
+
+Because the S5 control frame is reflexive, \(T3^+\) immediately supplies an actually existing positive God-like witness at every world. Thus the former interface \(GW\) is discharged.
+
+Combining the sufficient T2 route with Gate 5 gives the conditional positive Scott-control chain
+\[
+  A1_{\leftrightarrow}
+  +A2^+
+  +A3_T
+  +R^+
+  +REG_G
+  +A5^+
   \Longrightarrow
-  \pos{\Diamond\exists^E x\,G(x)},
+  T3^+,
 \]
-and discharges \(D1^+\) and \(CONST\), but it does not yet reconstruct the full collapse package. The next pressure point is the essence/necessary-existence branch:
+under the fixed higher-order semantics.
+
+\subsection{Essence-compressed modal collapse}
+
+Once \(T2^+\) and \(T3^+\) are available, the earlier reflection/rigidity proof can be compressed.
+
+\begin{theorem}[Essence-compressed collapse]
+Under \(T2^+\), \(T3^+\), and constant-property embedding,
 \[
-  \operatorname{Ess}
-  \longrightarrow
-  NE
-  \longrightarrow
-  A5
-  \longrightarrow
-  \Box\exists^E x\,G(x).
+  \MCp
+\]
+holds, and therefore \(\MCm\) holds by the Gate-4 collapse-equivalence theorem.
+\end{theorem}
+\begin{proof}
+Assume \(\pos{\chi}\) at \(w\). T3 supplies an actual positive God-like witness \(x\) at \(w\), and T2 makes \(G\) a positive essence of \(x\). For the constant property \(Z_\chi=\lambda y.\chi\), \(\pos{Z_\chi(x)}\). Positive essence gives \(\operatorname{NEnt}^{+}_{E}(G,Z_\chi,w)\). T3 supplies a positive God-like witness at every accessible world, so each such witness positively exemplifies \(Z_\chi\), hence each accessible world positively supports \(\chi\). Therefore \(\pos{\Box\chi}\).
+\end{proof}
+
+This result refines the Gate-4 dependency map. The earlier \(REF^+\), \(CONS_G\), \(COMP_P\), and \(R^+\) assumptions are ingredients of one route for deriving T2 from lower-level principles; they are not separate premises of the essence-compressed collapse theorem after T2 and T3 have already been established.
+
+\subsection{Robustness and the new bottleneck}
+
+A5 illustrates genuine inconsistency tolerance. If \(P(NE)=\Both\), strong A1 also permits \(P(\neg NE)=\Both\). A positive God-like witness may therefore satisfy both \(\pos{NE(x)}\) and \(\neginfo{NE(x)}\), while the positive component remains sufficient for the T3 derivation.
+
+Likewise, global positivity completeness and global consistency of arbitrary God-like exemplification are not semantic prerequisites for every model satisfying the positive T2/T3 chain. They are route-specific regularity assumptions used to recover T2 from the primitive lower-level axioms.
+
+The decisive open question after Gate 6 is consequently not whether necessary existence can supply witnesses. It can, once T2 is available. The main remaining semantic-minimality problem is:
+\[
+  \boxed{
+  \text{What are the weakest principled four-valued conditions under which }T2^+\text{ follows?}
+  }
 \]
 
-The full Gate-5 specification is maintained in \texttt{docs/GODLIKENESS\_AND\_POSSIBILITY.md}.
+The full Gate-5 and Gate-6 specifications are maintained in \texttt{docs/GODLIKENESS\_AND\_POSSIBILITY.md} and \texttt{docs/ESSENCE\_AND\_NECESSARY\_EXISTENCE.md}.
