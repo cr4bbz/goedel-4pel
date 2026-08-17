@@ -1,7 +1,7 @@
 \section{From Positivity Rigidity to Modal Collapse}
 \label{sec:collapse}
 
-The classical proof structure already identifies a narrow pressure point for the four-valued analysis. Fix a world \(w\), an individual \(x\), and a property \(Z\). In the Scott theory,
+The classical proof structure identifies a narrow pressure point for the four-valued analysis. Fix a world \(w\), an individual \(x\), and a property \(Z\). In the Scott theory,
 \[
   G(x)@w,\; Z(x)@w
 \]
@@ -17,66 +17,127 @@ Substituting the constant-in-individuals property \(Z:=\lambda z.\chi\) embeds a
 \[
   \chi\rightarrow\Box\chi.
 \]
-The detailed dependency analysis is maintained in \texttt{docs/MODAL\_COLLAPSE\_SPINE.md}. This local structure is consonant with the recent machine-checked diagnosis that positivity rigidity, rather than ultrafilter structure alone, is a principal driver of collapse \cite{Benzmueller2026Collapse}.
+The detailed classical dependency analysis is maintained in \texttt{docs/MODAL\_COLLAPSE\_SPINE.md}. This local structure is consonant with the recent machine-checked diagnosis that positivity rigidity, rather than ultrafilter structure alone, is a principal driver of collapse \cite{Benzmueller2026Collapse}.
 
 \subsection{Correct bilateral collapse targets}
 
-The positive persistence component remains
+The informative signed persistence principles are
 \[
-  \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi}.
+  \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi}
 \]
-
-The initially considered negative clause
-\[
-  \neginfo{\chi}\Rightarrow\neginfo{\Box\chi}
-\]
-is not a useful collapse condition on the fixed S5 frames. Since \(\neginfo{\Box\chi}\) means that some accessible world negatively supports \(\chi\), reflexivity makes this implication valid for every formula independently of Gödel--Scott.
-
-The informative negative component must instead express \emph{universal} persistence of negative support:
+and
 \[
   \MCm:\quad \neginfo{\chi}\Rightarrow\pos{\Box\neg\chi}.
 \]
-Using the bilateral box/diamond duality established in \cref{sec:modal}, this is equivalent to
-\[
-  \neginfo{\chi}\Rightarrow\neginfo{\Diamond\chi}.
-\]
-On the classical fragment, this is precisely the falsity-side counterpart of modal collapse: applying the classical schema \(\theta\rightarrow\Box\theta\) to \(\theta=\neg\chi\) yields persistence of falsity across all accessible worlds.
+The earlier candidate \(\neginfo{\chi}\Rightarrow\neginfo{\Box\chi}\) is discarded because it follows automatically on reflexive frames: the current world itself witnesses negative satisfaction of \(\Box\chi\).
 
-\subsection{Gate-3 obstruction to the local classical bridge}
-
-The local reflection target
+\begin{theorem}[Collapse-channel equivalence]
+Under the fixed FDE negation, with both schemata ranging over all formulas,
 \[
-  REF^+:\quad \pos{G(x)}\land\pos{Z(x)}\Rightarrow\pos{P(Z)}
+  \MCp\quad\Longleftrightarrow\quad\MCm.
 \]
-already fails under the minimal bilateral interface, even when strong A1 is assumed. The glut and gap counterassignments of \cref{sec:positivity} identify different reasons:
+\end{theorem}
+\begin{proof}
+Assume \(\MCp\) and \(\neginfo{\chi}\). By FDE negation, \(\pos{\neg\chi}\). Instantiating \(\MCp\) with \(\neg\chi\) gives \(\pos{\Box\neg\chi}\), hence \(\MCm\).
+
+Conversely, assume \(\MCm\) and \(\pos{\chi}\). Then \(\neginfo{\neg\chi}\). Instantiating \(\MCm\) with \(\neg\chi\) yields \(\pos{\Box\neg\neg\chi}\), which is equivalent to \(\pos{\Box\chi}\) because FDE negation is involutive.
+\end{proof}
+
+Thus the original conjecture that the informative positive and negative collapse channels might separate is falsified for the present semantics. The decomposition must be sought upstream rather than forced at the collapse schema itself.
+
+\subsection{Rigidity separates before A1 couples it}
+
+Write
+\[
+  \Rp:\quad \pos{P(\varphi)}\Rightarrow\pos{\Box P(\varphi)}
+\]
+and
+\[
+  \Rm:\quad \neginfo{P(\varphi)}\Rightarrow\pos{\Box\neg P(\varphi)}.
+\]
+Without A1 these principles are independent. On the two-world S5 frame with universal accessibility, assign a property \(\psi\) the positivity values
+\[
+  v_{w_0}(P(\psi))=\Neither,
+  \qquad
+  v_{w_1}(P(\psi))=\False.
+\]
+If all other relevant positivity statements receive \(\Neither\), then \(\Rp\) holds vacuously while \(\Rm\) fails at \(w_1\). Replacing \(\False\) by \(\True\) yields the converse separation: \(\Rm\) holds vacuously while \(\Rp\) fails.
+
+Strong A1 destroys this independence.
+
+\begin{proposition}[Rigidity coupling under strong A1]
+Under \(A1_L+A1_R\),
+\[
+  \Rp\quad\Longleftrightarrow\quad\Rm.
+\]
+\end{proposition}
+\begin{proof}
+The direction \(\Rp\Rightarrow\Rm\) was established in the positivity analysis. For the converse, suppose \(\pos{P(\varphi)}\). By \(A1_R\), instantiated at \(\neg\varphi\), one obtains \(\neginfo{P(\neg\varphi)}\). Applying \(\Rm\) to \(\neg\varphi\) yields \(\pos{\Box\neg P(\neg\varphi)}\). At each accessible world, \(A1_L\) converts \(\neginfo{P(\neg\varphi)}\) back into \(\pos{P(\varphi)}\). Hence \(\pos{\Box P(\varphi)}\).
+\end{proof}
+
+The genuine bilateral separation therefore occurs at the level of positivity rigidity only in the absence of the full A1 coupling.
+
+\subsection{Minimal recovery of the local reflection bridge}
+
+The signed reflection target is
+\[
+  REF^+:\quad \pos{G(x)}\land\pos{Z(x)}\Rightarrow\pos{P(Z)}.
+\]
+Strong A1 plus the minimal support interface
+\[
+  D1^+:\quad
+  \pos{G(x)}\land\pos{P(\varphi)}\Rightarrow\pos{\varphi(x)}
+\]
+does not suffice: the glut and gap assignments analyzed in Section~\ref{sec:positivity} block the classical reductio in different ways.
+
+Introduce two explicit metalanguage regularity conditions for the relevant witness and property:
+\[
+  CONS_G:\quad
+  \pos{G(x)}\land\pos{Z(x)}
+  \Rightarrow
+  \text{not }\neginfo{Z(x)},
+\]
+and
+\[
+  COMP_P:\quad
+  \pos{P(Z)}\ \text{or}\ \neginfo{P(Z)}.
+\]
+
+\begin{proposition}[Local reflection recovery]
+At the abstract Gate-4 interface,
+\[
+  A1_L+D1^++CONS_G+COMP_P\models REF^+.
+\]
+\end{proposition}
+\begin{proof}
+Assume \(\pos{G(x)}\) and \(\pos{Z(x)}\). By \(COMP_P\), either \(\pos{P(Z)}\) or \(\neginfo{P(Z)}\). In the latter case, \(A1_L\) yields \(\pos{P(\neg Z)}\), and \(D1^+\) then gives \(\pos{\neg Z(x)}\), equivalently \(\neginfo{Z(x)}\). This contradicts \(CONS_G\). Hence the negative-positivity alternative is excluded and \(\pos{P(Z)}\) remains.
+\end{proof}
+
+The package is locally minimal relative to this interface vocabulary. Removing \(A1_L\), \(D1^+\), \(CONS_G\), or \(COMP_P\) respectively admits a counterassignment while the other three remain satisfiable. The glut counterassignment witnesses the need for \(CONS_G\); the gap counterassignment witnesses the need for \(COMP_P\).
+
+\subsection{Conditional collapse kernel}
+
+Two higher-order interfaces are kept explicit because the final quantifier and Godlikeness semantics have not yet been frozen:
 
 \begin{itemize}
-  \item with a glut, the complement forced by A1 can coexist with \(Z(x)\), so the classical contradiction-elimination step disappears;
-  \item with a gap in positivity, the classical dichotomy between positive and non-positive properties is unavailable.
+  \item \(GW\): every world has some positively supported God-like witness;
+  \item \(CONST\): every modal formula \(\chi\) is representable by the constant intensional property \(Z_\chi:=\lambda x.\chi\), preserving both signed satisfaction conditions.
 \end{itemize}
 
-Consequently, the first collapse experiment cannot be parameterized by A1 and A4 alone. It must explicitly track whether the local reflection bridge is recovered, and if so by which consistency/completeness assumptions.
-
-\subsection{Revised Gate-4 target}
-
-\statusopen
-
-The earlier four-switch matrix \((A1^+,A1^-,R^+,R^-)\) is retired because two of its switches were not genuinely independent: the biconditional A1 channel schemas collapse into one another under substitution, while \(-P\Rightarrow-\Box P\) is reflexively trivial.
-
-The next experiment instead begins with the informative ingredients
+\begin{theorem}[Interface-level collapse package]
+Assume globally
 \[
-  A1_L,\qquad A1_R,\qquad R^+,
+  A1_L+D1^++CONS_G+COMP_P+\Rp+GW+CONST.
 \]
-together with explicit structural conditions governing the local reflection step, such as positivity completeness and consistency of God-like exemplification. The outputs are the corrected \(\MCp\) and \(\MCm\).
+Then \(\MCp\), and therefore also \(\MCm\).
+\end{theorem}
+\begin{proof}
+Suppose \(\pos{\chi}\) at \(w\). By \(GW\), choose \(x\) with \(\pos{G(x)}\) at \(w\). By \(CONST\), \(\pos{Z_\chi(x)}\). The local reflection proposition yields \(\pos{P(Z_\chi)}\). By \(\Rp\), \(\pos{\Box P(Z_\chi)}\).
 
-\begin{conjecture}[Bilateral separation]
-There is a natural four-valued lift of the Scott theory in which \(\MCp\) and \(\MCm\) are not equivalent.
-\end{conjecture}
-\statusconjectural
+Let \(v\) be accessible from \(w\). Then \(\pos{P(Z_\chi)}\) at \(v\). By \(GW\), choose \(y\) with \(\pos{G(y)}\) at \(v\). By \(D1^+\), \(\pos{Z_\chi(y)}\), and by \(CONST\), \(\pos{\chi}\) at \(v\). Since \(v\) was arbitrary, \(\pos{\Box\chi}\) at \(w\).
+\end{proof}
 
-\begin{conjecture}[A1-driven channel coupling]
-The two directional components of A1 play asymmetric roles in any derivation that couples \(\MCp\) and \(\MCm\), analogous to their established role in deriving negative positivity rigidity from \(R^+\).
-\end{conjecture}
-\statusconjectural
+This is deliberately an interface-level theorem rather than a theorem of the complete four-valued Gödel--Scott theory. Gate 5 must determine whether the final treatment of A2, A3, D1, and higher-order quantification justifies \(GW\) and \(CONST\), and whether the regularity assumptions can be weakened or derived rather than postulated.
 
-Countermodels remain first-class results: failure of either conjecture under a natural lifting would identify a hidden channel coupling and would therefore remain structurally informative.
+\paragraph{Gate-4 conclusion.}
+The strongest current structural claim is therefore not that modal collapse itself splits. Under symmetric FDE negation it does not. The non-classical decomposition occurs upstream: positivity rigidity separates before strong A1 recouples it, while the classical reflection bridge additionally relies on consistency and completeness conditions that gluts and gaps defeat independently.
