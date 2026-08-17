@@ -14,6 +14,7 @@ from gate7_search import (
 from gate8_compare import run_gate8_comparison
 from gate8_anderson import validate_anderson_no_collapse_model
 from gate8_frames import validate_anderson_s4_countermodel
+from gate8_scott_frames import validate_scott_s4_countermodel
 
 
 class Gate7Tests(unittest.TestCase):
@@ -61,6 +62,9 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_anderson_s4_without_symmetry_does_not_force_t3(self):
         self.assertTrue(validate_anderson_s4_countermodel())
+
+    def test_gate8_scott_s4_without_symmetry_does_not_force_t3(self):
+        self.assertTrue(validate_scott_s4_countermodel())
 
 
 if __name__ == "__main__":
