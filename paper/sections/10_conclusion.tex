@@ -3,7 +3,7 @@
 
 This manuscript treats the G\"odel--Scott theory not merely as an object to be translated from two values to four, but as a controlled test case for locating informational dependencies that classical bivalence suppresses.
 
-By version 0.7 the main reconstruction and verification branches have both reached positive necessary God-like existence and the associated collapse analysis. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive God-like existence, and support-based bilateral Godlikeness.
+By version 0.8 the main Scott reconstruction and verification branches have reached positive necessary God-like existence, the associated collapse analysis, and a first comparative analysis of alternative Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive God-like existence, and support-based bilateral Godlikeness.
 
 Gate 6 identifies the sharper bottleneck. A natural bilateral definition of essence recovers Scott D2 classically, but it does not make Godlikeness an essence automatically. Two explicit two-world S5 models satisfy the Gate-5 control conditions together with strong A1 and positive rigidity while refuting
 \[
@@ -29,23 +29,59 @@ The earlier truth-only possibility theorem is also machine-checked:
 \]
 Thus the division of labor inside Scott's A1 is not only semantically motivated but represented in independent formal derivations.
 
-Once T2 is available, the remaining necessary-existence branch is considerably more robust. Lean verifies that possible positive Godlikeness together with \(T2^+\), \(A5^+\), the positive necessary-existence realization, support-based Godlikeness, and S5 yields
+Once T2 is available, the remaining necessary-existence branch is more robust than the original S5 presentation suggested. Gate 8 proves in Lean that symmetry alone is sufficient for the Scott T3 step:
 \[
-  T3^+:\quad \pos{\Box\exists^E x\,G(x)}.
+\begin{split}
+  &\operatorname{Sym}(R)
+  +PossibleGod
+  +T2^+
+  +A5^+
+  +NE\text{-sup}
+  +G\text{-sup}\\
+  &\qquad\Longrightarrow T3^+.
+\end{split}
 \]
-On reflexive frames, T3 supplies the global witness condition \(GW\). Lean also verifies the essence-compressed positive collapse theorem: positive T2, positive T3, support-based Godlikeness, and constant-property embedding entail positive modal collapse. The informative negative collapse schema then follows from the separately machine-checked collapse-channel equivalence under involutive FDE negation.
+Neither reflexivity nor transitivity is a premise. A two-world S4-style finite countermodel is reflexive and transitive but non-symmetric, satisfies the remaining encoded premises, and refutes \(T3^+\). The result establishes symmetry as a sufficient bridge and shows that S4 alone does not replace it; it does not establish a unique globally weakest frame condition.
 
-The finite-model layer provides the complementary negative evidence. It regression-checks the T1 positivity-glut obstruction and both T2 countermodels. A broader exhaustive two-world, one-entity \(G,Z\) family retains 873 models satisfying \(A1_L\), positive rigidity, relevant positivity completeness, and relevant exemplification consistency together with the fixed bilateral semantic laws. Every retained model satisfies \(T2^+\). Dropping any one of those four recovery assumptions individually yields a T2 countermodel in that same bounded family.
+Reflexivity reappears later for a different reason. On reflexive frames, T3 supplies the global witness condition \(GW\), and Lean verifies the essence-compressed positive collapse theorem
+\[
+  \operatorname{Refl}(R)+T2^++T3^++G\text{-sup}+CONST
+  \Longrightarrow\MCp.
+\]
+The informative negative collapse schema then follows from the separately machine-checked collapse-channel equivalence under involutive FDE negation.
 
-This bounded result sharpens but does not settle the minimality question. It establishes individual indispensability relative to a specific complete finite family, not global model-theoretic necessity. The principal open problem is therefore now explicitly:
+The finite-model layer provides complementary negative evidence. It regression-checks the T1 positivity-glut obstruction and both T2 countermodels. A broader exhaustive two-world, one-entity \(G,Z\) family retains 873 models satisfying \(A1_L\), positive rigidity, relevant positivity completeness, and relevant exemplification consistency together with the fixed bilateral semantic laws. Every retained model satisfies \(T2^+\). Dropping any one of those four recovery assumptions individually yields a T2 countermodel in that same bounded family. This establishes bounded individual indispensability relative to the generated family, not global model-theoretic necessity.
+
+Gate 8 then shows that the T2 bottleneck is definition-sensitive. The project-internal exact positive Godlikeness condition
+\[
+  G^+_{\mathrm{exact}}(x)
+  \Longleftrightarrow
+  \forall\varphi\,
+  \bigl(\pos{\varphi(x)}\leftrightarrow\pos{P(\varphi)}\bigr)
+\]
+internalizes the local positive reflection step. Lean therefore proves
+\[
+  G\text{-exact}^+ + R^+\Longrightarrow T2^+_{\mathrm{exact}}
+\]
+without \(A1_L\), \(COMP_P^G\), or \(CONS_G^G\), while an executable model shows that exact positive Godlikeness remains compatible with genuine gluts. The Scott T2 obstruction is therefore not an unavoidable consequence of four-valued essence alone; it depends on the informational strength assigned to Godlikeness.
+
+The Anderson comparison exposes a different strengthening. Its literature-grounded positive interface classifies the necessary properties of an individual through positivity and modifies essence accordingly. The project adds explicit bilateral negative-evidence clauses and machine-checks their classical recovery. A two-world S5 model of this bilateral Anderson candidate has positive necessary Godlike existence while positive modal collapse fails for a contingent formula application. Moreover, the Anderson T3 branch also reduces to symmetry alone, with a corresponding non-symmetric S4-style countermodel. Thus Scott and Anderson share the same currently verified modal return bridge at the T3 stage; their substantive difference lies upstream in how Godlikeness and essence generate the necessary-existence interface.
+
+The Fitting comparison opens a third axis. The mechanized literature treats the intension/extension distinction as central to Fitting's revision, so the project now enforces it directly in Lean: a bilateral extension and a world-indexed intension are distinct types, and the Fitting positivity interface accepts extensions rather than intensions. This is intentionally only a type-level milestone. Fitting essence, necessary existence, negative support, and collapse behavior remain to be reconstructed before a four-valued Fitting theory can be claimed.
+
+The principal open problems are therefore now twofold. For the Scott-support branch:
 \[
   \boxed{
   \text{Which weaker principled four-valued assumptions, if any, suffice for }T2^+\text{ globally?}
   }
 \]
+For the comparative branch:
+\[
+  \boxed{
+  \text{Which structural features of Godlikeness and essence determine collapse across Scott, Anderson, and Fitting lifts?}
+  }
+\]
 
-Classical recovery has also been formalized at the bilateral interfaces. Under explicit classical coherence, negative support for necessary entailment, Godlikeness, essence, and necessary existence is exactly the complement of the corresponding positive support. This supports the intended reduction to ordinary bivalent behavior without claiming that the full AFP/HOL Scott development has already been reproduced line by line.
-
-The next phase should therefore compare theories rather than continue altering the S5 control semantics. The immediate targets are `G-sup` versus `G-exact`, selected Anderson/Fitting-style variants, weaker modal frame conditions, and later the paired-neighborhood generalization. Exact higher-order correspondence with the frozen Scott baseline and the dedicated prior-art audit remain publication-stage requirements.
+Classical recovery has been formalized at the bilateral Scott and Anderson interfaces. Exact higher-order correspondence with the complete AFP/HOL developments, a faithful extension-level Fitting chain, broader paired-neighborhood semantics, and a dedicated prior-art audit remain publication-stage requirements.
 
 The paper continues to distinguish general semantic theorems, machine-checked results, finite countermodels, bounded exhaustive evidence, and open global-minimality claims explicitly.
