@@ -2,806 +2,349 @@
 
 ## Status
 
-**Gate:** 0B — classical dependency analysis  
-**Target:** Scott-style modal collapse  
-**Schema:**
+**Origin:** Gate 0B — classical dependency analysis  
+**Revision:** Gate 3 correction  
+**Version:** `collapse-spine-v0.2`  
+**Classical target:** Scott-style modal collapse
 
 \[
-MC(\chi):
-\qquad
-\chi\rightarrow\Box\chi
+MC(\chi):\qquad \chi\rightarrow\Box\chi.
 \]
 
-for arbitrary modal propositions \(\chi\).
-
-This document isolates the classical proof mechanism that the four-valued project will later split into positive and negative information channels.
-
-It is intentionally a **dependency analysis**, not a new proof of the ontological argument.
+This document isolates the classical proof mechanism and records the Gate-3 corrections required for a non-trivial bilateral decomposition.
 
 ---
 
-## 1. Why isolate a proof spine?
+## 1. Classical dependency spine
 
-A four-valued reconstruction is scientifically useful only if it can say **where** the classical argument changes.
-
-It is therefore insufficient to record merely:
-
-\[
-A1,\ldots,A5,D1,D2,D3\vdash MC.
-\]
-
-The relevant question is:
-
-> Which local inferential bridge turns an arbitrary contingent truth into a necessary truth?
-
-The modern machine-checked Scott formalizations provide a compact answer. An interactive Isabelle proof of the possibilist Scott variant derives modal collapse using, locally:
-
-- A1;
-- A4;
-- the definition of Godlikeness;
-- T3, the necessary existence of a God-like entity;
-- symmetry of the accessibility relation.
-
-The actualist Scott variant also validates modal collapse; the 2025 analysis reports the corresponding proof in the standard Scott theory and closely related quantifier variants.
-
-The structural spine below is the object that `goedel-4pel` will later bilateralize.
-
----
-
-## 2. The crucial local lemma
-
-Fix a world \(w\), an entity \(x\), and an arbitrary property \(Z\).
-
-Assume:
-
-\[
-G(x)@w
-\]
-
-and
-
-\[
-Z(x)@w.
-\]
-
-We want to understand why the Scott theory forces:
-
-\[
-\Box\forall z\,(G(z)\rightarrow Z(z))@w.
-\]
-
-Call this principle:
-
-\[
-\boxed{
-L_{\mathrm{share}}
-}
-\]
-
-or **necessary sharing by God-like entities**.
-
-### Step 2.1 — `Z` must be positive at `w`
-
-Suppose, for contradiction, that
-
-\[
-\neg P(Z)@w.
-\]
-
-By A1:
-
-\[
-\neg P(Z)\leftrightarrow P(\neg Z),
-\]
-
-so:
-
-\[
-P(\neg Z)@w.
-\]
-
-But \(x\) is God-like at \(w\). By D1, a God-like entity possesses every positive property. Hence:
-
-\[
-\neg Z(x)@w.
-\]
-
-This contradicts the starting assumption:
-
-\[
-Z(x)@w.
-\]
-
-Therefore:
-
-\[
-\boxed{
-P(Z)@w.
-}
-\]
-
-This is already a major structural observation:
-
-> **A1 plus Godlikeness turns every actually exemplified property of a God-like being into a positive property.**
-
-This is stronger than merely saying that a God-like being has all positive properties. In the presence of A1, the implication is locally reversible for properties actually possessed by a God-like entity.
-
----
-
-### Step 2.2 — Positivity becomes necessary
-
-By A4:
-
-\[
-P(Z)\rightarrow\Box P(Z).
-\]
-
-Therefore:
-
-\[
-P(Z)@w
-\quad\Rightarrow\quad
-\Box P(Z)@w.
-\]
-
-Hence at every \(v\) accessible from \(w\):
-
-\[
-P(Z)@v.
-\]
-
-This is the **rigidity step**.
-
----
-
-### Step 2.3 — Every accessible God-like entity has `Z`
-
-Take arbitrary \(v\) such that:
-
-\[
-wRv.
-\]
-
-From Step 2.2:
-
-\[
-P(Z)@v.
-\]
-
-If:
-
-\[
-G(z)@v,
-\]
-
-then D1 yields:
-
-\[
-Z(z)@v.
-\]
-
-Thus:
-
-\[
-\forall z\,(G(z)\rightarrow Z(z))@v.
-\]
-
-Since \(v\) was arbitrary:
-
-\[
-\boxed{
-\Box\forall z\,(G(z)\rightarrow Z(z))@w.
-}
-\]
-
-This proves the local sharing lemma.
-
----
-
-## 3. Why this lemma is the 4PEL pressure point
-
-The classical chain just used is:
+The modern machine-checked Scott formalizations reveal a compact local mechanism behind modal collapse. Given a God-like individual `x` and a property `Z` exemplified by `x`, the classical theory derives:
 
 ```text
-Z(x)
-  │
-  │  together with G(x)
-  ▼
-A1 + D1
-  │
-  ▼
+G(x), Z(x)
+    |
+    | A1 + D1 + classical contradiction elimination
+    v
 P(Z)
-  │
-  │  A4
-  ▼
+    |
+    | A4
+    v
 □P(Z)
-  │
-  │  D1 at accessible worlds
-  ▼
+    |
+    | D1 at accessible worlds
+    v
 □∀z (G(z) -> Z(z))
 ```
 
-This is the first place the four-valued project should cut.
-
-Classically, A1 supplies a sharp dichotomy:
+Substituting the constant-in-individuals property
 
 \[
-P(Z)
-\quad\text{or}\quad
-P(\neg Z),
+Z_Q:=\lambda z.\,Q
 \]
 
-and the contradiction between \(Z(x)\) and \(\neg Z(x)\) eliminates the latter.
-
-Under 4PEL, that inference may no longer behave as a single Boolean switch.
-
-In particular:
-
-- \(P(Z)\) may be both supported and opposed;
-- \(P(Z)\) may be neither supported nor opposed;
-- \(P(\neg Z)\) may coexist with \(P(Z)\);
-- the contradiction \(Z(x),\neg Z(x)\) need not trivialize the theory.
-
-Therefore the classical step
+embeds an arbitrary modal proposition `Q` into this mechanism. T3 supplies God-like witnesses across accessible worlds, and the relevant frame conditions complete the derivation of
 
 \[
-G(x),Z(x)\Rightarrow P(Z)
-\]
-
-is a prime candidate for decomposition into distinct bilateral lemmas.
-
----
-
-## 4. From an arbitrary proposition to a property
-
-Now fix an arbitrary modal proposition \(Q\).
-
-Define the constant-in-individuals property:
-
-\[
-Z_Q
-:=
-\lambda z.\,Q.
-\]
-
-At any world:
-
-\[
-Z_Q(x)
-\]
-
-has exactly the same truth condition as \(Q\).
-
-Therefore the local sharing lemma gives:
-
-\[
-G(x)\land Q
-\Rightarrow
-\Box\forall z\,(G(z)\rightarrow Q).
-\]
-
-Since \(Q\) is independent of \(z\), this says:
-
-> If a God-like entity exists at the current world and \(Q\) is currently true, then necessarily every God-like entity is found only at worlds where \(Q\) is true.
-
-Call this:
-
-\[
-\boxed{
-L_Q
-}
-\]
-
-with schematic form:
-
-\[
-\exists x\,G(x)
-\rightarrow
-\Bigl(
-Q\rightarrow
-\Box\forall z\,(G(z)\rightarrow Q)
-\Bigr).
-\]
-
-This is the bridge from a completely arbitrary proposition into the positivity/Godlikeness machinery.
-
----
-
-## 5. T3 supplies God-like witnesses across accessible worlds
-
-Scott's main theorem is:
-
-\[
-T3:
-\qquad
-\Box\exists^E x\,G(x).
-\]
-
-For modal collapse, T3 is not used merely as a theological conclusion. It functions as a **witness distributor**.
-
-At a world \(w\), T3 ensures God-like witnesses at worlds accessible from \(w\).
-
-The frame condition then links those witnesses back to the world from which the arbitrary proposition \(Q\) is being evaluated.
-
-In the compact Isabelle proof of the possibilist Scott variant, symmetry of the accessibility relation is an explicit dependency of the final collapse step.
-
----
-
-## 6. World-by-world reconstruction
-
-Let \(w\) be arbitrary and assume:
-
-\[
-Q@w.
-\]
-
-To prove modal collapse at \(w\), we must show:
-
-\[
-\Box Q@w.
-\]
-
-So choose arbitrary \(v\) with:
-
-\[
-wRv.
-\]
-
-We need to prove:
-
-\[
-Q@v.
-\]
-
-### Step 6.1 — Obtain a God-like witness at `w`
-
-By symmetry:
-
-\[
-wRv
-\quad\Rightarrow\quad
-vRw.
-\]
-
-T3 is globally valid, so at \(v\):
-
-\[
-\Box\exists^E x\,G(x).
-\]
-
-Because \(vRw\):
-
-\[
-\exists^E x\,G(x)@w.
-\]
-
-Thus the antecedent needed for \(L_Q\) is available at \(w\).
-
----
-
-### Step 6.2 — Necessarily, Godlikeness implies `Q`
-
-At \(w\) we have:
-
-\[
-Q@w
-\]
-
-and:
-
-\[
-\exists^E x\,G(x)@w.
-\]
-
-By \(L_Q\):
-
-\[
-\Box\forall z\,(G(z)\rightarrow Q)@w.
-\]
-
-Therefore at the chosen accessible world \(v\):
-
-\[
-\forall z\,(G(z)\rightarrow Q)@v.
-\]
-
----
-
-### Step 6.3 — Obtain a God-like witness at `v`
-
-From T3 at \(w\) and \(wRv\):
-
-\[
-\exists^E z\,G(z)@v.
-\]
-
-Choose such a \(z\). Then:
-
-\[
-G(z)@v.
-\]
-
-Together with Step 6.2:
-
-\[
-Q@v.
-\]
-
-Since \(v\) was arbitrary:
-
-\[
-\Box Q@w.
-\]
-
-Hence:
-
-\[
-Q@w\rightarrow\Box Q@w.
-\]
-
-Since \(w\) and \(Q\) were arbitrary:
-
-\[
-\boxed{
 Q\rightarrow\Box Q.
-}
 \]
 
-That is modal collapse.
+The local mechanism therefore concentrates on A1, A4, and D1, while T3 supplies the global witness structure. A2, A3, D2, D3, and A5 enter indirectly through the proof of T3.
 
 ---
 
-## 7. The proof spine in one diagram
+## 2. The classical reflection step
+
+The first pressure point is
+
+\[
+\boxed{G(x),Z(x)\Rightarrow P(Z).}
+\]
+
+Classically, suppose `¬P(Z)`. A1 gives `P(¬Z)`. Godlikeness then gives `¬Z(x)`, contradicting `Z(x)`. Hence `P(Z)`.
+
+This short reductio hides at least two classical background commitments:
+
+1. the contradiction between `Z(x)` and `¬Z(x)` excludes the assumed branch;
+2. once the non-positive branch is excluded, positivity information is complete enough to leave `P(Z)`.
+
+These commitments become visible under FDE.
+
+---
+
+## 3. Gate-3 signed interface
+
+For the local analysis only, use the support interface
+
+\[
+D1^+:\qquad +G(x)\land+P(\varphi)\Rightarrow+\varphi(x).
+\]
+
+This is not yet the final four-valued definition of Godlikeness.
+
+The natural positive reflection target is
+
+\[
+REF^+:\qquad +G(x)\land+Z(x)\Rightarrow+P(Z).
+\]
+
+Gate 3 establishes that even **strong bilateral A1 + `D1+`** does not force `REF+`.
+
+### Glut obstruction
+
+A local signed counterassignment is:
+
+\[
+v(Z(x))=B,
+\qquad
+v(P(Z))=F,
+\qquad
+v(P(\neg Z))=T.
+\]
+
+Strong A1 is respected. Since `+P(¬Z)`, `D1+` requires `+¬Z(x)`, equivalently `-Z(x)`, which the glut already supplies. But `+P(Z)` still fails.
+
+### Gap obstruction
+
+A second local counterassignment is:
+
+\[
+v(Z(x))=T,
+\qquad
+v(P(Z))=v(P(\neg Z))=N.
+\]
+
+Strong A1 preserves the gap and `D1+` is silent, so `+P(Z)` again fails.
+
+The glut and gap cases therefore obstruct the classical bridge for different reasons.
+
+---
+
+## 4. Correct A1 decomposition
+
+Scott A1 is
+
+\[
+\neg P(\varphi)\leftrightarrow P(\neg\varphi).
+\]
+
+The earlier attempt to use two biconditional channel schemas as independent switches was redundant under involutive property negation. The independent directional clauses are:
+
+\[
+A1_L:\qquad -P(\varphi)\Rightarrow+P(\neg\varphi),
+\]
+
+\[
+A1_R:\qquad +P(\neg\varphi)\Rightarrow-P(\varphi).
+\]
+
+Their conjunction is strong A1 and gives
+
+\[
+v(P(\neg\varphi))=\operatorname{swap}(v(P(\varphi))),
+\]
+
+so `T/F` are exchanged while `B/N` are preserved.
+
+See `docs/POSITIVITY_LIFT.md` for independence witnesses.
+
+---
+
+## 5. Correct A4 rigidity channels
+
+The direct four-valued A4 candidate is
+
+\[
+R^+:\qquad +P(\varphi)\Rightarrow+\Box P(\varphi).
+\]
+
+The previously proposed negative clause
+
+\[
+-P(\varphi)\Rightarrow-\Box P(\varphi)
+\]
+
+is **retired**. Under the fixed bilateral modal semantics,
+
+\[
+w\models^-\Box\psi
+\iff
+\exists v(wRv\land v\models^-\psi),
+\]
+
+so on any reflexive frame the current world itself witnesses this condition. It is therefore not a rigidity principle in S5.
+
+The informative negative-persistence target is instead
+
+\[
+R^-_{\mathrm{nec}}:\qquad
+-P(\varphi)\Rightarrow+\Box\neg P(\varphi),
+\]
+
+or equivalently
+
+\[
+-P(\varphi)\Rightarrow-\Diamond P(\varphi).
+\]
+
+Gate 3 establishes:
+
+\[
+\boxed{A1_L+A1_R+R^+\models R^-_{\mathrm{nec}}.}
+\]
+
+Thus strong A1 couples the rigidity channels.
+
+---
+
+## 6. Correct bilateral modal-collapse targets
+
+The positive component remains
+
+\[
+\boxed{MC^+:\qquad +\chi\Rightarrow+\Box\chi.}
+\]
+
+The earlier candidate
+
+\[
+-\chi\Rightarrow-\Box\chi
+\]
+
+is likewise reflexively trivial and is retired.
+
+The informative negative component is universal persistence of negative support:
+
+\[
+\boxed{MC^-:\qquad -\chi\Rightarrow+\Box\neg\chi.}
+\]
+
+By Gate-2 modal duality:
+
+\[
+MC^-\quad\Longleftrightarrow\quad
+-\chi\Rightarrow-\Diamond\chi.
+\]
+
+This is the correct classical counterpart: applying ordinary modal collapse to `¬χ` gives
+
+\[
+\neg\chi\rightarrow\Box\neg\chi.
+\]
+
+Hence the Gate-4 separation question is genuinely:
+
+\[
+MC^+\stackrel{?}{\Longleftrightarrow}MC^-.
+\]
+
+---
+
+## 7. Recovering the classical local reflection bridge
+
+At the metalanguage level, a sufficient recovery package for `REF+` is:
+
+### A1 direction
+
+\[
+A1_L:\quad -P(Z)\Rightarrow+P(\neg Z).
+\]
+
+### God-like support interface
+
+\[
+D1^+:\quad +G(x)\land+P(\neg Z)\Rightarrow+\neg Z(x).
+\]
+
+### Consistency of the relevant exemplification
+
+\[
++G(x)\land+Z(x)\Rightarrow\neg(-Z(x)),
+\]
+
+where the outer negation is metalanguage denial of negative satisfaction.
+
+### Completeness of positivity information
+
+\[
++P(Z)\ \text{or}\ -P(Z).
+\]
+
+Then assuming `-P(Z)` produces `-Z(x)`, contradicting the consistency condition. Positivity completeness therefore leaves `+P(Z)`.
+
+So the classical bridge factorizes as:
 
 ```text
-                         ┌─────────────┐
-                         │  G(x) @ w   │
-                         └──────┬──────┘
-                                │
-                         ┌──────▼──────┐
-                         │   Z(x) @ w  │
-                         └──────┬──────┘
-                                │
-                   A1 + D1      │
-                                ▼
-                         ┌─────────────┐
-                         │   P(Z) @ w  │
-                         └──────┬──────┘
-                                │ A4
-                                ▼
-                         ┌─────────────┐
-                         │ □P(Z) @ w   │
-                         └──────┬──────┘
-                                │ D1
-                                ▼
-              ┌─────────────────────────────────┐
-              │ □∀z (G(z) -> Z(z)) @ w         │
-              └────────────────┬────────────────┘
-                               │
-                               │ Z := λz.Q
-                               ▼
-              ┌─────────────────────────────────┐
-              │ Q -> □∀z(G(z) -> Q) @ w        │
-              └────────────────┬────────────────┘
-                               │
-                 T3 + frame symmetry
-                               │
-                               ▼
-                         ┌─────────────┐
-                         │   □Q @ w    │
-                         └─────────────┘
+A1-L
++ D1+
++ consistency of relevant exemplification
++ completeness of relevant positivity information
+------------------------------------------------
+REF+ : +G(x), +Z(x) => +P(Z)
 ```
 
-The project should preserve this graph and annotate later which arrows survive under each four-valued lifting.
+This factorization is a central input to Gate 4.
 
 ---
 
-## 8. Direct versus indirect dependencies
+## 8. Revised Gate-4 experiment
 
-The collapse theorem ultimately belongs to the whole Scott theory, but the proof spine separates **direct** and **indirect** dependencies.
+The original 16-case table over
 
-### Direct local dependencies
+```text
+A1+ / A1- / R+ / R-
+```
 
-The local conversion
+is retired.
 
-\[
-G(x),Z(x)\Rightarrow\Box\forall z(G(z)\rightarrow Z(z))
-\]
+It mixed:
 
-uses:
+- two non-independent biconditional A1 schemas;
+- a reflexively trivial negative rigidity clause.
 
-- A1;
-- A4;
-- D1.
+Gate 4 instead begins from the informative dimensions:
 
-These are the most important axioms for the first 4PEL experiment.
+```text
+A1-L
+A1-R
+R+
+```
 
-### Global witness dependency
+and adds explicit structural variables only where the proof spine requires them, especially:
 
-The final arbitrary-proposition collapse additionally uses:
+```text
+positivity completeness
+God-like exemplification consistency
+```
 
-- T3;
-- a suitable frame condition, with symmetry explicit in the machine-checked proof used as our structural guide.
+The outputs are:
 
-### Indirect dependencies through T3
+```text
+MC+ : +χ => +□χ
+MC- : -χ => +□¬χ
+```
 
-T3 itself is downstream of the rest of the Scott theory, including the machinery involving:
-
-- A2;
-- A3;
-- D2;
-- D3;
-- A5;
-- prior existence and essence results.
-
-Therefore it would be misleading to claim:
-
-\[
-A1+A4+D1\vdash MC.
-\]
-
-The scientifically useful claim is narrower:
-
-> **Given the necessary-existence theorem T3, the local mechanism converting arbitrary truth into necessity is concentrated in A1, A4, D1, and the modal frame conditions.**
-
-This distinction must be kept explicit throughout the 4PEL analysis.
+The first task is not to enumerate every Boolean combination blindly, but to derive the **minimal assumption lattice** around the reflection and rigidity bridges and then produce proofs or smallest countermodels for each non-implication.
 
 ---
 
-## 9. First bilateral decomposition targets
+## 9. Research questions after Gate 3
 
-The classical spine suggests at least four independent switches.
-
-### A1 decomposition
-
-Candidate clauses:
-
-\[
-A1^+:
-\quad
-+P(\neg\varphi)
-\iff
--P(\varphi),
-\]
-
-\[
-A1^-:
-\quad
--P(\neg\varphi)
-\iff
-+P(\varphi).
-\]
-
-These are provisional names only. Alternative directional or weaker liftings must also be considered.
-
-### A4 decomposition
-
-\[
-R^+:
-\quad
-+P(\varphi)
-\Rightarrow
-+\Box P(\varphi),
-\]
-
-\[
-R^-:
-\quad
--P(\varphi)
-\Rightarrow
--\Box P(\varphi).
-\]
-
-### Collapse decomposition
-
-\[
-MC^+:
-\quad
-+\chi
-\Rightarrow
-+\Box\chi,
-\]
-
-\[
-MC^-:
-\quad
--\chi
-\Rightarrow
--\Box\chi.
-\]
-
-The first factorial experiment is therefore:
-
-\[
-(A1^+,A1^-,R^+,R^-)
-\longmapsto
-(MC^+,MC^-).
-\]
-
-With four binary switches there are:
-
-\[
-2^4=16
-\]
-
-basic configurations before additional choices about conditional, quantification, or modal semantics are varied.
+1. Which of `A1-L` and `A1-R` are needed for the positive collapse channel?
+2. Does strong A1 necessarily couple corrected `MC+` and `MC-`, as it already couples positive and negative positivity rigidity?
+3. Can `REF+` be recovered under weaker conditions than full positivity completeness plus exemplification consistency?
+4. Do glut and gap failures remain distinct after A2, A3, and the final D1 are introduced?
+5. Which assumptions are genuinely Gödelian and which are merely classical-background assumptions exposed by four-valued semantics?
 
 ---
 
-## 10. Research questions generated by the spine
+## 10. Modal-frame control
 
-### Q1 — Does `G + Z` still force positive support for `P(Z)`?
+Gate 4 keeps the Scott S5 relational control semantics fixed. Only after the positivity/collapse dependency lattice is understood will the experiment be repeated over weaker relational frames and non-principal paired-neighborhood models.
 
-Classically:
-
-\[
-G(x),Z(x)\Rightarrow P(Z).
-\]
-
-Four-valuedly we may instead obtain only:
-
-\[
-G^+(x),Z^+(x)\Rightarrow +P(Z),
-\]
-
-or the implication may fail when \(P(Z)\) is glutty or gappy.
-
-This should be tested before any full reconstruction of T3.
-
-### Q2 — Can positive rigidity alone generate `MC+`?
-
-Test:
-
-\[
-R^+
-\stackrel{?}{\Longrightarrow}
-MC^+
-\]
-
-under fixed remaining assumptions.
-
-### Q3 — Is negative rigidity relevant to positive collapse?
-
-Test cross-channel implications:
-
-\[
-R^-
-\stackrel{?}{\Longrightarrow}
-MC^+,
-\]
-
-and:
-
-\[
-R^+
-\stackrel{?}{\Longrightarrow}
-MC^-.
-\]
-
-### Q4 — Does A1 couple the channels so strongly that separation disappears?
-
-A strong bilateral A1 may reconstruct enough classical complementarity to force:
-
-\[
-MC^+\iff MC^-.
-\]
-
-A weaker A1 may permit their separation.
-
-This is a central hypothesis to test.
-
-### Q5 — What happens when `P(Z)=B`?
-
-If:
-
-\[
-P(Z)=B,
-\]
-
-then both \(Z\) and its complement may interact with Godlikeness.
-
-Because the background logic is paraconsistent, this need not trivialize the system.
-
-The precise survival or failure of \(L_{\mathrm{share}}\) is therefore a high-value countermodel target.
-
-### Q6 — What happens when `P(Z)=N`?
-
-A gap may block the classical A1 step entirely.
-
-This could produce a different failure mode from inconsistency, supporting the project's gap/glut asymmetry hypothesis.
+This prevents frame effects from being confused with four-valued positivity effects.
 
 ---
 
-## 11. Experimental table to build next
-
-The first table should keep T3 fixed as a control theorem and vary only the local collapse mechanism.
-
-| A1+ | A1- | R+ | R- | MC+ | MC- | Smallest countermodel / proof |
-|---:|---:|---:|---:|---:|---:|---|
-| 0 | 0 | 0 | 0 | ? | ? | |
-| 0 | 0 | 0 | 1 | ? | ? | |
-| 0 | 0 | 1 | 0 | ? | ? | |
-| 0 | 0 | 1 | 1 | ? | ? | |
-| 0 | 1 | 0 | 0 | ? | ? | |
-| 0 | 1 | 0 | 1 | ? | ? | |
-| 0 | 1 | 1 | 0 | ? | ? | |
-| 0 | 1 | 1 | 1 | ? | ? | |
-| 1 | 0 | 0 | 0 | ? | ? | |
-| 1 | 0 | 0 | 1 | ? | ? | |
-| 1 | 0 | 1 | 0 | ? | ? | |
-| 1 | 0 | 1 | 1 | ? | ? | |
-| 1 | 1 | 0 | 0 | ? | ? | |
-| 1 | 1 | 0 | 1 | ? | ? | |
-| 1 | 1 | 1 | 0 | ? | ? | |
-| 1 | 1 | 1 | 1 | ? | ? | |
-
-This table is **not yet meaningful** until Gate 1 fixes the bilateral semantics and Gate 2 fixes the modal lift. It is included now to define the experimental target.
-
----
-
-## 12. Modal-frame control
-
-The 2025 Scott analysis reports:
-
-- modal collapse in the standard Scott setting;
-- countermodels to T3 and MC in base logic K;
-- the standard embedding uses S5 as the reference environment;
-- individual steps often require less than full S5.
-
-The 4PEL experiment should therefore avoid varying everything at once.
-
-Recommended order:
-
-1. hold the S5 reference frame fixed;
-2. study bilateral A1/A4 effects;
-3. once the four-valued mechanism is understood, repeat the experiment over K / KB / S4 / S5.
-
-This separates:
-
-\[
-\text{truth-value effects}
-\]
-
-from:
-
-\[
-\text{frame-condition effects}.
-\]
-
----
-
-## 13. Relation to the 2026 rigidity result
-
-Recent machine-checked work argues that the ultrafilter structure of positive properties does not by itself force modal collapse. Collapse-free models can retain relevant filter/ultrafilter structure, while the rigidity of positivity is identified as a primary driver of the collapse phenomenon.
-
-That makes the present decomposition especially well motivated.
-
-The 4PEL question is more fine-grained:
-
-> If classical positivity rigidity is itself decomposed into positive and negative information persistence, which component is responsible for which component of modal collapse?
-
-This is the central structural question of the repository.
-
----
-
-## 14. Gate 0B exit criteria
-
-This proof-spine document is considered complete when:
-
-- [x] the local `G + Z -> P(Z)` mechanism is explicit;
-- [x] A1's role is isolated;
-- [x] A4's rigidity role is isolated;
-- [x] D1's role is isolated;
-- [x] T3 is separated as a global witness theorem;
-- [x] frame symmetry is recorded as an explicit dependency of the machine-checked guide proof;
-- [x] arbitrary propositions are connected via the constant property `λz.Q`;
-- [x] the first bilateral experiment is stated;
-- [ ] the exact actualist Scott proof is independently re-mechanized in this repository;
-- [ ] each dependency is machine-minimized in the project's own formalization.
-
----
-
-## 15. Sources and provenance
+## 11. Sources and provenance
 
 Primary Scott baseline:
 
@@ -817,4 +360,4 @@ Current rigidity context:
 
 ### Caution
 
-The AFP proof quoted conceptually above is used as a **structural dependency guide**. The repository's frozen baseline uses actualist individual quantification. Before publication, the exact actualist version of every dependency claim must be independently mechanized and minimized inside `goedel-4pel`.
+The classical proof spine is used as a structural dependency guide. The local signed counterassignments are not yet full higher-order Gödel–Scott models. Before publication, all promoted dependency claims must be independently mechanized and the final actualist higher-order theory must be checked inside `goedel-4pel`.
