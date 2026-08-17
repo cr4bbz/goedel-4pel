@@ -2,9 +2,9 @@
 
 ## 1. Main question
 
-The project studies whether the inferential architecture of the Gödel–Scott ontological argument changes in a principled and informative way under a four-valued bilateral modal semantics.
+The project studies how the inferential architecture of the Gödel–Scott ontological argument changes under a four-valued bilateral modal semantics.
 
-The intended values are represented informationally:
+The informational values are:
 
 ```text
 T = (1,0)   positive support only
@@ -13,156 +13,240 @@ B = (1,1)   both positive and negative support
 N = (0,0)   neither positive nor negative support
 ```
 
-The central methodological idea is to avoid treating `B` and `N` as two varieties of ordinary falsity. They encode different structural failures: inconsistency and incompleteness.
+The methodological core is to keep `B` and `N` distinct. They represent different structural failures: inconsistency and incompleteness.
 
 ## 2. Why Gödel–Scott is a useful test theory
 
 Gödel–Scott is unusually suitable because:
 
-1. it has a compact axiom set;
-2. its theorem chain is well studied;
-3. modal collapse is a known structural phenomenon;
-4. the primitive positivity predicate is philosophically and formally sensitive;
-5. essence and necessary existence introduce higher-order modal structure;
-6. existing mechanizations provide a classical comparison target.
+1. it has a compact and well-studied axiom/theorem chain;
+2. modal collapse is a known structural phenomenon;
+3. positivity is a sensitive higher-order primitive;
+4. essence and necessary existence expose modal dependency structure;
+5. existing mechanizations provide a classical comparison target;
+6. the theory contains several proof steps where classical bivalence may be doing hidden work.
 
-## 3. Strongest candidate contribution
+## 3. How the research target changed
 
-The first paper-worthy target is not the final existence theorem. It is the relationship among:
+The project originally asked whether modal collapse itself decomposes into independent positive and negative persistence principles.
 
-- the two directional information flows hidden in Scott's A1;
-- positive rigidity from A4;
-- derived negative rigidity;
-- the positive and negative persistence components of modal collapse.
-
-Let `+φ` mean that `φ` has positive support and `-φ` that it has negative support.
-
-After Gate 3, the informative collapse pair is:
+The informative pair is:
 
 ```text
 MC+ : +φ => +□φ
 MC- : -φ => +□¬φ
 ```
 
-Using modal duality, the negative clause is equivalently:
+Gate 4 proves:
 
 ```text
-MC- : -φ => -◇φ
+MC+ <-> MC-
 ```
 
-The earlier candidate `-φ => -□φ` is retired because it follows automatically on reflexive frames and therefore cannot diagnose Gödelian modal collapse in the fixed S5 control setting.
+under involutive FDE negation, because `-φ` is equivalent to `+¬φ` and the schemata range over all formulas.
 
-Scott A1 is decomposed directionally:
+The original separation conjecture is therefore falsified for the current semantics and is not rescued by changing the semantics ad hoc.
+
+The research target has moved **upstream**.
+
+## 4. Current strongest structural picture
+
+The reconstructed positive Scott-control branch is now:
 
 ```text
-A1-L : -P(φ)  => +P(¬φ)
-A1-R : +P(¬φ) => -P(φ)
+A1-R + A2+ + A3-T
+          |
+          v
+      +◇∃ᴱx G(x)
+
+A1-L + R+ + REG_G + G-sup
+          |
+          v
+          T2+
+
+A5+ + T2+ + NE-sup + S5
+          |
+          v
+          T3+
+          |
+          v
+          GW
+
+T2+ + T3+ + CONST
+          |
+          v
+          MC+
+          |
+      FDE negation
+          v
+          MC-
 ```
 
-Strong A1 is the conjunction of these directions. It swaps `T/F` and preserves `B/N` under property negation.
-
-The direct A4 lifting is:
+The two directions of Scott A1 have different proof-theoretic jobs:
 
 ```text
-R+ : +P(φ) => +□P(φ)
+A1-R -> truth-only positive-property exemplification / T1
+A1-L -> sufficient recovery route for Godlikeness-as-essence / T2
 ```
 
-Informative negative persistence is:
+A5 behaves differently again: only positive support for `P(NE)` is needed once a positive God-like witness already exists.
+
+## 5. The decisive T2 obstruction
+
+The principal target is now:
 
 ```text
-R-nec- : -P(φ) => +□¬P(φ)
+T2+ : +G(x) => +Ess(G,x)
 ```
 
-and Gate 3 establishes semantically:
+A natural bilateral essence semantics does not make T2 automatic.
+
+Gate 6 supplies two explicit two-world S5 countermodels satisfying the Gate-5 control stack plus strong A1 and positive rigidity:
+
+- **glut countermodel:** a property is positively and negatively exemplified by one positive God-like witness but is not positively shared by another accessible positive God-like witness;
+- **gap countermodel:** a locally positively exemplified property has `P(Z)=P(¬Z)=N` and is not necessarily shared.
+
+Thus the classical proof of T2 contains informational regularity that is not supplied automatically by the four-valued background logic.
+
+A sufficient recovery package is:
 
 ```text
-A1-L + A1-R + R+ => R-nec-
+COMP_P^G : relevant positivity completeness
+CONS_G^G : relevant exemplification consistency
+REG_G    : COMP_P^G + CONS_G^G
+
+A1-L + R+ + G-sup-v0.1 + REG_G => T2+
 ```
 
-Thus strong A1 is already a channel-coupling principle.
+The current package is not claimed globally minimal. The main semantic-minimality problem is to replace it with the weakest principled conditions possible.
 
-## 4. The local reflection obstruction
+## 6. Necessary existence is comparatively robust
 
-The classical modal-collapse spine uses a local move of the form:
+Gate 6 defines bilateral necessary existence and distinguishes:
 
 ```text
-G(x), Z(x) => P(Z)
+A5+ : +P(NE)
+A5-T : Pos_T(NE)
 ```
 
-At the minimal bilateral interface, even strong A1 together with
+Only `A5+` is required for the positive T3 branch once a God-like witness exists.
+
+Hence a glut
 
 ```text
-D1+ : +G(x) and +P(φ) => +φ(x)
+P(NE)=B
 ```
 
-does not force
+can coexist with the positive theorem chain. A positive God-like witness may then satisfy both `+NE` and `-NE`, while the positive component still supports the T3 derivation.
+
+This is a concrete inconsistency-tolerance result.
+
+## 7. Essence compresses the collapse proof
+
+Once positive T2 and positive T3 are available:
 
 ```text
-REF+ : +G(x) and +Z(x) => +P(Z)
+T2+ + T3+ + CONST => MC+
 ```
 
-Two distinct obstruction patterns already exist:
+and Gate 4 gives `MC-` automatically.
 
-- **glut obstruction:** the complement forced by A1 can coexist with `Z(x)` without explosion;
-- **gap obstruction:** `P(Z)` and `P(¬Z)` may both lack positive support, so the classical positivity dichotomy is unavailable.
+This means the earlier Gate-4 reflection package is not a set of globally necessary premises for collapse. It is one lower-level route for deriving the necessary-sharing behavior that T2 packages directly.
 
-A meta-level recovery of `REF+` requires additional structure, including consistency of the relevant God-like exemplification and completeness of the relevant positivity information.
+The dependency analysis should therefore distinguish:
 
-This means Gate 4 must track consistency/completeness explicitly rather than treating the classical reductio as semantically free.
+```text
+route-specific sufficient conditions
+```
 
-## 5. Required results before any novelty claim
+from
 
-A strong result should include at least:
+```text
+globally necessary conditions for theorem validity
+```
 
-- a precise semantics;
-- a sound proof system or a carefully delimited semantic study;
-- classical recovery under suitable restrictions;
-- theorem proofs for positive claims;
-- explicit countermodels for non-implications;
-- an axiom-minimality or dependency analysis;
-- comparison with the standard Scott theory;
-- a dedicated prior-art search focused on four-valued/paraconsistent ontological arguments and non-classical positivity predicates.
+throughout the rest of the project.
 
-## 6. Possible result shapes
+## 8. Strongest candidate contribution
 
-### Result type A — Decomposition theorem
-Classical modal collapse decomposes into distinct universal positive and universal negative persistence conditions under the chosen bilateral semantics.
+The strongest current paper target is no longer a bilateral separation theorem for modal collapse.
 
-### Result type B — Separation theorem
-There are models satisfying a natural four-valued Gödel–Scott lift in which corrected `MC+` holds but corrected `MC-` fails, or conversely.
+It is a **T2 obstruction/minimality result** of the following form:
 
-### Result type C — Channel-coupling theorem
-A natural combination of A1 and A4 forces one persistence channel from the other. Gate 3 already provides a first instance at the level of positivity rigidity.
+1. define a natural four-valued Scott control semantics with classical recovery;
+2. prove that natural support-based essence does not yield T2 automatically;
+3. provide separate finite glut and gap countermodels;
+4. identify a principled sufficient package for recovering T2;
+5. prove that conditional T2 reconstructs T3 and modal collapse;
+6. mechanize the dependency chain and minimize the sufficient package.
 
-### Result type D — Reflection-obstruction theorem
-The classical `G + Z -> P(Z)` step fails under the minimal paraconsistent/paracomplete lift, with distinct glut and gap countermodels.
+A successful result would explain exactly which information-theoretic content classical bivalence contributes to Scott's proof that Godlikeness is an essence.
 
-### Result type E — Robustness theorem
-The existence chain survives specific gluts or gaps in positivity assignments without explosion or triviality.
+## 9. Required results before any novelty claim
 
-### Result type F — Failure theorem
-A natural-looking four-valued lifting is too strong and recreates classical collapse or otherwise destroys the intended separation. Such a result remains valuable because it identifies the wrong lifting principle.
+A publication-strength result should include:
 
-## 7. Design discipline
+- precise four-valued semantics;
+- classical recovery end-to-end;
+- explicit finite countermodels to failed implications;
+- machine-checked positive dependency results;
+- minimization of the T2 recovery assumptions;
+- separation of semantic definitions from additional regularity assumptions;
+- comparison with the frozen Scott theory;
+- dedicated prior-art search focused on four-valued/paraconsistent ontological arguments, non-classical positivity, and non-classical essence/necessary-existence semantics.
 
-Every non-classical axiom must be given an explicit name and version. Do not write "the four-valued version of A4" until the translation has been fixed.
+## 10. Current result shapes
 
-Do not use `-□φ` as a synonym for "φ is necessarily negatively supported". Under the fixed bilateral modal semantics:
+### Result A — T2 obstruction theorem
+Natural support-based four-valued essence does not make positive Godlikeness an essence under the primitive Scott-control assumptions.
+
+### Result B — Glut/gap separation at T2
+There are distinct finite countermodels showing inconsistency and incompleteness obstruct T2 by different mechanisms.
+
+### Result C — Conditional T2 recovery theorem
+A targeted consistency/completeness package recovers T2 from `A1-L + R+ + G-sup`.
+
+### Result D — Conditional T3 reconstruction
+Possible positive Godlikeness plus positive T2 and `A5+` yields positive necessary God-like existence in S5.
+
+### Result E — Essence-compressed collapse theorem
+`T2+ + T3+ + CONST` yields modal collapse.
+
+### Result F — Inconsistency-tolerance theorem
+A glutty positivity status for necessary existence can coexist with the positive T3 branch.
+
+### Result G — Minimality refinement
+A weaker principled substitute for `REG_G` suffices for T2, or finite search proves that two independent informational controls remain necessary in a precisely stated fragment.
+
+## 11. Design discipline
+
+Every non-classical axiom or semantic definition receives an explicit name/version. Do not write "the four-valued version" when multiple inequivalent liftings exist.
+
+Do not conflate:
 
 ```text
 -□φ
 ```
 
-means only that **some** accessible world negatively supports `φ`, whereas universal negative persistence is represented by:
+with universal negative persistence. Under the fixed modal semantics `-□φ` means that some accessible world negatively supports `φ`; universal negative persistence is represented by `+□¬φ` or `-◇φ`.
+
+Do not promote route-specific regularity assumptions such as `REG_G` to global metaphysical axioms merely because they recover a classical proof step.
+
+Countermodels are first-class research objects. A failed theorem with a small explanatory countermodel is a positive result.
+
+## 12. Immediate next phase
+
+Gate 7 should mechanize and minimize rather than introduce more semantic machinery.
+
+Priority order:
 
 ```text
-+□¬φ
+1. executable finite model checker for current semantics
+2. reproduce T1 and T2 countermodels
+3. Lean encoding of settled semantic clauses
+4. machine-check conditional T2/T3/MC theorems
+5. search assumption lattice below REG_G
+6. verify end-to-end classical recovery
 ```
 
-or equivalently:
-
-```text
--◇φ
-```
-
-Countermodels are first-class research objects. A failed theorem with a minimal explanatory countermodel is a positive result.
+Only after that should the project vary Godlikeness definitions, modal logics, or neighborhood semantics.
