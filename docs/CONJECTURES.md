@@ -2,42 +2,51 @@
 
 Every conjecture in this repository should have a corresponding falsification strategy.
 
-## Established Gate-3 facts
+## Established Gate-3/4 facts
 
 The following are no longer conjectures:
 
 1. The two **directional** A1 clauses `A1-L` and `A1-R` are independent at the four-valued level.
 2. The earlier biconditional `A1+` / `A1-` split is redundant as a schema under involutive property negation.
 3. On reflexive frames, `-φ => -□φ` is automatic and therefore is not an informative negative modal-collapse condition.
-4. Strong A1 plus `R+` entails informative negative positivity rigidity `R-nec-`.
-5. Minimal strong A1 plus the local support interface `D1+` does not force the classical reflection step `REF+ : +G,+Z => +P(Z)`.
+4. The corrected collapse schemata
+   ```text
+   MC+ : +φ => +□φ
+   MC- : -φ => +□¬φ
+   ```
+   are equivalent under the current FDE negation.
+5. `R+` and informative negative rigidity `R-nec-` are independent without A1.
+6. Strong A1 makes `R+` and `R-nec-` interderivable.
+7. Strong A1 plus the local support interface `D1+` does not force the classical reflection step `REF+ : +G,+Z => +P(Z)`.
+8. At the local abstract interface, `A1-L + D1+ + CONS_G + COMP_P` is sufficient for `REF+`, and each component is individually indispensable relative to the other three.
 
-See `docs/POSITIVITY_LIFT.md`.
+See `docs/POSITIVITY_LIFT.md` and `docs/COLLAPSE_EXPERIMENT.md`.
 
-## C1 — Bilateral collapse separation
+## C1 — Bilateral collapse separation — **falsified for the current semantics**
 
-**Conjecture.** There is a natural four-valued lift of the Scott system in which the corrected persistence principles
+**Original conjecture.** There is a natural four-valued lift of the Scott system in which the corrected persistence principles `MC+` and `MC-` are independent.
 
-```text
-MC+ : +φ => +□φ
-MC- : -φ => +□¬φ
-```
+**Gate-4 result.** This cannot occur while:
 
-are independent.
+- FDE negation is involutive;
+- the schemata range over all formulas;
+- `MC-` is the informative universal negative-persistence clause.
 
-**Falsification target.** Show that the accepted Gödel–Scott lift forces `MC+ ↔ MC-`, or that every natural lifting strong enough to recover Scott also couples the channels.
+Because `-φ` is equivalent to `+¬φ`, `MC-` is just `MC+` instantiated at `¬φ`, and conversely.
 
-## C2 — A1-driven collapse coupling
+The conjecture is therefore retired rather than rescued by changing the semantics ad hoc.
 
-**Conjecture.** The two directions of A1 play asymmetric roles in any derivation coupling `MC+` and `MC-`, analogous to the Gate-3 derivation of `R-nec-` from `A1-L + A1-R + R+`.
+## C2 — A1-driven rigidity coupling — **resolved conditionally**
 
-**Falsification target.** Show that the collapse channels remain coupled or separated independently of which A1 direction is present.
+**Result.** Without A1, `R+` and `R-nec-` are independent. Under strong A1 (`A1-L + A1-R`) they are interderivable.
+
+This identifies A1, not modal collapse itself, as a genuine channel-coupling point.
 
 ## C3 — Glut/gap asymmetry for positivity
 
-**Conjecture.** `P(φ)=B` and `P(φ)=N` propagate differently through Godlikeness, possible exemplification, and the collapse spine.
+**Conjecture.** `P(φ)=B` and `P(φ)=N` propagate differently through Godlikeness, possible exemplification, and the reconstructed theorem chain.
 
-**Current evidence.** Gate 3 already identifies distinct local failure modes for `REF+`: gluts tolerate the complement required by A1, while gaps block the positivity dichotomy itself.
+**Current evidence.** Gate 3/4 identifies distinct local failure modes for `REF+`: gluts tolerate the complement required by A1, while gaps block the positivity dichotomy itself.
 
 **Falsification target.** Show that the final higher-order semantics makes the two statuses Gödel-equivalent for every relevant theorem.
 
@@ -49,12 +58,29 @@ are independent.
 
 ## C5 — Classical recovery
 
-**Conjecture.** Restricting all relevant formulas to classical values, imposing positivity completeness/consistency, and retaining the appropriate modal constraints recovers the selected Scott baseline.
+**Conjecture.** Restricting all relevant formulas to classical values, imposing the required positivity/exemplification regularity, and retaining the appropriate modal constraints recovers the selected Scott baseline.
 
 **Falsification target.** Exhibit a classical-valued model satisfying the intended lifted assumptions in which the theorem chain diverges from the frozen Scott baseline.
 
-## C6 — Reflection assumptions are structurally minimal
+## C6 — Reflection assumptions are structurally minimal — **established at the local interface**
 
-**Conjecture.** Some form of both (i) consistency of God-like exemplification and (ii) completeness of positivity information is required to recover the classical local reflection step from the minimal A1/D1 support interface.
+At the abstract Gate-4 interface,
 
-**Falsification target.** Derive `REF+` in the intended semantics while dropping one of these dimensions, or find a more principled weaker condition that suffices.
+```text
+A1-L + D1+ + CONS_G + COMP_P => REF+
+```
+
+and each assumption has a counterassignment when removed while the other three remain.
+
+**Remaining open refinement.** The full higher-order reconstruction may replace `CONS_G` or `COMP_P` by weaker, more principled conditions. Such a replacement would refine rather than contradict the local minimality result because the result is explicitly relative to the current interface vocabulary.
+
+## C7 — Upstream decomposition thesis
+
+**Conjecture.** In the completed four-valued Scott reconstruction, the most informative non-classical decomposition occurs upstream of modal collapse itself, principally in:
+
+1. positivity-negation transfer;
+2. positivity rigidity;
+3. consistency/completeness conditions needed for the `G+Z -> P(Z)` reflection bridge;
+4. the higher-order witness/property interfaces that connect local reflection to arbitrary modal propositions.
+
+**Falsification target.** Show that after A2, A3, and the final D1 are fixed, these distinctions become semantically redundant or are forced by a substantially smaller common principle.
