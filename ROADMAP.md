@@ -65,30 +65,51 @@ Gate 3 establishes semantically:
 - the direct A4 lifting is `R+ : +P(φ) => +□P(φ)`;
 - the old `-P => -□P` candidate is reflexively trivial on S5 and is retired;
 - informative negative rigidity is `R-nec- : -P(φ) => +□¬P(φ)`;
-- strong A1 + `R+` entails `R-nec-`, so A1 couples the rigidity channels;
 - the old `MC- : -χ => -□χ` candidate is likewise reflexively trivial and is retired;
 - the corrected negative collapse target is `MC- : -χ => +□¬χ`, equivalently `-χ => -◇χ`;
 - even strong A1 plus the minimal `D1+` support interface does not recover the classical local reflection step `+G,+Z => +P(Z)`;
-- glut and gap counterassignments fail that reflection step for different reasons;
-- consistency of God-like exemplification plus completeness of positivity information are sufficient meta-level ingredients to recover the local classical reflection move.
+- glut and gap counterassignments fail that reflection step for different reasons.
 
-Remaining checks are deferred to mechanization:
+### Gate 4 status
 
-- [ ] machine-check A1 directional independence;
-- [ ] machine-check the A1/R+ channel-coupling theorem;
-- [ ] turn the local signed reflection counterassignments into explicit finite higher-order models once D1 is frozen.
+The collapse dependency analysis is frozen as `collapse-v0.1` in `docs/COLLAPSE_EXPERIMENT.md`.
 
-These checks do not block Gate 4.
+Gate 4 establishes semantically:
+
+- the informative collapse schemata are not independent under the fixed FDE negation:
+  - `MC+ : +χ => +□χ`
+  - `MC- : -χ => +□¬χ`
+  - and `MC+ <-> MC-` follows by substitution with `¬χ` and involutive negation;
+- the original bilateral-collapse separation conjecture is therefore falsified for the current semantics;
+- `R+` and `R-nec-` are independent without A1, witnessed by two-world S5 countermodels;
+- strong A1 makes `R+` and `R-nec-` interderivable, so the genuine rigidity decomposition is upstream and A1-dependent;
+- the local reflection step
+  - `REF+ : +G(x), +Z(x) => +P(Z)`
+  is recovered from the four-part package
+  - `A1-L + D1+ + CONS_G + COMP_P`;
+- each member of that four-part local package is individually indispensable relative to the other three by explicit counterassignments;
+- adding `R+`, global God-like witness supply `GW`, and constant-property embedding `CONST` yields a conditional interface-level derivation of `MC+`, and hence also `MC-`;
+- this is not yet a theorem of the full four-valued Gödel–Scott theory because `D1+`, `GW`, and `CONST` remain interfaces to be justified by the reconstruction gates.
+
+Remaining checks are deferred to later gates:
+
+- [ ] machine-check the two-world rigidity countermodels;
+- [ ] machine-check `MC+ <-> MC-` and the A1 rigidity-coupling theorem;
+- [ ] replace `D1+`, `GW`, and `CONST` by justified components of the full higher-order semantics;
+- [ ] test whether weaker principled substitutes for `CONS_G` or `COMP_P` suffice in the reconstructed theory.
+
+These checks do not block Gate 5.
 
 ## Phase B — The key experiment
 
 - [x] split A1 into independent directional components;
-- [x] isolate direct and derived positivity-rigidity channels;
+- [x] isolate direct and informative negative positivity-rigidity channels;
 - [x] correct the bilateral `MC+` / `MC-` targets;
-- [ ] define the minimal Gate-4 assumption lattice, including consistency/completeness dimensions exposed by `REF+`;
-- [ ] determine which assumption sets force `MC+`, corrected `MC-`, both, or neither;
-- [ ] find finite countermodels for every non-implication;
-- [ ] identify minimal axiom sets forcing each collapse component.
+- [x] prove the corrected collapse schemata equivalent under FDE negation;
+- [x] separate the rigidity channels without A1 by finite S5 countermodels;
+- [x] prove strong A1 recouples the rigidity channels;
+- [x] identify and locally minimize the `REF+` assumption package;
+- [x] state the conditional interface-level collapse theorem;
 
 ## Phase C — Reconstruct Gödel–Scott
 
@@ -96,6 +117,7 @@ These checks do not block Gate 4.
 - [ ] lift A2 and A3;
 - [ ] freeze the final four-valued definition of `G`;
 - [ ] prove/refute possible exemplification;
+- [ ] justify or replace `GW` and `CONST` inside the higher-order semantics;
 - [ ] lift `Ess`;
 - [ ] lift `NE`;
 - [ ] classify the status of `□∃x G(x)`.
@@ -106,5 +128,5 @@ These checks do not block Gate 4.
 - [ ] Add model/countermodel tests.
 - [ ] Verify classical recovery.
 - [ ] Compare at least one non-Scott variant.
-- [ ] Re-run the collapse experiment over broader relational and paired-neighborhood frame classes.
+- [ ] Re-run the rigidity/collapse analysis over broader relational and paired-neighborhood frame classes.
 - [ ] Write paper around the strongest structural theorem.
