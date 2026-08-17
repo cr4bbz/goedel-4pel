@@ -4,9 +4,9 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.4`  
-**Research gates represented:** Gate 0 through Gate 4  
-**Next manuscript dependency:** Gate 5 Godlikeness, A2/A3, and possible exemplification
+**Version:** `paper-v0.5`  
+**Research gates represented:** Gate 0 through Gate 5  
+**Next manuscript dependency:** Gate 6 essence, necessary existence, A5, and the T3/GW branch
 
 The manuscript is deliberately separated from `docs/`:
 
@@ -19,7 +19,15 @@ Gate 3 adds the directional decomposition of A1, isolates the direct positive-su
 
 Gate 4 adds the collapse-channel equivalence theorem, two-world S5 countermodels separating the rigidity channels without A1, the strong-A1 rigidity-coupling theorem, the locally minimal `REF+` recovery package, and the conditional interface-level collapse theorem.
 
-The central manuscript thesis has consequently shifted: under symmetric FDE negation, informative positive and negative modal collapse do not separate. The non-classical decomposition occurs upstream in positivity rigidity, reflection, and the higher-order interfaces that feed arbitrary propositions into the Gödel–Scott machinery.
+Gate 5 adds bilateral actualist quantifier clauses, semantic necessary positive entailment `NEnt+_E`, the truth-only possible-exemplification theorem `T1-T`, a glut countermodel to unrestricted `+P -> +◇∃E`, the weak/control split `A3+` versus `A3-T`, possible positive God-like existence, and the support-based bilateral Godlikeness definition `G-sup-v0.1`.
+
+Gate 5 also audits the Gate-4 higher-order interfaces:
+
+- `D1+` is discharged by `G-sup-v0.1`;
+- `CONST` is discharged by full intensional property comprehension / lambda abstraction;
+- `GW`, `COMP_P`, and `CONS_G` remain unforced.
+
+The central manuscript thesis remains: under symmetric FDE negation, informative positive and negative modal collapse do not separate. The non-classical structure occurs upstream in A1 directionality, positivity rigidity, truth-only versus glutty positivity, reflection, and higher-order witness supply.
 
 ## Build
 
