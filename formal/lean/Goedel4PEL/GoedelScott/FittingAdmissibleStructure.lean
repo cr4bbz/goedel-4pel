@@ -16,20 +16,20 @@ def PositiveProfileEqAdm
   ∀ X : Extension Entity,
     M.admissible X → M.base.pPos w X → (X.pos x ↔ X.pos y)
 
- theorem positiveProfileEqAdm_refl
+theorem positiveProfileEqAdm_refl
     (M : AdmissibleSemantics World Entity) (w : World) (x : Entity) :
     PositiveProfileEqAdm M w x x := by
   intro X hAdm hPos
   exact Iff.rfl
 
- theorem positiveProfileEqAdm_symm
+theorem positiveProfileEqAdm_symm
     (M : AdmissibleSemantics World Entity) (w : World) (x y : Entity)
     (h : PositiveProfileEqAdm M w x y) :
     PositiveProfileEqAdm M w y x := by
   intro X hAdm hPos
   exact (h X hAdm hPos).symm
 
- theorem positiveProfileEqAdm_trans
+theorem positiveProfileEqAdm_trans
     (M : AdmissibleSemantics World Entity) (w : World) (x y z : Entity)
     (hxy : PositiveProfileEqAdm M w x y)
     (hyz : PositiveProfileEqAdm M w y z) :
@@ -40,9 +40,8 @@ def PositiveProfileEqAdm
 /--
 Quotient-style saturation of the admissible extension domain.
 
-Every admissible rigid extension must respect positive-profile equivalence.
-Equivalently, each admissible extension is a union of equivalence classes of
-`PositiveProfileEqAdm` at every evaluation world.
+Every admissible rigid extension must respect positive-profile equivalence in
+its positive membership channel.
 -/
 def PositiveProfileSaturatedAdm
     (M : AdmissibleSemantics World Entity) : Prop :=
@@ -50,6 +49,47 @@ def PositiveProfileSaturatedAdm
     M.admissible Y →
     PositiveProfileEqAdm M w x y →
     (Y.pos x ↔ Y.pos y)
+
+/-- Full bilateral factorization through the same positive-profile quotient. -/
+def BilateralProfileSaturatedAdm
+    (M : AdmissibleSemantics World Entity) : Prop :=
+  ∀ w x y (Y : Extension Entity),
+    M.admissible Y →
+    PositiveProfileEqAdm M w x y →
+    (Y.pos x ↔ Y.pos y) ∧ (Y.neg x ↔ Y.neg y)
+
+/--
+Negation closure upgrades positive profile saturation to bilateral saturation:
+apply positive saturation to `Y.negate` to control the negative membership
+channel of `Y`.
+-/
+theorem positiveProfileSaturated_implies_bilateralProfileSaturated
+    (M : AdmissibleSemantics World Entity)
+    (hSat : PositiveProfileSaturatedAdm M) :
+    BilateralProfileSaturatedAdm M := by
+  intro w x y Y hYAdm hEq
+  constructor
+  · exact hSat w x y Y hYAdm hEq
+  · have hNegAdm : M.admissible Y.negate := M.negate_closed Y hYAdm
+    have hNegSat : Y.negate.pos x ↔ Y.negate.pos y :=
+      hSat w x y Y.negate hNegAdm hEq
+    simpa using hNegSat
+
+/-- Bilateral saturation trivially contains the positive saturation condition. -/
+theorem bilateralProfileSaturated_implies_positiveProfileSaturated
+    (M : AdmissibleSemantics World Entity)
+    (hSat : BilateralProfileSaturatedAdm M) :
+    PositiveProfileSaturatedAdm M := by
+  intro w x y Y hYAdm hEq
+  exact (hSat w x y Y hYAdm hEq).1
+
+/-- Under the frozen negation-closed admissible semantics the two notions coincide. -/
+theorem positiveProfileSaturated_iff_bilateralProfileSaturated
+    (M : AdmissibleSemantics World Entity) :
+    PositiveProfileSaturatedAdm M ↔ BilateralProfileSaturatedAdm M := by
+  constructor
+  · exact positiveProfileSaturated_implies_bilateralProfileSaturated M
+  · exact bilateralProfileSaturated_implies_positiveProfileSaturated M
 
 /-- Positive Fitting-Godlike individuals automatically share their positive profile. -/
 theorem godlike_implies_positiveProfileEqAdm
