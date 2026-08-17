@@ -3,11 +3,11 @@
 
 \statusestablished
 
-Gate 7 adds two complementary verification layers. I use a finite-model oracle for concrete countermodels and bounded exhaustive searches, and Lean for general semantic theorems that must not depend on a finite bound. This separation prevents the absence of a small countermodel from being mistaken for a proof.
+Gate 7 adds two complementary verification layers. I use a finite-model oracle for concrete countermodels and bounded exhaustive searches, and Lean for general semantic theorems that must not depend on a finite bound. Gate 8 extends the same discipline to comparative variants and frame minimization. This separation prevents the absence of a small countermodel from being mistaken for a proof.
 
 \subsection{Finite-model regression layer}
 
-The executable checker implements the four information values, involutive FDE negation, finite S5 accessibility, actualist existence, four-valued property extensions and positivity, signed necessary entailment, support-based Godlikeness, positive essence, and the Gate-6 regularity conditions.
+The executable checker implements the four information values, involutive FDE negation, finite accessibility relations, actualist existence, four-valued property extensions and positivity, signed necessary entailment, support-based Godlikeness, positive essence, and the Gate-6 regularity conditions.
 
 The regression suite machine-checks both two-world T2 countermodels from Gate 6. The glut model satisfies the encoded Gate-5 control stack and \(COMP_P^G\) but violates \(CONS_G^G\), while the gap model satisfies the same control stack and \(CONS_G^G\) but violates \(COMP_P^G\). Both refute \(T2^+\).
 
@@ -26,6 +26,8 @@ The checker also verifies the schema-level equivalence
   \MCp\leftrightarrow\MCm
 \]
 on a negation-closed two-world test family. This regression records an important typing distinction: the equivalence is a result about schemata closed under substitution by negation, not a pointwise identity for one isolated formula valuation.
+
+Gate 8 adds three further families of executable witnesses. First, the support/exact comparison confirms that both Gate-6 T2 countermodels are support-Godlike but fail project-internal exact positive Godlikeness, while a separate exact-Godlike fixture still permits genuine \(\Both\) gluts. Second, a complete-S5 bilateral Anderson fixture has positive necessary Godlike existence while a contingent formula application refutes positive modal collapse. Third, both the Scott-support and Anderson branches have S4-style two-world countermodels: the frames are reflexive and transitive but not symmetric, satisfy the remaining encoded premises of the reduced T3 routes, and refute the corresponding positive T3 conclusion. These are explicit countermodels to replacing symmetry by S4 in the current routes; they are not global minimality proofs.
 
 \subsection{Lean layer}
 
@@ -48,24 +50,66 @@ The principal Gate-6 recovery theorem is machine-checked without a finite bound:
 \]
 The proof therefore confirms that no additional Scott axiom is hidden in the paper derivation.
 
-The later branch is also machine-checked. From possible positive Godlikeness, positive T2, \(A5^+\), the positive necessary-existence realization, support-based Godlikeness, and S5, Lean derives positive T3. On reflexive frames it then proves
+Gate 8 sharpens the later modal dependency. Once Scott \(T2^+\) is available, Lean proves
 \[
-  T3^+\Longrightarrow GW.
+  \operatorname{Sym}(R)
+  +PossibleGod
+  +T2^+
+  +A5^+
+  +NE\text{-sup}
+  +G\text{-sup}
+  \Longrightarrow T3^+.
 \]
-Finally, for an external modal formula language equipped with constant-property embedding, Lean proves the essence-compressed collapse theorem
+Reflexivity and transitivity are absent from this theorem. Reflexivity is required only for the separate implication \(T3^+\Rightarrow GW\) and for the current essence-compressed collapse theorem, which Lean proves as
 \[
-  T2^++T3^++G\text{-sup}+CONST\Longrightarrow\MCp
+  \operatorname{Refl}(R)
+  +T2^+
+  +T3^+
+  +G\text{-sup}
+  +CONST
+  \Longrightarrow\MCp.
 \]
-on the fixed reflexive control frames.
+
+The comparative branch is also mechanized. For project-internal exact positive Godlikeness, Lean proves
+\[
+  G\text{-exact}^+\Rightarrow G\text{-sup}^+
+\]
+and
+\[
+  G\text{-exact}^+ + R^+\Longrightarrow T2_{\mathrm{exact}}^+.
+\]
+The latter theorem has no \(A1_L\), \(COMP_P^G\), or \(CONS_G^G\) premise because local positive reflection is built into exactness.
+
+For the Anderson comparison I first encode the literature-grounded positive interfaces using directional metalanguage clauses rather than a four-valued object-language biconditional. A project-specific bilateral negative-evidence reconstruction then adds explicit mismatch witnesses. Under classical coherence Lean proves that negative Anderson necessary exemplification, Godlikeness, essence, necessary actual exemplification, and necessary existence are exactly the complements of their positive counterparts.
+
+The positive Anderson necessary-existence branch is also machine-checked. Its frame assumption can be reduced to symmetry alone:
+\[
+\begin{split}
+  &\operatorname{Sym}(R)
+  +PossibleG_A
+  +G_A\text{-realization}
+  +P^+(G_A)
+  +A2^+\\
+  &\qquad
+  +NE_A\text{-realization}
+  +P^+(NE_A)
+  \Longrightarrow T3_A^+.
+\end{split}
+\]
+No reflexivity, transitivity, or separate \(R^+\) premise occurs in that theorem.
+
+Finally, Gate 8 introduces the first Fitting-specific type boundary. Lean now distinguishes bilateral property extensions from intensions, represents an intension as a world-indexed extension, provides explicit \(extensionAt\) and rigidification operations, and types the Fitting positivity predicate over extensions rather than intensions. This is infrastructure rather than a completed Fitting variant, but it prevents later mechanization from silently erasing the distinction that motivates Fitting's revision.
 
 \subsection{Classical recovery}
 
 I also formalize the recovery boundary explicitly. Under classical coherence of the positive and negative exemplification channels, Lean proves that negative support for necessary entailment is exactly failure of positive necessary entailment, and that the negative Godlikeness, essence, and necessary-existence clauses are the complements of their positive clauses. With classical coherence of positivity, truth-only positivity reduces to ordinary positive positivity support. Thus the bilateral D1/D2/D3 interfaces collapse to ordinary bivalent behavior on the classical fragment.
 
-This is an interface-level recovery result rather than a claim that the entire AFP/HOL development has been reimplemented line by line. Exact higher-order correspondence with the frozen Scott baseline remains a publication audit item.
+The Anderson bilateral candidate has an analogous machine-checked recovery layer. This is important methodologically: its negative clauses are a project reconstruction, so their classical limit is tested rather than assumed.
+
+These are interface-level recovery results rather than a claim that the entire AFP/HOL developments have been reimplemented line by line. Exact higher-order correspondence with the frozen Scott baseline and published Anderson/Fitting formalizations remains a publication audit item.
 
 \subsection{Verification discipline}
 
 The repository treats a minimal countermodel as a result rather than as a failed proof attempt. Conversely, every exhaustive finite search is reported with its exact model bound. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present.
 
-The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates. Gate 7 therefore closes the verification phase for the present S5 control theory; the next stage compares semantic variants rather than changing the control semantics itself.
+The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates. Gate 7 closes the first verification phase; Gate 8 now uses the same machinery to compare definitions, expose modal-frame dependencies, and introduce the type distinctions needed by literature variants.
