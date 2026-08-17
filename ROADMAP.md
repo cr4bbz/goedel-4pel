@@ -69,27 +69,39 @@ The bounded indispensability result is not promoted to a global model-theoretic 
 
 ### Gate 8 status
 
-The first comparative Godlikeness result is frozen in `docs/GODLIKENESS_VARIANTS.md` as `variants-v0.1`.
+Comparative variants are in progress.
 
-A project-internal positive exactness candidate is defined by:
+The project-internal support/exact comparison is frozen as `variants-v0.2` in `docs/GODLIKENESS_VARIANTS.md`:
 
 ```text
-G-exact+(x): +phi(x) iff +P(phi), for every property phi.
+G-sup+    : +P(phi) -> current +phi(x)
+G-exact+  : +P(phi) <-> current +phi(x)
+Anderson+ : +P(phi) <-> necessary +phi(x) for the same individual
 ```
 
-It is deliberately not identified with Anderson or Fitting before a literature-grounded comparison.
-
-Gate 8 already establishes:
+Established comparison results:
 
 - `G-exact+ => G-sup+`;
-- both Gate-6 T2 countermodels are support-Godlike but fail exact positive Godlikeness;
-- exact positive Godlikeness internalizes the positive reflection step;
-- general Lean theorem:
-  - `G-exact+ + R+ => T2-exact+`;
-- `A1-L`, `COMP_P^G`, and `CONS_G^G` are not premises of that exact-positive T2 route;
-- an executable exact-positive model retains genuine `B` gluts, so the comparison does not restore bivalence.
+- `G-exact+ + R+ => T2-exact+` in Lean;
+- `G-exact+` remains compatible with genuine gluts;
+- finite models separate `G-exact+` and Anderson positive Godlikeness in both directions;
+- on reflexive frames Anderson positive Godlikeness implies `G-sup+`;
+- the literature-grounded positive Anderson Godlikeness/essence/NE chain is reconstructed in Lean;
+- positive Anderson necessary Godlike existence follows from explicit possible Godlikeness plus the Anderson positive stack on the S5 control frames.
 
-This shows that the T2 bottleneck is definition-sensitive: `G-sup` leaves reflection to be derived, whereas `G-exact+` builds its positive direction into Godlikeness.
+A bilateral Anderson candidate is frozen as `anderson-bilateral-v0.1` in `docs/ANDERSON_BILATERAL.md`.
+
+Lean proves classical recovery of its negative-support clauses for:
+
+- fixed-individual necessary exemplification;
+- Anderson Godlikeness;
+- Anderson essence;
+- necessary actual exemplification;
+- Anderson necessary existence.
+
+An executable two-world complete-S5 model satisfies the currently encoded bilateral Anderson candidate, including bilateral realization of Godlikeness and necessary existence, while positive necessary Godlike existence holds and positive modal collapse fails for a contingent `Q(a)`.
+
+The Anderson negative clauses are a principled FDE reconstruction, not a claim that Anderson historically specified a unique bilateral semantics.
 
 ## Phase B — The key experiment
 
@@ -117,8 +129,9 @@ This shows that the T2 bottleneck is definition-sensitive: `G-sup` leaves reflec
 - [x] discharge `GW`;
 - [x] classify the positive collapse consequence of `T2+ + T3+`;
 - [ ] minimize the support-theory T2 recovery assumptions at the unbounded model-theoretic level;
-- [x] begin the `G-sup-v0.1` versus `G-exact+` comparison;
-- [ ] test whether alternative essence semantics preserve the same T2 obstruction.
+- [x] compare `G-sup-v0.1` with project-internal `G-exact+`;
+- [x] compare the Godlikeness/essence bottleneck with a literature-grounded Anderson variant;
+- [ ] test additional essence semantics and the Fitting intension/extension split.
 
 ## Phase D — Mechanize and publish
 
@@ -134,13 +147,17 @@ Finite exhaustive checks are always reported with their bounded model class; abs
 
 ### Gate 8 — Comparative variants — **in progress**
 
-- [x] define and machine-check the first `G-sup` versus project-internal `G-exact+` comparison;
+- [x] machine-check `G-sup` versus project-internal `G-exact+`;
 - [x] show exact positive Godlikeness compresses the T2 recovery route to `G-exact+ + R+`;
 - [x] show exact positive Godlikeness remains compatible with gluts;
-- [ ] freeze a principled bilateral negative clause for exact Godlikeness, if one survives comparison;
-- [ ] compare the internal candidate with Anderson/Fitting literature variants before naming any correspondence;
-- [ ] compare at least one literature-grounded Anderson/Fitting-style variant;
-- [ ] vary K / KB / S4 / S5;
+- [x] source-ground the distinction between `G-exact+`, Anderson, and Fitting;
+- [x] formalize a literature-grounded positive Anderson interface;
+- [x] reconstruct its positive essence and necessary-existence chain in Lean;
+- [x] freeze a bilateral Anderson candidate with classically recovering negative evidence clauses;
+- [x] exhibit a bilateral two-world Anderson candidate with necessary Godlike existence and failure of positive modal collapse;
+- [ ] decide whether a bilateral negative exact-Godlikeness clause is still scientifically useful after the Anderson comparison;
+- [ ] vary K / KB / S4 / S5 and identify the exact frame dependencies of the Anderson and Scott routes;
+- [ ] introduce the type-level intension/extension distinction required for a faithful Fitting comparison;
 - [ ] rerun selected results over broader paired-neighborhood frames.
 
 ### Gate 9 — Publication consolidation
