@@ -46,6 +46,47 @@ This weakening is itself directional. If the right A1 channel is restored, Lean 
 \]
 Thus the reduction is not an unconditional weakening of a theory retaining both A1 directions. It instead exposes another division of labor between the two signed A1 flows: the A1-L recovery argument needs consistency only on the negative-classification branch, while A1-R supplies enough additional complement information to reconstruct the stronger consistency condition.
 
+\paragraph{Why completeness cannot simply be renamed away.}
+Inside this classification-based proof, \(COMP_{P,F}^{G,adm}\) supplies exactly the gap branch: a relevant extension either already has positive positivity support or is negatively classified so that A1-L can activate the complement route. Replacing the disjunction by a condition of the form
+\[
+  \neg\pos{P(Y)}@w\Longrightarrow\neginfo{P(Y)}@w
+\]
+would therefore not constitute a genuine weakening at the classical meta-level; on the same relevant domain it is equivalent to the branch coverage already expressed by completeness. A real reduction of \(COMP\) must consequently change the recovery mechanism itself.
+
+\paragraph{An alternative recovery route.}
+I introduce a second, deliberately non-classificatory interface. Let admissible-property indiscernibility among positive Fitting-Godlike individuals be
+\[
+\begin{split}
+  Ind_G^{adm}:\quad
+  &Adm(Y)\land G_F^+(x,w)\land G_F^+(y,w)\\
+  &\qquad\Longrightarrow
+  \bigl(\pos{Y(x)}\leftrightarrow\pos{Y(y)}\bigr).
+\end{split}
+\]
+This condition does not assign positive or negative positivity status to \(Y\). Instead, it constrains the selected extensional property domain: admissible rigid extensions cannot positively distinguish two positive Godlike individuals at the same source world.
+
+Lean proves
+\[
+\boxed{
+G\text{-admissible}
++G_F\text{-realization}
++Ind_G^{adm}
+\Longrightarrow
+G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w).
+}
+\]
+No A1 direction, no positivity completeness, and no exemplification-consistency premise occurs. The proof is extensional. If \(Y\) contains the selected Godlike individual \(x\), any entity \(y\) in the frozen current \(G\)-extension is also positive Godlike at the source world by \(G\)-realization. Indiscernibility then transfers positive \(Y\)-membership from \(x\) to \(y\), yielding exactly the rigid necessary entailment required by Fitting essence.
+
+The same route continues through necessary existence. Lean machine-checks a frame-free de-re possibility-to-necessity theorem from \(G\)-admissibility, \(G\)-realization, \(Ind_G^{adm}\), NE-admissibility, NE-realization, and positive A5, with no \(COMP\), A1, or consistency premise. Positive \(G\)-extension persistence and reflection then provide the same de-dicto bridge as before.
+
+A one-world, two-entity reflexive finite fixture separates this route from positivity completeness. Its negation-closed admissible domain consists of the four classical rigid extensions \(\varnothing\), \(\{a\}\), \(\{b\}\), and \(\{a,b\}\). Both A1 directions and full relevant exemplification consistency hold. Entity \(a\) is the sole positive Godlike individual and the current \(G\)-extension is \(\{a\}\). Nevertheless the universal extension is a genuine positivity gap:
+\[
+  \neg\pos{P(\{a,b\})}
+  \qquad\text{and}\qquad
+  \neg\neginfo{P(\{a,b\})},
+\]
+so \(COMP_{P,F}^{G,adm}\) fails at a relevant extension containing the Godlike witness. The current \(G\)-extension is still an essence of \(a\), NE is realized, A5 holds, and frozen current-G exemplification is both possible and necessary. Thus \(COMP_{P,F}^{G,adm}\) is not globally necessary for the current Fitting essence/NE conclusion; it is necessary only for the earlier classification-based route. I do not infer that indiscernibility is globally weaker than completeness, since the two principles constrain different semantic interfaces.
+
 A separate minimization concerns de-dicto stability. Full bilateral extension stability
 \[
   STAB_G^{\pm}:\qquad
@@ -58,7 +99,7 @@ contains more information than the positive theorem uses. I split the positive c
   Refl_G^+&:&wRz\land \pos{ext_zG(x)}\Rightarrow\pos{ext_wG(x)}.
 \end{array}
 \]
-Their conjunction is written \(STAB_G^+\). Lean proves that bilateral stability implies \(STAB_G^+\), but the two positive directions are exactly what the de-dicto proof consumes: reflection converts de-dicto possibility into frozen de-re possibility, whereas persistence converts frozen de-re necessity back into de-dicto necessity. Consequently the minimized theorem is
+Their conjunction is written \(STAB_G^+\). Lean proves that bilateral stability implies \(STAB_G^+\), but the two positive directions are exactly what the de-dicto proof consumes: reflection converts de-dicto possibility into frozen de-re possibility, whereas persistence converts frozen de-re necessity back into de-dicto necessity. Consequently the minimized classification-route theorem is
 \[
 \begin{split}
   &G\text{-admissible}
@@ -73,8 +114,8 @@ Their conjunction is written \(STAB_G^+\). Lean proves that bilateral stability 
   \Box^+\exists^E x\,G_F(x).
 \end{split}
 \]
-No negative-extension stability and no S4/S5 frame condition occurs.
+No negative-extension stability and no S4/S5 frame condition occurs. Replacing the classification block by \(Ind_G^{adm}\) gives an alternative theorem with the same positive stability interface.
 
 The weakening of stability is strict even under a stronger surrounding control theory. A complete two-world S5 fixture satisfies both A1 directions and the original full admissible regularity package. The positive membership set of \(G\) is \(\{a\}\) at both worlds, but negative information about a non-Godlike individual changes from falsity support to a gap. Hence \(STAB_G^+\) holds while \(STAB_G^{\pm}\) fails, and positive necessary de-dicto Godlikeness still holds. This finite witness shows that the positive theorem is genuinely insensitive to drift confined to the negative extension channel.
 
-These results do not establish global minimality. They instead replace two coarse assumptions by proof-relevant interfaces and reveal a further interaction between the A1 split and the Fitting intension/extension architecture.
+These results do not establish global minimality. They instead reveal two distinct recovery architectures inside the same Fitting candidate: one resolves positivity gaps by classification, while the other bypasses positivity classification through extensional indiscernibility among Godlike individuals.
