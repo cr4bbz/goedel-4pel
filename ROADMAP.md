@@ -121,14 +121,30 @@ The decisive unresolved semantic question is now the weakest principled recovery
 
 ## Phase D — Mechanize and publish
 
-### Gate 7 — Mechanization and finite-model verification
+### Gate 7 — Mechanization and finite-model verification — **in progress**
 
-- [ ] implement the settled four-valued kernel, modal clauses, quantifiers, `G-sup`, `Ess-sup`, and `NE-sup` in Lean and/or a small executable model checker;
-- [ ] machine-check Gate-3/4 A1 and rigidity results;
+First executable milestone:
+
+- [x] create a standard-library-only finite-model oracle under `formal/finite/`;
+- [x] machine-check both Gate-6 T2 countermodels against the encoded Gate-5 control stack;
+- [x] verify that the glut model isolates failure of `CONS_G^G` while retaining `COMP_P^G`;
+- [x] verify that the gap model isolates failure of `COMP_P^G` while retaining `CONS_G^G`;
+- [x] exhaustively verify schema-level `MC+ <-> MC-` on the negation-closed two-world test family;
+- [x] exhaustively verify `REG_G => T2+` on 204 retained models in the current complete two-world / one-entity `G,Z` search space;
+- [x] initialize a Lean 4.30.0 package;
+- [x] formalize `T/F/B/N`, FDE negation, and involution in Lean;
+- [x] formalize the general schema-level `MC+ <-> MC-` theorem in Lean source;
+- [x] add GitHub Actions for finite-model tests and Lean builds;
+- [ ] obtain a green CI run for the initial Lean package;
+- [ ] formalize relational bilateral modality, actualist quantification, and `NEnt+_E` in Lean;
+- [ ] formalize `G-sup-v0.1` and `Ess-sup-v0.1`;
+- [ ] prove the conditional `REG_G => T2+` theorem generally in Lean;
 - [ ] machine-check T1-T and its glut countermodel;
-- [ ] machine-check both Gate-6 T2 countermodels;
-- [ ] machine-check the conditional T2, T3, GW, and modal-collapse theorems;
-- [ ] verify classical recovery end-to-end.
+- [ ] formalize the conditional T3, GW, and essence-compressed collapse theorems;
+- [ ] verify classical recovery end-to-end;
+- [ ] add assumption-minimization search below `REG_G`.
+
+Finite exhaustive checks are always reported with their bounded model class; absence of a finite countermodel is not promoted to a general theorem.
 
 ### Gate 8 — Comparative variants
 
