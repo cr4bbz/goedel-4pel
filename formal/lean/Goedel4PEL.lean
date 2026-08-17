@@ -10,5 +10,6 @@ import Goedel4PEL.GoedelScott.AndersonFrames
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2
 import Goedel4PEL.GoedelScott.T3Collapse
+import Goedel4PEL.GoedelScott.ScottFrames
 import Goedel4PEL.Analysis.Collapse
 import Goedel4PEL.Analysis.Recovery
