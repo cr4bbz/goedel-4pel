@@ -1,6 +1,6 @@
 # Formalization
 
-Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, and a substantive bilateral Fitting branch.
+Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, and a substantive bilateral Fitting branch with theorem-level assumption reduction.
 
 The formal layer deliberately has two roles:
 
@@ -17,7 +17,8 @@ Gate 8 adds:
 - `gate8_anderson.py` for the bilateral Anderson necessary-God / no-positive-collapse fixture;
 - `gate8_frames.py` and `gate8_scott_frames.py` for non-symmetric S4 countermodels;
 - `gate8_fitting.py` for the admissible Fitting de-re/de-dicto separation;
-- `gate8_fitting_no_collapse.py` for a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse.
+- `gate8_fitting_no_collapse.py` for a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse;
+- `gate8_fitting_minimality.py` for two strictness fixtures: targeted negative-classification consistency versus full consistency on the A1-L-only route, and positive-only G-extension stability versus full bilateral stability under a stronger S5 control stack.
 
 Run from the repository root:
 
@@ -31,6 +32,7 @@ python3 formal/finite/gate8_frames.py
 python3 formal/finite/gate8_scott_frames.py
 python3 formal/finite/gate8_fitting.py
 python3 formal/finite/gate8_fitting_no_collapse.py
+python3 formal/finite/gate8_fitting_minimality.py
 ```
 
 ## Lean layer
@@ -53,6 +55,8 @@ Goedel4PEL/GoedelScott/FittingDeDicto.lean
 Goedel4PEL/GoedelScott/FittingAdmissible.lean
 Goedel4PEL/GoedelScott/FittingAdmissibleRecovery.lean
 Goedel4PEL/GoedelScott/FittingAdmissibleNecessaryExistence.lean
+Goedel4PEL/GoedelScott/FittingMinimality.lean
+Goedel4PEL/GoedelScott/FittingMinimalityInteractions.lean
 ```
 
 ### Gate-7 control spine
@@ -146,41 +150,74 @@ BoxExistsMinus <-> not BoxExistsPlus
 NEMinusAdm     <-> not NEPlusAdm
 ```
 
-### Fitting de re and de dicto
+### Fitting theorem-level minimization
 
-The admissible necessary-existence chain yields a frame-free de-re theorem:
+`FittingMinimality.lean` replaces full relevant consistency by the proof-local condition:
 
 ```text
-admissible Fitting stack
-+ de-re possible actual current-G extension
--------------------------------------------
-  de-re necessary actual current-G extension
+NegClassConsistencyAdm:
+  Adm(Y)
+  + GodPlusAdm(w,x)
+  + Y.pos(x)
+  + pNeg(w,Y)
+  -> not Y.neg(x)
 ```
 
-No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise is used.
-
-De-dicto lifting is kept separate. Define:
+with
 
 ```text
-STAB_G:
-  w R z -> extensionAt G w equivalent to extensionAt G z
+RegGNegClassAdm := CompPGAdm + NegClassConsistencyAdm.
 ```
 
-Then Lean proves:
+Lean proves the same admissible Fitting essence and de-re necessary-existence route from `A1-L + RegGNegClassAdm`.
+
+The weakening is A1-sensitive. `FittingMinimalityInteractions.lean` proves:
 
 ```text
-admissible Fitting stack
-+ STAB_G
+A1-R + RegGNegClassAdm => RegGAdm
+```
+
+more precisely reconstructing full `ConsGGAdm` from `A1-R`, positivity completeness, and the targeted consistency premise. Hence the reduction is genuine for the A1-L-only recovery route but not a global weakening of a theory that independently retains A1-R.
+
+### Fitting positive-only de-dicto stability
+
+The positive de-dicto theorem uses only positive G-membership transport. Lean separates:
+
+```text
+GPosPersistsAlongRAdm
+GPosReflectsAlongRAdm
+GPosStableAlongRAdm := persistence + reflection
+```
+
+and proves:
+
+```text
+full bilateral G-extension stability
+=> positive-only G stability
+```
+
+as well as the minimized theorem:
+
+```text
+GAdmissible
++ GRealizationAdm
++ A1LAdm
++ RegGNegClassAdm
++ NE realization
++ A5+
++ GPosStableAlongRAdm
 + de-dicto possible actual Godlikeness
 --------------------------------------
   de-dicto necessary actual Godlikeness
 ```
 
-again with no S4/S5 frame premise.
+No negative-extension stability and no S4/S5 frame property is required.
 
-The three-world finite model shows the bridge is substantive: de-re necessity and de-dicto possibility hold while de-dicto necessity and `STAB_G` fail.
+The finite strictness fixture keeps both A1 directions and even the old full `RegGAdm` on a complete S5 frame. Positive membership in G is identical across worlds while negative support about a non-Godlike entity drifts. Thus positive-only stability holds, full bilateral stability fails, and positive necessary de-dicto Godlikeness still holds.
 
-A second complete-S5 model satisfies the encoded admissible Fitting stack, `STAB_G`, and positive necessary actual Godlikeness while a contingent `Q(a)` refutes `MC+`. The same admissible extensional domain contains genuine inconsistent `B` information.
+### Fitting de re and de dicto
+
+The admissible necessary-existence chain yields a frame-free de-re theorem. The earlier three-world model shows that de-re necessity need not imply de-dicto necessity when positive G-extension transport fails. A separate complete-S5 model has positive necessary actual Godlikeness while a contingent `Q(a)` refutes `MC+`; the admissible extension domain still contains genuine inconsistent `B` information.
 
 Build locally:
 
@@ -191,16 +228,16 @@ lake build
 
 ## CI and discipline
 
-GitHub Actions runs both finite regressions and `lake build`. The complete admissible Fitting recovery interface and both new finite Fitting fixtures are green in CI.
+GitHub Actions runs both finite regressions and `lake build`. The Fitting minimization theorems and both strictness fixtures are part of the root build/regression suite.
 
 Finite searches and fixtures are always reported with their exact bounds. General claims are promoted to machine-checked status only when represented by Lean theorems.
 
 ## Next Gate-8 formal work
 
-The main remaining work is no longer basic Fitting reconstruction. It is:
+The main remaining work is:
 
-1. minimize `REG_G^adm` without reintroducing unrestricted-comprehension vacuity;
-2. justify additional principled closure conditions for the admissible extension domain;
-3. search for a weaker replacement of `STAB_G`;
+1. weaken `CompPGAdm` without merely postulating the desired reflection conclusion;
+2. determine whether positive persistence or positive reflection follows from other principled Fitting assumptions;
+3. justify additional closure conditions for the admissible extension domain;
 4. rerun selected Scott/Anderson/Fitting results over paired-neighborhood semantics;
 5. complete the source-level publication audit.
