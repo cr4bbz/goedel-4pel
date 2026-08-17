@@ -20,7 +20,7 @@ MC+ <-> MC-
 
 The informative non-classical structure occurs upstream.
 
-For the support-based Scott control theory, the verified dependency spine is:
+For the support-based Scott control theory, the verified dependency spine is now:
 
 ```text
 A1-R + A2+ + A3-T
@@ -37,15 +37,19 @@ NegExemplification
           v
           T2+
 
-A5+ + T2+ + NE-sup + G-sup + S5
+A5+ + T2+ + NE-sup + G-sup
++ Symmetric(R)
           |
           v
           T3+
+
+T3+ + Reflexive(R)
           |
           v
           GW
 
 T2+ + T3+ + G-sup + CONST
++ Reflexive(R)
           |
           v
           MC+
@@ -68,9 +72,12 @@ G-exact+:
 
 Anderson G_A+:
   +P(phi) <-> necessary +phi(x) for the same individual
+
+Fitting boundary:
+  positivity consumes an extension, not an intension
 ```
 
-`G-exact+` internalizes local positive reflection. Anderson instead internalizes a modal persistence classification and simultaneously changes essence and necessary existence.
+`G-exact+` internalizes local positive reflection. Anderson instead internalizes a modal persistence classification and simultaneously changes essence and necessary existence. The Fitting comparison begins from a different semantic cut: intensional properties and their extensions are distinct types.
 
 ## Semantic stack
 
@@ -93,7 +100,7 @@ FDE-style, paraconsistent, paracomplete, classically recoverable. No object-lang
 
 ### Gate 2 — Modal lift
 
-Frozen as `modal-v0.1` in `docs/MODAL_LIFT.md` with bilateral relational S5 control semantics.
+Frozen as `modal-v0.1` in `docs/MODAL_LIFT.md` with bilateral relational S5 as the original control semantics. Gate 8 subsequently minimizes selected theorem dependencies below S5 without changing the frozen control baseline.
 
 ### Gate 3 — Positivity decomposition
 
@@ -141,22 +148,24 @@ NegExemplification
 => T2+
 ```
 
-Conditional T3 then supplies `GW`, and T2/T3 plus constant-property embedding yield modal collapse.
+Conditional T3 then supplies `GW` on reflexive frames, and T2/T3 plus constant-property embedding yield modal collapse on the current reflexive collapse route.
 
 ### Gate 7 — Formal verification
 
 Complete at `formal-v0.1`; frozen in `docs/FORMAL_VERIFICATION.md`.
 
-Lean 4.30.0 machine-proves:
+Lean 4.30.0 machine-proves the original control spine, including:
 
 ```text
 MC+ <-> MC-
 A1-R + A2+ => T1-T
 NegExemplification + G-sup + A1-L + R+ + REG_G => T2+
 PossibleGod + T2+ + A5+ + NE-sup + G-sup + S5 => T3+
-T3+ => GW
-T2+ + T3+ + G-sup + CONST => MC+
+T3+ + Reflexive(R) => GW
+T2+ + T3+ + G-sup + CONST + Reflexive(R) => MC+
 ```
+
+Gate 8 subsequently strengthens the T3 entry by removing unnecessary S5 structure.
 
 The finite oracle regression-checks the T1 glut obstruction and both T2 glut/gap countermodels. A broader exhaustive two-world / one-entity `G,Z` family contains **873** models satisfying all four current T2 recovery assumptions, and all satisfy `T2+`. Dropping any one of `A1-L`, `R+`, `COMP_P^G`, or `CONS_G^G` yields a T2 countermodel in that same bounded family.
 
@@ -215,7 +224,7 @@ not +Box Q(a) @ w0
 P(Q) = P(notQ) = N.
 ```
 
-The frame analysis has now reduced the positive Anderson T3 theorem further. Lean proves:
+The positive Anderson T3 theorem has been reduced to symmetry alone. Lean proves:
 
 ```text
 Symmetric(R)
@@ -229,15 +238,56 @@ Symmetric(R)
 AndersonT3+
 ```
 
-No reflexivity, transitivity, or separate `R+` premise occurs in this theorem. Anderson's own necessary-exemplification structure supplies the modal return path.
+No reflexivity, transitivity, or separate `R+` premise occurs in this theorem. Anderson's necessary-exemplification structure supplies the modal return path.
 
 A finite S4-style model is reflexive and transitive but non-symmetric, satisfies the encoded Anderson stack plus possible Godlikeness, and refutes `AndersonT3+`. Thus S4 alone does not replace symmetry in the current semantics.
 
 This is a theorem/model result for the project's bilateral Anderson candidate, not a claim that Anderson historically specified a unique four-valued semantics.
 
-#### Fitting boundary
+#### Modal-frame minimization
 
-A faithful Fitting comparison is intentionally deferred until the semantic types distinguish intensional properties from their extensions. Reusing the current single `Property` type would erase the central feature of Fitting's revision.
+The Scott and Anderson comparison is frozen in `docs/FRAME_MINIMIZATION.md` as `frames-v0.1`.
+
+For the Scott-support branch, once `T2+` is already available, Lean proves:
+
+```text
+Symmetric(R)
++ PossibleGod
++ T2+
++ A5+
++ NE-sup
++ G-sup
+--------------
+T3+
+```
+
+No reflexivity or transitivity premise is used. A separate finite Scott model is reflexive and transitive but non-symmetric, satisfies the remaining premises of the reduced theorem, and refutes `T3+`.
+
+Thus Scott and Anderson currently share symmetry as the verified T3 return bridge. Their principal structural difference remains upstream in the Godlikeness/essence machinery rather than in the final T3 frame strength.
+
+The result establishes symmetry as sufficient and S4 as insufficient for these particular routes. It does **not** establish symmetry as the unique globally weakest relational condition.
+
+#### Fitting type boundary
+
+The first Fitting milestone is frozen as `fitting-types-v0.1` in `docs/FITTING_TYPES.md`.
+
+Lean now distinguishes:
+
+```text
+Extension Entity
+Intension World Entity := World -> Extension Entity
+```
+
+and the Fitting semantic shell types positivity as:
+
+```text
+pPos : World -> Extension Entity -> Prop
+pNeg : World -> Extension Entity -> Prop
+```
+
+rather than over intensions. `extensionAt` makes the intension-to-extension step explicit, while `rigidify` embeds one extension as a constant intension.
+
+This is infrastructure, not yet a complete bilateral Fitting variant. Extension-level entailment, essence, necessary existence, classical recovery, and collapse behavior remain Gate-8 tasks.
 
 ## Verification
 
@@ -250,6 +300,7 @@ python3 formal/finite/gate7_search.py
 python3 formal/finite/gate8_compare.py
 python3 formal/finite/gate8_anderson.py
 python3 formal/finite/gate8_frames.py
+python3 formal/finite/gate8_scott_frames.py
 ```
 
 Lean:
@@ -263,8 +314,8 @@ The Lean package is pinned to Lean 4.30.0 and uses `lakefile.toml`. GitHub Actio
 
 ## Research gates
 
-- **Gates 0–7:** complete for the current S5 control theory.
-- **Gate 8:** in progress. Current frontier: whether symmetry can be weakened further for Anderson, the minimal frame package for Scott T3, then the Fitting intension/extension split and paired neighborhoods.
+- **Gates 0–7:** complete for the original S5 control theory.
+- **Gate 8:** in progress. Current frontier: build the extension-level Fitting entailment / essence / necessary-existence chain, then compare its collapse behavior with Scott and Anderson. Whether symmetry admits a still weaker relational replacement remains open, as does the paired-neighborhood generalization.
 - **Gate 9:** publication consolidation and dedicated prior-art / exact-HOL correspondence audit.
 
 ## Paper
@@ -274,7 +325,7 @@ The living manuscript is in `paper/`.
 Current version:
 
 ```text
-paper-v0.7
+paper-v0.8
 ```
 
 Build from `paper/` with:
@@ -300,7 +351,9 @@ latexmk -pdf main.tex
 │   ├── FORMAL_VERIFICATION.md
 │   ├── GODLIKENESS_VARIANTS.md
 │   ├── ANDERSON_POSITIVE_FRAGMENT.md
-│   └── ANDERSON_BILATERAL.md
+│   ├── ANDERSON_BILATERAL.md
+│   ├── FRAME_MINIMIZATION.md
+│   └── FITTING_TYPES.md
 ├── formal/
 │   ├── README.md
 │   ├── finite/
@@ -309,6 +362,7 @@ latexmk -pdf main.tex
 │   │   ├── gate8_compare.py
 │   │   ├── gate8_anderson.py
 │   │   ├── gate8_frames.py
+│   │   ├── gate8_scott_frames.py
 │   │   └── test_checker.py
 │   └── lean/
 │       ├── lean-toolchain
@@ -334,8 +388,9 @@ latexmk -pdf main.tex
 - treating four-valued implication choices as interchangeable;
 - identifying project-internal variants with literature variants before source-level comparison;
 - claiming uniqueness for the project-specific bilateral Anderson lift;
+- treating the Fitting type shell as a completed Fitting theory;
 - claiming novelty before the dedicated prior-art and publication audit.
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; bilateral Anderson and symmetry-frame milestones green; `paper-v0.7` remains the manuscript baseline.
+**Phase:** Gate 7 complete; Gate 8 in progress; Scott/Anderson symmetry-frame milestones and Fitting type boundary green; `paper-v0.8` synchronized.
