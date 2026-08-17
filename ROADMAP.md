@@ -88,7 +88,29 @@ Gate 6 establishes:
 - `P(NE)=B` can coexist with the positive T3 branch, giving a concrete inconsistency-tolerance result;
 - global `CONS_G` / `COMP_P` are not necessary conditions for every model satisfying the positive T2/T3/collapse chain; they are sufficient ingredients of one lower-level recovery route.
 
-The decisive unresolved semantic question is now the weakest principled recovery of `T2+` from the primitive four-valued Scott machinery.
+The decisive unresolved semantic question after Gate 6 is the weakest principled recovery of `T2+` from the primitive four-valued Scott machinery.
+
+### Gate 7 status
+
+Formal verification is frozen as `formal-v0.1` in `docs/FORMAL_VERIFICATION.md`.
+
+Gate 7 establishes with green CI:
+
+- a standard-library-only finite-model oracle and regression suite;
+- Lean 4.30.0 formalizations of the four-valued carrier, FDE negation, conjunction/disjunction, bilateral relational modality, and bilateral actualist quantification;
+- general Lean semantics for `NEnt±_E`, `G-sup-v0.1`, `Ess-sup-v0.1`, and the positive `NE-sup` interface;
+- a general machine proof of schema-level `MC+ <-> MC-`;
+- a general machine proof of `A1-R + A2+ => T1-T`;
+- an executable one-world glut countermodel to unrestricted `+P => +◇∃ᴱ`;
+- general machine proof of
+  - `NegExemplification + G-sup + A1-L + R+ + REG_G => T2+`;
+- executable glut and gap T2 countermodels;
+- general machine proofs of conditional `T3+`, `T3+ => GW`, and the essence-compressed positive collapse theorem;
+- interface-level classical recovery for `Pos_T`, `NEnt`, Godlikeness, essence, and necessary existence;
+- a broader exhaustive two-world / one-entity `G,Z` search with 873 full-antecedent models, all satisfying `T2+`;
+- bounded individual indispensability: dropping any one of `A1-L`, `R+`, `COMP_P^G`, or `CONS_G^G` yields a T2 countermodel in that same family.
+
+The bounded indispensability result is not promoted to a global model-theoretic minimality theorem.
 
 ## Phase B — The key experiment
 
@@ -115,38 +137,31 @@ The decisive unresolved semantic question is now the weakest principled recovery
 - [x] reconstruct `T3+` conditionally from `T2+`;
 - [x] discharge `GW`;
 - [x] classify the positive collapse consequence of `T2+ + T3+`;
-- [ ] minimize the T2 recovery assumptions beyond `REG_G`;
+- [ ] minimize the T2 recovery assumptions beyond `REG_G` at the unbounded model-theoretic level;
 - [ ] compare `G-sup-v0.1` with `G-exact`;
 - [ ] test whether alternative essence semantics preserve the same T2 obstruction.
 
 ## Phase D — Mechanize and publish
 
-### Gate 7 — Mechanization and finite-model verification — **in progress**
-
-First executable milestone:
+### Gate 7 — Mechanization and finite-model verification — **complete**
 
 - [x] create a standard-library-only finite-model oracle under `formal/finite/`;
 - [x] machine-check both Gate-6 T2 countermodels against the encoded Gate-5 control stack;
-- [x] verify that the glut model isolates failure of `CONS_G^G` while retaining `COMP_P^G`;
-- [x] verify that the gap model isolates failure of `COMP_P^G` while retaining `CONS_G^G`;
+- [x] verify the glut/gap split of `CONS_G^G` and `COMP_P^G`;
 - [x] exhaustively verify schema-level `MC+ <-> MC-` on the negation-closed two-world test family;
-- [x] exhaustively verify `REG_G => T2+` on 204 retained models in the current complete two-world / one-entity `G,Z` search space;
-- [x] initialize a Lean 4.30.0 package;
-- [x] formalize `T/F/B/N`, FDE negation, and involution in Lean;
-- [x] formalize the general schema-level `MC+ <-> MC-` theorem in Lean source;
-- [x] add GitHub Actions for finite-model tests and Lean builds;
-- [x] obtain a green CI run for the initial Lean package;
-- [ ] formalize relational bilateral modality, actualist quantification, and `NEnt+_E` in Lean;
-- [ ] formalize `G-sup-v0.1` and `Ess-sup-v0.1`;
-- [ ] prove the conditional `REG_G => T2+` theorem generally in Lean;
-- [ ] machine-check T1-T and its glut countermodel;
-- [ ] formalize the conditional T3, GW, and essence-compressed collapse theorems;
-- [ ] verify classical recovery end-to-end;
-- [ ] add assumption-minimization search below `REG_G`.
+- [x] initialize and CI-build the Lean 4.30.0 package;
+- [x] formalize the four-valued kernel connectives needed by the current control theory;
+- [x] formalize relational bilateral modality and actualist quantification;
+- [x] formalize `NEnt±_E`, `G-sup-v0.1`, and `Ess-sup-v0.1`;
+- [x] prove the conditional T2 recovery theorem generally in Lean;
+- [x] machine-check `T1-T` and the unrestricted-`+P` glut countermodel;
+- [x] formalize conditional T3, GW, and essence-compressed modal collapse;
+- [x] verify interface-level classical recovery of the reconstructed D1/D2/D3 branch;
+- [x] add bounded assumption-minimization search around the T2 recovery package.
 
 Finite exhaustive checks are always reported with their bounded model class; absence of a finite countermodel is not promoted to a general theorem.
 
-### Gate 8 — Comparative variants
+### Gate 8 — Comparative variants — **next**
 
 - [ ] compare `G-sup` with `G-exact`;
 - [ ] compare at least one Anderson/Fitting-style variant;
@@ -156,5 +171,6 @@ Finite exhaustive checks are always reported with their bounded model class; abs
 ### Gate 9 — Publication consolidation
 
 - [ ] perform a dedicated prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
+- [ ] audit exact correspondence with the frozen higher-order Scott baseline before final publication claims;
 - [ ] write the paper around the strongest verified structural theorem;
-- [ ] distinguish semantic theorems, machine-checked results, countermodels, and open minimality questions explicitly.
+- [ ] distinguish semantic theorems, machine-checked results, countermodels, and open global-minimality questions explicitly.
