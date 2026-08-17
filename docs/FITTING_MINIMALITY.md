@@ -3,8 +3,8 @@
 ## Status
 
 **Gate:** 8 — Comparative variants  
-**Version:** `fitting-minimality-v0.1`  
-**Scope:** theorem-level minimization inside the admissible bilateral Fitting candidate  
+**Version:** `fitting-minimality-v0.2`  
+**Scope:** theorem-level minimization and alternative recovery routes inside the admissible bilateral Fitting candidate  
 **Verification:** Lean 4.30.0 + executable finite regressions
 
 This milestone refines `fitting-bilateral-v0.2`. It does not replace that candidate and does not claim global model-theoretic minimality.
@@ -102,7 +102,127 @@ The result should therefore be read as an A1-sensitive dependency decomposition,
 
 ---
 
-## 4. Bilateral `STAB_G` is stronger than the positive theorem needs
+## 4. `COMP_P^G(adm)` is exact for the classification route
+
+Within the preceding proof architecture, `COMP_P^G(adm)` provides exactly the missing gap branch. At a positive Godlike witness that positively exemplifies an admissible `Y`, the proof needs either positive support for `Y` immediately or negative support for `Y` so that `A1-L` can activate the complement route.
+
+A mere rewrite of completeness as
+
+```text
+not pPos(w,Y) -> pNeg(w,Y)
+```
+
+would not be a genuine weakening: at the classical meta-level this is equivalent to the disjunction used by `COMP_P^G(adm)` on the same relevant domain.
+
+Consequently, weakening `COMP` requires a different recovery mechanism rather than a syntactic reformulation of the same branch coverage.
+
+---
+
+## 5. Alternative recovery by Godlike indiscernibility
+
+Gate 8 now contains such an alternative mechanism. Define admissible-property indiscernibility among positive Fitting-Godlike individuals by
+
+\[
+Ind_G^{adm}:
+\quad
+Adm(Y)\land G_F^+(x,w)\land G_F^+(y,w)
+\Longrightarrow
+\bigl(+Y(x)\leftrightarrow +Y(y)\bigr).
+\]
+
+This condition does **not** classify `Y` as positively or negatively supported. Instead it says that the selected rigid property domain cannot distinguish two positive Godlike individuals at the same world.
+
+Lean proves the alternative essence theorem
+
+\[
+\boxed{
+G\text{-admissible}
++G_F\text{-realization}
++Ind_G^{adm}
+\Longrightarrow
+G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w).
+}
+\]
+
+No A1 direction, no `COMP_P^G(adm)`, and no exemplification-consistency premise occurs.
+
+The proof is extensional. If an admissible extension `Y` contains the chosen Godlike individual `x`, every member `y` of the frozen current `G` extension is also Godlike at the source world by `G` realization. Indiscernibility therefore transfers positive membership in `Y` from `x` to `y`, which is exactly the rigid extensional entailment needed for Fitting essence.
+
+The same alternative route continues through necessary existence. Lean proves frame-free de-re possibility-to-necessity from
+
+```text
+GAdmissible
++ GRealizationAdm
++ GodlikeIndiscernibilityAdm
++ NEAdmissible
++ NERealizationAdm
++ A5PlusAdm
+```
+
+with neither `COMP`, A1, nor a consistency premise. Adding positive-only `G` stability yields the corresponding positive de-dicto theorem.
+
+This is an **alternative structural route**, not a claim that indiscernibility is globally weaker than positivity completeness. The two assumptions constrain different parts of the semantics.
+
+---
+
+## 6. Finite separation: Essence and NE with a genuine positivity gap
+
+A one-world, two-entity reflexive finite fixture validates the alternative route while explicitly falsifying `COMP_P^G(adm)`.
+
+The selected negation-closed admissible domain consists of the four classical rigid extensions
+
+```text
+EMPTY, ONLY_A, ONLY_B, ALL.
+```
+
+Positivity is chosen so that
+
+```text
++p(ONLY_A)
+-p(ONLY_B)
+```
+
+while `ALL` is a genuine positivity gap:
+
+```text
+not +P(ALL)
+not -P(ALL).
+```
+
+Entity `a` is the unique positive Fitting-Godlike individual, the distinguished `G` extension is `ONLY_A`, and both A1 directions hold. Full relevant exemplification consistency also holds. Nevertheless `COMP_P^G(adm)` fails because `ALL` contains the Godlike witness while its positivity status is `N`.
+
+The model still satisfies:
+
+```text
+GodlikeIndiscernibilityAdm
+G realization
+current-G extensional essence of a
+NE realization
+A5+
+de-re possible current-G exemplification
+de-re necessary current-G exemplification.
+```
+
+Therefore
+
+\[
+\boxed{
+COMP_P^G(adm)
+\text{ is not globally necessary for the current Fitting essence/NE conclusion.}
+}
+\]
+
+What fails is only the earlier classification-based recovery route.
+
+The regression is implemented in:
+
+```text
+formal/finite/gate8_fitting_comp.py
+```
+
+---
+
+## 7. Bilateral `STAB_G` is stronger than the positive theorem needs
 
 The earlier de-dicto theorem used full bilateral extension stability:
 
@@ -146,7 +266,7 @@ positive persistence:
   frozen de-re necessity -> de-dicto necessity
 ```
 
-Thus the minimized positive theorem is
+Thus the minimized classification-route theorem is
 
 \[
 \boxed{
@@ -164,11 +284,13 @@ Thus the minimized positive theorem is
 \end{aligned}}
 \]
 
-No negative-extension stability and no S4/S5 frame property occurs in this theorem.
+The alternative indiscernibility route reaches the same de-dicto target with `Ind_G^{adm}` replacing the entire `A1-L + COMP + NegCons` block.
+
+No negative-extension stability and no S4/S5 frame property occurs in either theorem.
 
 ---
 
-## 5. Strictness of positive-only stability
+## 8. Strictness of positive-only stability
 
 A complete two-world S5 finite fixture separates the stability notions while retaining a strong control stack.
 
@@ -208,40 +330,41 @@ formal/finite/gate8_fitting_minimality.py
 
 ---
 
-## 6. Current dependency picture
+## 9. Current dependency picture
 
-The admissible Fitting branch now has a more precise spine:
+The admissible Fitting branch now has two machine-checked essence/NE routes:
 
 ```text
-A1-L
-+ COMP_P^G(adm)
-+ consistency only if pNeg(Y)
-        |
-        v
-extensional G-as-essence
-        |
-        v
-de-re possibility -> necessity
-        |
-        |  positive G reflection/persistence only
-        v
-de-dicto possibility -> necessity
+classification route:
+  A1-L
+  + COMP_P^G(adm)
+  + consistency only if pNeg(Y)
+          |
+          v
+  extensional G-as-essence
+
+indiscernibility route:
+  admissible-property indiscernibility of Godlike individuals
+          |
+          v
+  extensional G-as-essence
 ```
 
-Restoring `A1-R` closes one of these savings by reconstructing full relevant exemplification consistency. It does **not** restore the need for negative `G`-extension stability in the positive de-dicto theorem.
+Both feed the same frame-free de-re necessary-existence architecture. Positive `G` reflection/persistence then provides the current de-dicto bridge.
 
-This makes the A1 split productive again inside the Fitting comparison: the left channel drives the recovery proof, while the right channel strengthens the surrounding theory enough to erase one local weakening.
+Restoring `A1-R` closes one saving inside the classification route by reconstructing full relevant exemplification consistency. It does not make `COMP` globally necessary, because the indiscernibility route bypasses positivity classification altogether.
 
 ---
 
-## 7. Open questions
+## 10. Open questions
 
-The next principled minimization questions are:
+The next principled questions are:
 
-1. can `COMP_P^G(adm)` itself be weakened without simply postulating the desired reflection conclusion;
-2. can positive persistence or positive reflection be derived from other Fitting assumptions rather than assumed symmetrically as `STAB_G^+`;
-3. which closure principles on `Adm` interact with these reductions;
-4. whether the same A1-sensitive phenomenon survives paired-neighborhood semantics;
-5. whether a source-grounded Fitting reconstruction should retain both A1 directions in the four-valued candidate or treat the A1-L recovery route independently.
+1. whether `GodlikeIndiscernibilityAdm` follows from a more independently motivated property-domain principle or should remain only a control alternative;
+2. whether there are weaker non-classificatory conditions between indiscernibility and the direct essence conclusion;
+3. whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed as `STAB_G^+`;
+4. which closure principles on `Adm` interact with the two recovery routes;
+5. whether the same route separation survives paired-neighborhood semantics;
+6. whether a source-grounded Fitting reconstruction should retain both A1 directions in the four-valued candidate or treat the A1-L classification route independently.
 
-No claim is made that `REG_G^neg` or `STAB_G^+` is globally weakest.
+No claim is made that either recovery route is globally weakest.
