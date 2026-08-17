@@ -3,7 +3,7 @@
 
 This manuscript treats the G\"odel--Scott theory not merely as an object to be translated from two values to four, but as a controlled test case for locating informational dependencies that classical bivalence suppresses.
 
-By version 0.9 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
+By version 0.10 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
 
 Gate 6 identifies the sharper Scott bottleneck. A natural bilateral definition of essence recovers Scott D2 classically, but it does not make Godlikeness an essence automatically. Two explicit two-world S5 models satisfy the Gate-5 control conditions together with strong A1 and positive rigidity while refuting
 \[
@@ -69,22 +69,40 @@ The repaired candidate introduces a selected domain \(Adm\) of admissible extens
 \]
 with no positivity-rigidity premise. This is a genuine structural difference from the current Scott-support recovery route: extensional necessary entailment operates on rigid extensions, so positivity need not be transported to each accessible world.
 
+Gate 8 then minimizes this Fitting route further. Full relevant exemplification consistency is stronger than the A1-L proof itself requires: it is sufficient to demand consistency only when positivity completeness classifies the currently possessed extension negatively. Writing this targeted condition as \(NegCons_{G,F}^{adm}\), Lean proves
+\[
+  A1_{L,F}^{adm}
+  +COMP_{P,F}^{G,adm}
+  +NegCons_{G,F}^{adm}
+  \Longrightarrow
+  G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w).
+\]
+A finite glut model separates the targeted condition from full consistency on the A1-L-only route. The weakening is itself A1-sensitive: restoring \(A1_R\) allows Lean to reconstruct full relevant exemplification consistency from positivity completeness plus \(NegCons_{G,F}^{adm}\). Thus the two A1 channels again have distinct structural roles even inside the Fitting comparison.
+
 The admissible bilateral negative clauses also recover classically. Lean proves complementary recovery for extensional entailment, Godlikeness, essence, necessary actual exemplification, and necessary existence under classical coherence of the selected extensions. Thus the repair is not merely a positive-fragment construction.
 
-The Fitting necessary-existence branch then separates de re from de dicto explicitly. Freezing the current \(G\)-extension yields a frame-free theorem:
+The Fitting necessary-existence branch separates de re from de dicto explicitly. Freezing the current \(G\)-extension yields a frame-free theorem:
 \[
   \text{admissible Fitting stack}
   +\Diamond_{de\,re}^+\exists^E x\,ext_wG(x)
   \Longrightarrow
   \Box_{de\,re}^+\exists^E x\,ext_wG(x).
 \]
-No reflexivity, symmetry, transitivity, seriality, or \(R^+\) premise is used. To pass to the de-dicto reading, in which \(G\) is re-evaluated at accessible worlds, I make the bridge explicit:
-\[
-  STAB_G:\qquad wRz\Rightarrow ext_wG\equiv ext_zG.
-\]
-With this stability condition the de-dicto possible-to-necessary theorem is also machine-checked without an S4 or S5 frame premise. A three-world model shows why the distinction matters: de-re necessity and de-dicto possibility hold at the root while de-dicto necessity fails exactly where \(G\)'s extension drifts.
+No reflexivity, symmetry, transitivity, seriality, or \(R^+\) premise is used.
 
-Finally, the admissible Fitting candidate admits the same qualitative anti-collapse phenomenon as the Anderson candidate. A complete two-world S5 model satisfies the encoded Fitting stack, extension stability, and positive necessary actual Godlikeness while a contingent \(Q(a)\) refutes \(\MCp\). The admissible property domain in that model still contains genuine \(\Both\) information, so the result is not obtained by silently restoring global bivalence.
+The earlier de-dicto bridge used full bilateral extension stability. The minimized proof reveals that only positive membership in \(G\) matters. Let \(Pers_G^+\) preserve positive \(G\)-membership from the source of an accessibility edge to its target and let \(Refl_G^+\) reflect positive membership back from target to source. Their conjunction, \(STAB_G^+\), suffices for
+\[
+\begin{split}
+  &\text{minimized admissible Fitting stack}
+  +STAB_G^+
+  +\Diamond^+\exists^E x\,G_F(x)\\
+  &\qquad\Longrightarrow
+  \Box^+\exists^E x\,G_F(x),
+\end{split}
+\]
+again without an S4 or S5 frame premise. A complete-S5 finite fixture satisfies both A1 directions and even the older full regularity package while the positive \(G\)-extension is stable and the negative \(G\)-extension drifts. Positive necessary de-dicto Godlikeness still holds. Hence full bilateral \(STAB_G\) is genuinely stronger than the positive theorem needs.
+
+Finally, the admissible Fitting candidate admits the same qualitative anti-collapse phenomenon as the Anderson candidate. A complete two-world S5 model satisfies the encoded Fitting stack and positive necessary actual Godlikeness while a contingent \(Q(a)\) refutes \(\MCp\). The admissible property domain in that model still contains genuine \(\Both\) information, so the result is not obtained by silently restoring global bivalence.
 
 The comparative picture is therefore sharper than a hierarchy of stronger or weaker modal logics. Scott, Anderson, and Fitting distribute the decisive structure differently:
 \[
@@ -92,7 +110,7 @@ The comparative picture is therefore sharper than a hierarchy of stronger or wea
 \text{Scott support:} & \text{reflection recovery and }R^+\text{ precede }T2^+,\\
 \text{Anderson:} & \text{necessary exemplification is built into Godlikeness},\\
 \text{Fitting:} & \text{positivity/essence range over selected rigid extensions,}\\
-& \text{with de-dicto behavior controlled by extension stability.}
+& \text{with A1-sensitive recovery and positive-only de-dicto stability.}
 \end{array}
 \]
 The accessibility relation matters, but it is not the only place where modal strength enters the theory.
@@ -106,8 +124,13 @@ The main open questions now separate accordingly. For Scott:
 For Fitting:
 \[
   \boxed{
-  \text{Which principled closure conditions belong on }Adm,
-  \text{ and can }REG_G^{adm}\text{ or }STAB_G\text{ be weakened?}
+  \text{Can }COMP_P^{G,adm}\text{ be weakened, and can }Pers_G^+\text{ or }Refl_G^+\text{ be derived?}
+  }
+\]
+For the extensional domain:
+\[
+  \boxed{
+  \text{Which principled closure conditions, beyond FDE negation, should characterize }Adm?
   }
 \]
 For the comparison as a whole:
