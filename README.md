@@ -148,7 +148,7 @@ No reflexivity or transitivity premise is used. A reflexive-transitive but non-s
 
 ### Fitting
 
-The type foundation is recorded in `docs/FITTING_TYPES.md`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level minimization is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.1`.
+The type foundation is recorded in `docs/FITTING_TYPES.md`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level minimization is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.2`.
 
 Fitting distinguishes:
 
@@ -228,7 +228,7 @@ Lean proves the positive de-dicto possible-to-necessary theorem from `STAB_G^+`;
 
 A complete-S5 finite fixture keeps both A1 directions and the old full `REG_G^adm` while positive G-extension stability holds and bilateral G-extension stability fails. Necessary positive de-dicto Godlikeness still holds. Thus `STAB_G^+` is strictly weaker than full bilateral `STAB_G` for this positive theorem.
 
-#### A1-sensitive recovery minimization
+#### A1-sensitive classification route
 
 The extensional essence proof also needs less than full relevant exemplification consistency. Define a targeted condition requiring consistency only when a possessed admissible extension is classified negatively:
 
@@ -254,7 +254,34 @@ A1-R + RegGNegClassAdm => RegGAdm
 
 more precisely reconstructing full `CONS_G^G(adm)` from `A1-R`, positivity completeness, and the targeted consistency premise. A one-world glut fixture separates the targeted condition from full consistency on the A1-L-only route and intentionally fails `A1-R`.
 
-This makes the A1 split productive again inside Fitting: `A1-L` drives the minimized recovery proof, while restoring `A1-R` erases that local saving.
+#### Alternative recovery without `COMP`
+
+`COMP_P^G(adm)` turns out to be route-specific rather than globally necessary for the present Fitting essence/NE conclusion.
+
+The alternative Lean interface is admissible-property indiscernibility among positive Godlike individuals:
+
+```text
+GodlikeIndiscernibilityAdm:
+  Adm(Y)
+  + GodPlusAdm(w,x)
+  + GodPlusAdm(w,y)
+  -> (Y.pos(x) <-> Y.pos(y))
+```
+
+Lean proves:
+
+```text
+GAdmissible
++ GRealizationAdm
++ GodlikeIndiscernibilityAdm
+=> GodPlusAdm(x) -> EssPlusAdm(current G extension, x)
+```
+
+and the same route continues through frame-free de-re necessary existence. No A1 direction, `COMP_P^G(adm)`, or exemplification-consistency premise occurs.
+
+A one-world two-entity finite fixture makes the separation explicit. Both A1 directions and full relevant exemplification consistency hold, but the admissible universal extension contains the Godlike witness while its positivity status is `N`; therefore `COMP_P^G(adm)` fails. Godlike indiscernibility, current-G essence, NE realization, A5, and de-re necessary current-G exemplification nevertheless hold.
+
+This does not establish that indiscernibility is globally weaker than completeness. It establishes a different extensional recovery mechanism that bypasses positivity classification altogether.
 
 #### Necessary Godlikeness without modal collapse
 
@@ -284,6 +311,7 @@ python3 formal/finite/gate8_scott_frames.py
 python3 formal/finite/gate8_fitting.py
 python3 formal/finite/gate8_fitting_no_collapse.py
 python3 formal/finite/gate8_fitting_minimality.py
+python3 formal/finite/gate8_fitting_comp.py
 ```
 
 Lean:
@@ -298,17 +326,17 @@ The Lean package is pinned to Lean 4.30.0. GitHub Actions runs both formal track
 ## Research gates
 
 - **Gates 0–7:** complete for the original control theory.
-- **Gate 8:** in progress. Major comparative milestones are green; current frontier is weakening `COMP_P^G(adm)`, deriving one or both positive G-stability directions if possible, principled admissible-domain closure, and paired-neighborhood generalization.
+- **Gate 8:** in progress. Major comparative milestones are green; current frontier is principled grounding/minimization of the Godlike-indiscernibility route, deriving one or both positive G-stability directions if possible, principled admissible-domain closure, and paired-neighborhood generalization.
 - **Gate 9:** publication consolidation, prior-art audit, and exact source/HOL correspondence.
 
 ## Paper
 
 The living manuscript is in `paper/`.
 
-Current version after the Gate-8 Fitting minimality synchronization:
+Current version after the Gate-8 Fitting route-separation synchronization:
 
 ```text
-paper-v0.10
+paper-v0.11
 ```
 
 Build from `paper/` with:
@@ -335,7 +363,8 @@ latexmk -pdf main.tex
 │   │   ├── ...
 │   │   ├── gate8_fitting.py
 │   │   ├── gate8_fitting_no_collapse.py
-│   │   └── gate8_fitting_minimality.py
+│   │   ├── gate8_fitting_minimality.py
+│   │   └── gate8_fitting_comp.py
 │   └── lean/
 │       └── Goedel4PEL/GoedelScott/
 │           ├── FittingTypes.lean
@@ -344,7 +373,8 @@ latexmk -pdf main.tex
 │           ├── FittingAdmissibleRecovery.lean
 │           ├── FittingAdmissibleNecessaryExistence.lean
 │           ├── FittingMinimality.lean
-│           └── FittingMinimalityInteractions.lean
+│           ├── FittingMinimalityInteractions.lean
+│           └── FittingAlternativeRecovery.lean
 └── paper/
 ```
 
@@ -356,9 +386,9 @@ latexmk -pdf main.tex
 - silently identifying intensions and extensions;
 - globally banning gluts to make the Fitting branch work;
 - identifying project-specific bilateral clauses with unique historical readings;
-- claiming global minimality from theorem-local weakenings or bounded finite fixtures;
+- claiming global minimality from theorem-local weakenings, alternative recovery routes, or bounded finite fixtures;
 - claiming novelty before the dedicated Gate-9 audit.
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; Scott/Anderson frame results, admissible bilateral Fitting, and `fitting-minimality-v0.1` are green; manuscript baseline `paper-v0.10`.
+**Phase:** Gate 7 complete; Gate 8 in progress; Scott/Anderson frame results, admissible bilateral Fitting, and `fitting-minimality-v0.2` are green; manuscript baseline `paper-v0.11`.
