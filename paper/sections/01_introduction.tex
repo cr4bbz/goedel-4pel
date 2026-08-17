@@ -21,25 +21,34 @@ following the Belnap--Dunn/FDE tradition \cite{Belnap1977,Dunn1976}.
 The central research question is:
 
 \begin{question}[Bilateral rigidity and collapse]
-Under a four-valued bilateral modal semantics, which positive and negative components of the G\"odel--Scott positivity principles are necessary or sufficient for corresponding positive and negative components of modal collapse?
+Under a four-valued bilateral modal semantics, which positive and negative information flows in the G\"odel--Scott positivity principles are necessary or sufficient for corresponding universal positive and negative persistence conditions associated with modal collapse?
 \end{question}
 
-The first candidate decomposition is
+The informative collapse pair is
 \[
   \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi},
   \qquad
-  \MCm:\quad \neginfo{\chi}\Rightarrow\neginfo{\Box\chi},
+  \MCm:\quad \neginfo{\chi}\Rightarrow\pos{\Box\neg\chi},
 \]
-where \(\Rightarrow\) is a metalanguage condition rather than an object-language conditional. Likewise, Scott's rigidity axiom
+where \(\Rightarrow\) is a metalanguage condition rather than an object-language conditional. By bilateral modal duality, \(\MCm\) is equivalently \(\neginfo{\chi}\Rightarrow\neginfo{\Diamond\chi}\). The superficially tempting clause \(\neginfo{\chi}\Rightarrow\neginfo{\Box\chi}\) is not used: on reflexive frames it follows automatically and therefore does not express universal negative persistence.
+
+Scott's A1 is likewise decomposed not into redundant biconditional channels but into two directional information flows,
 \[
-  P(\varphi)\rightarrow\Box P(\varphi)
+  A1_L:\quad \neginfo{P(\varphi)}\Rightarrow\pos{P(\neg\varphi)},
 \]
-may admit distinct bilateral components \(\Rp\) and \(\Rm\).
+\[
+  A1_R:\quad \pos{P(\neg\varphi)}\Rightarrow\neginfo{P(\varphi)},
+\]
+while the direct positive-support content of A4 is
+\[
+  \Rp:\quad \pos{P(\varphi)}\Rightarrow\pos{\Box P(\varphi)}.
+\]
+Gate 3 shows that strong A1 together with \(\Rp\) already forces universal negative persistence of non-positivity, making A1 a genuine channel-coupling principle.
 
 The contribution sought is therefore not a ``stronger proof of God''. The intended contribution is a structural decomposition theorem, separation result, robustness result, or explanatory countermodel showing exactly how inconsistency and incompleteness alter the inferential architecture of the Scott theory.
 
 \paragraph{Methodological discipline.}
-The development proceeds conservatively. I freeze a classical Scott baseline, fix a standard four-valued propositional kernel, and then extend it with a bilateral Kripke modal control semantics before touching the G\"odel--Scott positivity axioms. The relational modal layer is also represented inside a paired-neighborhood framework, but non-principal neighborhood behavior is postponed so that modal-frame weakening does not confound the first rigidity/collapse experiment. Higher-order quantification and any four-valued object-language conditional remain separate design decisions.
+The development proceeds conservatively. I freeze a classical Scott baseline, fix a standard four-valued propositional kernel, and extend it with a bilateral Kripke modal control semantics before lifting the G\"odel--Scott positivity axioms. The relational modal layer is also represented inside a paired-neighborhood framework, but non-principal neighborhood behavior is postponed so that modal-frame weakening does not confound the first rigidity/collapse experiment. Higher-order quantification and any four-valued object-language conditional remain separate design decisions.
 
 \paragraph{Status of this manuscript.}
-Version 0.2 reports the frozen classical baseline, the propositional kernel, the bilateral modal control semantics, its paired-neighborhood representation, and the classical proof spine that motivates the later decomposition. The lifting of positivity and the resulting collapse analysis remain open.
+Version 0.3 reports the frozen classical baseline, propositional and modal semantics, the directional decomposition of A1, the direct and derived rigidity channels around A4, and local glut/gap obstructions to the classical reflection step from God-like exemplification to positivity. The full collapse classification and higher-order reconstruction remain open.
