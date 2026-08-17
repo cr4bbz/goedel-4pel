@@ -11,6 +11,7 @@ from gate7_search import (
     exhaustive_t2_assumption_minimality,
     validate_t1_glut_countermodel,
 )
+from gate8_compare import run_gate8_comparison
 
 
 class Gate7Tests(unittest.TestCase):
@@ -49,6 +50,9 @@ class Gate7Tests(unittest.TestCase):
             set(witnesses),
             {"A1-L", "R+", "COMP_P^G", "CONS_G^G"},
         )
+
+    def test_gate8_support_vs_exact_godlikeness(self):
+        self.assertTrue(run_gate8_comparison())
 
 
 if __name__ == "__main__":
