@@ -5,7 +5,7 @@ The classical proof structure already identifies a narrow pressure point for the
 \[
   G(x)@w,\; Z(x)@w
 \]
-forces \(P(Z)@w\): if \(Z\) were non-positive, A1 would make \(\neg Z\) positive, while D1 would then force the God-like \(x\) to exemplify \(\neg Z\), contradicting \(Z(x)\). A4 then yields \(\Box P(Z)\), and D1 propagates \(Z\) to God-like entities at accessible worlds. Thus the local spine is
+forces \(P(Z)@w\): if \(Z\) were non-positive, A1 would make \(\neg Z\) positive, while D1 would then force the God-like \(x\) to exemplify \(\neg Z\), contradicting \(Z(x)\). A4 then yields \(\Box P(Z)\), and D1 propagates \(Z\) to God-like entities at accessible worlds. Thus the local classical spine is
 \[
   G(x),Z(x)
   \xRightarrow{A1+D1} P(Z)
@@ -19,32 +19,64 @@ Substituting the constant-in-individuals property \(Z:=\lambda z.\chi\) embeds a
 \]
 The detailed dependency analysis is maintained in \texttt{docs/MODAL\_COLLAPSE\_SPINE.md}. This local structure is consonant with the recent machine-checked diagnosis that positivity rigidity, rather than ultrafilter structure alone, is a principal driver of collapse \cite{Benzmueller2026Collapse}.
 
-\subsection{Four-valued target}
+\subsection{Correct bilateral collapse targets}
+
+The positive persistence component remains
+\[
+  \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi}.
+\]
+
+The initially considered negative clause
+\[
+  \neginfo{\chi}\Rightarrow\neginfo{\Box\chi}
+\]
+is not a useful collapse condition on the fixed S5 frames. Since \(\neginfo{\Box\chi}\) means that some accessible world negatively supports \(\chi\), reflexivity makes this implication valid for every formula independently of Gödel--Scott.
+
+The informative negative component must instead express \emph{universal} persistence of negative support:
+\[
+  \MCm:\quad \neginfo{\chi}\Rightarrow\pos{\Box\neg\chi}.
+\]
+Using the bilateral box/diamond duality established in \cref{sec:modal}, this is equivalent to
+\[
+  \neginfo{\chi}\Rightarrow\neginfo{\Diamond\chi}.
+\]
+On the classical fragment, this is precisely the falsity-side counterpart of modal collapse: applying the classical schema \(\theta\rightarrow\Box\theta\) to \(\theta=\neg\chi\) yields persistence of falsity across all accessible worlds.
+
+\subsection{Gate-3 obstruction to the local classical bridge}
+
+The local reflection target
+\[
+  REF^+:\quad \pos{G(x)}\land\pos{Z(x)}\Rightarrow\pos{P(Z)}
+\]
+already fails under the minimal bilateral interface, even when strong A1 is assumed. The glut and gap counterassignments of \cref{sec:positivity} identify different reasons:
+
+\begin{itemize}
+  \item with a glut, the complement forced by A1 can coexist with \(Z(x)\), so the classical contradiction-elimination step disappears;
+  \item with a gap in positivity, the classical dichotomy between positive and non-positive properties is unavailable.
+\end{itemize}
+
+Consequently, the first collapse experiment cannot be parameterized by A1 and A4 alone. It must explicitly track whether the local reflection bridge is recovered, and if so by which consistency/completeness assumptions.
+
+\subsection{Revised Gate-4 target}
 
 \statusopen
 
-The first target is to separate
+The earlier four-switch matrix \((A1^+,A1^-,R^+,R^-)\) is retired because two of its switches were not genuinely independent: the biconditional A1 channel schemas collapse into one another under substitution, while \(-P\Rightarrow-\Box P\) is reflexively trivial.
+
+The next experiment instead begins with the informative ingredients
 \[
-  \MCp:\quad \pos{\chi}\Rightarrow\pos{\Box\chi}
+  A1_L,\qquad A1_R,\qquad R^+,
 \]
-from
-\[
-  \MCm:\quad \neginfo{\chi}\Rightarrow\neginfo{\Box\chi}.
-\]
-The initial factorial experiment will vary four provisional switches
-\[
-  (A1^{+},A1^{-},\Rp,\Rm)
-\]
-while keeping the remaining background assumptions explicit. This gives sixteen basic configurations before varying the conditional, quantification policy, or modal frame.
+together with explicit structural conditions governing the local reflection step, such as positivity completeness and consistency of God-like exemplification. The outputs are the corrected \(\MCp\) and \(\MCm\).
 
 \begin{conjecture}[Bilateral separation]
 There is a natural four-valued lift of the Scott theory in which \(\MCp\) and \(\MCm\) are not equivalent.
 \end{conjecture}
 \statusconjectural
 
-\begin{conjecture}[Asymmetric rigidity dependence]
-The positive and negative components of positivity rigidity have different consequences for \(\MCp\) and \(\MCm\).
+\begin{conjecture}[A1-driven channel coupling]
+The two directional components of A1 play asymmetric roles in any derivation that couples \(\MCp\) and \(\MCm\), analogous to their established role in deriving negative positivity rigidity from \(R^+\).
 \end{conjecture}
 \statusconjectural
 
-Countermodels are first-class results: failure of either conjecture under a natural lifting would identify a hidden channel coupling and would therefore remain structurally informative.
+Countermodels remain first-class results: failure of either conjecture under a natural lifting would identify a hidden channel coupling and would therefore remain structurally informative.
