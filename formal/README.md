@@ -1,6 +1,6 @@
 # Formalization
 
-Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, and a substantive bilateral Fitting branch with theorem-level assumption reduction.
+Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, and a substantive bilateral Fitting branch with theorem-level assumption reduction and alternative recovery routes.
 
 The formal layer deliberately has two roles:
 
@@ -18,7 +18,8 @@ Gate 8 adds:
 - `gate8_frames.py` and `gate8_scott_frames.py` for non-symmetric S4 countermodels;
 - `gate8_fitting.py` for the admissible Fitting de-re/de-dicto separation;
 - `gate8_fitting_no_collapse.py` for a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse;
-- `gate8_fitting_minimality.py` for two strictness fixtures: targeted negative-classification consistency versus full consistency on the A1-L-only route, and positive-only G-extension stability versus full bilateral stability under a stronger S5 control stack.
+- `gate8_fitting_minimality.py` for two strictness fixtures: targeted negative-classification consistency versus full consistency on the A1-L-only route, and positive-only G-extension stability versus full bilateral stability under a stronger S5 control stack;
+- `gate8_fitting_comp.py` for a `COMP_P^G(adm)` separation fixture in which both A1 directions and full relevant consistency hold, positivity is genuinely gappy on a relevant admissible extension, and the alternative indiscernibility route still yields essence and necessary existence.
 
 Run from the repository root:
 
@@ -33,6 +34,7 @@ python3 formal/finite/gate8_scott_frames.py
 python3 formal/finite/gate8_fitting.py
 python3 formal/finite/gate8_fitting_no_collapse.py
 python3 formal/finite/gate8_fitting_minimality.py
+python3 formal/finite/gate8_fitting_comp.py
 ```
 
 ## Lean layer
@@ -57,6 +59,7 @@ Goedel4PEL/GoedelScott/FittingAdmissibleRecovery.lean
 Goedel4PEL/GoedelScott/FittingAdmissibleNecessaryExistence.lean
 Goedel4PEL/GoedelScott/FittingMinimality.lean
 Goedel4PEL/GoedelScott/FittingMinimalityInteractions.lean
+Goedel4PEL/GoedelScott/FittingAlternativeRecovery.lean
 ```
 
 ### Gate-7 control spine
@@ -179,6 +182,36 @@ A1-R + RegGNegClassAdm => RegGAdm
 
 more precisely reconstructing full `ConsGGAdm` from `A1-R`, positivity completeness, and the targeted consistency premise. Hence the reduction is genuine for the A1-L-only recovery route but not a global weakening of a theory that independently retains A1-R.
 
+### Fitting alternative recovery without positivity completeness
+
+The classification route uses `CompPGAdm` exactly to eliminate relevant positivity gaps. Rewriting its branch coverage as `not pPos -> pNeg` would not be a genuine weakening at the classical meta-level.
+
+`FittingAlternativeRecovery.lean` therefore introduces a different extensional mechanism:
+
+```text
+GodlikeIndiscernibilityAdm:
+  Adm(Y)
+  + GodPlusAdm(w,x)
+  + GodPlusAdm(w,y)
+  -> (Y.pos(x) <-> Y.pos(y))
+```
+
+Lean proves:
+
+```text
+GAdmissible
++ GRealizationAdm
++ GodlikeIndiscernibilityAdm
+--------------------------------
+GodPlusAdm(x) => EssPlusAdm(current G extension, x)
+```
+
+No A1 direction, `CompPGAdm`, or consistency premise occurs. The same route continues through the frame-free de-re necessary-existence theorem, and with positive-only G stability through the positive de-dicto theorem.
+
+The finite `gate8_fitting_comp.py` fixture shows that this is a genuine route separation. Both A1 directions and full relevant consistency hold, but the universal admissible extension is a positivity gap while containing the positive Godlike witness. Thus `CompPGAdm` fails. Nevertheless Godlike indiscernibility, current-G essence, NE realization, A5, and de-re necessary current-G exemplification all hold.
+
+This establishes that `CompPGAdm` is not globally necessary for the present Fitting essence/NE conclusion. It does not establish that Godlike indiscernibility is globally weaker than completeness; the two assumptions constrain different semantic interfaces.
+
 ### Fitting positive-only de-dicto stability
 
 The positive de-dicto theorem uses only positive G-membership transport. Lean separates:
@@ -196,20 +229,7 @@ full bilateral G-extension stability
 => positive-only G stability
 ```
 
-as well as the minimized theorem:
-
-```text
-GAdmissible
-+ GRealizationAdm
-+ A1LAdm
-+ RegGNegClassAdm
-+ NE realization
-+ A5+
-+ GPosStableAlongRAdm
-+ de-dicto possible actual Godlikeness
---------------------------------------
-  de-dicto necessary actual Godlikeness
-```
+as well as positive de-dicto possibility-to-necessity for both the classification and indiscernibility recovery routes.
 
 No negative-extension stability and no S4/S5 frame property is required.
 
@@ -228,7 +248,7 @@ lake build
 
 ## CI and discipline
 
-GitHub Actions runs both finite regressions and `lake build`. The Fitting minimization theorems and both strictness fixtures are part of the root build/regression suite.
+GitHub Actions runs both finite regressions and `lake build`. The Fitting minimization theorems, the alternative recovery route, and all separation fixtures are part of the root build/regression suite.
 
 Finite searches and fixtures are always reported with their exact bounds. General claims are promoted to machine-checked status only when represented by Lean theorems.
 
@@ -236,7 +256,7 @@ Finite searches and fixtures are always reported with their exact bounds. Genera
 
 The main remaining work is:
 
-1. weaken `CompPGAdm` without merely postulating the desired reflection conclusion;
+1. determine whether `GodlikeIndiscernibilityAdm` follows from a more independently motivated property-domain condition or can itself be weakened;
 2. determine whether positive persistence or positive reflection follows from other principled Fitting assumptions;
 3. justify additional closure conditions for the admissible extension domain;
 4. rerun selected Scott/Anderson/Fitting results over paired-neighborhood semantics;
