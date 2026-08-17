@@ -1,28 +1,132 @@
 \section{Four-Valued Modal Semantics}
 \label{sec:modal}
 
-\statusopen
+\statusestablished
 
-This section is the dependency of Gate 2 and is intentionally not frozen in version 0.1. The first conservative candidate is a relational bilateral Kripke semantics in which
+The modal layer is fixed in two stages. For the first G\"odel--Scott decomposition experiments I use a conservative bilateral Kripke semantics as a control. I then represent this semantics inside a paired-neighborhood framework that can later be generalized without changing the four-valued propositional kernel. This separates two possible sources of non-classical behavior: four-valued information and non-Kripke modal structure.
+
+\subsection{Relational control semantics}
+
+Let \(\mathcal F=(W,R)\) be a Kripke frame. Positive and negative satisfaction for necessity are defined by
 \[
   w\models^{+}\Box\varphi
-  \quad\text{iff}\quad
+  \quad\Longleftrightarrow\quad
   \forall v\,(wRv\Rightarrow v\models^{+}\varphi),
 \]
-and
 \[
   w\models^{-}\Box\varphi
-  \quad\text{iff}\quad
+  \quad\Longleftrightarrow\quad
   \exists v\,(wRv\land v\models^{-}\varphi).
 \]
-A corresponding treatment of \(\Diamond\) must be stated independently rather than assumed by classical duality.
+Possibility uses the converse quantifier pattern:
+\[
+  w\models^{+}\Diamond\varphi
+  \quad\Longleftrightarrow\quad
+  \exists v\,(wRv\land v\models^{+}\varphi),
+\]
+\[
+  w\models^{-}\Diamond\varphi
+  \quad\Longleftrightarrow\quad
+  \forall v\,(wRv\Rightarrow v\models^{-}\varphi).
+\]
+These clauses belong to the established family of Belnap--Dunn modal semantics \cite{OdintsovWansing2010,RivieccioJungJansana2017}; recent work also develops an S5-based four-valued setting for essence and accident modalities \cite{Petrukhin2026}.
 
-The relational candidate will be compared with a neighborhood-style formulation before either is adopted as the project semantics. Four-valued modal logics with Belnapian truth values already have substantial semantic and proof-theoretic literature \cite{OdintsovWansing2010,RivieccioJungJansana2017}, and recent work develops an S5-based four-valued treatment of essence and accident modalities \cite{Petrukhin2026}. The purpose of Gate 2 is therefore not to reinvent four-valued modality, but to determine which established or conservative modal lift best exposes the later G\"odel--Scott decomposition.
+\begin{proposition}[Bilateral modal duality]
+Under the relational clauses,
+\[
+  \Diamond\varphi\equiv\neg\Box\neg\varphi
+  \qquad\text{and}\qquad
+  \Box\varphi\equiv\neg\Diamond\neg\varphi
+\]
+hold at both positive and negative satisfaction levels.
+\end{proposition}
+\begin{proof}
+For example,
+\begin{align*}
+  w\models^{+}\neg\Box\neg\varphi
+  &\Longleftrightarrow w\models^{-}\Box\neg\varphi\\
+  &\Longleftrightarrow \exists v\,(wRv\land v\models^{-}\neg\varphi)\\
+  &\Longleftrightarrow \exists v\,(wRv\land v\models^{+}\varphi)\\
+  &\Longleftrightarrow w\models^{+}\Diamond\varphi.
+\end{align*}
+The remaining signed equivalences are analogous.
+\end{proof}
 
-\begin{question}
-Under what conditions does the modal lift recover classical \(\Box\) and \(\Diamond\) on the \(\{\True,\False\}\) fragment?
-\end{question}
+\begin{proposition}[Classical recovery of the relational modal fragment]
+If atomic valuations are restricted to \(\{\True,\False\}\), then formulas generated with \(\neg,\land,\lor,\Box,\Diamond\) remain in \(\{\True,\False\}\), and the signed modal clauses coincide with ordinary Kripke semantics.
+\end{proposition}
+\begin{proof}
+The propositional step is established in \cref{sec:kernel}. For a classically valued formula \(\varphi\), positive and negative satisfaction are complementary at every world. Hence \(\Box\varphi\) is positively satisfied exactly when every accessible world positively satisfies \(\varphi\), and negatively satisfied exactly when some accessible world negatively satisfies it. Exactly one of these conditions holds. The diamond case is dual.
+\end{proof}
 
-\begin{question}
-Which dualities between necessity, possibility, and negation survive in the presence of \(\Both\) and \(\Neither\)?
-\end{question}
+If \(R\) is an equivalence relation, the classical fragment therefore recovers the S5 environment used as the Scott control setting.
+
+\subsection{Modal aggregation of gluts and gaps}
+
+The signed quantifier pattern retains the full four-valued range. For \(\Box\varphi\), value \(\Both\) occurs when every accessible world positively supports \(\varphi\) while at least one also negatively supports it; value \(\Neither\) occurs when positive support fails at some accessible world while negative support occurs nowhere. Dually, \(\Diamond\varphi=\Both\) when positive support occurs somewhere and negative support occurs everywhere, while \(\Diamond\varphi=\Neither\) when positive support occurs nowhere and negative support fails somewhere.
+
+Thus modalization does not erase the distinction between inconsistency and incompleteness.
+
+\subsection{Paired-neighborhood representation}
+
+For a formula \(\varphi\), write
+\[
+  \llbracket\varphi\rrbracket^{+}
+  =\{w\in W\mid w\models^{+}\varphi\},
+  \qquad
+  \llbracket\varphi\rrbracket^{-}
+  =\{w\in W\mid w\models^{-}\varphi\}.
+\]
+At each world introduce two families \(\mathcal U_w,\mathcal H_w\subseteq\mathcal P(W)\), interpreted provisionally by their modal roles: \(\mathcal U\) is a universal/core family and \(\mathcal H\) a hit/witness family. Define
+\begin{align*}
+  w\models^{+}\Box\varphi
+  &\Longleftrightarrow \llbracket\varphi\rrbracket^{+}\in\mathcal U_w,
+  &
+  w\models^{-}\Box\varphi
+  &\Longleftrightarrow \llbracket\varphi\rrbracket^{-}\in\mathcal H_w,\\
+  w\models^{+}\Diamond\varphi
+  &\Longleftrightarrow \llbracket\varphi\rrbracket^{+}\in\mathcal H_w,
+  &
+  w\models^{-}\Diamond\varphi
+  &\Longleftrightarrow \llbracket\varphi\rrbracket^{-}\in\mathcal U_w.
+\end{align*}
+The crosswise use of the two families preserves the same bilateral box/diamond duality for arbitrary \(\mathcal U\) and \(\mathcal H\).
+
+Every relational frame canonically induces such a pair by
+\[
+  \mathcal U^R_w
+  :=\{X\subseteq W\mid R[w]\subseteq X\},
+\]
+\[
+  \mathcal H^R_w
+  :=\{X\subseteq W\mid R[w]\cap X\neq\varnothing\}.
+\]
+
+\begin{proposition}[Relational representation]
+The paired-neighborhood semantics induced by \(\mathcal U^R,\mathcal H^R\) agrees exactly with the relational bilateral semantics at both signed satisfaction levels.
+\end{proposition}
+\begin{proof}
+Immediate from the definitions: membership in \(\mathcal U^R_w\) is exactly universal coverage of \(R[w]\), while membership in \(\mathcal H^R_w\) is exactly nonempty intersection with \(R[w]\).
+\end{proof}
+
+This establishes a hierarchy rather than a competition between Kripke and neighborhood semantics. The relational control model is a principal paired-neighborhood model.
+
+\subsection{Classical recovery beyond relational frames}
+
+For arbitrary paired neighborhoods, modalization may itself turn classically valued input into \(\Both\) or \(\Neither\). To preserve classical bivalence impose the complement-duality condition
+\[
+  X\in\mathcal U_w
+  \quad\Longleftrightarrow\quad
+  W\setminus X\notin\mathcal H_w.
+\]
+If \(\varphi\) is classical-valued, then
+\[
+  \llbracket\varphi\rrbracket^{-}
+  =W\setminus\llbracket\varphi\rrbracket^{+},
+\]
+so the condition guarantees that exactly one signed clause for \(\Box\varphi\) holds, and likewise for \(\Diamond\varphi\). Every relationally induced pair satisfies this condition.
+
+\paragraph{Experimental decision.}
+For Gates 3--4 I keep the S5 relational control semantics fixed. This makes any later separation of \(\MCp\) and \(\MCm\) attributable to the bilateral lifting of G\"odel--Scott positivity rather than to a simultaneous weakening of modal structure. Non-principal and non-complement-dual neighborhood models will be introduced only as a second experimental axis after the local rigidity/collapse map has been established.
+
+The full Gate-2 specification is maintained in \texttt{docs/MODAL\_LIFT.md}.
