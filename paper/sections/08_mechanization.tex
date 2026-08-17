@@ -3,29 +3,34 @@
 
 \statusopen
 
-The semantic reconstruction is now sufficiently stable for a dedicated mechanization phase. Gate 7 should no longer treat formalization as a generic future task; it has a concrete verification target centered on the Gate-6 T2 obstruction.
+Gate 7 has begun with two complementary verification layers. A finite-model oracle records concrete countermodels and bounded exhaustive searches, while Lean is reserved for general semantic theorems that should not depend on a finite bound. This separation prevents the absence of a small countermodel from being mistaken for a proof.
 
-The minimum mechanization goals are:
-\begin{enumerate}[label=(M\arabic*)]
-  \item machine-check the propositional kernel, modal clauses, and classical recovery;
-  \item encode the actualist quantifier semantics, \(G\text{-sup-v0.1}\), \(Ess\text{-sup-v0.1}\), and \(NE\text{-sup-v0.1}\);
-  \item verify the directional A1 and rigidity results from Gates 3--4;
-  \item verify \(T1_T\) and its glut countermodel;
-  \item reproduce the two finite S5 countermodels to \(T2^+\), including the glut and gap variants;
-  \item prove the sufficient recovery theorem
-  \[
-    A1_L+R^++G\text{-sup-v0.1}+REG_G
-    \Rightarrow T2^+;
-  \]
-  \item prove the conditional positive T3 theorem and the implication \(T3^+\Rightarrow GW\);
-  \item prove the essence-compressed modal-collapse theorem
-  \[
-    T2^++T3^++CONST\Rightarrow\MCp;
-  \]
-  \item verify end-to-end classical recovery of the reconstructed Scott branch;
-  \item search finite models systematically for weaker substitutes for \(COMP_P^G\) and \(CONS_G^G\).
-\end{enumerate}
+\subsection{Finite-model regression layer}
 
-The mechanization should distinguish two tasks. Lean is appropriate for the semantic definitions, recovery theorems, and dependency proofs. A small exhaustive finite-model checker may be more efficient for countermodel minimization and assumption-lattice search. Results should be cross-checked where feasible rather than relying on a single implementation path.
+The executable checker currently implements the four information values, involutive FDE negation, finite S5 accessibility, actualist existence, four-valued property extensions and positivity, semantic necessary entailment, support-based Godlikeness, positive essence, and the Gate-6 regularity conditions.
 
-The repository treats a minimal countermodel as a result rather than as a failed proof attempt. In particular, the Gate-6 glut and gap models should become regression fixtures: any later change of semantics that makes them disappear must identify exactly which new assumption excludes them.
+The first regression suite machine-checks both two-world T2 countermodels from Gate 6. The glut model satisfies the encoded Gate-5 control stack and \(COMP_P^G\) but violates \(CONS_G^G\), while the gap model satisfies the same control stack and \(CONS_G^G\) but violates \(COMP_P^G\). Both refute \(T2^+\).
+
+A bounded exhaustive search over the complete currently generated two-world, one-entity \(G,Z\) fragment retains 204 models satisfying strong A1, positive rigidity, support-based Godlikeness, and \(REG_G\). Every retained model satisfies \(T2^+\). This is a regression result for that explicitly bounded model class, not a substitute for the general semantic proof.
+
+The checker also exposed a useful typing distinction in the collapse result. The statement
+\[
+  \MCp\leftrightarrow\MCm
+\]
+is an equivalence of schemata closed under substitution by negation; it is not a pointwise identity for one isolated formula valuation. The finite regression therefore carries a negation-closed formula family and checks all 16 two-world assignments to its generator.
+
+\subsection{Lean layer}
+
+The Lean package is pinned to Lean 4.30.0. Its first modules formalize the four-valued carrier and FDE negation, including involution and the \(\True/\False\) swap with fixed points \(\Both\) and \(\Neither\). A separate analysis module states positive modal collapse and universal negative persistence as schemata over arbitrary worlds and formulas and proves their equivalence from bilateral negation and involution.
+
+The next Lean targets are the relational bilateral modal clauses, actualist quantification, semantic necessary entailment, support-based Godlikeness, and positive essence. The principal theorem target is a general formal proof of the Gate-6 implication
+\[
+  A1_L+R^++G\text{-sup}+REG_G\Longrightarrow T2^+,
+\]
+followed by the positive T3, witness-supply, and essence-compressed collapse theorems.
+
+\subsection{Verification discipline}
+
+The repository treats a minimal countermodel as a result rather than as a failed proof attempt. Conversely, every exhaustive finite search is reported with its exact model bound. General claims are promoted to machine-checked status only after a proof-assistant theorem or an equivalent unbounded verification argument is present.
+
+The executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks on repository updates.
