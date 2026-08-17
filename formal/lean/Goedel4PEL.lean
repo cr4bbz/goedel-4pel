@@ -17,6 +17,7 @@ import Goedel4PEL.GoedelScott.FittingAdmissibleRecovery
 import Goedel4PEL.GoedelScott.FittingAdmissibleNecessaryExistence
 import Goedel4PEL.GoedelScott.FittingMinimality
 import Goedel4PEL.GoedelScott.FittingMinimalityInteractions
+import Goedel4PEL.GoedelScott.FittingAlternativeRecovery
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2
 import Goedel4PEL.GoedelScott.T3Collapse
