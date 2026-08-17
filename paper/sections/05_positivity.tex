@@ -1,35 +1,110 @@
 \section{Bilateral Positivity}
 \label{sec:positivity}
 
-\statusopen
+\statusestablished
 
-The positivity predicate \(P\) is the central non-logical primitive of the Scott theory. In the four-valued reconstruction, statements of the form \(P(\varphi)\) may themselves carry positive and negative information independently.
+The positivity predicate \(P\) is the central non-logical primitive of the Scott theory. In the four-valued reconstruction, statements of the form \(P(\varphi)\) carry positive and negative information independently.
 
-Two classical axioms are immediate decomposition targets. Scott's A1,
+\subsection{Directional decomposition of A1}
+
+Scott's A1 is
 \[
-  \neg P(\varphi)\leftrightarrow P(\neg\varphi),
+  \neg P(\varphi)\leftrightarrow P(\neg\varphi).
 \]
-may conceal separate constraints connecting positive and negative information under property negation. Candidate components include
+A split into two biconditional channel schemas would be redundant: because property negation is involutive and A1 is a schema over all properties, substituting \(\neg\varphi\) for \(\varphi\) converts either biconditional into the other. I therefore decompose A1 by direction:
 \[
-  A1^{+}:\quad \pos{P(\neg\varphi)}\Leftrightarrow\neginfo{P(\varphi)},
+  A1_L:\quad \neginfo{P(\varphi)}\Rightarrow\pos{P(\neg\varphi)},
 \]
 \[
-  A1^{-}:\quad \neginfo{P(\neg\varphi)}\Leftrightarrow\pos{P(\varphi)}.
+  A1_R:\quad \pos{P(\neg\varphi)}\Rightarrow\neginfo{P(\varphi)}.
 \]
-Likewise A4,
+Here and below \(\Rightarrow\) remains a metalanguage implication.
+
+\begin{proposition}[Directional independence of A1]
+Neither \(A1_L\) nor \(A1_R\) semantically entails the other in the four-valued positivity semantics.
+\end{proposition}
+\begin{proof}
+For \(A1_L\) without \(A1_R\), let \(v(P(\varphi))=\True\) and \(v(P(\neg\varphi))=\Neither\). The antecedents of all \(A1_L\) instances on this property pair lack negative support, while the mirrored \(A1_R\) instance from \(\pos{P(\varphi)}\) to \(\neginfo{P(\neg\varphi)}\) fails. Conversely, let \(v(P(\varphi))=\False\) and \(v(P(\neg\varphi))=\Neither\). Then the \(A1_R\) antecedents lack positive support, whereas \(\neginfo{P(\varphi)}\) holds without \(\pos{P(\neg\varphi)}\), so \(A1_L\) fails.
+\end{proof}
+
+When both directions hold, strong bilateral A1 yields
+\[
+  \pos{P(\neg\varphi)}\Leftrightarrow\neginfo{P(\varphi)}
+\]
+and, by substitution,
+\[
+  \neginfo{P(\neg\varphi)}\Leftrightarrow\pos{P(\varphi)}.
+\]
+Thus
+\[
+  v(P(\neg\varphi))=\operatorname{swap}(v(P(\varphi))),
+\]
+so property negation exchanges \(\True\) and \(\False\) while preserving \(\Both\) and \(\Neither\).
+
+\subsection{A4 and informative negative rigidity}
+
+Scott's A4,
 \[
   P(\varphi)\rightarrow\Box P(\varphi),
 \]
-suggests the provisional rigidity components
+has the direct positive-support lifting
 \[
-  \Rp:\quad \pos{P(\varphi)}\Rightarrow\pos{\Box P(\varphi)},
+  \Rp:\quad \pos{P(\varphi)}\Rightarrow\pos{\Box P(\varphi)}.
 \]
-\[
-  \Rm:\quad \neginfo{P(\varphi)}\Rightarrow\neginfo{\Box P(\varphi)}.
-\]
-These are research candidates, not yet axioms of the final theory.
 
-\begin{conjecture}[Gap/glut asymmetry for positivity]
-Assignments \(P(\varphi)=\Both\) and \(P(\varphi)=\Neither\) propagate differently through Godlikeness and possible exemplification.
-\end{conjecture}
-\statusconjectural
+A previously considered negative clause,
+\[
+  \neginfo{P(\varphi)}\Rightarrow\neginfo{\Box P(\varphi)},
+\]
+is not informative on the fixed S5 control frames. By the bilateral modal clause, \(\neginfo{\Box\psi}\) merely requires some accessible world to negatively support \(\psi\); reflexivity makes the current world such a witness whenever \(\neginfo{\psi}\) already holds.
+
+The informative negative-persistence condition is instead
+\[
+  R^-_{\mathrm{nec}}:\quad
+  \neginfo{P(\varphi)}\Rightarrow\pos{\Box\neg P(\varphi)},
+\]
+equivalently
+\[
+  \neginfo{P(\varphi)}\Rightarrow\neginfo{\Diamond P(\varphi)}.
+\]
+
+\begin{proposition}[A1 couples the rigidity channels]
+Globally assuming \(A1_L\), \(A1_R\), and \(\Rp\) entails \(R^-_{\mathrm{nec}}\).
+\end{proposition}
+\begin{proof}
+Suppose \(\neginfo{P(\varphi)}\) at a world \(w\). By \(A1_L\), \(\pos{P(\neg\varphi)}\). Applying \(\Rp\) to \(\neg\varphi\) gives \(\pos{\Box P(\neg\varphi)}\), so every accessible world positively supports \(P(\neg\varphi)\). Global \(A1_R\) therefore makes every accessible world negatively support \(P(\varphi)\). By the bilateral box clause this is exactly \(\pos{\Box\neg P(\varphi)}\).
+\end{proof}
+
+This proposition is the first direct evidence that A1 is not merely a static complement axiom. In the presence of A4 it transfers modal persistence from the positive information channel into the negative one.
+
+\subsection{A local obstruction to classical positivity reflection}
+
+For the classical collapse spine it is useful to isolate the minimal support interface
+\[
+  D1^+:\quad \pos{G(x)}\land\pos{P(\varphi)}\Rightarrow\pos{\varphi(x)}.
+\]
+This is not yet the final four-valued definition of Godlikeness.
+
+The classical proof uses a local reflection move
+\[
+  G(x),Z(x)\Rightarrow P(Z).
+\]
+Its signed analogue would be
+\[
+  REF^+:\quad \pos{G(x)}\land\pos{Z(x)}\Rightarrow\pos{P(Z)}.
+\]
+Even strong A1 together with \(D1^+\) does not entail \(REF^+\).
+
+A glut counterassignment takes
+\[
+  v(Z(x))=\Both,\qquad v(P(Z))=\False,\qquad v(P(\neg Z))=\True.
+\]
+Strong A1 is respected, and \(D1^+\) requires positive support for \(\neg Z(x)\), equivalently negative support for \(Z(x)\), which the glut already supplies. Yet \(\pos{P(Z)}\) fails.
+
+A distinct gap counterassignment takes
+\[
+  v(Z(x))=\True,\qquad v(P(Z))=v(P(\neg Z))=\Neither.
+\]
+Strong A1 preserves the positivity gap, \(D1^+\) is silent, and again \(\pos{P(Z)}\) fails.
+
+These are local signed counterassignments to the proof interface, not yet full higher-order countermodels. They expose two different classical assumptions hidden in the ordinary reductio: consistency of the relevant exemplification and completeness of the relevant positivity information. Both dimensions will therefore be tracked explicitly in the collapse analysis.
