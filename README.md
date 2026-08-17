@@ -148,7 +148,7 @@ No reflexivity or transitivity premise is used. A reflexive-transitive but non-s
 
 ### Fitting
 
-The type foundation is recorded in `docs/FITTING_TYPES.md`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`.
+The type foundation is recorded in `docs/FITTING_TYPES.md`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level minimization is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.1`.
 
 Fitting distinguishes:
 
@@ -210,20 +210,55 @@ admissible Fitting stack
 
 No reflexivity, symmetry, transitivity, seriality, or `R+` is required.
 
-For de-dicto lifting the project keeps the additional resource explicit:
+For the positive de-dicto theorem, full bilateral extension stability is stronger than necessary. The minimized bridge is:
 
 ```text
-STAB_G:
-  w R z -> extensionAt G w equivalent to extensionAt G z
+GPosPersistsAlongRAdm:
+  w R z + positive membership in ext_w(G)
+  -> positive membership in ext_z(G)
+
+GPosReflectsAlongRAdm:
+  w R z + positive membership in ext_z(G)
+  -> positive membership in ext_w(G)
+
+STAB_G^+ := persistence + reflection
 ```
 
-With `STAB_G`, Lean proves de-dicto possible Godlikeness implies de-dicto necessary Godlikeness without an S4/S5 frame premise.
+Lean proves the positive de-dicto possible-to-necessary theorem from `STAB_G^+`; stability of the negative G-extension channel is not used.
 
-A three-world finite model separates the readings when `STAB_G` fails: de-re necessity and de-dicto possibility hold, but de-dicto necessity fails.
+A complete-S5 finite fixture keeps both A1 directions and the old full `REG_G^adm` while positive G-extension stability holds and bilateral G-extension stability fails. Necessary positive de-dicto Godlikeness still holds. Thus `STAB_G^+` is strictly weaker than full bilateral `STAB_G` for this positive theorem.
+
+#### A1-sensitive recovery minimization
+
+The extensional essence proof also needs less than full relevant exemplification consistency. Define a targeted condition requiring consistency only when a possessed admissible extension is classified negatively:
+
+```text
+NegClassConsistencyAdm:
+  Adm(Y) + GodPlusAdm(w,x) + Y.pos(x) + pNeg(w,Y)
+  -> not Y.neg(x)
+```
+
+Then
+
+```text
+RegGNegClassAdm := CompPGAdm + NegClassConsistencyAdm
+```
+
+is sufficient, together with `A1-L`, for the same admissible Fitting essence/NE route.
+
+The weakening is directional rather than absolute. Lean also proves:
+
+```text
+A1-R + RegGNegClassAdm => RegGAdm
+```
+
+more precisely reconstructing full `CONS_G^G(adm)` from `A1-R`, positivity completeness, and the targeted consistency premise. A one-world glut fixture separates the targeted condition from full consistency on the A1-L-only route and intentionally fails `A1-R`.
+
+This makes the A1 split productive again inside Fitting: `A1-L` drives the minimized recovery proof, while restoring `A1-R` erases that local saving.
 
 #### Necessary Godlikeness without modal collapse
 
-A second finite fixture uses a complete two-world S5 frame, satisfies the encoded admissible Fitting stack and `STAB_G`, and has positive necessary actual Godlikeness. Its selected extension domain contains genuine `B` information. Nevertheless a contingent intension satisfies:
+A separate finite fixture uses a complete two-world S5 frame, satisfies the encoded admissible Fitting stack, and has positive necessary actual Godlikeness. Its selected extension domain contains genuine `B` information. Nevertheless a contingent intension satisfies:
 
 ```text
 +Q(a) @ w0
@@ -248,6 +283,7 @@ python3 formal/finite/gate8_frames.py
 python3 formal/finite/gate8_scott_frames.py
 python3 formal/finite/gate8_fitting.py
 python3 formal/finite/gate8_fitting_no_collapse.py
+python3 formal/finite/gate8_fitting_minimality.py
 ```
 
 Lean:
@@ -262,17 +298,17 @@ The Lean package is pinned to Lean 4.30.0. GitHub Actions runs both formal track
 ## Research gates
 
 - **Gates 0–7:** complete for the original control theory.
-- **Gate 8:** in progress. Major comparative milestones are green; current frontier is assumption minimization for `REG_G^adm`, principled admissible-domain closure, weakening `STAB_G`, and paired-neighborhood generalization.
+- **Gate 8:** in progress. Major comparative milestones are green; current frontier is weakening `COMP_P^G(adm)`, deriving one or both positive G-stability directions if possible, principled admissible-domain closure, and paired-neighborhood generalization.
 - **Gate 9:** publication consolidation, prior-art audit, and exact source/HOL correspondence.
 
 ## Paper
 
 The living manuscript is in `paper/`.
 
-Current version after the Gate-8 Fitting synchronization:
+Current version after the Gate-8 Fitting minimality synchronization:
 
 ```text
-paper-v0.9
+paper-v0.10
 ```
 
 Build from `paper/` with:
@@ -292,19 +328,23 @@ latexmk -pdf main.tex
 │   ├── ANDERSON_BILATERAL.md
 │   ├── FRAME_MINIMIZATION.md
 │   ├── FITTING_TYPES.md
-│   └── FITTING_BILATERAL.md
+│   ├── FITTING_BILATERAL.md
+│   └── FITTING_MINIMALITY.md
 ├── formal/
 │   ├── finite/
 │   │   ├── ...
 │   │   ├── gate8_fitting.py
-│   │   └── gate8_fitting_no_collapse.py
+│   │   ├── gate8_fitting_no_collapse.py
+│   │   └── gate8_fitting_minimality.py
 │   └── lean/
 │       └── Goedel4PEL/GoedelScott/
 │           ├── FittingTypes.lean
 │           ├── FittingSemantics.lean
 │           ├── FittingAdmissible.lean
 │           ├── FittingAdmissibleRecovery.lean
-│           └── FittingAdmissibleNecessaryExistence.lean
+│           ├── FittingAdmissibleNecessaryExistence.lean
+│           ├── FittingMinimality.lean
+│           └── FittingMinimalityInteractions.lean
 └── paper/
 ```
 
@@ -316,8 +356,9 @@ latexmk -pdf main.tex
 - silently identifying intensions and extensions;
 - globally banning gluts to make the Fitting branch work;
 - identifying project-specific bilateral clauses with unique historical readings;
+- claiming global minimality from theorem-local weakenings or bounded finite fixtures;
 - claiming novelty before the dedicated Gate-9 audit.
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; Scott/Anderson frame results and the admissible bilateral Fitting milestone are green; manuscript baseline `paper-v0.9`.
+**Phase:** Gate 7 complete; Gate 8 in progress; Scott/Anderson frame results, admissible bilateral Fitting, and `fitting-minimality-v0.1` are green; manuscript baseline `paper-v0.10`.
