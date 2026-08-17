@@ -2,13 +2,27 @@
 
 ## Phase A — Semantics before proof automation
 
-- [ ] Freeze the exact Scott baseline.
-- [ ] Fix notation for positive/negative satisfaction.
-- [ ] Fix the four information values and designated values.
-- [ ] Choose the consequence relation.
-- [ ] Define propositional connectives.
+- [x] Freeze the exact Scott baseline.
+- [x] Fix notation for positive/negative satisfaction.
+- [x] Fix the four information values and designated values.
+- [x] Choose the consequence relation.
+- [x] Define propositional connectives.
 - [ ] Define `□` and `◇` in positive/negative channels.
-- [ ] State the classical-recovery fragment.
+- [x] State the classical-recovery fragment.
+
+### Gate 1 status
+
+The propositional kernel is frozen as `kernel-v0.1` in `docs/FOUR_VALUED_KERNEL.md`.
+
+The kernel deliberately does **not** adopt an object-language four-valued implication. Signed `+/-` propagation principles remain metalanguage constraints until the later Gödel–Scott axiom-lifting stage determines which conditional behavior is actually required.
+
+Remaining implementation checks for Gate 1 are deferred to the mechanization workflow:
+
+- [ ] machine-readable evaluator reproduces all four-valued tables;
+- [ ] paraconsistency/paracompleteness countermodels are machine checked;
+- [ ] classical propositional recovery is machine checked.
+
+These checks do not block Gate 2 semantic design.
 
 ## Phase B — The key experiment
 
