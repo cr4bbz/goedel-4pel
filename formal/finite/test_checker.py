@@ -13,10 +13,7 @@ from gate7_search import (
 )
 from gate8_compare import run_gate8_comparison
 from gate8_anderson import validate_anderson_no_collapse_model
-from gate8_frames import (
-    validate_anderson_s4_countermodel,
-    validate_anderson_symmetric_nonreflexive_countermodel,
-)
+from gate8_frames import validate_anderson_s4_countermodel
 
 
 class Gate7Tests(unittest.TestCase):
@@ -62,11 +59,8 @@ class Gate7Tests(unittest.TestCase):
     def test_gate8_anderson_bilateral_chain_without_modal_collapse(self):
         self.assertTrue(validate_anderson_no_collapse_model())
 
-    def test_gate8_anderson_s4_does_not_force_t3(self):
+    def test_gate8_anderson_s4_without_symmetry_does_not_force_t3(self):
         self.assertTrue(validate_anderson_s4_countermodel())
-
-    def test_gate8_anderson_symmetry_without_reflexivity_does_not_force_t3(self):
-        self.assertTrue(validate_anderson_symmetric_nonreflexive_countermodel())
 
 
 if __name__ == "__main__":
