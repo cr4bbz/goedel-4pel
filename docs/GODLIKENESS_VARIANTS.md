@@ -3,13 +3,13 @@
 ## Status
 
 **Gate:** 8 — Comparative variants  
-**Version:** `variants-v0.1`  
-**First comparison:** `G-sup-v0.1` versus project-internal `G-exact+`  
+**Version:** `variants-v0.2`  
+**Comparisons:** `G-sup-v0.1`, project-internal `G-exact+`, and a literature-grounded positive Anderson interface  
 **Verification:** Lean 4.30.0 + executable finite regressions
 
 Gate 8 changes one semantic design dimension at a time while retaining the Gate-7 S5 control infrastructure.
 
-The first comparison deliberately uses a project-internal exactness candidate. It is **not** identified with Anderson's or Fitting's published variants. Literature correspondence is a separate Gate-8 task.
+The project-internal exactness candidate remains distinct from the literature variants. The Anderson comparison is now source-grounded in Benzmüller and Fuenmayor's computer-supported reconstruction of Anderson's emendation and the corresponding AFP development `Types_Tableaus_and_Goedels_God`.
 
 ---
 
@@ -108,7 +108,7 @@ This is the principal structural difference from `G-sup-v0.1`.
 
 ---
 
-## 5. Gate-8 T2 theorem
+## 5. Gate-8 exact-positive T2 theorem
 
 Define the exact positive T2 target:
 
@@ -225,29 +225,198 @@ This blocks a misleading interpretation of the T2 theorem as a disguised return 
 
 ---
 
-## 8. Current interpretation
+## 8. Literature-grounded Anderson control
 
-Gate 6 located the T2 obstruction in glut/gap failures of the reflection move under support-based Godlikeness.
+Benzmüller and Fuenmayor's reconstruction of Anderson's emendation uses the classical definitions
 
-Gate 8 now shows that the obstruction is **definition-sensitive**:
+\[
+G_Ax\equiv
+\forall Y\,\bigl(P(Y)\leftrightarrow\Box Y(x)\bigr)
+\]
+
+and
+
+\[
+E_A(Y,x)\equiv
+\forall Z\,\bigl(
+\Box Z(x)
+\leftrightarrow
+\Box\forall^E z\,(Y(z)\to Z(z))
+\bigr).
+\]
+
+The same presentation drops Scott's second A1 direction, retains A2 and A4, directly postulates positivity of `G_A` under the label `T2`, and adapts necessary existence accordingly. Its intended necessary-existence result survives while modal collapse is countersatisfiable in a two-world / one-entity model.
+
+This nomenclature matters: Anderson's premise labelled `T2` is **not** Scott's theorem `G(x) -> G Ess. x`.
+
+### Positive four-valued interface
+
+To avoid silently choosing a four-valued object-language biconditional, the repository splits Anderson's Godlikeness into two meta-level directions:
 
 ```text
-G-sup   leaves positive reflection to be derived later;
-G-exact embeds positive reflection in Godlikeness itself.
+GA-forward:
+  +P(phi) => +Box phi(x)
+
+GA-backward:
+  +Box phi(x) => +P(phi)
 ```
 
-Therefore the T2 bottleneck should not be described as an unavoidable consequence of four-valued essence semantics. It is a consequence of the interaction between essence and the chosen informational strength of Godlikeness.
+where `+Box phi(x)` means positive exemplification of the fixed individual `x` at every accessible world and is deliberately not guarded by actual existence.
 
-This is a comparative theorem, not an argument that `G-exact+` is philosophically preferable.
+Likewise Anderson essence is split into:
+
+```text
+EA-forward:
+  +Box psi(x) => NEnt+_E(phi, psi)
+
+EA-backward:
+  NEnt+_E(phi, psi) => +Box psi(x)
+```
+
+This preserves the source-level distinction between the possibilist-looking fixed-individual modal clause `Box (Y x)` and the actualist quantifier inside the necessary entailment clause.
 
 ---
 
-## 9. Next Gate-8 questions
+## 9. Anderson versus support Godlikeness
+
+On reflexive frames Lean proves:
+
+\[
+\boxed{
+G_A^+(x,w)
+\Rightarrow
+G_{\mathrm{sup}}^+(x,w).
+}
+\]
+
+Reason: if positivity gives necessary positive exemplification, reflexivity gives current positive exemplification.
+
+The converse is not built in. `G-sup` only requires current exemplification of positive properties; Anderson requires them to hold throughout the accessible worlds for the same individual.
+
+Thus Anderson strengthens the support theory in a **modal persistence direction**.
+
+---
+
+## 10. Anderson versus project-internal exactness
+
+The finite regression suite now separates the two positive interfaces in both directions.
+
+### Anderson without local exactness
+
+A two-world complete S5 model has an entity `a` with a contingent property `Z`:
+
+```text
++Z(a) @ w0
+not +Z(a) @ w1
+```
+
+`Z` and its complement are positively indifferent at `w0`. Anderson positive Godlikeness can therefore hold because `Z` is not a necessary property, while local exactness fails because `Z` is currently positively exemplified but not positively supported as positive.
+
+Hence:
+
+\[
+G_A^+\not\Rightarrow G_{\mathrm{exact}}^+.
+\]
+
+### Local exactness without Anderson
+
+Conversely, another two-world model makes current positive exemplification coincide with positivity at `w0`, but lets a positively supported property fail at `w1`. Local exactness therefore holds while Anderson's forward necessity direction fails:
+
+\[
+G_{\mathrm{exact}}^+\not\Rightarrow G_A^+.
+\]
+
+These are bounded concrete separation models, not global equivalence theorems.
+
+The conceptual distinction is now sharp:
+
+```text
+G-sup+:
+  positive -> currently exemplified
+
+G-exact+:
+  positive <-> currently exemplified
+
+Anderson G_A+:
+  positive <-> necessarily exemplified by the same individual
+```
+
+`G-exact+` strengthens the **reflection/local-classification** axis; Anderson strengthens the **modal-persistence** axis.
+
+---
+
+## 11. Positive Anderson essence bridge
+
+The literature-grounded positive interfaces already support a general Lean theorem.
+
+Assume:
+
+```text
+AndersonGRealization
+AndersonGPositive
+A2+
+R+
+Reflexivity
+```
+
+Then every positive Anderson-Godlike entity has the distinguished `G` property as a positive Anderson essence:
+
+\[
+\boxed{
+G_A^+(x,w)
+\Rightarrow
+E_A^+(G,x,w).
+}
+\]
+
+The two essence directions have different sources:
+
+1. `+Box psi(x) -> NEnt+_E(G,psi)` uses Anderson's backward Godlikeness direction to obtain `+P(psi)`, then `R+` transports positivity to accessible worlds, where Anderson's forward direction supplies `psi` to accessible Godlike witnesses.
+2. `NEnt+_E(G,psi) -> +Box psi(x)` uses `A2+` together with the directly assumed positivity of `G_A`, then Anderson's forward Godlikeness direction.
+
+No Scott-style `A1-L`, `COMP_P^G`, or `CONS_G^G` premise occurs in this positive Anderson essence bridge.
+
+This theorem is machine-checked in `formal/lean/Goedel4PEL/GoedelScott/AndersonInterfaces.lean`.
+
+---
+
+## 12. Current interpretation
+
+Gate 6 located the T2 obstruction in glut/gap failures of the reflection move under support-based Godlikeness.
+
+Gate 8 now shows that the obstruction is **definition-sensitive along more than one axis**:
+
+```text
+G-sup     leaves local reflection and modal persistence open;
+G-exact+  builds local reflection into Godlikeness;
+Anderson   builds positivity <-> necessary exemplification into Godlikeness
+           and simultaneously changes essence.
+```
+
+Therefore the Scott T2 bottleneck should not be described as an unavoidable consequence of four-valued essence semantics. It is a consequence of the interaction among the chosen Godlikeness notion, its modal strength, and the essence notion paired with it.
+
+The Anderson comparison also explains why it would be misleading to simply rename `G-exact+` as an Anderson variant.
+
+---
+
+## 13. Fitting boundary
+
+The literature comparison also fixes the boundary to Fitting's revision. Fitting does not merely strengthen an implication over the same intensional properties. The positivity predicate ranges over **property extensions**, and Godlikeness and essence use rigidified applications of those extensions.
+
+Therefore a faithful four-valued Fitting lift requires a new intensional/extension interface in the semantic structure. Reusing the current `Property` type unchanged would erase the central distinction the Fitting variant was introduced to express.
+
+For this reason Fitting is deferred until that type-level distinction is represented explicitly.
+
+---
+
+## 14. Next Gate-8 questions
 
 1. Can a principled bilateral negative clause for exact Godlikeness be frozen without trivializing gluts/gaps?
-2. How does this project-internal exactness candidate relate, if at all, to Anderson- and Fitting-style revisions in the literature?
-3. Which parts of T1/T3/collapse change under exact positive Godlikeness?
-4. Does the comparison persist on K, KB, and S4 frames?
-5. Which results survive in the paired-neighborhood generalization?
+2. Which negative-channel lift of Anderson's `P(Y) <-> Box Y(x)` preserves the intended room for indifferent properties?
+3. Can the positive Anderson necessary-existence chain be reconstructed without importing hidden classical biconditionals?
+4. Can a finite four-valued Anderson model reproduce the literature result: necessary Godlike existence while modal collapse fails?
+5. Does the `G-sup` / `G-exact+` / Anderson comparison persist on K, KB, and S4 frames?
+6. What minimal extra type structure is required for a faithful Fitting extension/intension comparison?
+7. Which results survive in the paired-neighborhood generalization?
 
-The next step is literature-grounded comparison. Until that is complete, the name `G-exact+` remains purely internal to this repository.
+The next mechanization target is the Anderson necessary-existence chain and an explicit four-valued countermodel to modal collapse. `G-exact+` remains a project-internal control definition, not a literature name.
