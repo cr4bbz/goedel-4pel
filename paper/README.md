@@ -4,9 +4,9 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.7`  
-**Research gates represented:** Gate 0 through Gate 7  
-**Next manuscript dependency:** Gate 8 comparative variants
+**Version:** `paper-v0.8`  
+**Research gates represented:** Gate 0 through the current Gate-8 comparative milestone  
+**Next manuscript dependency:** extension-level Fitting essence / necessary-existence reconstruction
 
 The manuscript is deliberately separated from `docs/`:
 
@@ -30,9 +30,18 @@ Gate 7 adds two verification layers:
 - a broader bounded T2 assumption search with 873 full-antecedent models, all satisfying `T2+`;
 - bounded individual indispensability of `A1-L`, `R+`, `COMP_P^G`, and `CONS_G^G` in that generated family.
 
-The central manuscript thesis is now mechanically supported for the fixed S5 control theory: under symmetric FDE negation the final collapse schemata are coupled, while the decisive non-classical structure lies upstream in positivity, possible exemplification, and especially the derivation of positive Godlikeness-as-essence.
+Gate 8 adds comparative and frame-sensitive results:
 
-The open minimality question is explicitly unbounded. The finite search does not show that the current T2 recovery package is globally weakest.
+- the project-internal `G-exact+` comparison and the Lean theorem `G-exact+ + R+ => T2-exact+`;
+- a bilateral Anderson candidate with machine-checked classical recovery and an executable necessary-God / no-positive-collapse model;
+- general symmetry-only T3 theorems for both the Scott-support branch (after `T2+`) and the Anderson branch;
+- reflexive-transitive but non-symmetric finite countermodels to the corresponding T3 claims, showing that S4 alone does not replace symmetry in these routes;
+- explicit recognition that reflexivity belongs later to `T3+ => GW` and to the current essence-compressed collapse theorem, rather than to the reduced Scott T3 theorem;
+- the first Fitting-specific Lean boundary, separating bilateral property extensions from world-indexed intensions and typing positivity over extensions.
+
+The central manuscript thesis is now mechanically supported beyond the original S5 presentation: under involutive FDE negation the final collapse schemata are coupled, while the decisive non-classical structure lies upstream in positivity, possible exemplification, and especially the relation between Godlikeness and essence. Gate 8 further shows that the Scott T3 step itself requires substantially less modal frame structure than the original control proof suggested.
+
+The open Scott minimality question is explicitly unbounded. The finite search does not show that the current T2 recovery package is globally weakest. Likewise, the symmetry-only T3 theorems establish sufficiency, not a unique globally weakest frame condition.
 
 ## Build
 
@@ -62,4 +71,4 @@ The manuscript distinguishes:
 - `open`: explicitly not yet settled;
 - `conjectural`: a research hypothesis awaiting proof or countermodel.
 
-No bounded finite search is promoted to an unbounded theorem. Exact higher-order correspondence with the frozen Scott/AFP control development remains part of the publication audit.
+No bounded finite search is promoted to an unbounded theorem. Exact higher-order correspondence with the frozen Scott/AFP control development and the published Anderson/Fitting formalizations remains part of the publication audit.
