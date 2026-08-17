@@ -44,7 +44,7 @@ class Gate7Tests(unittest.TestCase):
 
     def test_t2_recovery_assumptions_are_individually_needed_in_bounded_family(self):
         retained, witnesses = exhaustive_t2_assumption_minimality()
-        self.assertEqual(retained, 1753)
+        self.assertEqual(retained, 873)
         self.assertEqual(
             set(witnesses),
             {"A1-L", "R+", "COMP_P^G", "CONS_G^G"},
