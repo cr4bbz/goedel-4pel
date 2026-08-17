@@ -51,7 +51,7 @@ Gate 7 is complete. The broader two-world / one-entity `G,Z` search retains 873 
 
 ### Fitting branch
 
-The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`.
+The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level assumption reduction is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.1`.
 
 - [x] introduce distinct Lean types for bilateral extensions and world-indexed intensions;
 - [x] type Fitting positivity over extensions rather than intensions;
@@ -63,13 +63,17 @@ The initial type boundary is `fitting-types-v0.1`; the substantive candidate is 
 - [x] prove the admissible-domain Fitting T2 analogue without `R+`;
 - [x] machine-check classical recovery for admissible entailment, Godlikeness, essence, necessary actual exemplification, and NE;
 - [x] prove an admissible de-re possibility-to-necessity theorem with no frame condition and no `R+`;
-- [x] isolate de-dicto lifting behind explicit G-extension stability `STAB_G`;
-- [x] prove de-dicto possibility-to-necessity from the admissible Fitting stack plus `STAB_G`, with no S4/S5 frame assumption;
-- [x] exhibit a three-world admissible model separating de re from de dicto when `STAB_G` fails;
+- [x] isolate de-dicto lifting behind explicit G-extension stability;
+- [x] prove de-dicto possibility-to-necessity from the admissible Fitting stack with no S4/S5 frame assumption;
+- [x] exhibit a three-world admissible model separating de re from de dicto when extension stability fails;
 - [x] exhibit a complete-S5 admissible model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse;
-- [ ] minimize `REG_G^adm` at the unbounded model-theoretic level;
+- [x] weaken full `CONS_G^G(adm)` to consistency only on the negatively classified branch for the A1-L recovery theorem;
+- [x] prove that restoring `A1-R` reconstructs full `CONS_G^G(adm)` from that targeted package;
+- [x] split G-extension stability into positive persistence and positive reflection and prove that positive-only stability suffices for the positive de-dicto theorem;
+- [x] exhibit a complete-S5 fixture satisfying both A1 directions and the old full `REG_G^adm` while positive G stability holds and bilateral G stability fails;
+- [ ] weaken `COMP_P^G(adm)` without simply postulating the desired reflection conclusion;
 - [ ] determine principled closure conditions on the admissible extensional domain beyond negation closure;
-- [ ] determine whether `STAB_G` admits a weaker local/extensional replacement.
+- [ ] determine whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed together.
 
 ### Cross-variant comparison
 
@@ -89,7 +93,9 @@ Fitting admissible:
   positivity/essence range over selected rigid extensions
   no R+ in the extensional essence recovery theorem
   de-re possibility -> necessity is frame-free
-  de-dicto lifting depends on STAB_G rather than S4/S5
+  A1-L needs only negative-branch consistency in the minimized recovery proof
+  A1-R restores the stronger consistency condition if retained
+  de-dicto lifting needs only positive G-extension stability
   necessary Godlikeness can coexist with MC+ failure
 ```
 
@@ -133,7 +139,7 @@ Fitting admissible:
 
 ### Gate 8 — Comparative variants — **in progress**
 
-The major Scott/Anderson/Fitting comparative milestones are now green. Remaining Gate-8 work is primarily assumption minimization, admissible-domain justification, and paired-neighborhood generalization.
+The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now also has a theorem-level minimization layer separating A1-sensitive consistency requirements from genuinely positive-only intension/extension stability. Remaining Gate-8 work is primarily deeper assumption minimization, admissible-domain justification, and paired-neighborhood generalization.
 
 ### Gate 9 — Publication consolidation
 
