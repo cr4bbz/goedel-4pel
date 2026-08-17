@@ -4,9 +4,9 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.3`  
-**Research gates represented:** Gate 0 through Gate 3  
-**Next manuscript dependency:** Gate 4 collapse-assumption lattice
+**Version:** `paper-v0.4`  
+**Research gates represented:** Gate 0 through Gate 4  
+**Next manuscript dependency:** Gate 5 Godlikeness, A2/A3, and possible exemplification
 
 The manuscript is deliberately separated from `docs/`:
 
@@ -15,9 +15,11 @@ The manuscript is deliberately separated from `docs/`:
 
 Gate 2 adds the bilateral relational modal control semantics, modal duality and classical-recovery propositions, plus the paired-neighborhood representation.
 
-Gate 3 adds the directional decomposition of A1, isolates the direct positive-support content of A4, derives informative negative positivity rigidity from strong A1 plus positive rigidity, corrects the negative modal-collapse target, and records local glut/gap obstructions to the classical `G + Z -> P(Z)` reflection step.
+Gate 3 adds the directional decomposition of A1, isolates the direct positive-support content of A4, corrects the negative modal-collapse target, and records local glut/gap obstructions to the classical `G + Z -> P(Z)` reflection step.
 
-The first collapse classification continues to use the S5 relational control semantics so that modal-frame generalization does not become a confounding variable.
+Gate 4 adds the collapse-channel equivalence theorem, two-world S5 countermodels separating the rigidity channels without A1, the strong-A1 rigidity-coupling theorem, the locally minimal `REF+` recovery package, and the conditional interface-level collapse theorem.
+
+The central manuscript thesis has consequently shifted: under symmetric FDE negation, informative positive and negative modal collapse do not separate. The non-classical decomposition occurs upstream in positivity rigidity, reflection, and the higher-order interfaces that feed arbitrary propositions into the Gödel–Scott machinery.
 
 ## Build
 
