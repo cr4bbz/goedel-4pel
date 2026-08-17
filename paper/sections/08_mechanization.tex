@@ -3,16 +3,29 @@
 
 \statusopen
 
-Mechanization is intentionally downstream of the semantic design. Once the modal and higher-order clauses are stable, the project will formalize the settled theory in Lean and add finite-model or countermodel tooling where useful.
+The semantic reconstruction is now sufficiently stable for a dedicated mechanization phase. Gate 7 should no longer treat formalization as a generic future task; it has a concrete verification target centered on the Gate-6 T2 obstruction.
 
 The minimum mechanization goals are:
 \begin{enumerate}[label=(M\arabic*)]
-  \item machine-check the propositional kernel and its classical recovery;
-  \item encode the selected modal semantics;
-  \item verify each promoted bilateral axiom separately;
-  \item prove positive dependency results;
-  \item retain explicit finite countermodels for every claimed non-implication;
-  \item recover the frozen Scott baseline on the classical fragment.
+  \item machine-check the propositional kernel, modal clauses, and classical recovery;
+  \item encode the actualist quantifier semantics, \(G\text{-sup-v0.1}\), \(Ess\text{-sup-v0.1}\), and \(NE\text{-sup-v0.1}\);
+  \item verify the directional A1 and rigidity results from Gates 3--4;
+  \item verify \(T1_T\) and its glut countermodel;
+  \item reproduce the two finite S5 countermodels to \(T2^+\), including the glut and gap variants;
+  \item prove the sufficient recovery theorem
+  \[
+    A1_L+R^++G\text{-sup-v0.1}+REG_G
+    \Rightarrow T2^+;
+  \]
+  \item prove the conditional positive T3 theorem and the implication \(T3^+\Rightarrow GW\);
+  \item prove the essence-compressed modal-collapse theorem
+  \[
+    T2^++T3^++CONST\Rightarrow\MCp;
+  \]
+  \item verify end-to-end classical recovery of the reconstructed Scott branch;
+  \item search finite models systematically for weaker substitutes for \(COMP_P^G\) and \(CONS_G^G\).
 \end{enumerate}
 
-The repository treats a minimal countermodel as a result rather than as a failed proof attempt.
+The mechanization should distinguish two tasks. Lean is appropriate for the semantic definitions, recovery theorems, and dependency proofs. A small exhaustive finite-model checker may be more efficient for countermodel minimization and assumption-lattice search. Results should be cross-checked where feasible rather than relying on a single implementation path.
+
+The repository treats a minimal countermodel as a result rather than as a failed proof attempt. In particular, the Gate-6 glut and gap models should become regression fixtures: any later change of semantics that makes them disappear must identify exactly which new assumption excludes them.
