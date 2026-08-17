@@ -3,6 +3,8 @@
 .lake/
 build/
 result/
+__pycache__/
+*.pyc
 
 # LaTeX build artifacts
 *.aux
