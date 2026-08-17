@@ -10,42 +10,32 @@ The project is not intended to produce a "stronger proof of God". Its aim is log
 
 ## Current research thesis
 
-The project originally asked whether modal collapse itself decomposes into independent positive and negative persistence principles. Gate 4 falsifies that conjecture for the current FDE semantics.
-
-The informative collapse schemata are:
+The project originally asked whether modal collapse itself decomposes into independent positive and negative persistence principles. Gate 4 falsifies that conjecture for the current FDE semantics:
 
 ```text
 MC+ : +φ => +□φ
 MC- : -φ => +□¬φ
-```
-
-Because FDE negation is involutive and the schemata range over all formulas:
-
-```text
 MC+ <-> MC-
 ```
 
-So the non-classical decomposition occurs **upstream of modal collapse**.
+because FDE negation is involutive and the schemata range over all formulas.
 
-The strongest current structural picture is:
+The non-classical decomposition therefore occurs **upstream of modal collapse**.
+
+Gate 5 sharpens that thesis further. The two directions of A1 now have visibly different proof-theoretic jobs:
 
 ```text
-A1 directions               independent
-        ↓
-positivity rigidity          independent without A1
-        ↓                    coupled by strong A1
-G + Z -> P(Z) reflection     fails by distinct glut/gap mechanisms
-        ↓
-classical recovery bridge    needs explicit regularity assumptions
-        ↓
-modal collapse               recoupled by FDE negation
+A1-R -> truth-only possible exemplification (T1-T)
+A1-L -> local G+Z -> P(Z) reflection (REF+)
 ```
+
+and positive support must be distinguished from truth-only positivity when gluts are allowed.
 
 ## Current semantic stack
 
 ### Gate 0 — Scott baseline
 
-Frozen in `docs/SCOTT_BASELINE.md` and analyzed in `docs/MODAL_COLLAPSE_SPINE.md`.
+Frozen in `docs/SCOTT_BASELINE.md` and structurally analyzed in `docs/MODAL_COLLAPSE_SPINE.md`.
 
 ### Gate 1 — Four-valued kernel
 
@@ -79,17 +69,11 @@ It preserves box/diamond duality, recovers classical Kripke semantics on the `T/
 
 Frozen as `positivity-v0.1` in `docs/POSITIVITY_LIFT.md`.
 
-Scott A1 decomposes into two independent directional clauses:
+Scott A1 decomposes into:
 
 ```text
 A1-L : -P(φ)  => +P(¬φ)
 A1-R : +P(¬φ) => -P(φ)
-```
-
-Strong A1 is their conjunction and induces:
-
-```text
-v(P(¬φ)) = swap(v(P(φ)))
 ```
 
 The direct A4 lifting is:
@@ -98,94 +82,114 @@ The direct A4 lifting is:
 R+ : +P(φ) => +□P(φ)
 ```
 
-Informative universal negative rigidity is:
+and informative universal negative rigidity is:
 
 ```text
 R-nec- : -P(φ) => +□¬P(φ)
 ```
 
-The old candidates `-P => -□P` and `-φ => -□φ` are retired because they follow automatically on reflexive frames.
+Without A1, these rigidity channels are independent. Strong A1 makes them interderivable.
 
 ### Gate 4 — Collapse experiment
 
 Frozen as `collapse-v0.1` in `docs/COLLAPSE_EXPERIMENT.md`.
 
-Gate 4 establishes:
+Main results:
 
-1. **Collapse-channel equivalence**
-   ```text
-   MC+ <-> MC-
-   ```
-   under the fixed FDE negation.
-
-2. **Rigidity independence without A1**
-   ```text
-   R+  does not imply  R-nec-
-   R-nec-  does not imply  R+
-   ```
-   with two-world S5 countermodels.
-
-3. **Rigidity coupling under strong A1**
-   ```text
-   A1-L + A1-R  =>  (R+ <-> R-nec-)
-   ```
-
-4. **Local reflection obstruction**
-
-   The classical bridge
+1. corrected `MC+` and `MC-` are equivalent under FDE negation;
+2. the rigidity channels separate without A1 and recouple under strong A1;
+3. the classical local reflection bridge
    ```text
    G(x), Z(x) => P(Z)
    ```
-   does not survive the minimal four-valued lift. Gluts and gaps block it for different reasons.
-
-5. **Locally minimal reflection-recovery package**
+   fails by distinct glut and gap mechanisms;
+4. the locally minimal recovery package is
    ```text
-   A1-L
-   + D1+
-   + CONS_G
-   + COMP_P
-   ---------
-   REF+
+   A1-L + D1+ + CONS_G + COMP_P => REF+
    ```
-   where each member is individually indispensable relative to the other three at the abstract interface.
+5. adding `R+ + GW + CONST` yields an interface-level derivation of modal collapse.
 
-6. **Conditional interface-level collapse package**
-   ```text
-   A1-L
-   + D1+
-   + CONS_G
-   + COMP_P
-   + R+
-   + GW
-   + CONST
-   ---------
-   MC+  and therefore MC-
-   ```
+### Gate 5 — Godlikeness and possibility
 
-`D1+`, `GW`, and `CONST` are explicitly temporary interfaces, not yet axioms of the final four-valued Gödel–Scott theory.
+Frozen as `godlike-v0.1` in `docs/GODLIKENESS_AND_POSSIBILITY.md`.
 
-## Working hypotheses after Gate 4
+Gate 5 introduces bilateral actualist quantifier clauses while keeping the existence relation classical at the metalanguage level, and defines semantic necessary positive entailment:
 
-1. **H1 — Upstream decomposition.** The informative four-valued structure lies in positivity-negation transfer, rigidity, reflection, and higher-order witness/property infrastructure rather than in a final split of modal collapse.
-2. **H2 — A1 channel coupling.** Strong A1 recouples otherwise independent positivity-rigidity channels.
-3. **H3 — Non-trivial inconsistency tolerance.** Some inconsistent positivity or exemplification assignments may be tolerated without trivializing the reconstructed theorem chain.
-4. **H4 — Gap/glut asymmetry.** Incomplete and inconsistent information obstruct Gödel–Scott reasoning in structurally different ways.
-5. **H5 — Classical recovery.** Suitable restrictions should recover the frozen Scott baseline.
-6. **H6 — Interface refinement.** The full reconstruction may derive or weaken `CONS_G`, `COMP_P`, `GW`, or `CONST` rather than requiring them as primitive assumptions.
+```text
+NEnt+_E(φ,ψ,w):
+  at every accessible world,
+  every actually existing +φ-instance is a +ψ-instance
+```
+
+The A2 control lifting is:
+
+```text
+A2+ : +P(φ) and NEnt+_E(φ,ψ) => +P(ψ)
+```
+
+Define truth-only positivity:
+
+```text
+Pos_T(φ) := +P(φ) and not(-P(φ))
+```
+
+Then Gate 5 proves:
+
+```text
+A1-R + A2+ => T1-T
+T1-T : Pos_T(φ) => +◇∃ᴱx φ(x)
+```
+
+Mere `+P(φ)` does not suffice: a one-world S5 model with an empty actual domain and glutty positivity assignments satisfies the relevant A1/A2 support conditions while positive possible exemplification fails.
+
+A3 therefore splits into:
+
+```text
+A3+ : +P(G)
+A3-T : Pos_T(G)
+```
+
+The Scott-control branch adopts `A3-T`, yielding:
+
+```text
++◇∃ᴱx G(x)
+```
+
+without globally banning positivity gluts.
+
+The control Godlikeness definition is `G-sup-v0.1`:
+
+```text
++G(x) iff every +P(φ) is +φ(x)
+-G(x) iff some +P(φ) is -φ(x)
+```
+
+It recovers Scott D1 on the classical fragment and permits `T/F/B/N` statuses for Godlikeness.
+
+### Gate-4 interface audit after Gate 5
+
+```text
+D1+    discharged by G-sup-v0.1
+CONST  discharged by full property comprehension / lambda abstraction
+GW     not discharged; only possible God-like existence is proved
+COMP_P not implied; strong A1 preserves N/N positivity gaps
+CONS_G not implied by support-based Godlikeness
+```
+
+Thus reconstructing A2, A3, and Godlikeness does **not** yet reconstruct modal collapse.
+
+## Working hypotheses after Gate 5
+
+1. **H1 — Upstream decomposition.** The informative four-valued structure lies in positivity-negation transfer, rigidity, truth-only versus glutty positivity, reflection, and higher-order witness supply.
+2. **H2 — A1 division of labor.** `A1-R` controls the T1 branch while `A1-L` controls the local reflection branch.
+3. **H3 — Non-trivial inconsistency tolerance.** Positivity gluts may remain in the theory even though Scott-style possible exemplification is restricted to truth-only positive properties.
+4. **H4 — Gap/glut asymmetry.** Incomplete and inconsistent information obstruct the proof chain differently.
+5. **H5 — Classical recovery.** Suitable `T/F` restrictions recover each frozen Scott fragment.
+6. **H6 — Necessary-existence witness recovery.** A natural Gate-6 lift may or may not provide the global witness interface `GW`; this is the next decisive test.
 
 ## Methodological rule
 
-No theorem is treated as "the four-valued Gödel theorem" until all of the following are fixed explicitly:
-
-- truth/information values and designated values;
-- propositional connectives and consequence;
-- modal semantics;
-- quantification over individuals and properties;
-- semantics of the positivity predicate `P`;
-- the exact lifting of each Gödel–Scott axiom;
-- the chosen classical baseline used for recovery/comparison.
-
-Failed conjectures are retained as results rather than rescued by changing the semantics after the fact.
+No theorem is treated as "the four-valued Gödel theorem" until all relevant semantic and higher-order choices have been made explicit. Failed conjectures are retained as results rather than rescued by changing the semantics after the fact.
 
 ## Research gates
 
@@ -205,10 +209,10 @@ Complete at the semantic-design level.
 Complete at the semantic/interface-analysis level.
 
 ### Gate 5 — Godlikeness and possibility
-Next: lift A2 and A3, freeze the final four-valued `G(x)`, define the required quantifier/consequence interfaces, and classify possible exemplification. In particular, test whether `D1+`, `GW`, and `CONST` are justified or must be replaced.
+Complete at the semantic-reconstruction level.
 
 ### Gate 6 — Essence and necessary existence
-Lift `Ess` and `NE` and classify the status of `□∃x G(x)`.
+Next: lift `Ess`, `NE`, and A5; reconstruct or refute a four-valued T2/T3 branch; determine whether the resulting necessary-existence theorem is strong enough to discharge `GW` and whether it affects `CONS_G` or `COMP_P`.
 
 ### Gate 7 — Mechanization
 Formalize the settled system in Lean and machine-check the finite models/countermodels.
@@ -226,10 +230,10 @@ A living LaTeX manuscript lives in `paper/`.
 Current version:
 
 ```text
-paper-v0.4
+paper-v0.5
 ```
 
-It contains the defensible Gate 0–4 material. Later sections remain explicit about unresolved higher-order choices.
+It contains the defensible Gate 0–5 material.
 
 Build from `paper/` with:
 
@@ -254,6 +258,7 @@ or the standard `pdflatex` / `bibtex` sequence documented in `paper/README.md`.
 │   ├── MODAL_LIFT.md
 │   ├── POSITIVITY_LIFT.md
 │   ├── COLLAPSE_EXPERIMENT.md
+│   ├── GODLIKENESS_AND_POSSIBILITY.md
 │   └── MODAL_COLLAPSE_SPINE.md
 ├── formal/
 │   └── README.md
@@ -279,6 +284,4 @@ or the standard `pdflatex` / `bibtex` sequence documented in `paper/README.md`.
 
 ## Status
 
-**Phase:** Gate 4 complete at the semantic/interface-analysis level; `paper-v0.4` synchronized; Gate 5 next.
-
-The next concrete task is to lift A2/A3 and freeze the four-valued Godlikeness/possible-exemplification layer while testing whether the Gate-4 interfaces arise naturally or require revision.
+**Phase:** Gate 5 complete at the semantic-reconstruction level; `paper-v0.5` synchronized; Gate 6 next.
