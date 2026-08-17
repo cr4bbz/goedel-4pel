@@ -21,6 +21,7 @@ from gate8_fitting_minimality import (
     validate_neg_class_consistency_strictness,
     validate_positive_stability_strictness,
 )
+from gate8_fitting_comp import validate_indiscernibility_route_without_comp
 
 
 class Gate7Tests(unittest.TestCase):
@@ -83,6 +84,9 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_fitting_positive_stability_is_strictly_weaker_than_bilateral(self):
         self.assertTrue(validate_positive_stability_strictness())
+
+    def test_gate8_fitting_indiscernibility_route_bypasses_comp(self):
+        self.assertTrue(validate_indiscernibility_route_without_comp())
 
 
 if __name__ == "__main__":
