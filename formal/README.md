@@ -1,6 +1,6 @@
 # Formalization
 
-Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, and a substantive bilateral Fitting branch with theorem-level assumption reduction and alternative recovery routes.
+Gate 7 is complete at `formal-v0.1`. Gate 8 extends that verified control theory with comparative variants, frame minimization, a substantive bilateral Fitting branch, theorem-level assumption reduction, and admissible-domain structure analysis.
 
 The formal layer deliberately has two roles:
 
@@ -18,8 +18,9 @@ Gate 8 adds:
 - `gate8_frames.py` and `gate8_scott_frames.py` for non-symmetric S4 countermodels;
 - `gate8_fitting.py` for the admissible Fitting de-re/de-dicto separation;
 - `gate8_fitting_no_collapse.py` for a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse;
-- `gate8_fitting_minimality.py` for two strictness fixtures: targeted negative-classification consistency versus full consistency on the A1-L-only route, and positive-only G-extension stability versus full bilateral stability under a stronger S5 control stack;
-- `gate8_fitting_comp.py` for a `COMP_P^G(adm)` separation fixture in which both A1 directions and full relevant consistency hold, positivity is genuinely gappy on a relevant admissible extension, and the alternative indiscernibility route still yields essence and necessary existence.
+- `gate8_fitting_minimality.py` for targeted-consistency and positive-only-stability strictness fixtures;
+- `gate8_fitting_comp.py` for the first `COMP_P^G(adm)` separation fixture via primitive Godlike indiscernibility;
+- `gate8_fitting_profile_saturation.py` for a nontrivial quotient-domain fixture with two distinct positive Godlike individuals, profile saturation, a relevant positivity gap, failure of `COMP_P^G(adm)`, and successful essence/NE recovery.
 
 Run from the repository root:
 
@@ -35,6 +36,7 @@ python3 formal/finite/gate8_fitting.py
 python3 formal/finite/gate8_fitting_no_collapse.py
 python3 formal/finite/gate8_fitting_minimality.py
 python3 formal/finite/gate8_fitting_comp.py
+python3 formal/finite/gate8_fitting_profile_saturation.py
 ```
 
 ## Lean layer
@@ -60,6 +62,7 @@ Goedel4PEL/GoedelScott/FittingAdmissibleNecessaryExistence.lean
 Goedel4PEL/GoedelScott/FittingMinimality.lean
 Goedel4PEL/GoedelScott/FittingMinimalityInteractions.lean
 Goedel4PEL/GoedelScott/FittingAlternativeRecovery.lean
+Goedel4PEL/GoedelScott/FittingAdmissibleStructure.lean
 ```
 
 ### Gate-7 control spine
@@ -78,24 +81,7 @@ Gate 8 strengthens the later Scott T3 dependency to symmetry alone once `T2+` is
 
 ### Gate-8 Scott / Anderson frame results
 
-Lean proves both current T3 routes from symmetry alone:
-
-```text
-Scott after T2+:
-Symmetric(R) + PossibleGod + T2+ + A5+ + NE-sup + G-sup => T3+
-
-Anderson:
-Symmetric(R)
-+ Possible +G_A
-+ AndersonGRealization
-+ AndersonGPositive
-+ A2+
-+ AndersonNERealization
-+ AndersonNEPositive
-=> AndersonT3+
-```
-
-Reflexivity and transitivity are absent from those theorems. Separate finite S4-style models show that reflexivity plus transitivity do not replace symmetry in either current route.
+Lean proves both current T3 routes from symmetry alone. Separate finite S4-style models show that reflexivity plus transitivity do not replace symmetry in either current route.
 
 ### Gate-8 Fitting: unrestricted obstruction
 
@@ -108,52 +94,16 @@ Intension World Entity := World -> Extension Entity
 
 and positivity consumes extensions rather than intensions.
 
-A naive unrestricted bilateral extension domain turned out to be too strong for the intended `REG_G` recovery route. Because the full `Extension` type contains a universal glut extension, Lean proves:
+A naive unrestricted bilateral extension domain is too strong for the intended `REG_G` recovery route. Because the full `Extension` type contains a universal glut extension, Lean proves:
 
 ```text
 ConsGG M -> forall w x, not GodPlus M w x
 RegG  M -> forall w x, not GodPlus M w x
 ```
 
-Thus the earlier unrestricted Fitting recovery implication remains logically valid but is not used as a substantive non-vacuous theorem.
+The substantive branch therefore uses a selected FDE-negation-closed admissible extension domain.
 
-### Gate-8 Fitting: admissible extensional domain
-
-The substantive candidate introduces:
-
-```text
-AdmissibleSemantics
-  base          : Fitting.Semantics
-  admissible    : Extension Entity -> Prop
-  negate_closed : admissible X -> admissible (negate X)
-```
-
-This does not globally require consistency. The finite oracle contains a negation-closed admissible domain with a genuine `B` extension.
-
-Lean proves the non-vacuous extensional essence recovery theorem:
-
-```text
-GAdmissible
-+ GRealizationAdm
-+ A1LAdm
-+ RegGAdm
-----------------
-GodPlusAdm(x) => EssPlusAdm(current G extension, x)
-```
-
-No `R+` premise occurs.
-
-Under classical coherence on the selected extensional domain Lean proves:
-
-```text
-EntailMinus    <-> not EntailPlus
-GodMinusAdm    <-> not GodPlusAdm
-EssMinusAdm    <-> not EssPlusAdm
-BoxExistsMinus <-> not BoxExistsPlus
-NEMinusAdm     <-> not NEPlusAdm
-```
-
-### Fitting theorem-level minimization
+### Fitting classification-route minimization
 
 `FittingMinimality.lean` replaces full relevant consistency by the proof-local condition:
 
@@ -172,21 +122,11 @@ with
 RegGNegClassAdm := CompPGAdm + NegClassConsistencyAdm.
 ```
 
-Lean proves the same admissible Fitting essence and de-re necessary-existence route from `A1-L + RegGNegClassAdm`.
-
-The weakening is A1-sensitive. `FittingMinimalityInteractions.lean` proves:
-
-```text
-A1-R + RegGNegClassAdm => RegGAdm
-```
-
-more precisely reconstructing full `ConsGGAdm` from `A1-R`, positivity completeness, and the targeted consistency premise. Hence the reduction is genuine for the A1-L-only recovery route but not a global weakening of a theory that independently retains A1-R.
+Lean proves the admissible Fitting essence and de-re necessary-existence route from `A1-L + RegGNegClassAdm`. `FittingMinimalityInteractions.lean` proves that restoring `A1-R` reconstructs full `ConsGGAdm` from positivity completeness plus the targeted consistency premise.
 
 ### Fitting alternative recovery without positivity completeness
 
-The classification route uses `CompPGAdm` exactly to eliminate relevant positivity gaps. Rewriting its branch coverage as `not pPos -> pNeg` would not be a genuine weakening at the classical meta-level.
-
-`FittingAlternativeRecovery.lean` therefore introduces a different extensional mechanism:
+`FittingAlternativeRecovery.lean` introduces:
 
 ```text
 GodlikeIndiscernibilityAdm:
@@ -196,7 +136,7 @@ GodlikeIndiscernibilityAdm:
   -> (Y.pos(x) <-> Y.pos(y))
 ```
 
-Lean proves:
+and Lean proves:
 
 ```text
 GAdmissible
@@ -206,38 +146,84 @@ GAdmissible
 GodPlusAdm(x) => EssPlusAdm(current G extension, x)
 ```
 
-No A1 direction, `CompPGAdm`, or consistency premise occurs. The same route continues through the frame-free de-re necessary-existence theorem, and with positive-only G stability through the positive de-dicto theorem.
+No A1 direction, `CompPGAdm`, or consistency premise occurs. The same route continues through the frame-free de-re necessary-existence theorem and, with positive-only G stability, through the positive de-dicto theorem.
 
-The finite `gate8_fitting_comp.py` fixture shows that this is a genuine route separation. Both A1 directions and full relevant consistency hold, but the universal admissible extension is a positivity gap while containing the positive Godlike witness. Thus `CompPGAdm` fails. Nevertheless Godlike indiscernibility, current-G essence, NE realization, A5, and de-re necessary current-G exemplification all hold.
+### Fitting admissible-domain quotient structure
 
-This establishes that `CompPGAdm` is not globally necessary for the present Fitting essence/NE conclusion. It does not establish that Godlike indiscernibility is globally weaker than completeness; the two assumptions constrain different semantic interfaces.
+`FittingAdmissibleStructure.lean` derives the indiscernibility interface from a more structural condition.
 
-### Fitting positive-only de-dicto stability
-
-The positive de-dicto theorem uses only positive G-membership transport. Lean separates:
+Define positive-profile equivalence:
 
 ```text
-GPosPersistsAlongRAdm
-GPosReflectsAlongRAdm
-GPosStableAlongRAdm := persistence + reflection
+PositiveProfileEqAdm(w,x,y):
+  every positively supported admissible extension
+  contains x and y alike
 ```
 
-and proves:
+Lean proves reflexivity, symmetry, and transitivity. Any two positive Fitting-Godlike individuals are automatically positive-profile equivalent.
+
+The selected domain is then required to respect these classes:
 
 ```text
-full bilateral G-extension stability
-=> positive-only G stability
+PositiveProfileSaturatedAdm:
+  Adm(Y)
+  + PositiveProfileEqAdm(w,x,y)
+  -> (Y.pos(x) <-> Y.pos(y))
 ```
 
-as well as positive de-dicto possibility-to-necessity for both the classification and indiscernibility recovery routes.
+Lean proves:
 
-No negative-extension stability and no S4/S5 frame property is required.
+```text
+PositiveProfileSaturatedAdm
+=> GodlikeIndiscernibilityAdm
+```
 
-The finite strictness fixture keeps both A1 directions and even the old full `RegGAdm` on a complete S5 frame. Positive membership in G is identical across worlds while negative support about a non-Godlike entity drifts. Thus positive-only stability holds, full bilateral stability fails, and positive necessary de-dicto Godlikeness still holds.
+and therefore the full alternative essence/NE route follows without A1, `COMP`, or consistency.
 
-### Fitting de re and de dicto
+Because `AdmissibleSemantics` is already closed under FDE negation, this positive saturation automatically fixes the negative membership channel as well. Lean proves:
 
-The admissible necessary-existence chain yields a frame-free de-re theorem. The earlier three-world model shows that de-re necessity need not imply de-dicto necessity when positive G-extension transport fails. A separate complete-S5 model has positive necessary actual Godlikeness while a contingent `Q(a)` refutes `MC+`; the admissible extension domain still contains genuine inconsistent `B` information.
+```text
+PositiveProfileSaturatedAdm
+<-> BilateralProfileSaturatedAdm
+```
+
+where bilateral saturation preserves both `.pos` and `.neg` membership on each positive-profile equivalence class. Thus every admissible bilateral extension genuinely factors through the same entity quotient.
+
+The finite `gate8_fitting_profile_saturation.py` fixture makes the theorem non-vacuous: `a` and `b` are two distinct positive Godlike individuals in one non-singleton profile class, every selected admissible extension respects that class, and the universal admissible extension is nevertheless a positivity gap. Hence `CompPGAdm` fails while current-G essence and NE recovery succeed.
+
+### Ultrafilter-style comparison
+
+The same module isolates only the maximality component suggested by the classical Fitting `delta`-ultrafilter analysis:
+
+```text
+PositiveComplementDecisionAdm:
+  Adm(Y) -> pPos(w,Y) or pPos(w,neg Y)
+```
+
+This is not claimed to be a complete four-valued ultrafilter definition.
+
+Lean proves:
+
+```text
+PositiveComplementDecisionAdm + ConsGGAdm
+=> local positive reflection
+=> CompPGAdm
+```
+
+and independently:
+
+```text
+PositiveComplementDecisionAdm + A1RAdm
+=> CompPGAdm
+```
+
+Thus ultrafilter-style maximality naturally reconstructs the classification route under familiar additional resources. It does not explain the genuinely `COMP`-independent profile-quotient route.
+
+### Positive-only de-dicto stability
+
+The positive de-dicto theorem uses only positive G-membership transport. Lean separates persistence and reflection of the positive `G` extension and proves positive de-dicto possibility-to-necessity for both the classification and quotient recovery routes. No negative-extension stability and no S4/S5 frame property is required.
+
+A complete-S5 strictness fixture keeps both A1 directions and the old full `RegGAdm`; positive membership in G is stable while negative support about a non-Godlike entity drifts. Full bilateral G stability fails, but positive necessary de-dicto Godlikeness still holds.
 
 Build locally:
 
@@ -248,7 +234,7 @@ lake build
 
 ## CI and discipline
 
-GitHub Actions runs both finite regressions and `lake build`. The Fitting minimization theorems, the alternative recovery route, and all separation fixtures are part of the root build/regression suite.
+GitHub Actions runs both finite regressions and `lake build`. The Fitting minimization, alternative recovery, profile-saturation, and ultrafilter-interaction theorems are all part of the root build/regression suite.
 
 Finite searches and fixtures are always reported with their exact bounds. General claims are promoted to machine-checked status only when represented by Lean theorems.
 
@@ -256,8 +242,8 @@ Finite searches and fixtures are always reported with their exact bounds. Genera
 
 The main remaining work is:
 
-1. determine whether `GodlikeIndiscernibilityAdm` follows from a more independently motivated property-domain condition or can itself be weakened;
-2. determine whether positive persistence or positive reflection follows from other principled Fitting assumptions;
-3. justify additional closure conditions for the admissible extension domain;
+1. determine which algebraic operations and closure principles preserve the profile-saturated admissible quotient;
+2. formulate a genuinely four-valued `delta`-filter/ultrafilter notion on that quotient and test whether it can avoid reconstructing `COMP`;
+3. determine whether positive persistence or positive reflection follows from other principled Fitting assumptions;
 4. rerun selected Scott/Anderson/Fitting results over paired-neighborhood semantics;
 5. complete the source-level publication audit.
