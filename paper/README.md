@@ -4,9 +4,9 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.9`  
-**Research gates represented:** Gate 0 through the current Gate-8 comparative milestone  
-**Next manuscript dependency:** Gate-8 assumption minimization / paired-neighborhood generalization and Gate-9 source/prior-art audit
+**Version:** `paper-v0.10`  
+**Research gates represented:** Gate 0 through the current Gate-8 comparative/minimality milestone  
+**Next manuscript dependency:** deeper Gate-8 minimization / paired-neighborhood generalization and Gate-9 source/prior-art audit
 
 The manuscript is deliberately separated from `docs/`:
 
@@ -25,13 +25,16 @@ Gate 8 adds:
 - a repaired, non-vacuous Fitting candidate over a selected FDE-negation-closed admissible extension domain that does not globally prohibit gluts;
 - machine-checked admissible Fitting essence/NE interfaces and classical recovery;
 - a frame-free de-re possibility-to-necessity theorem;
-- an explicit `STAB_G` bridge for de-dicto lifting;
-- a finite de-re/de-dicto separation model when `STAB_G` fails;
+- a de-dicto bridge reduced from full bilateral `STAB_G` to positive persistence plus positive reflection;
+- a minimized A1-L Fitting recovery theorem in which exemplification consistency is required only on the negatively classified branch;
+- a Lean theorem showing that restoring `A1-R` reconstructs the older full consistency condition from this targeted package;
+- finite fixtures separating the targeted consistency premise from full consistency on the A1-L-only route and positive-only G stability from full bilateral G stability even under a stronger S5 control stack;
+- a finite de-re/de-dicto separation model when positive extension stability fails;
 - a complete-S5 admissible Fitting model with positive necessary Godlike existence, genuine `B` extension information, and failure of positive modal collapse.
 
 The central manuscript thesis is therefore now comparative: under involutive FDE negation the final signed collapse schemata are coupled, while the decisive variation lies upstream in where positivity, reflection, necessary exemplification, and intension/extension structure are placed.
 
-The open minimality claims remain explicit. The Scott T2 finite search does not establish global minimality; the symmetry-only T3 theorems establish sufficiency rather than unique weakest frame conditions; and the Fitting admissible-domain assumptions and `STAB_G` have not yet been globally minimized.
+The open minimality claims remain explicit. The Scott T2 finite search does not establish global minimality; the symmetry-only T3 theorems establish sufficiency rather than unique weakest frame conditions; and the Fitting minimization has not yet shown that `COMP_P^G(adm)`, positive persistence, or positive reflection are globally weakest.
 
 ## Build
 
