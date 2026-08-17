@@ -55,6 +55,8 @@ The decisive open semantic question is now:
 
 > **What are the weakest principled four-valued conditions under which positive Godlikeness-as-essence (`T2+`) follows?**
 
+Gate 7 has begun to turn this dependency picture into executable regressions and Lean theorems. The first combined finite-model/Lean CI milestone is green.
+
 ## Current semantic stack
 
 ### Gate 0 — Scott baseline
@@ -224,6 +226,34 @@ Thus once T2 and T3 are available, modal collapse follows without separately ass
 
 Gate 6 also shows a concrete inconsistency-tolerance pattern: `P(NE)=B` can survive the positive T3 branch.
 
+### Gate 7 — Mechanization and finite-model verification
+
+Gate 7 is **in progress** with two complementary verification tracks.
+
+#### Finite-model oracle
+
+`formal/finite/` now contains a standard-library-only Python checker and regression suite. The first milestone machine-checks:
+
+- both Gate-6 two-world T2 countermodels;
+- the glut/gap split of `CONS_G^G` versus `COMP_P^G`;
+- schema-level `MC+ <-> MC-` on all 16 valuations of a negation-closed two-world formula family;
+- `REG_G => T2+` over the complete currently generated two-world / one-entity `G,Z` search space, with 204 retained antecedent models and no T2 failure.
+
+The 204-model result is explicitly bounded evidence, not a general proof.
+
+#### Lean layer
+
+`formal/lean/` is pinned to Lean 4.30.0 and currently formalizes:
+
+- the four-valued carrier `T/F/B/N`;
+- involutive FDE negation;
+- positive and negative support;
+- the general schema-level theorem `MC+ <-> MC-` under bilateral involutive negation.
+
+GitHub Actions runs both the finite-model regressions and `lake build`. The first combined Gate-7 CI milestone is green.
+
+The next formal target is the general Lean proof of the Gate-6 T2 recovery theorem after relational modality, actualist quantification, `NEnt+_E`, `G-sup`, and `Ess-sup` have been encoded.
+
 ## Working hypotheses after Gate 6
 
 1. **H1 — T2 minimality.** Two distinct informational controls corresponding to glut and gap failure modes are likely needed to derive `T2+`, but the current `REG_G` package may be stronger than necessary.
@@ -241,13 +271,15 @@ Complete at the current semantic-design / reconstruction level.
 
 ### Gate 7 — Mechanization and finite-model verification
 
+**In progress. First executable milestone complete and green.**
+
 Next:
 
-- encode the settled kernel, modal semantics, actualist quantifiers, `G-sup`, `Ess-sup`, and `NE-sup`;
-- machine-check `T1-T`;
-- reproduce both finite T2 countermodels;
-- prove the sufficient T2 recovery theorem;
-- prove conditional T3, `T3+ => GW`, and essence-compressed modal collapse;
+- formalize relational bilateral modality, actualist quantification, and `NEnt+_E` in Lean;
+- formalize `G-sup-v0.1` and `Ess-sup-v0.1`;
+- prove `A1-L + R+ + G-sup + REG_G => T2+` generally in Lean;
+- machine-check `T1-T` and its glut countermodel;
+- formalize conditional T3, `T3+ => GW`, and essence-compressed modal collapse;
 - verify classical recovery end-to-end;
 - search systematically for weaker substitutes for `COMP_P^G` and `CONS_G^G`.
 
@@ -268,6 +300,8 @@ Current version:
 ```text
 paper-v0.6
 ```
+
+Gate 7 is being recorded in the mechanization section while the manuscript version remains 0.6 until the gate produces a larger theorem-level milestone.
 
 Build from `paper/` with:
 
@@ -296,7 +330,16 @@ or the standard `pdflatex` / `bibtex` sequence documented in `paper/README.md`.
 │   ├── ESSENCE_AND_NECESSARY_EXISTENCE.md
 │   └── MODAL_COLLAPSE_SPINE.md
 ├── formal/
-│   └── README.md
+│   ├── README.md
+│   ├── finite/
+│   │   ├── checker.py
+│   │   └── test_checker.py
+│   └── lean/
+│       ├── lean-toolchain
+│       ├── lakefile.lean
+│       ├── lake-manifest.json
+│       ├── Goedel4PEL.lean
+│       └── Goedel4PEL/
 ├── paper/
 │   ├── main.tex
 │   ├── references.bib
@@ -304,6 +347,8 @@ or the standard `pdflatex` / `bibtex` sequence documented in `paper/README.md`.
 │   ├── sections/
 │   └── figures/
 └── .github/
+    ├── workflows/
+    │   └── formal.yml
     └── ISSUE_TEMPLATE/
         └── research-result.md
 ```
@@ -317,4 +362,4 @@ or the standard `pdflatex` / `bibtex` sequence documented in `paper/README.md`.
 
 ## Status
 
-**Phase:** Gate 6 complete at the semantic-reconstruction level; `paper-v0.6` synchronized; Gate 7 next.
+**Phase:** Gate 7 in progress; first finite-model + Lean CI milestone green; `paper-v0.6` remains the current manuscript version.
