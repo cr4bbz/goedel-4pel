@@ -239,8 +239,10 @@ The living manuscript is in `paper/`.
 Current version:
 
 ```text
-paper-v0.14
+paper-v0.16
 ```
+
+The current compiled manuscript is available at [`paper/main.pdf`](paper/main.pdf).
 
 Build from `paper/` with:
 

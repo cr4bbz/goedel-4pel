@@ -6,6 +6,8 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 **Version:** `paper-v0.16`
 
+**Compiled manuscript:** [`main.pdf`](main.pdf)
+
 **Research gates represented:** Gate 0 through the current Gate-8 comparative/minimality/domain/entailment/converse-rigidity milestone
 
 **Newest research milestone:** `fitting-converse-rigidity-v0.1`
