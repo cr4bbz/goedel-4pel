@@ -38,6 +38,12 @@ from gate8_fitting_converse_rigidity import (
     validate_converse_rigidity_exhaustive,
     validate_converse_without_forward_does_not_force_reflection,
 )
+from gate8_fitting_actualist_quotient import (
+    validate_actualist_profile_quotient,
+    validate_actualist_quotient_requires_existence_factorization,
+)
+from gate10_quotient_delta_filters import validate_quotient_delta_filters
+from gate11_paired_neighborhoods import validate_paired_neighborhoods
 
 
 class Gate7Tests(unittest.TestCase):
@@ -145,6 +151,29 @@ class Gate7Tests(unittest.TestCase):
         self.assertTrue(
             validate_converse_without_forward_does_not_force_reflection()
         )
+
+    def test_gate8_actualist_profile_quotient_preserves_entailment_and_fde_values(self):
+        self.assertTrue(validate_actualist_profile_quotient())
+
+    def test_gate8_actualist_quotient_requires_existence_factorization(self):
+        self.assertTrue(
+            validate_actualist_quotient_requires_existence_factorization()
+        )
+
+    def test_gate10_quotient_delta_filter_audit(self):
+        counts = validate_quotient_delta_filters()
+        self.assertEqual(counts["delta_filters"], 15)
+        self.assertEqual(counts["prime_delta_filters"], 4)
+        self.assertEqual(counts["nondeciding_prime_delta_filters"], 4)
+
+    def test_gate11_paired_neighborhood_bridge(self):
+        counts = validate_paired_neighborhoods()
+        self.assertEqual(counts["local_frames"], 256)
+        self.assertEqual(counts["complement_dual_frames"], 16)
+        self.assertEqual(counts["principal_relational_frames"], 4)
+        self.assertEqual(counts["nonprincipal_complement_dual_frames"], 12)
+        self.assertEqual(counts["relational_operator_checks"], 1024)
+        self.assertEqual(counts["arbitrary_classical_outputs"], 4)
 
 
 if __name__ == "__main__":

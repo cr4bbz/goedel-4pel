@@ -3,7 +3,7 @@
 
 This manuscript treats the G\"odel--Scott theory not merely as an object to be translated from two values to four, but as a controlled test case for locating informational dependencies that classical bivalence suppresses.
 
-By version 0.16 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
+By version 0.19 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, a mechanically supported comparison of three different Godlikeness/essence architectures, and an exact paired-neighborhood representation of the relational modal control. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
 
 Gate 6 identifies the sharper Scott bottleneck. A natural bilateral definition of essence recovers Scott D2 classically, but it does not make Godlikeness an essence automatically. Two explicit two-world S5 models satisfy the Gate-5 control conditions together with strong A1 and positive rigidity while refuting
 \[
@@ -123,6 +123,16 @@ Actualist entailment introduces one additional interface. If actual existence is
 \]
 A two-world finite countermodel shows that this descent can fail when two profile-equivalent individuals are split by the actual-existence predicate. The quotient analysis therefore reaches beyond property membership: actualist domain variation must also be coordinated with the entity quotient if Fitting entailment is to factor through it directly.
 
+The quotient is now explicit in Lean. Entities at a source world are quotiented by positive admissible-property profile, and bilateral extensions are transported in both directions between quotient classes and profile-respecting entity extensions with round-trip equivalences. Moreover,
+\[
+  ExSat_P
+  \Longleftrightarrow
+  \text{actual existence factors through every accessible source quotient}.
+\]
+Under this exact representative-independence condition, quotient-level actualist entailment is equivalent in both directions to ordinary entailment on pullbacks. The bounded two-entity regression checks all 256 ordered pairs of saturated extensions and retains both \(\Both\) and \(\Neither\), so the construction is not a hidden return to bivalence.
+
+The first filter analysis on this quotient gives a similarly sharp separation. In the FDE truth order, Lean defines proper delta-filters and their prime and non-adjunctive two-filter strengthenings. Point evaluation is a prime delta-filter: it designates \(\Both\), but \(\Neither\) is a self-negating gap outside the filter. Therefore primeness does not imply complement decision. The exhaustive two-point quotient audit finds four prime ordinary filters and all four are non-deciding; a separate ordinary-filter fixture has two positive-Godlike points while local \(COMP\) fails for a possessed gap-bearing extension. The remaining question is which stronger filter interface, if any, contributes to essence/necessary existence without erasing this separation.
+
 The literature's classical Fitting analysis supplies a useful contrast. Fitting positivity is a \(\delta\)-ultrafilter on rigid extensions \cite{BenzmuellerFuenmayor2019}. Isolating only its maximality component gives a complement-decision principle. In the bilateral reconstruction, Lean shows that complement decision together with relevant exemplification consistency already reconstructs local positive reflection and hence \(COMP_P^{G,adm}\); complement decision together with \(A1_R\) also reconstructs \(COMP_P^{G,adm}\). The ultrafilter-style route therefore explains why classification is natural in the classical theory, while positive-profile saturation gives a genuinely different four-valued route that leaves relevant positivity gaps unresolved.
 
 The admissible bilateral negative clauses also recover classically. Lean proves complementary recovery for extensional entailment, Godlikeness, essence, necessary actual exemplification, and necessary existence under classical coherence of the selected extensions. Thus the repair is not merely a positive-fragment construction.
@@ -176,8 +186,8 @@ For Fitting's quotient semantics:
 \[
   \boxed{
   \begin{gathered}
-  \text{What independently motivates the fixed-point selection}\\
-  \text{and profile-compatible actual existence?}
+  \text{Which four-valued filter principles on quotient fixed points}\\
+  \text{preserve gaps and gluts without reconstructing }COMP\text{?}
   \end{gathered}
   }
 \]
@@ -200,4 +210,6 @@ For the remaining de-dicto minimization:
   }
 \]
 
-Exact higher-order correspondence with the complete published formal developments, paired-neighborhood generalization, and a dedicated prior-art audit remain publication-stage requirements. The paper continues to distinguish general Lean theorems, explicit finite countermodels, bounded exhaustive evidence, and open global-minimality claims.
+The modal generalization now has a precise first boundary. Every relational control model embeds exactly into the paired-neighborhood semantics, and complement duality suffices for classical modal recovery. In the complete two-world local space there are twelve non-principal complement-dual pairs beyond the four principal relational pairs, while dropping complement duality permits modal \(\Both\) and \(\Neither\) even for classical inputs. This establishes a genuine non-Kripke experimental region without yet claiming that the higher-order Scott, Anderson, or Fitting theorems transport unchanged.
+
+Exact higher-order correspondence with the complete published formal developments, selected theorem-specific paired-neighborhood transports, and the remaining line-by-line source audit remain publication-stage requirements. The Gate-12 synthesis records this boundary explicitly. The paper continues to distinguish general Lean theorems, explicit finite countermodels, bounded exhaustive evidence, and open global-minimality claims.

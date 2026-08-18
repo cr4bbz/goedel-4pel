@@ -1,6 +1,7 @@
 import Goedel4PEL.FourValued.Truth
 import Goedel4PEL.FourValued.Connectives
 import Goedel4PEL.FourValued.Modal
+import Goedel4PEL.FourValued.PairedNeighborhood
 import Goedel4PEL.FourValued.Actualist
 import Goedel4PEL.GoedelScott.Semantics
 import Goedel4PEL.GoedelScott.GodlikeVariants
@@ -21,6 +22,8 @@ import Goedel4PEL.GoedelScott.FittingAlternativeRecovery
 import Goedel4PEL.GoedelScott.FittingAdmissibleStructure
 import Goedel4PEL.GoedelScott.FittingAdmissibleAlgebra
 import Goedel4PEL.GoedelScott.FittingEntailmentQuotient
+import Goedel4PEL.GoedelScott.FittingActualistQuotient
+import Goedel4PEL.GoedelScott.FittingQuotientDeltaFilter
 import Goedel4PEL.GoedelScott.FittingRigidityBridge
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2

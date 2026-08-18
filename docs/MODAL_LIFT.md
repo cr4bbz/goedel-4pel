@@ -674,10 +674,14 @@ The semantic design portion of Gate 2 is complete when:
 - [x] the exact relational-to-neighborhood representation is proved semantically;
 - [x] the complement-duality condition needed for classical neighborhood recovery is isolated;
 - [x] the modal control semantics for Gates 3–4 is fixed as relational S5;
-- [ ] modal clauses are machine checked;
-- [ ] regression models for all four modal values are machine checked.
+- [x] modal clauses are machine checked;
+- [x] regression models for all four modal values are machine checked.
 
-The final two checks belong to the later mechanization workflow and do not block Gate 3.
+The final two checks were discharged by Gate 11 in
+`FourValued/PairedNeighborhood.lean` and
+`formal/finite/gate11_paired_neighborhoods.py`.  The bounded audit also
+separates principal relational, non-principal complement-dual, and arbitrary
+paired frames.
 
 ---
 

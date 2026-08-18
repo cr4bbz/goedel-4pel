@@ -111,6 +111,8 @@ Immediate from the definitions: membership in \(\mathcal U^R_w\) is exactly univ
 
 This establishes a hierarchy rather than a competition between Kripke and neighborhood semantics. The relational control model is a principal paired-neighborhood model.
 
+Gate 11 machine-checks this representation in Lean without a finiteness or frame-condition premise. The formal module defines the four paired clauses, proves both signed box/diamond dualities under FDE negation, and shows that the canonical construction from \(R\) is definitionally identical to the existing relational clauses. An exhaustive two-world regression independently compares box and diamond for all sixteen relations, both source worlds, and all sixteen bilateral valuations: all \(1024\) signed-value operator comparisons agree.
+
 \subsection{Classical recovery beyond relational frames}
 
 For arbitrary paired neighborhoods, modalization may itself turn classically valued input into \(\Both\) or \(\Neither\). To preserve classical bivalence impose the complement-duality condition
@@ -126,7 +128,9 @@ If \(\varphi\) is classical-valued, then
 \]
 so the condition guarantees that exactly one signed clause for \(\Box\varphi\) holds, and likewise for \(\Diamond\varphi\). Every relationally induced pair satisfies this condition.
 
+The two-world local neighborhood space makes the inclusions strict. Among all \(256\) pairs \((\mathcal U_w,\mathcal H_w)\), exactly \(16\) are complement-dual, only \(4\) are principal relational, and hence \(12\) are non-principal while preserving classical modal bivalence. Across arbitrary non-dual pairs, classically valued inputs realize all four outputs \(\True,\False,\Both,\Neither\). Thus non-principality and failure of complement duality are independent experimental changes: the former can preserve bivalence, whereas the latter can make modalization itself introduce a glut or a gap.
+
 \paragraph{Experimental decision.}
-For Gates 3--4 I keep the S5 relational control semantics fixed. This makes any later separation of \(\MCp\) and \(\MCm\) attributable to the bilateral lifting of G\"odel--Scott positivity rather than to a simultaneous weakening of modal structure. Non-principal and non-complement-dual neighborhood models will be introduced only as a second experimental axis after the local rigidity/collapse map has been established.
+For Gates 3--8 I keep the S5 relational control semantics fixed. This makes the separation analysis attributable to the bilateral lifting of G\"odel--Scott positivity rather than to a simultaneous weakening of modal structure. Gate 11 now opens the second experimental axis only after that dependency map is established. The representation and strict bounded hierarchy are complete; transporting selected higher-order Scott, Anderson, and Fitting theorems to non-principal frames remains separate work.
 
 The full Gate-2 specification is maintained in \texttt{docs/MODAL\_LIFT.md}.
