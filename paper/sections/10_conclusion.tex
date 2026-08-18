@@ -3,7 +3,7 @@
 
 This manuscript treats the G\"odel--Scott theory not merely as an object to be translated from two values to four, but as a controlled test case for locating informational dependencies that classical bivalence suppresses.
 
-By version 0.12 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
+By version 0.13 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
 
 Gate 6 identifies the sharper Scott bottleneck. A natural bilateral definition of essence recovers Scott D2 classically, but it does not make Godlikeness an essence automatically. Two explicit two-world S5 models satisfy the Gate-5 control conditions together with strong A1 and positive rigidity while refuting
 \[
@@ -97,6 +97,32 @@ and therefore
 \]
 without A1, \(COMP_P^{G,adm}\), or exemplification consistency. A one-world three-entity finite model contains two distinct positive Godlike individuals in one non-singleton profile class, satisfies the saturation condition, and still has a relevant admissible extension with positivity value \(\Neither\). Thus the classification gap remains real while the essence/NE route succeeds.
 
+The quotient condition has a more canonical formulation than the initial indiscernibility interface suggested. FDE-negation closure upgrades positive-profile saturation to bilateral factorization, and quotient-respecting bilateral extensions are closed under the basic FDE operations. Ordinary algebra closure does not generate the quotient: a complete classical extension algebra can be closed under negation, conjunction, and disjunction while still containing a singleton that distinguishes two positivity-profile-equivalent individuals.
+
+The entailment experiment sharpens this boundary further. The classical \(\delta\)-filter closure described in the literature is closure of the family of positive extensions, not closure of the ambient property domain \cite{BenzmuellerFuenmayor2019}. Naively imposing global entailment closure on \(Adm\) is too strong once FDE bottom is admissible, since bottom positively entails every extension. Lean proves
+\[
+  EntCl^{adm}+Adm(\bot_F)
+  \Longrightarrow
+  \forall Y\,Adm(Y),
+\]
+and, with relevant exemplification consistency, this recreates the unrestricted-comprehension obstruction and excludes every positive Godlike witness. A separate exhaustive finite fixture over all sixteen bilateral extensions on two entities satisfies \(A2_F^+\), full domain-level entailment closure, FDE-algebra closure, and profile-compatible actual existence while profile saturation still fails. Thus entailment closure is not the missing source of the quotient.
+
+Instead, Lean defines a canonical bilateral closure \(Sat_w\) that sends an arbitrary extension to the union of the positive-profile classes meeting its positive and negative support. This operation is extensive and monotone, idempotent up to bilateral extensional equivalence, and has the universal property of being the least quotient-respecting extension above its input. The earlier saturation principle is exactly the fixed-point condition
+\[
+  Sat_P^{adm}
+  \Longleftrightarrow
+  \forall w,Y\,(Adm(Y)\rightarrow Sat_w(Y)\equiv Y).
+\]
+Thus the selected Fitting property domain can be understood as living inside the fixed-point algebra of a canonical observational closure operator.
+
+Actualist entailment introduces one additional interface. If actual existence is constant on positive-profile classes throughout the accessible region, then Lean proves
+\[
+  Entail_F^+(w,X,Y)
+  \Longrightarrow
+  Entail_F^+(w,Sat_w(X),Sat_w(Y)).
+\]
+A two-world finite countermodel shows that this descent can fail when two profile-equivalent individuals are split by the actual-existence predicate. The quotient analysis therefore reaches beyond property membership: actualist domain variation must also be coordinated with the entity quotient if Fitting entailment is to factor through it directly.
+
 The literature's classical Fitting analysis supplies a useful contrast. Fitting positivity is a \(\delta\)-ultrafilter on rigid extensions \cite{BenzmuellerFuenmayor2019}. Isolating only its maximality component gives a complement-decision principle. In the bilateral reconstruction, Lean shows that complement decision together with relevant exemplification consistency already reconstructs local positive reflection and hence \(COMP_P^{G,adm}\); complement decision together with \(A1_R\) also reconstructs \(COMP_P^{G,adm}\). The ultrafilter-style route therefore explains why classification is natural in the classical theory, while positive-profile saturation gives a genuinely different four-valued route that leaves relevant positivity gaps unresolved.
 
 The admissible bilateral negative clauses also recover classically. Lean proves complementary recovery for extensional entailment, Godlikeness, essence, necessary actual exemplification, and necessary existence under classical coherence of the selected extensions. Thus the repair is not merely a positive-fragment construction.
@@ -130,7 +156,7 @@ The comparative picture is therefore sharper than a hierarchy of stronger or wea
 \text{Scott support:} & \text{reflection recovery and }R^+\text{ precede }T2^+,\\
 \text{Anderson:} & \text{necessary exemplification is built into Godlikeness},\\
 \text{Fitting:} & \text{positivity/essence range over selected rigid extensions,}\\
-& \text{with classification and quotient-saturation recovery routes.}
+& \text{with classification and quotient-fixed-point recovery routes.}
 \end{array}
 \]
 The accessibility relation matters, but it is not the only place where modal strength enters the theory.
@@ -141,16 +167,16 @@ The main open questions now separate accordingly. For Scott:
   \text{Which weaker principled four-valued assumptions, if any, suffice for }T2^+\text{ globally?}
   }
 \]
-For Fitting's extensional domain:
+For Fitting's quotient semantics:
 \[
   \boxed{
-  \text{Which algebraic closure principles make positive-profile saturation natural or derivable?}
+  \text{What independently motivates the fixed-point selection and profile-compatible actual existence?}
   }
 \]
 For the ultrafilter comparison:
 \[
   \boxed{
-  \text{Can a genuinely four-valued }\delta\text{-ultrafilter be defined on the quotient domain without restoring }COMP?
+  \text{Can a genuinely four-valued }\delta\text{-filter/ultrafilter be defined on the closure fixed points without restoring }COMP?
   }
 \]
 For the de-dicto bridge:
