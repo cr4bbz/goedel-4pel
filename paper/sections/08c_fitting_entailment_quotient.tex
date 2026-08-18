@@ -59,9 +59,15 @@ The positive result takes a different form. For each world \(w\), define a bilat
 \]
 Lean proves that \(Sat_w\) is extensive and monotone and is idempotent up to bilateral extensional equivalence. Every \(Sat_w(Y)\) respects the positive-profile quotient. More strongly, if \(Z\) already respects the quotient and \(Y\) is support-included in \(Z\), then
 \[
-  Sat_w(Y)\preceq Z.
+  Sat_w(Y)\leq_kZ,
 \]
-Thus \(Sat_w(Y)\) is the least quotient-respecting bilateral extension above \(Y\) in the support-inclusion order.
+where \(\leq_k\) is the FDE information order
+\[
+  X\leq_kY
+  \quad\Longleftrightarrow\quad
+  X^{+}\subseteq Y^{+}\land X^{-}\subseteq Y^{-},
+\]
+in which both support channels grow together. Thus \(Sat_w(Y)\) is the least quotient-respecting bilateral extension above \(Y\) in the information order.
 
 This yields an exact fixed-point characterization of the earlier domain condition:
 \[
@@ -130,14 +136,17 @@ The finite regression realizes one non-singleton profile class. It checks all si
 The resulting architecture is more precise than the initial entailment-closure hypothesis. Positivity-filter closure remains governed by \(A2_F^+\); the admissible property universe should not be closed indiscriminately under entailment; profile saturation is instead a fixed-point condition for a canonical closure operator; and actualist entailment is represented directly on the quotient exactly when actual existence factors through the relevant profile classes. The next open problem is the algebraic/filter structure of these quotient fixed points.
 
 \subsubsection{A four-valued delta-filter on quotient extensions}
+\label{sec:quotient-delta-filter}
 
-The explicit quotient makes the filter question precise. For bilateral quotient extensions define the FDE truth order by
+The explicit quotient makes the filter question precise. A lattice filter does not belong to the information order \(\leq_k\) just used for the profile hull, but to the FDE truth order
 \[
   X\leq_tY
   \quad\Longleftrightarrow\quad
-  (+X\subseteq+Y)\land(-Y\subseteq-X).
+  X^{+}\subseteq Y^{+}\land Y^{-}\subseteq X^{-},
 \]
-A positive quotient delta-filter is proper, upward closed in \(\leq_t\), and closed under FDE conjunction. Primeness adds
+in which positive support grows upwards while negative support shrinks. The two orders must not be conflated: \(Sat_w\) is a closure operator for \(\leq_k\), whereas the filter structure is \(\leq_t\)-ordered.
+
+A positive delta-filter is proper, upward closed in \(\leq_t\), and closed under FDE conjunction. Primeness adds
 \[
   X\vee_FY\in F\Longrightarrow X\in F\text{ or }Y\in F.
 \]
@@ -159,4 +168,4 @@ Every inhabited positive-profile quotient therefore carries a prime filter that 
 
 The complete two-class quotient algebra provides a bounded structural audit. Among all families of its sixteen bilateral extensions, there are 166 proper truth-order upsets, 15 ordinary delta-filters, four prime delta-filters, 112 proper non-adjunctive two-filters, and ten prime two-filters. All four prime ordinary filters fail complement decision. The union of the two point-evaluation filters is a prime two-filter but not an ordinary filter. Conversely, the ordinary filter requiring positive membership at both classes has two non-vacuous Godlike points, while a \((\True,\Neither)\) extension is possessed at the first point but neither it nor its FDE negation belongs to the filter. Thus local \(COMP\) fails in that fixture.
 
-The filter question is consequently narrowed rather than closed: four-valued properness, conjunction closure, and even primeness preserve the decisive gap. What remains is to determine which additional filter strength supports the desired essence/necessary-existence inference without recreating complement decision.
+The filter question is consequently narrowed rather than closed: four-valued properness, conjunction closure, and even primeness preserve the decisive gap. This settles the question for the abstract quotient algebra, where the filter is a family of quotient extensions carrying no positivity predicate of its own. The next subsection asks the corresponding question one level down, where the filter is the positivity predicate itself on the selected admissible domain, and where maximality can therefore interact with the Godlikeness and consistency interfaces.
