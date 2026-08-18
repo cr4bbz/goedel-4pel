@@ -51,39 +51,49 @@ Gate 7 is complete. The broader two-world / one-entity `G,Z` search retains 873 
 
 ### Fitting branch
 
-The initial type boundary is `fitting-types-v0.1`; the substantive candidate is frozen in `docs/FITTING_BILATERAL.md` as `fitting-bilateral-v0.2`; theorem-level assumption reduction is frozen in `docs/FITTING_MINIMALITY.md` as `fitting-minimality-v0.2`; the domain-structure analysis is frozen in `docs/FITTING_DOMAIN_STRUCTURE.md` as `fitting-domain-v0.1`.
+The current milestones are:
+
+```text
+fitting-types-v0.1
+fitting-bilateral-v0.2
+fitting-minimality-v0.2
+fitting-domain-v0.2
+fitting-entailment-v0.1
+```
+
+The entailment milestone is implemented in Lean and finite-model code; the new Lean module still requires one local `lake build` confirmation before its new theorem claims are promoted from implementation status to verified status.
 
 - [x] introduce distinct Lean types for bilateral extensions and world-indexed intensions;
 - [x] type Fitting positivity over extensions rather than intensions;
 - [x] define extension-level signed necessary entailment;
 - [x] define bilateral extensional essence and necessary existence;
-- [x] discover and machine-check the unrestricted bilateral-comprehension obstruction:
-  `ConsGG -> no GodPlus`, hence the naive unrestricted `REG_G` route is unsuitable as a non-vacuous recovery theorem;
+- [x] discover and machine-check the unrestricted bilateral-comprehension obstruction: `ConsGG -> no GodPlus`;
 - [x] introduce a selected FDE-negation-closed admissible extension domain without globally banning gluts;
 - [x] prove the admissible-domain Fitting T2 analogue without `R+`;
 - [x] machine-check classical recovery for admissible entailment, Godlikeness, essence, necessary actual exemplification, and NE;
 - [x] prove an admissible de-re possibility-to-necessity theorem with no frame condition and no `R+`;
-- [x] isolate de-dicto lifting behind explicit G-extension stability;
-- [x] prove de-dicto possibility-to-necessity from the admissible Fitting stack with no S4/S5 frame assumption;
-- [x] exhibit a three-world admissible model separating de re from de dicto when extension stability fails;
-- [x] exhibit a complete-S5 admissible model with positive necessary Godlike existence, genuine `B` information, and failure of positive modal collapse;
-- [x] weaken full `CONS_G^G(adm)` to consistency only on the negatively classified branch for the A1-L recovery theorem;
-- [x] prove that restoring `A1-R` reconstructs full `CONS_G^G(adm)` from that targeted package;
-- [x] split G-extension stability into positive persistence and positive reflection and prove that positive-only stability suffices for the positive de-dicto theorem;
-- [x] exhibit a complete-S5 fixture satisfying both A1 directions and the old full `REG_G^adm` while positive G stability holds and bilateral G stability fails;
-- [x] show that `COMP_P^G(adm)` is specific to the classification route by proving an alternative Godlike-indiscernibility essence/NE theorem with no A1, `COMP`, or consistency premise;
-- [x] exhibit a finite model satisfying both A1 directions and full relevant consistency in which a relevant extension has positivity value `N`, `COMP_P^G(adm)` fails, but the indiscernibility route still yields essence and necessary existence;
-- [x] define positive-profile equivalence on entities and machine-check that it is an equivalence relation;
-- [x] derive Godlike indiscernibility from quotient-style positive-profile saturation of the admissible extension domain;
-- [x] exhibit a nontrivial finite profile-saturation model with two distinct positive Godlike individuals, a genuine relevant positivity gap, failure of `COMP_P^G(adm)`, and successful essence/NE recovery;
-- [x] isolate an ultrafilter-style positive complement-decision interface and prove that, with relevant consistency or with `A1-R`, it reconstructs positive reflection / `COMP_P^G(adm)` rather than the classification-free route;
-- [ ] determine principled algebraic closure conditions on the profile-saturated admissible domain beyond negation closure;
-- [ ] define and assess a genuinely four-valued `delta`-ultrafilter on the profile quotient without automatically restoring `COMP`;
+- [x] isolate de-dicto lifting behind positive-only G-extension stability;
+- [x] exhibit de-re/de-dicto separation and necessary-God/no-collapse finite models;
+- [x] weaken full `CONS_G^G(adm)` to consistency only on the negatively classified branch for the A1-L route;
+- [x] prove that restoring `A1-R` reconstructs full `CONS_G^G(adm)` from the targeted package;
+- [x] show that `COMP_P^G(adm)` is route-specific via a Godlike-indiscernibility essence/NE theorem;
+- [x] derive Godlike indiscernibility from positive-profile saturation of the admissible domain;
+- [x] prove positive-profile saturation is equivalent to bilateral profile saturation under negation closure;
+- [x] show quotient-respecting bilateral extensions are preserved by FDE negation, conjunction, disjunction, top and bottom;
+- [x] exhibit a finite countermodel showing FDE algebra closure does not force profile saturation;
+- [x] isolate ultrafilter-style complement decision and show that with relevant consistency or `A1-R` it reconstructs the classification route;
+- [x] finite-check that even `A2+` + full domain-level entailment closure + FDE algebra closure + profile-compatible actual existence does not force profile saturation;
+- [x] finite-check that actualist entailment can fail to descend through profile saturation when actual existence splits a profile class;
+- [ ] locally validate the new `FittingEntailmentQuotient.lean` theorem block with Lean 4.30.0;
+- [ ] after that validation, freeze the general profile-closure operator results as machine-checked: extensivity, monotonicity, least quotient-respecting hull, idempotence, fixed-point characterization, and entailment descent under profile-compatible existence;
+- [ ] after that validation, freeze the general obstruction `GlobalEntailmentClosedAdm + Adm(bottom) => unrestricted Adm` and its consistency/Godlikeness corollary;
+- [ ] determine whether `ProfileExistenceSaturatedAdm` follows from a principled actualist-domain condition or should be built into an explicit quotient semantics;
+- [ ] define and assess a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra without automatically restoring `COMP`;
 - [ ] determine whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed together.
 
 ### Cross-variant comparison
 
-Current verified structural picture:
+Current verified structural picture before the pending entailment-module build confirmation:
 
 ```text
 Scott support:
@@ -101,11 +111,13 @@ Fitting admissible:
   de-re possibility -> necessity is frame-free
   classification route: A1-L + COMP + negative-branch consistency
   quotient route: positive-profile saturation -> Godlike indiscernibility, with no COMP/A1/consistency
+  FDE algebra preserves quotient factorization but does not generate it
   ultrafilter-style complement decision + consistency/A1-R reconstructs classification rather than bypassing it
-  A1-R restores the stronger consistency condition only inside the classification route
   de-dicto lifting needs only positive G-extension stability
   necessary Godlikeness can coexist with MC+ failure
 ```
+
+The new entailment experiment additionally has executable finite evidence that entailment closure does not generate the quotient. Its general Lean closure/fixed-point theorems are pending the local build confirmation noted above.
 
 - [ ] rerun selected Scott/Anderson/Fitting results over broader paired-neighborhood semantics;
 - [ ] decide whether a bilateral negative exact-Godlikeness clause remains scientifically useful after the literature comparisons.
@@ -147,7 +159,7 @@ Fitting admissible:
 
 ### Gate 8 — Comparative variants — **in progress**
 
-The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now has two machine-checked recovery architectures: a positivity-classification route with A1-sensitive local consistency, and a `COMP`-independent quotient route in which admissible extensions are saturated under positive-property profiles. Remaining Gate-8 work is primarily algebraic justification of the admissible quotient domain, a genuinely four-valued ultrafilter comparison, stability minimization, and paired-neighborhood generalization.
+The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now distinguishes positivity-filter closure, the selected admissible property domain, a profile-quotient fixed-point proposal, and actualist existence compatibility. The newest entailment-quotient theorem block is implemented and awaits one local Lean build confirmation.
 
 ### Gate 9 — Publication consolidation
 
