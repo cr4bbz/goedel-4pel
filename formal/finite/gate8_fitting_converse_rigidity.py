@@ -1,5 +1,6 @@
 from itertools import product
 
+from checker import require
 from gate8_fitting_rigidity_bridge import (
     ADMISSIBLE,
     ALL_EDGES,
@@ -41,7 +42,7 @@ def validate_converse_rigidity_exhaustive():
             positivity = _positivity_assignment(positivity_bits)
             g_extension = _realized_g_extensions(positivity)
 
-            assert _g_realization(positivity, g_extension)
+            require(_g_realization(positivity, g_extension))
             checked += 1
 
             r_plus = _r_plus_adm(access, positivity)
@@ -49,16 +50,16 @@ def validate_converse_rigidity_exhaustive():
             symmetric = _symmetric(access)
 
             if r_plus and symmetric:
-                assert converse
+                require(converse)
 
             if converse:
                 converse_models += 1
-                assert _g_pos_persists(access, g_extension)
+                require(_g_pos_persists(access, g_extension))
 
             if r_plus and converse:
                 bidirectional_models += 1
-                assert _g_pos_reflects(access, g_extension)
-                assert _g_pos_persists(access, g_extension)
+                require(_g_pos_reflects(access, g_extension))
+                require(_g_pos_persists(access, g_extension))
 
                 if symmetric:
                     symmetric_bidirectional_models += 1
@@ -72,7 +73,7 @@ def validate_converse_rigidity_exhaustive():
         symmetric_bidirectional_models,
         asymmetric_bidirectional_models,
     )
-    assert counts == (256, 152, 112, 80, 32)
+    require(counts == (256, 152, 112, 80, 32))
     return counts
 
 
@@ -88,12 +89,12 @@ def validate_bidirectional_rigidity_without_symmetry():
     }
     g_extension = _realized_g_extensions(positivity)
 
-    assert _g_realization(positivity, g_extension)
-    assert _r_plus_adm(access, positivity)
-    assert _r_plus_converse_adm(access, positivity)
-    assert not _symmetric(access)
-    assert _g_pos_reflects(access, g_extension)
-    assert _g_pos_persists(access, g_extension)
+    require(_g_realization(positivity, g_extension))
+    require(_r_plus_adm(access, positivity))
+    require(_r_plus_converse_adm(access, positivity))
+    require(not _symmetric(access))
+    require(_g_pos_reflects(access, g_extension))
+    require(_g_pos_persists(access, g_extension))
     return True
 
 
@@ -109,18 +110,18 @@ def validate_converse_without_forward_does_not_force_reflection():
     }
     g_extension = _realized_g_extensions(positivity)
 
-    assert _g_realization(positivity, g_extension)
-    assert _r_plus_converse_adm(access, positivity)
-    assert not _r_plus_adm(access, positivity)
-    assert _g_pos_persists(access, g_extension)
-    assert not _g_pos_reflects(access, g_extension)
+    require(_g_realization(positivity, g_extension))
+    require(_r_plus_converse_adm(access, positivity))
+    require(not _r_plus_adm(access, positivity))
+    require(_g_pos_persists(access, g_extension))
+    require(not _g_pos_reflects(access, g_extension))
     return True
 
 
 if __name__ == "__main__":
     counts = validate_converse_rigidity_exhaustive()
-    assert validate_bidirectional_rigidity_without_symmetry()
-    assert validate_converse_without_forward_does_not_force_reflection()
+    require(validate_bidirectional_rigidity_without_symmetry())
+    require(validate_converse_without_forward_does_not_force_reflection())
     print("Gate 8 Fitting converse rigidity: OK")
     print(
         "  exhaustive models: "

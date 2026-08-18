@@ -158,7 +158,7 @@ The finite counterexample described above shows that entailment descent can fail
 
 ### Verification status of the newest module
 
-The finite regressions have been separately executed and the new Lean module is committed and root-imported. At this exact repository snapshot, the new `FittingEntailmentQuotient.lean` theorem block still awaits one **local Lean 4.30.0 `lake build` confirmation** before these newest general statements are promoted to the same machine-checked status as the earlier Gate-8 Lean spine.
+`FittingEntailmentQuotient.lean` is root-imported and its theorem block has been confirmed by a local Lean 4.30.0 `lake build`. These statements therefore carry the same machine-checked status as the earlier Gate-8 Lean spine.
 
 Build locally:
 
@@ -173,12 +173,21 @@ GitHub Actions runs both finite regressions and `lake build`, but the connector 
 
 Finite searches and fixtures are always reported with exact bounds. General claims are promoted to machine-checked status only after Lean accepts them.
 
+### No `assert` in the finite layer
+
+Checks in `finite/` use `require(condition)` from `checker.py`, never a bare `assert`. Python strips `assert` statements under `-O`, so an assertion-based oracle reports success while verifying nothing:
+
+```bash
+python -O formal/finite/checker.py   # must still verify, not just print OK
+```
+
+`require` raises `CheckFailed`, which `-O` cannot remove. Pass a second argument when a failure needs a model signature; otherwise the traceback already identifies the failing condition. New fixtures should follow the same convention.
+
 ## Next Gate-8 formal work
 
-After the local build confirmation, the main frontier is:
+Items 1 and 2 of the earlier list are discharged: `ProfileExistenceSaturatedAdm` is now characterized exactly as existence factorization through the explicit `ProfileQuotient` type, and `FittingDeltaFilter.lean` gives a four-valued `delta`-filter on the fixed-point algebra that does not reconstruct `COMP` unless ultrafilter maximality is added. The remaining frontier is:
 
-1. determine whether `ProfileExistenceSaturatedAdm` follows from a principled actualist-domain condition or should be encoded through an explicit quotient type;
-2. formulate a genuinely four-valued `delta`-filter/ultrafilter on the profile-closure fixed-point algebra and test whether it can avoid reconstructing `COMP`;
-3. determine whether positive persistence or positive reflection follows from other principled Fitting assumptions;
-4. rerun selected Scott/Anderson/Fitting results over paired-neighborhood semantics;
-5. complete the source-level publication audit.
+1. determine which filter strength between properness and maximality, if any, supports the essence/NE route;
+2. determine whether positive persistence or positive reflection follows from other principled Fitting assumptions, and whether converse transport can be restricted to `G`-triggered extensions;
+3. rerun selected Scott/Anderson/Fitting results over paired-neighborhood semantics;
+4. complete the source-level publication audit.

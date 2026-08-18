@@ -24,6 +24,7 @@ import Goedel4PEL.GoedelScott.FittingAdmissibleAlgebra
 import Goedel4PEL.GoedelScott.FittingEntailmentQuotient
 import Goedel4PEL.GoedelScott.FittingActualistQuotient
 import Goedel4PEL.GoedelScott.FittingQuotientDeltaFilter
+import Goedel4PEL.GoedelScott.FittingDeltaFilter
 import Goedel4PEL.GoedelScott.FittingRigidityBridge
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2

@@ -1,4 +1,4 @@
-from checker import FiniteModel, Val, t2_gap_countermodel, t2_glut_countermodel
+from checker import FiniteModel, Val, require, t2_gap_countermodel, t2_glut_countermodel
 
 
 def god_exact_plus(model, w, x):
@@ -119,30 +119,30 @@ def exact_not_anderson_model():
 def run_gate8_comparison():
     glut = t2_glut_countermodel()
     gap = t2_gap_countermodel()
-    assert glut.god_plus_derived("w0", "a") and not god_exact_plus(glut, "w0", "a")
-    assert gap.god_plus_derived("w0", "a") and not god_exact_plus(gap, "w0", "a")
+    require(glut.god_plus_derived("w0", "a") and not god_exact_plus(glut, "w0", "a"))
+    require(gap.god_plus_derived("w0", "a") and not god_exact_plus(gap, "w0", "a"))
 
     exact = exact_glut_model()
-    assert exact.complement_extensions()
-    assert exact.strong_a1()
-    assert exact.r_plus()
-    assert g_exact_sup(exact)
-    assert god_exact_plus(exact, "w0", "a")
-    assert exact.val("w0", "a", "Z") == Val.B
-    assert exact.pval("w0", "Z") == Val.B
+    require(exact.complement_extensions())
+    require(exact.strong_a1())
+    require(exact.r_plus())
+    require(g_exact_sup(exact))
+    require(god_exact_plus(exact, "w0", "a"))
+    require(exact.val("w0", "a", "Z") == Val.B)
+    require(exact.pval("w0", "Z") == Val.B)
 
     anderson = anderson_not_exact_model()
-    assert anderson_god_plus(anderson, "w0", "a")
-    assert anderson.god_plus_derived("w0", "a")
-    assert not god_exact_plus(anderson, "w0", "a")
+    require(anderson_god_plus(anderson, "w0", "a"))
+    require(anderson.god_plus_derived("w0", "a"))
+    require(not god_exact_plus(anderson, "w0", "a"))
 
     local_exact = exact_not_anderson_model()
-    assert god_exact_plus(local_exact, "w0", "a")
-    assert local_exact.god_plus_derived("w0", "a")
-    assert not anderson_god_plus(local_exact, "w0", "a")
+    require(god_exact_plus(local_exact, "w0", "a"))
+    require(local_exact.god_plus_derived("w0", "a"))
+    require(not anderson_god_plus(local_exact, "w0", "a"))
     return True
 
 
 if __name__ == "__main__":
-    assert run_gate8_comparison()
+    require(run_gate8_comparison())
     print("Gate 8 support/exact/Anderson comparison: OK")

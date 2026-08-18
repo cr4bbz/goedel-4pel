@@ -3,7 +3,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 from itertools import product
-from typing import Dict, Iterable, Tuple
+from typing import Any, Dict, Iterable, Tuple
+
+
+class CheckFailed(Exception):
+    """Raised when a finite-model check fails."""
+
+
+def require(condition: object, detail: Any = "") -> None:
+    """Assert a verification condition without using ``assert``.
+
+    The finite layer is evidence, not documentation, so its checks must not be
+    removable. ``python -O`` strips ``assert`` statements, which would let every
+    gate script report success while checking nothing.
+    """
+
+    if not condition:
+        raise CheckFailed(str(detail) if detail else "check failed")
 
 
 class Val(Enum):
@@ -243,7 +259,7 @@ def exhaustive_mc_schema_equivalence_two_world_s5() -> int:
         mc_minus_schema = all(
             mc_minus_formula(vals, access) for vals in (pvals, npvals)
         )
-        assert mc_plus_schema == mc_minus_schema
+        require(mc_plus_schema == mc_minus_schema)
         checked += 1
     return checked
 
@@ -285,15 +301,15 @@ def exhaustive_reg_g_implies_t2() -> int:
         m = FiniteModel(worlds, ("a",), props, comp, access, exists, ext, positivity)
         if m.strong_a1() and m.r_plus() and m.g_sup_definition() and m.reg_g():
             checked += 1
-            assert m.t2_plus(), (g0, g1, z0, z1, pz0, pz1)
+            require(m.t2_plus(), (g0, g1, z0, z1, pz0, pz1))
     return checked
 
 
 if __name__ == "__main__":
     glut = t2_glut_countermodel()
     gap = t2_gap_countermodel()
-    assert glut.control_stack() and not glut.t2_plus()
-    assert gap.control_stack() and not gap.t2_plus()
+    require(glut.control_stack() and not glut.t2_plus())
+    require(gap.control_stack() and not gap.t2_plus())
     mc_cases = exhaustive_mc_schema_equivalence_two_world_s5()
     reg_models = exhaustive_reg_g_implies_t2()
     print("Gate 7 finite checks: OK")

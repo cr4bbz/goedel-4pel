@@ -3,7 +3,7 @@ from __future__ import annotations
 from itertools import product
 from typing import Dict, Iterator
 
-from checker import FiniteModel, Val
+from checker import FiniteModel, Val, require
 
 
 T2_RECOVERY_ASSUMPTIONS = ("A1-L", "R+", "COMP_P^G", "CONS_G^G")
@@ -130,7 +130,7 @@ def iter_t2_regular_models() -> Iterator[FiniteModel]:
         if not is_t2_minimality_baseline(model):
             continue
         if all(t2_recovery_assumption_values(model).values()):
-            assert model.t2_plus(), _signature(model)
+            require(model.t2_plus(), _signature(model))
             yield model
 
 
@@ -159,7 +159,7 @@ def exhaustive_t2_assumption_minimality() -> tuple[int, Dict[str, Dict[str, str]
 
         if all(values.values()):
             retained += 1
-            assert m.t2_plus(), _signature(m)
+            require(m.t2_plus(), _signature(m))
 
         if not m.t2_plus():
             for dropped in T2_RECOVERY_ASSUMPTIONS:
@@ -172,12 +172,12 @@ def exhaustive_t2_assumption_minimality() -> tuple[int, Dict[str, Dict[str, str]
                 ):
                     witnesses[dropped] = _signature(m)
 
-    assert set(witnesses) == set(T2_RECOVERY_ASSUMPTIONS), witnesses
+    require(set(witnesses) == set(T2_RECOVERY_ASSUMPTIONS), witnesses)
     return retained, witnesses
 
 
 if __name__ == "__main__":
-    assert validate_t1_glut_countermodel()
+    require(validate_t1_glut_countermodel())
     retained, witnesses = exhaustive_t2_assumption_minimality()
     print("Gate 7 extended finite checks: OK")
     print("  T1 unrestricted +P glut countermodel: validated")

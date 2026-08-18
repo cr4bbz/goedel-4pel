@@ -42,6 +42,9 @@ from gate8_fitting_actualist_quotient import (
     validate_actualist_profile_quotient,
     validate_actualist_quotient_requires_existence_factorization,
 )
+from gate8_fitting_delta_filter import (
+    validate_delta_filter_does_not_restore_comp,
+)
 from gate10_quotient_delta_filters import validate_quotient_delta_filters
 from gate11_paired_neighborhoods import validate_paired_neighborhoods
 
@@ -160,10 +163,17 @@ class Gate7Tests(unittest.TestCase):
             validate_actualist_quotient_requires_existence_factorization()
         )
 
+    def test_gate8_profile_delta_filter_does_not_restore_comp(self):
+        self.assertTrue(validate_delta_filter_does_not_restore_comp())
+
     def test_gate10_quotient_delta_filter_audit(self):
         counts = validate_quotient_delta_filters()
+        # Every count below is printed in the manuscript's two-point audit.
+        self.assertEqual(counts["proper_upsets"], 166)
         self.assertEqual(counts["delta_filters"], 15)
         self.assertEqual(counts["prime_delta_filters"], 4)
+        self.assertEqual(counts["two_filters"], 112)
+        self.assertEqual(counts["prime_two_filters"], 10)
         self.assertEqual(counts["nondeciding_prime_delta_filters"], 4)
 
     def test_gate11_paired_neighborhood_bridge(self):

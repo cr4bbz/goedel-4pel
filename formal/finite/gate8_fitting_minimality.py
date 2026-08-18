@@ -1,4 +1,4 @@
-from checker import Val
+from checker import Val, require
 
 
 # ---------------------------------------------------------------------------
@@ -36,12 +36,12 @@ def a_admissible(extension):
 
 
 def a_p_pos(_w, extension):
-    assert a_admissible(extension)
+    require(a_admissible(extension))
     return extension == A_GLUT
 
 
 def a_p_neg(_w, extension):
-    assert a_admissible(extension)
+    require(a_admissible(extension))
     return False
 
 
@@ -126,15 +126,15 @@ def a_ess_plus(w, extension, x):
 
 
 def validate_neg_class_consistency_strictness():
-    assert all(a_admissible(_negate(x)) for x in A_ADMISSIBLE)
-    assert a_a1_left()
-    assert not a_a1_right()
-    assert a_god_plus("w0", "a")
-    assert _pos(A_G_EXTENSION["w0"], A_ENTITIES, "a") == a_god_plus("w0", "a")
-    assert a_comp_p_g()
-    assert a_neg_class_consistency()
-    assert not a_cons_g_g()
-    assert a_ess_plus("w0", A_G_EXTENSION["w0"], "a")
+    require(all(a_admissible(_negate(x)) for x in A_ADMISSIBLE))
+    require(a_a1_left())
+    require(not a_a1_right())
+    require(a_god_plus("w0", "a"))
+    require(_pos(A_G_EXTENSION["w0"], A_ENTITIES, "a") == a_god_plus("w0", "a"))
+    require(a_comp_p_g())
+    require(a_neg_class_consistency())
+    require(not a_cons_g_g())
+    require(a_ess_plus("w0", A_G_EXTENSION["w0"], "a"))
     return True
 
 
@@ -167,7 +167,7 @@ def b_admissible(extension):
 
 
 def b_p_pos(_w, extension):
-    assert b_admissible(extension)
+    require(b_admissible(extension))
     return _pos(extension, B_ENTITIES, "a")
 
 
@@ -337,31 +337,31 @@ def b_necessary_g_de_dicto(w):
 
 
 def validate_positive_stability_strictness():
-    assert all(b_admissible(_negate(x)) for x in B_ADMISSIBLE)
-    assert b_a1_left()
-    assert b_a1_right()
-    assert b_g_realization()
-    assert b_comp_p_g()
-    assert b_cons_g_g()
-    assert b_neg_class_consistency()
-    assert b_ne_realization()
-    assert b_a5_plus()
+    require(all(b_admissible(_negate(x)) for x in B_ADMISSIBLE))
+    require(b_a1_left())
+    require(b_a1_right())
+    require(b_g_realization())
+    require(b_comp_p_g())
+    require(b_cons_g_g())
+    require(b_neg_class_consistency())
+    require(b_ne_realization())
+    require(b_a5_plus())
 
-    assert b_god_plus("w0", "a")
-    assert b_god_plus("w1", "a")
-    assert not b_god_plus("w0", "b")
-    assert not b_god_plus("w1", "b")
+    require(b_god_plus("w0", "a"))
+    require(b_god_plus("w1", "a"))
+    require(not b_god_plus("w0", "b"))
+    require(not b_god_plus("w1", "b"))
 
-    assert b_g_pos_stable()
-    assert not b_g_bilateral_stable()
+    require(b_g_pos_stable())
+    require(not b_g_bilateral_stable())
 
-    assert b_possible_g_de_dicto("w0")
-    assert b_necessary_g_de_dicto("w0")
-    assert b_necessary_g_de_dicto("w1")
+    require(b_possible_g_de_dicto("w0"))
+    require(b_necessary_g_de_dicto("w0"))
+    require(b_necessary_g_de_dicto("w1"))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_neg_class_consistency_strictness()
-    assert validate_positive_stability_strictness()
+    require(validate_neg_class_consistency_strictness())
+    require(validate_positive_stability_strictness())
     print("Gate 8 Fitting minimality fixtures: OK")

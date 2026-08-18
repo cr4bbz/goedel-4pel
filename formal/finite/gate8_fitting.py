@@ -1,4 +1,4 @@
-from checker import Val
+from checker import Val, require
 
 
 WORLDS = ("w0", "w1", "w2")
@@ -63,7 +63,7 @@ def p_pos(w, extension):
     every nonempty extension is positively supported; their intersection is
     empty, so no individual is Godlike there.
     """
-    assert admissible(extension)
+    require(admissible(extension))
     if w in ("w0", "w1"):
         return ext_pos(extension, "a")
     return any(ext_pos(extension, x) for x in ENTITIES)
@@ -226,33 +226,33 @@ def g_extension_stable_along_r():
 
 
 def validate_fitting_admissible_de_re_de_dicto_model():
-    assert admissible_negation_closed()
-    assert a1_left_adm()
-    assert g_admissible()
-    assert g_realization_adm()
-    assert comp_p_g_adm()
-    assert cons_g_g_adm()
-    assert ne_admissible()
-    assert ne_realization_adm()
-    assert a5_plus_adm()
+    require(admissible_negation_closed())
+    require(a1_left_adm())
+    require(g_admissible())
+    require(g_realization_adm())
+    require(comp_p_g_adm())
+    require(cons_g_g_adm())
+    require(ne_admissible())
+    require(ne_realization_adm())
+    require(a5_plus_adm())
 
     # Non-vacuity: a is genuinely Godlike at w0 and w1.
-    assert god_plus_adm("w0", "a")
-    assert god_plus_adm("w1", "a")
-    assert not god_plus_adm("w2", "a")
-    assert not god_plus_adm("w2", "b")
+    require(god_plus_adm("w0", "a"))
+    require(god_plus_adm("w1", "a"))
+    require(not god_plus_adm("w2", "a"))
+    require(not god_plus_adm("w2", "b"))
 
     # The frozen current G extension is both possible and necessary de re.
-    assert possible_current_g_extension("w0")
-    assert necessary_current_g_extension("w0")
+    require(possible_current_g_extension("w0"))
+    require(necessary_current_g_extension("w0"))
 
     # De dicto possibility survives via w1, but necessity fails at w2.
-    assert possible_g_de_dicto("w0")
-    assert not necessary_g_de_dicto("w0")
-    assert not g_extension_stable_along_r()
+    require(possible_g_de_dicto("w0"))
+    require(not necessary_g_de_dicto("w0"))
+    require(not g_extension_stable_along_r())
     return True
 
 
 if __name__ == "__main__":
-    assert validate_fitting_admissible_de_re_de_dicto_model()
+    require(validate_fitting_admissible_de_re_de_dicto_model())
     print("Gate 8 admissible Fitting de-re/de-dicto separation: OK")

@@ -1,6 +1,6 @@
 from itertools import product
 
-from checker import Val
+from checker import Val, require
 
 
 WORLDS = ("w0", "w1")
@@ -87,7 +87,7 @@ def validate_rigidity_bridge_exhaustive():
     membership; every retained symmetric RPlusAdm model must also preserve it.
     """
 
-    assert all(_negate(extension) in ADMISSIBLE for extension in ADMISSIBLE)
+    require(all(_negate(extension) in ADMISSIBLE for extension in ADMISSIBLE))
 
     checked = 0
     r_plus_models = 0
@@ -99,20 +99,20 @@ def validate_rigidity_bridge_exhaustive():
             positivity = _positivity_assignment(positivity_bits)
             g_extension = _realized_g_extensions(positivity)
 
-            assert _g_realization(positivity, g_extension)
+            require(_g_realization(positivity, g_extension))
             checked += 1
 
             if _r_plus_adm(access, positivity):
                 r_plus_models += 1
-                assert _g_pos_reflects(access, g_extension)
+                require(_g_pos_reflects(access, g_extension))
 
                 if _symmetric(access):
                     symmetric_r_plus_models += 1
-                    assert _g_pos_persists(access, g_extension)
+                    require(_g_pos_persists(access, g_extension))
 
-    assert checked == 256
-    assert r_plus_models > 0
-    assert symmetric_r_plus_models > 0
+    require(checked == 256)
+    require(r_plus_models > 0)
+    require(symmetric_r_plus_models > 0)
     return checked, r_plus_models, symmetric_r_plus_models
 
 
@@ -128,11 +128,11 @@ def validate_rplus_without_symmetry_does_not_force_persistence():
     }
     g_extension = _realized_g_extensions(positivity)
 
-    assert _g_realization(positivity, g_extension)
-    assert _r_plus_adm(access, positivity)
-    assert not _symmetric(access)
-    assert _g_pos_reflects(access, g_extension)
-    assert not _g_pos_persists(access, g_extension)
+    require(_g_realization(positivity, g_extension))
+    require(_r_plus_adm(access, positivity))
+    require(not _symmetric(access))
+    require(_g_pos_reflects(access, g_extension))
+    require(not _g_pos_persists(access, g_extension))
     return True
 
 
@@ -148,18 +148,18 @@ def validate_symmetry_without_rplus_does_not_force_reflection():
     }
     g_extension = _realized_g_extensions(positivity)
 
-    assert _g_realization(positivity, g_extension)
-    assert _symmetric(access)
-    assert not _r_plus_adm(access, positivity)
-    assert not _g_pos_reflects(access, g_extension)
-    assert not _g_pos_persists(access, g_extension)
+    require(_g_realization(positivity, g_extension))
+    require(_symmetric(access))
+    require(not _r_plus_adm(access, positivity))
+    require(not _g_pos_reflects(access, g_extension))
+    require(not _g_pos_persists(access, g_extension))
     return True
 
 
 if __name__ == "__main__":
     counts = validate_rigidity_bridge_exhaustive()
-    assert validate_rplus_without_symmetry_does_not_force_persistence()
-    assert validate_symmetry_without_rplus_does_not_force_reflection()
+    require(validate_rplus_without_symmetry_does_not_force_persistence())
+    require(validate_symmetry_without_rplus_does_not_force_reflection())
     print("Gate 8 Fitting rigidity bridge: OK")
     print(
         "  exhaustive models: "

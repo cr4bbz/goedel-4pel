@@ -6,6 +6,7 @@
 Gate 7 adds two complementary verification layers. I use a finite-model oracle for concrete countermodels and bounded exhaustive searches, and Lean for general semantic theorems that must not depend on a finite bound. Gate 8 extends the same discipline to comparative variants, modal-frame minimization, and the Fitting intension/extension reconstruction. This separation prevents the absence of a small countermodel from being mistaken for a proof and, conversely, allows an apparently successful proof interface to be tested for semantic vacuity.
 
 \subsection{Finite-model regression layer}
+\label{sec:finite-layer}
 
 The executable checker implements the four information values, involutive FDE negation, finite accessibility relations, actualist existence, four-valued property extensions and positivity, signed necessary entailment, support-based Godlikeness, positive essence, and the Gate-6 regularity conditions.
 
@@ -13,7 +14,7 @@ The regression suite machine-checks both two-world T2 countermodels from Gate 6.
 
 The checker also validates the Gate-5 obstruction to unrestricted positive T1. A one-world reflexive model with no actual entities and glutty positivity for a property and its complement satisfies strong A1 and \(A2^+\), while positive support for the property does not yield positive possible actual exemplification. This is the executable counterpart of the distinction between mere positive support and truth-only positivity.
 
-A first bounded search retains 204 models satisfying the original small control antecedent and verifies \(T2^+\) in every retained model. A broader exhaustive two-world, one-entity \(G,Z\) family then varies positivity of \(Z\) and its complement independently while fixing FDE complement exemplification and full bilateral \(G\)-support semantics. In this broader family, 873 models satisfy
+A first bounded search retains 204 models satisfying the original small control antecedent and verifies \(T2^+\) in every retained model. A broader exhaustive two-world, one-entity \(G,Z\) family then varies positivity of \(Z\) and its complement independently while fixing FDE complement exemplification and full bilateral \(G\)-support semantics. The family also fixes the Scott-control positivity of Godlikeness itself, taking \(P(G)=\True\) and \(P(\neg G)=\False\) at both worlds; the search is therefore exhaustive relative to an A3-style positivity of \(G\) rather than over all positivity assignments. In this broader family, 873 models satisfy
 \[
  A1_L,\qquad R^+,\qquad COMP_P^G,\qquad CONS_G^G,
 \]
@@ -49,6 +50,7 @@ but not
 Thus the present admissible bilateral Fitting candidate has an explicit necessary-God / no-positive-collapse model. This is a finite countermodel to collapse for the candidate, not an unbounded theorem about every Fitting semantics.
 
 \subsection{Lean layer}
+\label{sec:lean-layer}
 
 The Lean package is pinned to Lean 4.30.0. It formalizes the four-valued carrier, FDE negation, conjunction and disjunction, bilateral relational modality, bilateral actualist quantification, signed necessary entailment, support-based Godlikeness, bilateral essence, and necessary-existence interfaces.
 
@@ -109,116 +111,8 @@ For Anderson, the literature-grounded positive interfaces and project-specific b
 \end{split}
 \]
 
-\subsection{Fitting: from a type distinction to a domain obstruction}
-
-The Fitting comparison begins by distinguishing bilateral extensions from intensions:
-\[
-  Extension(Entity)
-  \qquad\text{and}\qquad
-  Intension(World,Entity)=World\to Extension(Entity).
-\]
-The positivity predicate is typed over extensions, and \(extensionAt\) makes the passage from an intension to its extension at a world explicit. Signed necessary entailment, essence, and necessary existence are then reconstructed over rigid extensions, reflecting the extensional architecture of the mechanized Fitting variant \cite{BenzmuellerFuenmayor2019}.
-
-A naive first lift quantified Fitting Godlikeness and the relevant consistency/completeness package over every inhabitant of the bilateral extension type. Lean exposes a problem with that choice. The unrestricted type contains the extension \(B\) satisfying
-\[
-  \pos{B(x)}\quad\text{and}\quad\neginfo{B(x)}
-\]
-for every individual. Consequently Lean proves
-\[
-  CONS_{G,F}^{\mathrm{all}}
-  \Longrightarrow
-  \forall w\forall x\,\neg G_F^+(x,w),
-\]
-and therefore also
-\[
-  REG_{G,F}^{\mathrm{all}}
-  \Longrightarrow
-  \forall w\forall x\,\neg G_F^+(x,w).
-\]
-The earlier unrestricted implication from this regularity package to extensional essence remains a valid implication, but its intended Godlike antecedent is excluded by the package itself. I therefore do not count that unrestricted route as the substantive Fitting recovery result. The failed modeling choice is retained in the formal development because the obstruction is itself informative.
-
-\subsection{Admissible Fitting extensions}
-
-The corrected candidate uses a selected domain of admissible extensions, written \(Adm(X)\), with FDE-negation closure
-\[
-  Adm(X)\Longrightarrow Adm(\neg X).
-\]
-This is a property-domain restriction rather than a global consistency postulate. In particular, admissible extensions may remain glutty, as the finite S5 witness above demonstrates.
-
-Positive Fitting Godlikeness becomes
-\[
-  G_F^+(x,w)
-  \quad\text{iff}\quad
-  \forall X\bigl(Adm(X)\land \pos{P(X)}@w
-  \Rightarrow \pos{X(x)}\bigr).
-\]
-The relevant Fitting regularity package is likewise restricted to admissible extensions. Lean then proves the non-vacuous extensional essence theorem
-\[
-\begin{split}
-  &G\text{-admissible}
-  +G_F\text{-realization}
-  +A1_{L,F}^{adm}
-  +REG_{G,F}^{adm}\\
-  &\qquad\Longrightarrow
-  \bigl(G_F^+(x,w)\Rightarrow
-  Ess_F^+(ext_wG,x,w)\bigr).
-\end{split}
-\]
-Unlike the current Scott-support T2 recovery theorem, no \(R^+\) premise occurs. Once local positivity of an admissible rigid extension has been recovered, its membership relation does not itself vary across accessible worlds.
-
-The bilateral negative evidence is also audited. Under classical coherence on the selected extension domain, Lean proves the recovery schemata
-\[
-\begin{array}{rcl}
- Ent_F^-&\leftrightarrow&\neg Ent_F^+,\\
- G_F^-&\leftrightarrow&\neg G_F^+,\\
- Ess_F^-&\leftrightarrow&\neg Ess_F^+,\\
- BoxExists_F^-&\leftrightarrow&\neg BoxExists_F^+,\\
- NE_F^-&\leftrightarrow&\neg NE_F^+.
-\end{array}
-\]
-These results validate the project-specific negative clauses at the classical boundary without imposing classicality on the four-valued candidate itself.
-
-\subsection{Fitting de re and de dicto}
-
-Let \(ext_wG\) denote the extension of the Godlikeness intension frozen at the evaluation world. With a distinguished \(NE\) intension realizing admissible-domain necessary existence and positive A5 on its current extension, Lean proves
-\[
-\begin{split}
-  &\text{admissible Fitting stack}
-  +\Diamond_{de\,re}^+\exists^E x\,ext_wG(x)\\
-  &\qquad\Longrightarrow
-  \Box_{de\,re}^+\exists^E x\,ext_wG(x).
-\end{split}
-\]
-No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise occurs. This is the project's four-valued counterpart of the K-level de-re behavior emphasized in the mechanized Fitting analysis \cite{BenzmuellerFuenmayor2019}.
-
-The de-dicto claim is intentionally not identified with this theorem. It re-evaluates \(G\) at each accessible world. I isolate the required intension/extension bridge as
-\[
-  STAB_G:\qquad
-  wRz\Rightarrow ext_wG\equiv ext_zG.
-\]
-Lean proves that \(STAB_G\) converts de-dicto possibility to the frozen de-re premise and converts the de-re necessary conclusion back to de-dicto necessary Godlikeness. Hence
-\[
-\begin{split}
-  &\text{admissible Fitting stack}
-  +STAB_G
-  +\Diamond^+\exists^E x\,G_F(x)\\
-  &\qquad\Longrightarrow
-  \Box^+\exists^E x\,G_F(x),
-\end{split}
-\]
-again without an S4 or S5 frame premise. The three-world finite witness shows that the stability condition is not merely decorative for this proof interface.
-
-The minimized positive bridge admits a structural formulation. Lean defines \(R_{F,adm}^+\) as forward positivity rigidity restricted to admissible rigid extensions and \(R_{F,adm}^{+\leftarrow}\) as converse positivity transport along existing accessibility edges. It proves
-\[
-\begin{array}{rcl}
-R_{F,adm}^++G_F\text{-realization}&\Longrightarrow&Refl_G^+,\\
-R_{F,adm}^{+\leftarrow}+G_F\text{-realization}&\Longrightarrow&Pers_G^+,\\
-R_{F,adm}^++Sym(R)&\Longrightarrow&R_{F,adm}^{+\leftarrow}.
-\end{array}
-\]
-Consequently \(R_{F,adm}^++R_{F,adm}^{+\leftarrow}\) can replace primitive \(STAB_G^+\) in the positive de-dicto theorem without any frame condition. The finite oracle checks this bridge exhaustively over 256 two-world, one-entity configurations in the classical negation-closed admissible fragment. Among 112 candidates satisfying both transports, 32 are non-symmetric; converse positivity transport is therefore strictly weaker than symmetry in the tested family.
-
 \subsection{Classical recovery and verification discipline}
+\label{sec:verification-discipline}
 
 The Scott, Anderson, and admissible Fitting branches each have explicit recovery interfaces rather than relying on an informal assertion that the bilateral semantics ``becomes classical.'' Exact higher-order correspondence with the complete AFP/HOL developments is nevertheless a separate publication audit item.
 
@@ -228,6 +122,6 @@ The explicit actualist quotient adds a third consistency check between the abstr
 
 The filter follow-up is split in the same way. The Lean quotient-filter module proves abstractly that point evaluation is a prime truth-order delta-filter which designates \(\Both\) but is not complement-deciding because of \(\Neither\). The finite oracle enumerates all filter families on the sixteen-element two-point quotient algebra and separately checks the non-adjunctive two-filter condition and a non-vacuous \(COMP\)-failure fixture.
 
-The deferred paired-neighborhood layer now has the same two-sided validation. Lean proves modal duality, exact relational representation, and complement-dual classical recovery for arbitrary world types. The finite regression exhausts all \(256\) local two-world pairs of neighborhood families and all \(1024\) relational operator comparisons. The complete Python regression suite currently contains 30 tests.
+The deferred paired-neighborhood layer now has the same two-sided validation. Lean proves modal duality, exact relational representation, and complement-dual classical recovery for arbitrary world types. The finite regression exhausts all \(256\) local two-world pairs of neighborhood families and all \(1024\) relational operator comparisons. The complete Python regression suite currently contains 31 tests.
 
-All executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present, while finite witnesses are reported as finite witnesses with their model bounds explicit.
+All executable and Lean sources are maintained under \texttt{formal/}, with CI configured to run both tracks. General claims are promoted to machine-checked status only after an unbounded Lean theorem is present, while finite witnesses are reported as finite witnesses with their model bounds explicit. Appendix~\ref{sec:correspondence} maps every claim of the form ``Lean proves \(\dots\)'' in this manuscript to the named declaration that discharges it, and every bounded count to the fixture that produces it. Where the text abbreviates a premise list as a ``stack'', the Lean signature listed there is the authoritative statement.

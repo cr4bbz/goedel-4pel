@@ -2,7 +2,7 @@
 
 from itertools import product
 
-from checker import Val
+from checker import Val, require
 
 
 POINTS = ("a", "b")
@@ -118,32 +118,32 @@ def validate_quotient_delta_filters():
 
     # Lean's canonical point-evaluation example: prime, glut-designating,
     # and non-deciding because N is fixed by negation.
-    assert evaluation_a in prime_delta_filters
-    assert BOTH in evaluation_a
-    assert NEITHER not in evaluation_a
-    assert fde_neg(NEITHER) not in evaluation_a
-    assert not complement_deciding(evaluation_a)
+    require(evaluation_a in prime_delta_filters)
+    require(BOTH in evaluation_a)
+    require(NEITHER not in evaluation_a)
+    require(fde_neg(NEITHER) not in evaluation_a)
+    require(not complement_deciding(evaluation_a))
 
     # The non-adjunctive union is a prime 2-filter but not an ordinary filter.
-    assert evaluation_union in prime_two_filters
-    assert not is_delta_filter(evaluation_union)
+    require(evaluation_union in prime_two_filters)
+    require(not is_delta_filter(evaluation_union))
 
     # An ordinary proper filter can be non-vacuous for Godlikeness and still
     # fail the local COMP interface when positivity gaps are allowed.
-    assert joint_truth in delta_filters
+    require(joint_truth in delta_filters)
     godlike_points = tuple(
         point_index
         for point_index in range(len(POINTS))
         if all(extension[point_index].pos for extension in joint_truth)
     )
-    assert godlike_points == (0, 1)
+    require(godlike_points == (0, 1))
     possessed_gap = (Val.T, Val.N)
-    assert possessed_gap[0].pos
-    assert possessed_gap not in joint_truth
-    assert fde_neg(possessed_gap) not in joint_truth
+    require(possessed_gap[0].pos)
+    require(possessed_gap not in joint_truth)
+    require(fde_neg(possessed_gap) not in joint_truth)
 
-    assert any(not complement_deciding(family) for family in prime_delta_filters)
-    assert any(not complement_deciding(family) for family in delta_filters)
+    require(any(not complement_deciding(family) for family in prime_delta_filters))
+    require(any(not complement_deciding(family) for family in delta_filters))
 
     return {
         "proper_upsets": len(upsets),

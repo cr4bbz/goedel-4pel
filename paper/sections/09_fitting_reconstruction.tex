@@ -1,0 +1,118 @@
+\section{The Fitting Reconstruction}
+\label{sec:fitting}
+
+\statusestablished
+
+The Scott and Anderson candidates keep positivity on the abstract property domain of Section~\ref{sec:property-domain}. The Fitting variant does not: it gives properties internal structure by separating intensions from their extensions and applies positivity to the latter. This section develops that third architecture, which is where the four-valued setting departs most sharply from the classical theory, because the choice of extensional domain becomes a substantive semantic commitment rather than a notational one.
+
+\subsection{From a type distinction to a domain obstruction}
+\label{sec:fitting-obstruction}
+
+The Fitting comparison begins by distinguishing bilateral extensions from intensions:
+\[
+  Extension(Entity)
+  \qquad\text{and}\qquad
+  Intension(World,Entity)=World\to Extension(Entity).
+\]
+The positivity predicate is typed over extensions, and \(extensionAt\) makes the passage from an intension to its extension at a world explicit. Signed necessary entailment, essence, and necessary existence are then reconstructed over rigid extensions, reflecting the extensional architecture of the mechanized Fitting variant \cite{BenzmuellerFuenmayor2019}.
+
+A naive first lift quantified Fitting Godlikeness and the relevant consistency/completeness package over every inhabitant of the bilateral extension type. Lean exposes a problem with that choice. The unrestricted type contains the extension \(B\) satisfying
+\[
+  \pos{B(x)}\quad\text{and}\quad\neginfo{B(x)}
+\]
+for every individual. Consequently Lean proves
+\[
+  CONS_{G,F}^{\mathrm{all}}
+  \Longrightarrow
+  \forall w\forall x\,\neg G_F^+(x,w),
+\]
+and therefore also
+\[
+  REG_{G,F}^{\mathrm{all}}
+  \Longrightarrow
+  \forall w\forall x\,\neg G_F^+(x,w).
+\]
+The earlier unrestricted implication from this regularity package to extensional essence remains a valid implication, but its intended Godlike antecedent is excluded by the package itself. I therefore do not count that unrestricted route as the substantive Fitting recovery result. The failed modeling choice is retained in the formal development because the obstruction is itself informative.
+
+\subsection{Admissible extensions}
+\label{sec:fitting-admissible}
+
+The corrected candidate uses a selected domain of admissible extensions, written \(Adm(X)\), with FDE-negation closure
+\[
+  Adm(X)\Longrightarrow Adm(\neg X).
+\]
+This is a property-domain restriction rather than a global consistency postulate. In particular, admissible extensions may remain glutty, as the finite S5 witness above demonstrates.
+
+Positive Fitting Godlikeness becomes
+\[
+  G_F^+(x,w)
+  \quad\text{iff}\quad
+  \forall X\bigl(Adm(X)\land \pos{P(X)}@w
+  \Rightarrow \pos{X(x)}\bigr).
+\]
+The relevant Fitting regularity package is likewise restricted to admissible extensions. Lean then proves the non-vacuous extensional essence theorem
+\[
+\begin{split}
+  &G\text{-admissible}
+  +G_F\text{-realization}
+  +A1_{L,F}^{adm}
+  +REG_{G,F}^{adm}\\
+  &\qquad\Longrightarrow
+  \bigl(G_F^+(x,w)\Rightarrow
+  Ess_F^+(ext_wG,x,w)\bigr).
+\end{split}
+\]
+Unlike the current Scott-support T2 recovery theorem, no \(R^+\) premise occurs. Once local positivity of an admissible rigid extension has been recovered, its membership relation does not itself vary across accessible worlds.
+
+The bilateral negative evidence is also audited. Under classical coherence on the selected extension domain, Lean proves the recovery schemata
+\[
+\begin{array}{rcl}
+ Ent_F^-&\leftrightarrow&\neg Ent_F^+,\\
+ G_F^-&\leftrightarrow&\neg G_F^+,\\
+ Ess_F^-&\leftrightarrow&\neg Ess_F^+,\\
+ BoxExists_F^-&\leftrightarrow&\neg BoxExists_F^+,\\
+ NE_F^-&\leftrightarrow&\neg NE_F^+.
+\end{array}
+\]
+These results validate the project-specific negative clauses at the classical boundary without imposing classicality on the four-valued candidate itself.
+
+\subsection{De re and de dicto}
+\label{sec:fitting-dere}
+
+Let \(ext_wG\) denote the extension of the Godlikeness intension frozen at the evaluation world. With a distinguished \(NE\) intension realizing admissible-domain necessary existence and positive A5 on its current extension, Lean proves
+\[
+\begin{split}
+  &\text{admissible Fitting stack}
+  +\Diamond_{de\,re}^+\exists^E x\,ext_wG(x)\\
+  &\qquad\Longrightarrow
+  \Box_{de\,re}^+\exists^E x\,ext_wG(x).
+\end{split}
+\]
+No reflexivity, symmetry, transitivity, seriality, or positivity-rigidity premise occurs. This is the project's four-valued counterpart of the K-level de-re behavior emphasized in the mechanized Fitting analysis \cite{BenzmuellerFuenmayor2019}.
+
+The de-dicto claim is intentionally not identified with this theorem. It re-evaluates \(G\) at each accessible world. I isolate the required intension/extension bridge as
+\[
+  STAB_G:\qquad
+  wRz\Rightarrow ext_wG\equiv ext_zG.
+\]
+Lean proves that \(STAB_G\) converts de-dicto possibility to the frozen de-re premise and converts the de-re necessary conclusion back to de-dicto necessary Godlikeness. Hence
+\[
+\begin{split}
+  &\text{admissible Fitting stack}
+  +STAB_G
+  +\Diamond^+\exists^E x\,G_F(x)\\
+  &\qquad\Longrightarrow
+  \Box^+\exists^E x\,G_F(x),
+\end{split}
+\]
+again without an S4 or S5 frame premise. The three-world finite witness shows that the stability condition is not merely decorative for this proof interface.
+
+The minimized positive bridge admits a structural formulation. Lean defines \(R_{F,adm}^+\) as forward positivity rigidity restricted to admissible rigid extensions and \(R_{F,adm}^{+\leftarrow}\) as converse positivity transport along existing accessibility edges. It proves
+\[
+\begin{array}{rcl}
+R_{F,adm}^++G_F\text{-realization}&\Longrightarrow&Refl_G^+,\\
+R_{F,adm}^{+\leftarrow}+G_F\text{-realization}&\Longrightarrow&Pers_G^+,\\
+R_{F,adm}^++Sym(R)&\Longrightarrow&R_{F,adm}^{+\leftarrow}.
+\end{array}
+\]
+Consequently \(R_{F,adm}^++R_{F,adm}^{+\leftarrow}\) can replace primitive \(STAB_G^+\) in the positive de-dicto theorem without any frame condition. The finite oracle checks this bridge exhaustively over 256 two-world, one-entity configurations in the classical negation-closed admissible fragment. Among 112 candidates satisfying both transports, 32 are non-symmetric; converse positivity transport is therefore strictly weaker than symmetry in the tested family.

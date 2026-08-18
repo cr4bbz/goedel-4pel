@@ -1,4 +1,4 @@
-from checker import FiniteModel, Val
+from checker import FiniteModel, Val, require
 from gate8_compare import anderson_god_plus, anderson_nec_ex_plus
 
 
@@ -206,30 +206,30 @@ def anderson_no_collapse_model():
 
 def validate_anderson_no_collapse_model():
     model = anderson_no_collapse_model()
-    assert model.complement_extensions()
-    assert a1_right(model)
-    assert model.a2_plus()
-    assert model.r_plus()
-    assert anderson_g_realization_bilateral(model)
-    assert anderson_g_positive(model)
-    assert anderson_ne_realization_bilateral(model)
-    assert anderson_ne_positive(model)
-    assert possible_g_everywhere(model)
-    assert anderson_t3_plus(model)
-    assert anderson_ess_plus(model, "w0", "G", "a")
-    assert anderson_ess_plus(model, "w1", "G", "a")
-    assert not anderson_ess_minus(model, "w0", "G", "a")
-    assert not anderson_ess_minus(model, "w1", "G", "a")
-    assert not anderson_god_minus(model, "w0", "a")
-    assert not anderson_god_minus(model, "w1", "a")
-    assert not anderson_ne_minus(model, "w0", "a")
-    assert not anderson_ne_minus(model, "w1", "a")
-    assert model.pval("w0", "Q") == Val.N
-    assert model.pval("w0", "notQ") == Val.N
-    assert q_application_modal_collapse_fails(model)
+    require(model.complement_extensions())
+    require(a1_right(model))
+    require(model.a2_plus())
+    require(model.r_plus())
+    require(anderson_g_realization_bilateral(model))
+    require(anderson_g_positive(model))
+    require(anderson_ne_realization_bilateral(model))
+    require(anderson_ne_positive(model))
+    require(possible_g_everywhere(model))
+    require(anderson_t3_plus(model))
+    require(anderson_ess_plus(model, "w0", "G", "a"))
+    require(anderson_ess_plus(model, "w1", "G", "a"))
+    require(not anderson_ess_minus(model, "w0", "G", "a"))
+    require(not anderson_ess_minus(model, "w1", "G", "a"))
+    require(not anderson_god_minus(model, "w0", "a"))
+    require(not anderson_god_minus(model, "w1", "a"))
+    require(not anderson_ne_minus(model, "w0", "a"))
+    require(not anderson_ne_minus(model, "w1", "a"))
+    require(model.pval("w0", "Q") == Val.N)
+    require(model.pval("w0", "notQ") == Val.N)
+    require(q_application_modal_collapse_fails(model))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_anderson_no_collapse_model()
+    require(validate_anderson_no_collapse_model())
     print("Gate 8 bilateral Anderson candidate / no-collapse fixture: OK")
