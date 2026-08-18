@@ -1,4 +1,4 @@
-from checker import Val
+from checker import Val, require
 
 
 WORLDS = ("w0",)
@@ -38,14 +38,14 @@ def admissible(extension):
 
 
 def p_pos(w, extension):
-    assert w == "w0"
-    assert admissible(extension)
+    require(w == "w0")
+    require(admissible(extension))
     return extension == AB
 
 
 def p_neg(w, extension):
-    assert w == "w0"
-    assert admissible(extension)
+    require(w == "w0")
+    require(admissible(extension))
     return extension == C
 
 
@@ -185,38 +185,38 @@ def a5_plus_adm():
 
 
 def validate_profile_saturation_route_without_comp():
-    assert all(admissible(negate_extension(x)) for x in ADMISSIBLE)
-    assert a1_left_adm()
-    assert a1_right_adm()
-    assert g_realization_adm()
+    require(all(admissible(negate_extension(x)) for x in ADMISSIBLE))
+    require(a1_left_adm())
+    require(a1_right_adm())
+    require(g_realization_adm())
 
     # Two genuinely distinct positive Godlike individuals share the same
     # positive property profile.
-    assert god_plus_adm("w0", "a")
-    assert god_plus_adm("w0", "b")
-    assert not god_plus_adm("w0", "c")
-    assert positive_profile_eq("w0", "a", "b")
+    require(god_plus_adm("w0", "a"))
+    require(god_plus_adm("w0", "b"))
+    require(not god_plus_adm("w0", "c"))
+    require(positive_profile_eq("w0", "a", "b"))
 
     # The selected property domain factors through positive-profile classes.
-    assert positive_profile_saturated_adm()
-    assert godlike_indiscernibility_adm()
-    assert cons_g_g_adm()
+    require(positive_profile_saturated_adm())
+    require(godlike_indiscernibility_adm())
+    require(cons_g_g_adm())
 
     # ALL contains both Godlike individuals but is genuinely positivity-gappy.
-    assert ext_pos(ALL, "a") and ext_pos(ALL, "b")
-    assert not p_pos("w0", ALL)
-    assert not p_neg("w0", ALL)
-    assert not comp_p_g_adm()
+    require(ext_pos(ALL, "a") and ext_pos(ALL, "b"))
+    require(not p_pos("w0", ALL))
+    require(not p_neg("w0", ALL))
+    require(not comp_p_g_adm())
 
     # The current G extension is nevertheless an essence of both Godlike
     # individuals, and the NE realization remains non-vacuous.
-    assert ess_plus_adm("w0", G_EXTENSION["w0"], "a")
-    assert ess_plus_adm("w0", G_EXTENSION["w0"], "b")
-    assert ne_realization_adm()
-    assert a5_plus_adm()
+    require(ess_plus_adm("w0", G_EXTENSION["w0"], "a"))
+    require(ess_plus_adm("w0", G_EXTENSION["w0"], "b"))
+    require(ne_realization_adm())
+    require(a5_plus_adm())
     return True
 
 
 if __name__ == "__main__":
-    assert validate_profile_saturation_route_without_comp()
+    require(validate_profile_saturation_route_without_comp())
     print("Gate 8 Fitting positive-profile saturation without COMP: OK")

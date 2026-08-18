@@ -173,6 +173,16 @@ GitHub Actions runs both finite regressions and `lake build`, but the connector 
 
 Finite searches and fixtures are always reported with exact bounds. General claims are promoted to machine-checked status only after Lean accepts them.
 
+### No `assert` in the finite layer
+
+Checks in `finite/` use `require(condition)` from `checker.py`, never a bare `assert`. Python strips `assert` statements under `-O`, so an assertion-based oracle reports success while verifying nothing:
+
+```bash
+python -O formal/finite/checker.py   # must still verify, not just print OK
+```
+
+`require` raises `CheckFailed`, which `-O` cannot remove. Pass a second argument when a failure needs a model signature; otherwise the traceback already identifies the failing condition. New fixtures should follow the same convention.
+
 ## Next Gate-8 formal work
 
 After the local build confirmation, the main frontier is:

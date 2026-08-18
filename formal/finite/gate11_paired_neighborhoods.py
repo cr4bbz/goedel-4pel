@@ -7,7 +7,7 @@ encoded as bit masks, so the entire local frame space has only 16 * 16 cases.
 
 from itertools import product
 
-from checker import Val
+from checker import Val, require
 
 
 WORLD_COUNT = 2
@@ -101,10 +101,10 @@ def validate_paired_neighborhoods():
         frame for frame in local_frames if is_principal_relational(*frame)
     )
 
-    assert len(local_frames) == 256
-    assert len(complement_dual) == 16
-    assert len(principal) == 4
-    assert set(principal) <= set(complement_dual)
+    require(len(local_frames) == 256)
+    require(len(complement_dual) == 16)
+    require(len(principal) == 4)
+    require(set(principal) <= set(complement_dual))
 
     valuations = tuple(product(tuple(Val), repeat=WORLD_COUNT))
     relational_checks = 0
@@ -114,12 +114,12 @@ def validate_paired_neighborhoods():
             universal = universal_family(successors)
             hit = hit_family(successors)
             for valuation in valuations:
-                assert neighborhood_box(universal, hit, valuation) == relational_box(
+                require(neighborhood_box(universal, hit, valuation) == relational_box(
                     successors, valuation
-                )
-                assert neighborhood_diamond(
+                ))
+                require(neighborhood_diamond(
                     universal, hit, valuation
-                ) == relational_diamond(successors, valuation)
+                ) == relational_diamond(successors, valuation))
                 relational_checks += 2
 
     classical_outputs = set()
@@ -131,7 +131,7 @@ def validate_paired_neighborhoods():
             )
             classical_outputs.add(neighborhood_box(universal, hit, valuation))
             classical_outputs.add(neighborhood_diamond(universal, hit, valuation))
-    assert classical_outputs == {Val.T, Val.F}
+    require(classical_outputs == {Val.T, Val.F})
 
     arbitrary_classical_outputs = set()
     witnesses = {}
@@ -147,9 +147,9 @@ def validate_paired_neighborhoods():
             ):
                 arbitrary_classical_outputs.add(output)
                 witnesses.setdefault(output, (universal, hit, positive, operator))
-    assert arbitrary_classical_outputs == set(Val)
-    assert not is_complement_dual(*witnesses[Val.B][:2])
-    assert not is_complement_dual(*witnesses[Val.N][:2])
+    require(arbitrary_classical_outputs == set(Val))
+    require(not is_complement_dual(*witnesses[Val.B][:2]))
+    require(not is_complement_dual(*witnesses[Val.N][:2]))
 
     return {
         "local_frames": len(local_frames),

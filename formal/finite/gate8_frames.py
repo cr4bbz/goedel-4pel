@@ -1,4 +1,4 @@
-from checker import FiniteModel, Val
+from checker import FiniteModel, Val, require
 from gate8_anderson import (
     a1_right,
     anderson_g_positive,
@@ -75,22 +75,22 @@ def anderson_s4_countermodel():
 
 def validate_anderson_s4_countermodel():
     model = anderson_s4_countermodel()
-    assert is_reflexive(model)
-    assert is_transitive(model)
-    assert not is_symmetric(model)
-    assert model.complement_extensions()
-    assert a1_right(model)
-    assert model.a2_plus()
-    assert model.r_plus()
-    assert anderson_g_realization_bilateral(model)
-    assert anderson_g_positive(model)
-    assert anderson_ne_realization_bilateral(model)
-    assert anderson_ne_positive(model)
-    assert possible_g_everywhere(model)
-    assert not anderson_t3_plus(model)
+    require(is_reflexive(model))
+    require(is_transitive(model))
+    require(not is_symmetric(model))
+    require(model.complement_extensions())
+    require(a1_right(model))
+    require(model.a2_plus())
+    require(model.r_plus())
+    require(anderson_g_realization_bilateral(model))
+    require(anderson_g_positive(model))
+    require(anderson_ne_realization_bilateral(model))
+    require(anderson_ne_positive(model))
+    require(possible_g_everywhere(model))
+    require(not anderson_t3_plus(model))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_anderson_s4_countermodel()
+    require(validate_anderson_s4_countermodel())
     print("Gate 8 Anderson S4 countermodel to necessary actual Godlikeness: OK")

@@ -1,6 +1,6 @@
 from itertools import product
 
-from checker import Val
+from checker import Val, require
 
 
 WORLD = "w0"
@@ -165,27 +165,27 @@ def entailment_survives_profile_saturation():
 
 
 def validate_entailment_closure_does_not_force_profile_saturation():
-    assert len(ALL_EXTENSIONS) == 16
-    assert fde_algebra_closed_adm()
-    assert global_entailment_closed_adm()
-    assert a2_plus()
-    assert profile_existence_saturated()
+    require(len(ALL_EXTENSIONS) == 16)
+    require(fde_algebra_closed_adm())
+    require(global_entailment_closed_adm())
+    require(a2_plus())
+    require(profile_existence_saturated())
 
     # Positivity cannot distinguish a and b.
-    assert positive_profile_eq("a", "b")
+    require(positive_profile_eq("a", "b"))
 
     # Yet the full admissible domain contains a positive singleton distinguisher.
     distinguisher = (Val.T, Val.F)
-    assert distinguisher in ADMISSIBLE
-    assert pos(distinguisher, "a")
-    assert not pos(distinguisher, "b")
-    assert not positive_profile_saturated()
+    require(distinguisher in ADMISSIBLE)
+    require(pos(distinguisher, "a"))
+    require(not pos(distinguisher, "b"))
+    require(not positive_profile_saturated())
 
     # The canonical quotient closure is nevertheless a genuine closure
     # operation here and actualist entailment is compatible with it because
     # existence is constant on the profile class.
-    assert saturation_is_extensive_and_idempotent()
-    assert entailment_survives_profile_saturation()
+    require(saturation_is_extensive_and_idempotent())
+    require(entailment_survives_profile_saturation())
     return True
 
 
@@ -206,26 +206,26 @@ def validate_existence_saturation_is_needed_for_entailment_descent():
 
     # a and b still have the same positive-property profile, but actual
     # existence splits the class at the accessible world.
-    assert positive_profile_eq("a", "b")
-    assert (target, "a") in exists
-    assert (target, "b") not in exists
+    require(positive_profile_eq("a", "b"))
+    require((target, "a") in exists)
+    require((target, "b") not in exists)
 
     only_b = (Val.F, Val.T)
     empty = (Val.F, Val.F)
 
     # The premise holds vacuously because b, the only positive member of X,
     # is not actual at u1.
-    assert entail_at_source(only_b, empty)
+    require(entail_at_source(only_b, empty))
 
     # Saturation copies b's positive membership to the profile-equivalent a.
     # Since a is actual at u1, the saturated entailment now fails.
-    assert pos(profile_saturate(only_b), "a")
-    assert not pos(profile_saturate(empty), "a")
-    assert not entail_at_source(profile_saturate(only_b), profile_saturate(empty))
+    require(pos(profile_saturate(only_b), "a"))
+    require(not pos(profile_saturate(empty), "a"))
+    require(not entail_at_source(profile_saturate(only_b), profile_saturate(empty)))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_entailment_closure_does_not_force_profile_saturation()
-    assert validate_existence_saturation_is_needed_for_entailment_descent()
+    require(validate_entailment_closure_does_not_force_profile_saturation())
+    require(validate_existence_saturation_is_needed_for_entailment_descent())
     print("Gate 8 Fitting entailment closure vs profile quotient: OK")

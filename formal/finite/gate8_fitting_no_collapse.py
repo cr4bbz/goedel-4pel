@@ -1,4 +1,4 @@
-from checker import Val
+from checker import Val, require
 
 
 WORLDS = ("w0", "w1")
@@ -50,7 +50,7 @@ def admissible(extension):
 
 
 def p_pos(w, extension):
-    assert w in WORLDS and admissible(extension)
+    require(w in WORLDS and admissible(extension))
     return ext_pos(extension, "a")
 
 
@@ -203,27 +203,27 @@ def positive_modal_collapse_fails_for_q_a():
 
 
 def validate_fitting_necessary_god_no_collapse_model():
-    assert all(admissible(neg_ext(x)) for x in ADMISSIBLE)
-    assert a1_left()
-    assert a1_right()
-    assert a2_plus()
-    assert g_realization()
-    assert comp_p_g()
-    assert cons_g_g()
-    assert ne_realization()
-    assert a5_plus()
-    assert g_extension_stable()
-    assert necessary_g_de_dicto()
+    require(all(admissible(neg_ext(x)) for x in ADMISSIBLE))
+    require(a1_left())
+    require(a1_right())
+    require(a2_plus())
+    require(g_realization())
+    require(comp_p_g())
+    require(cons_g_g())
+    require(ne_realization())
+    require(a5_plus())
+    require(g_extension_stable())
+    require(necessary_g_de_dicto())
 
     # The selected extensional domain still contains genuine inconsistent
     # information; admissibility is not a global consistency restriction.
-    assert ext_pos(GLUT_B, "b") and ext_neg(GLUT_B, "b")
+    require(ext_pos(GLUT_B, "b") and ext_neg(GLUT_B, "b"))
 
     # Nevertheless necessary actual Godlikeness coexists with contingent truth.
-    assert positive_modal_collapse_fails_for_q_a()
+    require(positive_modal_collapse_fails_for_q_a())
     return True
 
 
 if __name__ == "__main__":
-    assert validate_fitting_necessary_god_no_collapse_model()
+    require(validate_fitting_necessary_god_no_collapse_model())
     print("Gate 8 admissible Fitting necessary-God / no-collapse fixture: OK")

@@ -1,4 +1,4 @@
-from checker import Val
+from checker import Val, require
 
 
 WORLDS = ("w0",)
@@ -38,14 +38,14 @@ def admissible(extension):
 
 
 def p_pos(w, extension):
-    assert w == "w0"
-    assert admissible(extension)
+    require(w == "w0")
+    require(admissible(extension))
     return extension == ONLY_A
 
 
 def p_neg(w, extension):
-    assert w == "w0"
-    assert admissible(extension)
+    require(w == "w0")
+    require(admissible(extension))
     return extension == ONLY_B
 
 
@@ -186,32 +186,32 @@ def necessary_current_g_extension(w):
 
 
 def validate_indiscernibility_route_without_comp():
-    assert all(admissible(negate_extension(x)) for x in ADMISSIBLE)
-    assert a1_left_adm()
-    assert a1_right_adm()
-    assert g_realization_adm()
-    assert god_plus_adm("w0", "a")
-    assert not god_plus_adm("w0", "b")
-    assert godlike_indiscernibility_adm()
-    assert cons_g_g_adm()
+    require(all(admissible(negate_extension(x)) for x in ADMISSIBLE))
+    require(a1_left_adm())
+    require(a1_right_adm())
+    require(g_realization_adm())
+    require(god_plus_adm("w0", "a"))
+    require(not god_plus_adm("w0", "b"))
+    require(godlike_indiscernibility_adm())
+    require(cons_g_g_adm())
 
     # Positivity is genuinely gappy on ALL at the Godlike witness.
-    assert ext_pos(ALL, "a")
-    assert not p_pos("w0", ALL)
-    assert not p_neg("w0", ALL)
-    assert not comp_p_g_adm()
+    require(ext_pos(ALL, "a"))
+    require(not p_pos("w0", ALL))
+    require(not p_neg("w0", ALL))
+    require(not comp_p_g_adm())
 
     # Nevertheless the current G extension is an admissible essence of a.
-    assert ess_plus_adm("w0", G_EXTENSION["w0"], "a")
+    require(ess_plus_adm("w0", G_EXTENSION["w0"], "a"))
 
     # The alternative route continues through necessary existence.
-    assert ne_realization_adm()
-    assert a5_plus_adm()
-    assert possible_current_g_extension("w0")
-    assert necessary_current_g_extension("w0")
+    require(ne_realization_adm())
+    require(a5_plus_adm())
+    require(possible_current_g_extension("w0"))
+    require(necessary_current_g_extension("w0"))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_indiscernibility_route_without_comp()
+    require(validate_indiscernibility_route_without_comp())
     print("Gate 8 Fitting indiscernibility route without COMP: OK")

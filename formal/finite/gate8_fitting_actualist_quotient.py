@@ -2,7 +2,7 @@
 
 from itertools import product
 
-from checker import Val
+from checker import Val, require
 
 
 ENTITIES = ("a", "b")
@@ -81,7 +81,7 @@ def respects_profile(extension):
 
 
 def to_quotient(extension):
-    assert respects_profile(extension)
+    require(respects_profile(extension))
     return tuple(extension[idx(block[0])] for block in profile_classes())
 
 
@@ -123,32 +123,32 @@ def entail_quotient(source, target, actual_classes):
 
 def validate_actualist_profile_quotient():
     classes = profile_classes()
-    assert classes == (("a", "b"),)
+    require(classes == (("a", "b"),))
 
     actual_entities = frozenset(ENTITIES)
     actual_classes = quotient_exists(actual_entities)
-    assert actual_classes == (True,)
+    require(actual_classes == (True,))
 
     for extension in ALL_EXTENSIONS:
         saturated = profile_saturate(extension)
-        assert respects_profile(saturated)
-        assert from_quotient(to_quotient(saturated)) == saturated
+        require(respects_profile(saturated))
+        require(from_quotient(to_quotient(saturated)) == saturated)
 
     for source in ALL_EXTENSIONS:
         for target in ALL_EXTENSIONS:
             saturated_source = profile_saturate(source)
             saturated_target = profile_saturate(target)
-            assert entail_entities(
+            require(entail_entities(
                 saturated_source, saturated_target, actual_entities
             ) == entail_quotient(
                 to_quotient(saturated_source),
                 to_quotient(saturated_target),
                 actual_classes,
-            )
+            ))
 
     # The quotient is not silently classical: both a glut and a gap survive.
-    assert to_quotient(profile_saturate((Val.B, Val.N))) == (Val.B,)
-    assert to_quotient(profile_saturate((Val.N, Val.N))) == (Val.N,)
+    require(to_quotient(profile_saturate((Val.B, Val.N))) == (Val.B,))
+    require(to_quotient(profile_saturate((Val.N, Val.N))) == (Val.N,))
     return True
 
 
@@ -156,18 +156,18 @@ def validate_actualist_quotient_requires_existence_factorization():
     # The sole profile class contains both a and b, but only a exists.  No
     # representative-independent existence predicate can be defined on it.
     split_existence = frozenset({"a"})
-    assert quotient_exists(split_existence) is None
+    require(quotient_exists(split_existence) is None)
 
     only_b = (Val.F, Val.T)
     empty = (Val.F, Val.F)
-    assert entail_entities(only_b, empty, split_existence)
-    assert not entail_entities(
+    require(entail_entities(only_b, empty, split_existence))
+    require(not entail_entities(
         profile_saturate(only_b), profile_saturate(empty), split_existence
-    )
+    ))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_actualist_profile_quotient()
-    assert validate_actualist_quotient_requires_existence_factorization()
+    require(validate_actualist_profile_quotient())
+    require(validate_actualist_quotient_requires_existence_factorization())
     print("Gate 8 actualist positive-profile quotient: OK")

@@ -1,6 +1,6 @@
 from itertools import product
 
-from checker import Val
+from checker import Val, require
 
 
 ENTITIES = ("a", "b")
@@ -145,28 +145,28 @@ def profile_saturated():
 
 
 def validate_delta_filter_does_not_restore_comp():
-    assert algebra_closed()
-    assert any(Val.N in extension for extension in ADMISSIBLE)
-    assert any(Val.B in extension for extension in ADMISSIBLE)
-    assert delta_filter()
-    assert profile_saturated()
-    assert god_plus("a")
-    assert not god_plus("b")
-    assert cons_gg()
+    require(algebra_closed())
+    require(any(Val.N in extension for extension in ADMISSIBLE))
+    require(any(Val.B in extension for extension in ADMISSIBLE))
+    require(delta_filter())
+    require(profile_saturated())
+    require(god_plus("a"))
+    require(not god_plus("b"))
+    require(cons_gg())
 
     # The proper filter is not maximal: A and its complement are both gaps.
-    assert not p_pos(A)
-    assert not p_pos(fde_neg(A))
-    assert not complement_decision()
+    require(not p_pos(A))
+    require(not p_pos(fde_neg(A)))
+    require(not complement_decision())
 
     # A is possessed by a Godlike witness but neither positively nor negatively
     # classified by P, so COMP remains false despite the filter and consistency.
-    assert pos(A, "a")
-    assert not p_neg(A)
-    assert not comp_pg()
+    require(pos(A, "a"))
+    require(not p_neg(A))
+    require(not comp_pg())
     return True
 
 
 if __name__ == "__main__":
-    assert validate_delta_filter_does_not_restore_comp()
+    require(validate_delta_filter_does_not_restore_comp())
     print("Gate 8 profile delta-filter without ultrafilter maximality or COMP: OK")

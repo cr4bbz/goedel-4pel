@@ -1,4 +1,4 @@
-from checker import FiniteModel, Val
+from checker import FiniteModel, Val, require
 from gate8_anderson import box_exists_plus
 from gate8_frames import is_reflexive, is_symmetric, is_transitive
 
@@ -86,28 +86,28 @@ def scott_s4_countermodel():
 
 def validate_scott_s4_countermodel():
     model = scott_s4_countermodel()
-    assert is_reflexive(model)
-    assert is_transitive(model)
-    assert not is_symmetric(model)
+    require(is_reflexive(model))
+    require(is_transitive(model))
+    require(not is_symmetric(model))
 
     # The countermodel keeps a richer Scott-control context than the reduced
     # theorem itself requires.
-    assert model.complement_extensions()
-    assert model.strong_a1()
-    assert model.a2_plus()
-    assert model.r_plus()
+    require(model.complement_extensions())
+    require(model.strong_a1())
+    require(model.a2_plus())
+    require(model.r_plus())
 
     # All premises of the symmetry-only Scott T3 theorem except symmetry.
-    assert model.g_sup_definition()
-    assert model.t2_plus()
-    assert scott_a5_plus(model)
-    assert scott_ne_realization(model)
-    assert scott_possible_god(model)
+    require(model.g_sup_definition())
+    require(model.t2_plus())
+    require(scott_a5_plus(model))
+    require(scott_ne_realization(model))
+    require(scott_possible_god(model))
 
-    assert not scott_t3_plus(model)
+    require(not scott_t3_plus(model))
     return True
 
 
 if __name__ == "__main__":
-    assert validate_scott_s4_countermodel()
+    require(validate_scott_s4_countermodel())
     print("Gate 8 Scott S4 countermodel to T3+: OK")

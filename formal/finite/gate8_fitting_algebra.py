@@ -1,4 +1,4 @@
-from checker import Val
+from checker import Val, require
 
 
 ENTITIES = ("a", "b")
@@ -55,8 +55,8 @@ def positive_profile_eq(x, y):
 
 
 def fde_algebra_closed():
-    assert EMPTY in ADMISSIBLE
-    assert ALL in ADMISSIBLE
+    require(EMPTY in ADMISSIBLE)
+    require(ALL in ADMISSIBLE)
     return (
         all(fde_neg(x) in ADMISSIBLE for x in ADMISSIBLE)
         and all(fde_conj(x, y) in ADMISSIBLE for x in ADMISSIBLE for y in ADMISSIBLE)
@@ -75,16 +75,16 @@ def positive_profile_saturated():
 
 
 def validate_fde_algebra_does_not_force_profile_saturation():
-    assert fde_algebra_closed()
-    assert positive_profile_eq("a", "b")
+    require(fde_algebra_closed())
+    require(positive_profile_eq("a", "b"))
 
     # The singleton A distinguishes a and b even though positivity does not.
-    assert pos(A, "a")
-    assert not pos(A, "b")
-    assert not positive_profile_saturated()
+    require(pos(A, "a"))
+    require(not pos(A, "b"))
+    require(not positive_profile_saturated())
     return True
 
 
 if __name__ == "__main__":
-    assert validate_fde_algebra_does_not_force_profile_saturation()
+    require(validate_fde_algebra_does_not_force_profile_saturation())
     print("Gate 8 Fitting algebra closure does not force profile saturation: OK")
