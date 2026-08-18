@@ -20,6 +20,7 @@ import Goedel4PEL.GoedelScott.FittingMinimalityInteractions
 import Goedel4PEL.GoedelScott.FittingAlternativeRecovery
 import Goedel4PEL.GoedelScott.FittingAdmissibleStructure
 import Goedel4PEL.GoedelScott.FittingAdmissibleAlgebra
+import Goedel4PEL.GoedelScott.FittingEntailmentQuotient
 import Goedel4PEL.GoedelScott.T1
 import Goedel4PEL.GoedelScott.T2
 import Goedel4PEL.GoedelScott.T3Collapse
