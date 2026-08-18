@@ -102,7 +102,8 @@ paired-neighborhood-bridge-v0.1
 v1-synthesis-v0.1
 fitting-rigidity-v0.1
 fitting-converse-rigidity-v0.1
-paper-v0.19
+fitting-delta-filter-v0.1
+paper-v0.20
 ```
 
 ### Anderson and Scott frame reduction
@@ -282,7 +283,7 @@ The living manuscript is in `paper/`.
 Current version:
 
 ```text
-paper-v0.19
+paper-v0.20
 ```
 
 The current compiled manuscript is available at [`paper/main.pdf`](paper/main.pdf).
@@ -306,4 +307,4 @@ latexmk -pdf main.tex
 
 ## Status
 
-**Phase:** Gates 7–12 established through the first source, filter, paired-neighborhood, and synthesis checkpoints; manuscript baseline `paper-v0.19`; newest verified research milestone `paired-neighborhood-bridge-v0.1`.
+**Phase:** Gates 7–12 established through the first source, filter, paired-neighborhood, and synthesis checkpoints; manuscript baseline `paper-v0.20`; newest verified research milestone `fitting-delta-filter-v0.1`.

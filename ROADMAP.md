@@ -67,6 +67,7 @@ fitting-actualist-quotient-v0.1
 fitting-quotient-filter-v0.1
 fitting-rigidity-v0.1
 fitting-converse-rigidity-v0.1
+fitting-delta-filter-v0.1
 ```
 
 The entailment and rigidity milestones are locally validated with Lean 4.30.0 and executable finite regressions.
@@ -105,7 +106,11 @@ The entailment and rigidity milestones are locally validated with Lean 4.30.0 an
 - [x] finite-check the bridge exhaustively over the two-world / one-entity classical admissible fragment and retain separate countermodels when symmetry or `RPlusAdm` is dropped;
 - [x] replace symmetry by `RPlusConverseAdm`, the converse positivity transport actually consumed by the persistence proof;
 - [x] finite-check that bidirectional positivity transport can hold on asymmetric frames: 32 of 112 retained bidirectional models are non-symmetric;
-- [ ] determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions.
+- [ ] determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions;
+- [x] lift the classical extensional `delta`-filter to the admissible fixed-point algebra in the FDE truth order, with meet/join, order-reversing negation, and classical recovery on the coherent fragment;
+- [x] derive both admissible A1 directions and the dual-ideal laws from the bilateral polarity equation;
+- [x] separate ultrafilter maximality from filter closure, and finite-check a 12-element gap/glut algebra satisfying the filter plus relevant consistency while `COMP` fails;
+- [ ] determine which filter strength strictly between properness and maximality, if any, supports the essence/NE route.
 
 ### Cross-variant comparison
 

@@ -168,8 +168,12 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate10_quotient_delta_filter_audit(self):
         counts = validate_quotient_delta_filters()
+        # Every count below is printed in the manuscript's two-point audit.
+        self.assertEqual(counts["proper_upsets"], 166)
         self.assertEqual(counts["delta_filters"], 15)
         self.assertEqual(counts["prime_delta_filters"], 4)
+        self.assertEqual(counts["two_filters"], 112)
+        self.assertEqual(counts["prime_two_filters"], 10)
         self.assertEqual(counts["nondeciding_prime_delta_filters"], 4)
 
     def test_gate11_paired_neighborhood_bridge(self):

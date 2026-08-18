@@ -5,13 +5,39 @@
 
 The positivity predicate \(P\) is the central non-logical primitive of the Scott theory. In the four-valued reconstruction, statements of the form \(P(\varphi)\) carry positive and negative information independently.
 
+\subsection{The property domain}
+\label{sec:property-domain}
+
+Scott's D1, D2, and D3 quantify over properties, so the reconstruction must say what the property domain is before those definitions can be lifted. I deliberately do not fix it as a powerset, as a set of intensional functions, or by any comprehension principle. The Scott branch instead treats properties as an arbitrary type \(\Pi\) equipped with
+
+\begin{itemize}
+  \item signed exemplification relations \(\mathrm{ex}^{+},\mathrm{ex}^{-}\subseteq W\times D\times\Pi\);
+  \item signed positivity predicates \(P^{+},P^{-}\subseteq W\times\Pi\);
+  \item a property-negation operation \(\nu:\Pi\to\Pi\);
+  \item a distinguished element \(G\in\Pi\).
+\end{itemize}
+
+Nothing forces \(\Pi\) to be closed under any operation beyond \(\nu\), and no instance of \(\Pi\) is privileged. Every theorem below is therefore a statement about all such structures. This is also what makes the finite countermodels legitimate rather than approximate: a model whose property domain is the four-element set \(\{G,\nu G,Z,\nu Z\}\) is an instance of the semantics, not a truncation of an intended larger one.
+
+The reading of \(\nu\) as \emph{negation} is likewise not built in. It is constrained only by whatever is assumed explicitly, principally
+\[
+  \mathrm{ex}^{+}(w,x,\nu\varphi)\iff\mathrm{ex}^{-}(w,x,\varphi)
+\]
+together with the directional A1 conditions below. In particular, involutivity
+\[
+  \nu\nu\varphi=\varphi
+\]
+is a further assumption rather than part of the signature. The mechanized \(T1_T\) and \(T2^+\) theorems do not use it. The substitution arguments in the remainder of this section, and the rigidity-coupling proposition in Section~\ref{sec:collapse}, do use it; I flag this explicitly at each point rather than treating property negation as if it were the object-language connective of Section~\ref{sec:kernel}.
+
+The Fitting comparison in Section~\ref{sec:fitting-obstruction} differs from the Scott branch precisely here. It replaces this abstract domain by a typed intension/extension architecture in which properties have internal structure, and the resulting freedom to choose which extensions are admissible is what generates the obstruction and the repair analyzed there.
+
 \subsection{Directional decomposition of A1}
 
 Scott's A1 is
 \[
   \neg P(\varphi)\leftrightarrow P(\neg\varphi).
 \]
-A split into two biconditional channel schemas would be redundant: because property negation is involutive and A1 is a schema over all properties, substituting \(\neg\varphi\) for \(\varphi\) converts either biconditional into the other. I therefore decompose A1 by direction:
+A split into two biconditional channel schemas would be redundant: if property negation is involutive, then because A1 is a schema over all properties, substituting \(\neg\varphi\) for \(\varphi\) converts either biconditional into the other. I therefore decompose A1 by direction:
 \[
   A1_L:\quad \neginfo{P(\varphi)}\Rightarrow\pos{P(\neg\varphi)},
 \]
@@ -31,7 +57,7 @@ When both directions hold, strong bilateral A1 yields
 \[
   \pos{P(\neg\varphi)}\Leftrightarrow\neginfo{P(\varphi)}
 \]
-and, by substitution,
+and, by substitution under involutive property negation,
 \[
   \neginfo{P(\neg\varphi)}\Leftrightarrow\pos{P(\varphi)}.
 \]

@@ -4,7 +4,7 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.19`
+**Version:** `paper-v0.20`
 
 **Compiled manuscript:** [`main.pdf`](main.pdf)
 
@@ -78,6 +78,14 @@ The earlier compatibility premise is characterized exactly: `ProfileExistenceSat
 The quotient extension algebra now carries a truth-order delta-filter definition with a verified classical boundary. Lean proves that point evaluation is a proper prime delta-filter which designates `B` while leaving `N` and its negation undesignated. Primeness therefore does not entail complement decision in the four-valued algebra.
 
 The exhaustive two-point audit finds 166 proper upsets, 15 ordinary delta-filters, 4 prime delta-filters, 112 proper two-filters, and 10 prime two-filters. Every prime ordinary filter is non-deciding. A non-prime ordinary filter additionally supplies two non-vacuous Godlike points and a possessed extension for which local `COMP` fails.
+
+### New in `paper-v0.20`: fixed-point delta-filter, property domain, correspondence appendix
+
+Section `08d_fitting_delta_filter.tex` lifts the classical extensional `delta`-filter to the admissible fixed-point algebra, in the FDE truth order rather than the information order used by the profile hull. Lean derives both admissible A1 directions and the dual-ideal laws for negative positivity support, and proves that the filter notion coincides with the source-style positive-set filter on the classically coherent fragment. Ultrafilter maximality is kept separate: it is exactly complement decision and therefore returns to the classification route, while a 12-element finite witness with genuine gaps and gluts satisfies the filter plus relevant consistency without `COMP`.
+
+Section `05_positivity.tex` now states the Scott-branch property domain explicitly. Properties form an arbitrary type with primitive signed exemplification, signed positivity, a negation operation, and a distinguished `G`; no comprehension principle is assumed. Involutivity of property negation is flagged as an additional assumption used by the substitution arguments but not by the mechanized `T1-T` and `T2+` theorems.
+
+Appendix A maps every "Lean proves ..." claim to the declaration that discharges it and every bounded count to its fixture. Building it corrected two premise lists that were incomplete relative to Lean.
 
 ### New in `paper-v0.19`: paired-neighborhood bridge
 
