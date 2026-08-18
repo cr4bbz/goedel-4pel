@@ -23,6 +23,28 @@ def RPlusAdm (M : AdmissibleSemantics World Entity) : Prop :=
     ∀ z, M.base.R w z → M.base.pPos z X
 
 /--
+Converse transport of positivity along an accessibility edge, again restricted
+to the selected admissible extension domain.
+
+Unlike frame symmetry, this condition does not require the reverse edge to
+exist. It records only the backward positivity transport that the persistence
+proof actually consumes.
+-/
+def RPlusConverseAdm (M : AdmissibleSemantics World Entity) : Prop :=
+  ∀ w (X : Extension Entity),
+    M.admissible X →
+    ∀ z, M.base.R w z → M.base.pPos z X → M.base.pPos w X
+
+/-- Symmetry turns forward admissible positivity rigidity into converse transport. -/
+theorem rPlusAdm_symmetric_implies_rPlusConverseAdm
+    (M : AdmissibleSemantics World Entity)
+    (hRPlus : RPlusAdm M)
+    (hSym : Goedel4PEL.Modal.Symmetric M.base.R) :
+    RPlusConverseAdm M := by
+  intro w X hXAdm z hwz hPXz
+  exact hRPlus z X hXAdm hPXz w (hSym hwz)
+
+/--
 Forward rigidity of positive admissible extensions reflects positive
 Godlikeness membership from an accessible target back to the source.
 
@@ -44,6 +66,25 @@ theorem rPlusAdm_implies_gPosReflects
   exact (hGReal w x).2 hGodW
 
 /--
+Converse positivity transport yields positive G-membership persistence without
+any frame condition. Source Godlikeness consumes the target-positive extension
+after that extension has been transported back to the source.
+-/
+theorem rPlusConverseAdm_implies_gPosPersists
+    (M : AdmissibleSemantics World Entity)
+    (hGReal : GRealizationAdm M)
+    (hRPlusConverse : RPlusConverseAdm M) :
+    GPosPersistsAlongRAdm M := by
+  intro w z hwz x hGw
+  have hGodW : GodPlusAdm M w x := (hGReal w x).1 hGw
+  have hGodZ : GodPlusAdm M z x := by
+    intro X hXAdm hPXz
+    have hPXw : M.base.pPos w X :=
+      hRPlusConverse w X hXAdm z hwz hPXz
+    exact hGodW X hXAdm hPXw
+  exact (hGReal z x).2 hGodZ
+
+/--
 On a symmetric frame, the same forward rigidity premise also yields positive
 G-membership persistence. Symmetry reverses the edge, allowing positivity at
 the target to be transported back to the source where source Godlikeness can
@@ -55,14 +96,22 @@ theorem rPlusAdm_symmetric_implies_gPosPersists
     (hRPlus : RPlusAdm M)
     (hSym : Goedel4PEL.Modal.Symmetric M.base.R) :
     GPosPersistsAlongRAdm M := by
-  intro w z hwz x hGw
-  have hGodW : GodPlusAdm M w x := (hGReal w x).1 hGw
-  have hzw : M.base.R z w := hSym hwz
-  have hGodZ : GodPlusAdm M z x := by
-    intro X hXAdm hPXz
-    have hPXw : M.base.pPos w X := hRPlus z X hXAdm hPXz w hzw
-    exact hGodW X hXAdm hPXw
-  exact (hGReal z x).2 hGodZ
+  exact rPlusConverseAdm_implies_gPosPersists M hGReal
+    (rPlusAdm_symmetric_implies_rPlusConverseAdm M hRPlus hSym)
+
+/--
+Forward and converse admissible positivity transport derive the complete
+positive-only G-stability interface without imposing symmetry on the frame.
+-/
+theorem rPlusAdm_rPlusConverseAdm_implies_gPosStable
+    (M : AdmissibleSemantics World Entity)
+    (hGReal : GRealizationAdm M)
+    (hRPlus : RPlusAdm M)
+    (hRPlusConverse : RPlusConverseAdm M) :
+    GPosStableAlongRAdm M := by
+  constructor
+  · exact rPlusConverseAdm_implies_gPosPersists M hGReal hRPlusConverse
+  · exact rPlusAdm_implies_gPosReflects M hGReal hRPlus
 
 /--
 Admissible positive rigidity plus symmetry derives the complete positive-only
@@ -102,5 +151,28 @@ theorem possibleGodDeDictoAdm_implies_necessary_rPlus_symmetric
   exact possibleGodDeDictoAdm_implies_necessary_minimized
     M NE hGAdm hGReal hA1L hReg hNEAdm hNEReal hA5
       (rPlusAdm_symmetric_implies_gPosStable M hGReal hRPlus hSym)
+
+/--
+Bidirectional positivity-transport version of the minimized positive de-dicto
+Fitting theorem. It is frame-free: forward transport supplies reflection and
+converse transport supplies persistence, without requiring reverse edges.
+-/
+theorem possibleGodDeDictoAdm_implies_necessary_rPlus_bidirectional
+    (M : AdmissibleSemantics World Entity)
+    (NE : Intension World Entity)
+    (hGAdm : GAdmissible M)
+    (hGReal : GRealizationAdm M)
+    (hA1L : A1LAdm M)
+    (hReg : RegGNegClassAdm M)
+    (hNEAdm : NEAdmissible M NE)
+    (hNEReal : NERealizationAdm M NE)
+    (hA5 : A5PlusAdm M NE)
+    (hRPlus : RPlusAdm M)
+    (hRPlusConverse : RPlusConverseAdm M) :
+    ∀ w, PossibleGodDeDictoAdm M w → NecessaryGodDeDictoAdm M w := by
+  exact possibleGodDeDictoAdm_implies_necessary_minimized
+    M NE hGAdm hGReal hA1L hReg hNEAdm hNEReal hA5
+      (rPlusAdm_rPlusConverseAdm_implies_gPosStable
+        M hGReal hRPlus hRPlusConverse)
 
 end Goedel4PEL.GoedelScott.Fitting

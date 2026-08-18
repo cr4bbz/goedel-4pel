@@ -169,8 +169,8 @@ possible derivation of `Pers_G+`.
 
 ## 6. Next questions
 
-1. Can `Pers_G+` be derived without full frame symmetry from a weaker local
-   converse-edge condition?
+1. **Answered by `fitting-converse-rigidity-v0.1`:** `RPlusConverseAdm`
+   isolates backward positivity transport without requiring a converse edge.
 2. Can the rigidity premise be restricted further to only the positively
    supported extensions needed to characterize Godlikeness?
 3. Does the profile quotient make either direction of `G` stability automatic?

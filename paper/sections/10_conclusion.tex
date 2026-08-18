@@ -3,7 +3,7 @@
 
 This manuscript treats the G\"odel--Scott theory not merely as an object to be translated from two values to four, but as a controlled test case for locating informational dependencies that classical bivalence suppresses.
 
-By version 0.14 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
+By version 0.16 the Scott reconstruction and verification branches reach positive necessary Godlike existence, the associated collapse analysis, and a mechanically supported comparison of three different Godlikeness/essence architectures. Gates 1--4 establish the bilateral propositional and modal semantics, decompose A1 and A4, falsify the original collapse-separation conjecture under involutive FDE negation, and isolate glut/gap failures in the classical reflection step. Gate 5 reconstructs truth-only positive-property exemplification, a control reading of A3, possible positive Godlike existence, and support-based bilateral Godlikeness.
 
 Gate 6 identifies the sharper Scott bottleneck. A natural bilateral definition of essence recovers Scott D2 classically, but it does not make Godlikeness an essence automatically. Two explicit two-world S5 models satisfy the Gate-5 control conditions together with strong A1 and positive rigidity while refuting
 \[
@@ -44,7 +44,7 @@ Neither reflexivity nor transitivity is a premise. A reflexive-transitive but no
 \]
 The informative negative collapse schema then follows from the independently machine-checked collapse-channel equivalence.
 
-The finite-model layer provides complementary negative evidence. The broader exhaustive two-world, one-entity \(G,Z\) family retains 873 models satisfying the full current Scott T2 recovery package, and every retained model satisfies \(T2^+\). Dropping any one of \(A1_L\), positive rigidity, relevant positivity completeness, or relevant exemplification consistency yields a T2 countermodel in the same bounded family. This is bounded indispensability, not global necessity.
+The finite-model layer provides complementary negative evidence. The broader exhaustive two-world, one-entity \(G,Z\) family retains 873 models satisfying the full current Scott T2 recovery package, and every retained model satisfies \(T2^+\). Dropping any one of \(A1_L\), positive rigidity, relevant positivity completeness, or relevant exemplification consistency yields a T2 countermodel in the same bounded family. The first \(A1_L\)-drop witness is now rendered directly from the oracle as a two-node Kripke graph with complete local FDE tables, making both its accessibility relation and its positive/negative support matrix independently inspectable. This remains bounded indispensability, not global necessity.
 
 Gate 8 demonstrates that the T2 bottleneck is definition-sensitive. The project-internal exact positive Godlikeness condition internalizes local positive reflection. Lean consequently proves
 \[
@@ -148,7 +148,7 @@ The earlier de-dicto bridge used full bilateral extension stability. The minimiz
 \]
 again without an S4 or S5 frame premise. A complete-S5 finite fixture satisfies both A1 directions and even the older full regularity package while the positive \(G\)-extension is stable and the negative \(G\)-extension drifts. Positive necessary de-dicto Godlikeness still holds. Hence full bilateral \(STAB_G\) is genuinely stronger than the positive theorem needs.
 
-The positive stability assumption itself now has a derived form. Restrict forward positivity rigidity to admissible Fitting extensions as \(R_{F,adm}^+\). Lean proves that \(R_{F,adm}^+\) derives \(Refl_G^+\) directly, while \(R_{F,adm}^++Sym(R)\) derives \(Pers_G^+\) and hence all of \(STAB_G^+\). This exposes a precise trade-off: primitive positive \(G\)-stability preserves the frame-free statement, whereas deriving that stability from forward positivity rigidity brings symmetry back for the persistence half. A complete 256-case finite regression verifies the two implications in a two-world classical admissible fragment and supplies bounded countermodels when either premise is dropped.
+The positive stability assumption itself now has a derived form. Restrict forward positivity rigidity to admissible Fitting extensions as \(R_{F,adm}^+\), and write \(R_{F,adm}^{+\leftarrow}\) for converse transport of target positivity back to the source along an existing edge. Lean proves that the former derives \(Refl_G^+\), while the latter derives \(Pers_G^+\), so their conjunction yields all of \(STAB_G^+\) without a frame condition. Symmetry plus \(R_{F,adm}^+\) entails \(R_{F,adm}^{+\leftarrow}\), recovering the older route. A complete 256-case finite regression finds 112 candidates satisfying both transports, including 32 asymmetric candidates. Thus accessibility symmetry is strictly stronger than the bidirectional positivity transport consumed by the proof in this bounded family.
 
 Finally, the admissible Fitting candidate admits the same qualitative anti-collapse phenomenon as the Anderson candidate. A complete two-world S5 model satisfies the encoded Fitting stack and positive necessary actual Godlikeness while a contingent \(Q(a)\) refutes \(\MCp\). The admissible property domain in that model still contains genuine \(\Both\) information, so the result is not obtained by silently restoring global bivalence.
 
@@ -194,8 +194,8 @@ For the remaining de-dicto minimization:
 \[
   \boxed{
   \begin{gathered}
-  \text{Can }Pers_G^+\text{ be derived from a principled condition}\\
-  \text{weaker than }R_{F,adm}^++Sym(R)\text{?}
+  \text{Can }R_{F,adm}^{+\leftarrow}\text{ be restricted to G-triggered}\\
+  \text{or quotient-selected admissible extensions?}
   \end{gathered}
   }
 \]

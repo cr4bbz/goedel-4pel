@@ -60,6 +60,7 @@ fitting-minimality-v0.2
 fitting-domain-v0.2
 fitting-entailment-v0.1
 fitting-rigidity-v0.1
+fitting-converse-rigidity-v0.1
 ```
 
 The entailment and rigidity milestones are locally validated with Lean 4.30.0 and executable finite regressions.
@@ -92,7 +93,9 @@ The entailment and rigidity milestones are locally validated with Lean 4.30.0 an
 - [ ] define and assess a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra without automatically restoring `COMP`;
 - [x] derive positive reflection from `RPlusAdm`, and positive persistence from `RPlusAdm + Symmetric(R)`;
 - [x] finite-check the bridge exhaustively over the two-world / one-entity classical admissible fragment and retain separate countermodels when symmetry or `RPlusAdm` is dropped;
-- [ ] determine whether positive persistence has a weaker principled derivation than `RPlusAdm + Symmetric(R)`.
+- [x] replace symmetry by `RPlusConverseAdm`, the converse positivity transport actually consumed by the persistence proof;
+- [x] finite-check that bidirectional positivity transport can hold on asymmetric frames: 32 of 112 retained bidirectional models are non-symmetric;
+- [ ] determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions.
 
 ### Cross-variant comparison
 
@@ -117,7 +120,8 @@ Fitting admissible:
   FDE algebra preserves quotient factorization but does not generate it
   ultrafilter-style complement decision + consistency/A1-R reconstructs classification rather than bypassing it
   de-dicto lifting needs only positive G-extension stability
-  RPlusAdm derives positive G-reflection; RPlusAdm + symmetry derives positive G-persistence
+  RPlusAdm derives positive G-reflection; converse positivity transport derives positive G-persistence
+  bidirectional positivity transport yields de-dicto lifting without frame symmetry
   necessary Godlikeness can coexist with MC+ failure
 ```
 

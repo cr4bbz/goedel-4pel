@@ -97,7 +97,8 @@ fitting-minimality-v0.2
 fitting-domain-v0.2
 fitting-entailment-v0.1
 fitting-rigidity-v0.1
-paper-v0.14
+fitting-converse-rigidity-v0.1
+paper-v0.16
 ```
 
 ### Anderson and Scott frame reduction
@@ -188,6 +189,8 @@ G realization + RPlusAdm + Symmetric(R)
 
 Thus the direct de-dicto theorem remains frame-free when positive `G` stability is assumed primitively, while symmetry re-enters if that stability is derived from forward admissible positivity rigidity. An exhaustive two-world / one-entity regression checks all 256 configurations over the negation-closed classical admissible domain `{T,F}`; all 152 `RPlusAdm` cases satisfy reflection, and all 80 symmetric `RPlusAdm` cases also satisfy persistence. Separate fixtures show that `RPlusAdm` without symmetry need not force persistence and symmetry without `RPlusAdm` need not force either direction.
 
+The follow-up `fitting-converse-rigidity-v0.1` isolates what that persistence proof actually needs. `RPlusConverseAdm` transports target positivity back to the source along an existing edge without requiring a reverse edge. Lean proves that it directly yields `Pers_G+`, while `RPlusAdm + RPlusConverseAdm` yields the full `STAB_G+` interface and the minimized de-dicto theorem with no frame premise. In the same 256-case fragment, 112 candidates satisfy both transports and 32 of those are non-symmetric, giving a bounded strict separation from global symmetry.
+
 ### Ultrafilter comparison
 
 A literature-facing complement-decision fragment shows a different architecture: with relevant consistency or `A1-R`, complement decision reconstructs positive reflection / `COMP`, reconnecting to the classification route rather than explaining the classification-free quotient route.
@@ -211,6 +214,7 @@ From the repository root:
 python3 -m unittest discover -s formal/finite -p "test_*.py" -v
 python3 formal/finite/gate8_fitting_entailment.py
 python3 formal/finite/gate8_fitting_rigidity_bridge.py
+python3 formal/finite/gate8_fitting_converse_rigidity.py
 ```
 
 Lean:
@@ -225,7 +229,7 @@ The Lean package is pinned to Lean 4.30.0.
 ## Research gates
 
 - **Gates 0–7:** complete for the original control theory.
-- **Gate 8:** in progress. Current frontier: construct an explicit actualist profile quotient; determine whether positive `G` persistence has a weaker replacement than `RPlusAdm + symmetry`; define a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra; generalize to paired neighborhoods.
+- **Gate 8:** in progress. Current frontier: construct an explicit actualist profile quotient; determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions; define a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra; generalize to paired neighborhoods.
 - **Gate 9:** publication consolidation, prior-art audit, and exact source/HOL correspondence.
 
 ## Paper
@@ -257,4 +261,4 @@ latexmk -pdf main.tex
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; manuscript baseline `paper-v0.14`; newest verified research milestone `fitting-rigidity-v0.1`.
+**Phase:** Gate 7 complete; Gate 8 in progress; manuscript baseline `paper-v0.16`; newest verified research milestone `fitting-converse-rigidity-v0.1`.

@@ -186,15 +186,23 @@ G_F\text{-realization}+R_{F,adm}^+&\Longrightarrow&Refl_G^+,\\
 G_F\text{-realization}+R_{F,adm}^++Sym(R)&\Longrightarrow&Pers_G^+.
 \end{array}
 \]
-Forward rigidity is enough for reflection because every extension positive at the source remains positive at the target, where target Godlikeness consumes it. Persistence requires the converse transport: symmetry reverses the edge so that an extension positive at the target can be carried back to source Godlikeness. Hence
+Forward rigidity is enough for reflection because every extension positive at the source remains positive at the target, where target Godlikeness consumes it. Persistence requires only the converse positivity transport, not the converse edge itself. Write \(R_{F,adm}^{+\leftarrow}\) for
 \[
-  G_F\text{-realization}+R_{F,adm}^++Sym(R)
-  \Longrightarrow STAB_G^+.
+  Adm(X)\land wRz\land\pos{P_z(X)}
+  \Longrightarrow \pos{P_w(X)}.
 \]
-Substituting this derived interface into the minimized theorem yields positive de-dicto necessity from \(R_{F,adm}^++Sym(R)\). The direct theorem with primitive \(STAB_G^+\) remains frame-free; symmetry re-enters only when positive \(G\)-stability is derived from forward positivity rigidity.
+Lean proves
+\[
+\begin{array}{rcl}
+R_{F,adm}^++Sym(R)&\Longrightarrow&R_{F,adm}^{+\leftarrow},\\
+G_F\text{-realization}+R_{F,adm}^{+\leftarrow}&\Longrightarrow&Pers_G^+,\\
+G_F\text{-realization}+R_{F,adm}^++R_{F,adm}^{+\leftarrow}&\Longrightarrow&STAB_G^+.
+\end{array}
+\]
+Substituting the last implication into the minimized theorem yields positive de-dicto necessity without a frame premise. The older \(R_{F,adm}^++Sym(R)\) package remains sufficient because it entails the converse transport, but frame symmetry is not part of the sharper proof interface.
 
 The weakening of stability is strict even under a stronger surrounding control theory. A complete two-world S5 fixture satisfies both A1 directions and the original full admissible regularity package. The positive membership set of \(G\) is \(\{a\}\) at both worlds, but negative information about a non-Godlike individual changes from falsity support to a gap. Hence \(STAB_G^+\) holds while \(STAB_G^{\pm}\) fails, and positive necessary de-dicto Godlikeness still holds. This finite witness shows that the positive theorem is genuinely insensitive to drift confined to the negative extension channel.
 
-A second finite regression independently checks the derived bridge over all 256 two-world, one-entity configurations on the negation-closed classical admissible domain \(\{\True,\False\}\). Of these, 152 satisfy \(R_{F,adm}^+\), and every one satisfies \(Refl_G^+\); 80 additionally have a symmetric accessibility relation, and every one also satisfies \(Pers_G^+\). Explicit fixtures show that \(R_{F,adm}^+\) without symmetry need not force persistence and that symmetry without \(R_{F,adm}^+\) need not force reflection. These are bounded separation results, not global necessity claims.
+A second finite regression independently checks the derived bridge over all 256 two-world, one-entity configurations on the negation-closed classical admissible domain \(\{\True,\False\}\). Of these, 152 satisfy \(R_{F,adm}^+\), and every one satisfies \(Refl_G^+\); 152 satisfy \(R_{F,adm}^{+\leftarrow}\), and every one satisfies \(Pers_G^+\). There are 112 candidates satisfying both transports. Only 80 are symmetric, leaving 32 asymmetric candidates with complete positive \(G\)-stability. An explicit one-way frame with non-vacuous positivity witnesses the strict bounded separation from symmetry. A second fixture satisfies converse transport without forward transport, preserving persistence while reflection fails. These are bounded separation results, not global necessity claims.
 
 These results do not establish global minimality. They reveal two distinct recovery architectures inside the same Fitting candidate: one resolves positivity gaps by classification, while the other factors the admissible bilateral property domain through positive-property profiles and thereby makes the gap irrelevant to extensional essence.
