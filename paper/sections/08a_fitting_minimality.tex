@@ -174,6 +174,27 @@ Their conjunction is written \(STAB_G^+\). Lean proves that bilateral stability 
 \]
 No negative-extension stability and no S4/S5 frame condition occurs. Replacing the classification block by \(Ind_G^{adm}\), or more structurally by \(Sat_P^{adm}\), gives an alternative theorem with the same positive stability interface.
 
+The positive stability interface can now be derived from a more structural premise. Let \(R_{F,adm}^+\) restrict positive-property rigidity to the selected admissible extension domain:
+\[
+  Adm(X)\land\pos{P_w(X)}\land wRz
+  \Longrightarrow \pos{P_z(X)}.
+\]
+Lean proves the asymmetric pair
+\[
+\begin{array}{rcl}
+G_F\text{-realization}+R_{F,adm}^+&\Longrightarrow&Refl_G^+,\\
+G_F\text{-realization}+R_{F,adm}^++Sym(R)&\Longrightarrow&Pers_G^+.
+\end{array}
+\]
+Forward rigidity is enough for reflection because every extension positive at the source remains positive at the target, where target Godlikeness consumes it. Persistence requires the converse transport: symmetry reverses the edge so that an extension positive at the target can be carried back to source Godlikeness. Hence
+\[
+  G_F\text{-realization}+R_{F,adm}^++Sym(R)
+  \Longrightarrow STAB_G^+.
+\]
+Substituting this derived interface into the minimized theorem yields positive de-dicto necessity from \(R_{F,adm}^++Sym(R)\). The direct theorem with primitive \(STAB_G^+\) remains frame-free; symmetry re-enters only when positive \(G\)-stability is derived from forward positivity rigidity.
+
 The weakening of stability is strict even under a stronger surrounding control theory. A complete two-world S5 fixture satisfies both A1 directions and the original full admissible regularity package. The positive membership set of \(G\) is \(\{a\}\) at both worlds, but negative information about a non-Godlike individual changes from falsity support to a gap. Hence \(STAB_G^+\) holds while \(STAB_G^{\pm}\) fails, and positive necessary de-dicto Godlikeness still holds. This finite witness shows that the positive theorem is genuinely insensitive to drift confined to the negative extension channel.
+
+A second finite regression independently checks the derived bridge over all 256 two-world, one-entity configurations on the negation-closed classical admissible domain \(\{\True,\False\}\). Of these, 152 satisfy \(R_{F,adm}^+\), and every one satisfies \(Refl_G^+\); 80 additionally have a symmetric accessibility relation, and every one also satisfies \(Pers_G^+\). Explicit fixtures show that \(R_{F,adm}^+\) without symmetry need not force persistence and that symmetry without \(R_{F,adm}^+\) need not force reflection. These are bounded separation results, not global necessity claims.
 
 These results do not establish global minimality. They reveal two distinct recovery architectures inside the same Fitting candidate: one resolves positivity gaps by classification, while the other factors the admissible bilateral property domain through positive-property profiles and thereby makes the gap irrelevant to extensional essence.

@@ -199,6 +199,15 @@ Lean proves that \(STAB_G\) converts de-dicto possibility to the frozen de-re pr
 \]
 again without an S4 or S5 frame premise. The three-world finite witness shows that the stability condition is not merely decorative for this proof interface.
 
+The minimized positive bridge admits a second formulation. Lean defines \(R_{F,adm}^+\) as forward positivity rigidity restricted to admissible rigid extensions and proves
+\[
+\begin{array}{rcl}
+R_{F,adm}^++G_F\text{-realization}&\Longrightarrow&Refl_G^+,\\
+R_{F,adm}^++G_F\text{-realization}+Sym(R)&\Longrightarrow&Pers_G^+.
+\end{array}
+\]
+Consequently \(R_{F,adm}^++Sym(R)\) can replace primitive \(STAB_G^+\) in the positive de-dicto theorem. The finite oracle checks this bridge exhaustively over 256 two-world, one-entity configurations in the classical negation-closed admissible fragment and retains countermodels when either symmetry or admissible rigidity is omitted.
+
 \subsection{Classical recovery and verification discipline}
 
 The Scott, Anderson, and admissible Fitting branches each have explicit recovery interfaces rather than relying on an informal assertion that the bilateral semantics ``becomes classical.'' Exact higher-order correspondence with the complete AFP/HOL developments is nevertheless a separate publication audit item.

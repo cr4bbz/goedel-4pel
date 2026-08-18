@@ -28,6 +28,11 @@ from gate8_fitting_entailment import (
     validate_entailment_closure_does_not_force_profile_saturation,
     validate_existence_saturation_is_needed_for_entailment_descent,
 )
+from gate8_fitting_rigidity_bridge import (
+    validate_rigidity_bridge_exhaustive,
+    validate_rplus_without_symmetry_does_not_force_persistence,
+    validate_symmetry_without_rplus_does_not_force_reflection,
+)
 
 
 class Gate7Tests(unittest.TestCase):
@@ -105,6 +110,22 @@ class Gate7Tests(unittest.TestCase):
 
     def test_gate8_fitting_entailment_descent_needs_profile_existence_saturation(self):
         self.assertTrue(validate_existence_saturation_is_needed_for_entailment_descent())
+
+    def test_gate8_fitting_rigidity_bridge_exhaustive(self):
+        checked, r_plus_models, symmetric_r_plus_models = (
+            validate_rigidity_bridge_exhaustive()
+        )
+        self.assertEqual(checked, 256)
+        self.assertGreater(r_plus_models, 0)
+        self.assertGreater(symmetric_r_plus_models, 0)
+
+    def test_gate8_fitting_rplus_without_symmetry_does_not_force_persistence(self):
+        self.assertTrue(
+            validate_rplus_without_symmetry_does_not_force_persistence()
+        )
+
+    def test_gate8_fitting_symmetry_without_rplus_does_not_force_reflection(self):
+        self.assertTrue(validate_symmetry_without_rplus_does_not_force_reflection())
 
 
 if __name__ == "__main__":
