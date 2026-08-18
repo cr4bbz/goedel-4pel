@@ -19,6 +19,10 @@
 - **Gate 5:** `godlike-v0.1`, actualist quantification, `T1-T`, possible Godlike existence, `G-sup-v0.1`.
 - **Gate 6:** `essence-ne-v0.1`, bilateral essence/NE, glut-gap T2 countermodels, sufficient `REG_G` recovery, conditional T3/collapse.
 - **Gate 7:** `formal-v0.1`, Lean 4.30.0 theorem spine, classical recovery, executable countermodels, bounded T2 assumption search.
+- **Gate 9:** `source-audit-v0.1`, first source-correspondence matrix and reproducible prior-art pass.
+- **Gate 10:** `fitting-quotient-filter-v0.1`, four-valued quotient delta-filter audit.
+- **Gate 11:** `paired-neighborhood-bridge-v0.1`, machine-checked Kripke representation and CD recovery.
+- **Gate 12:** `v1-synthesis-v0.1`, evidence ledger and publication boundary.
 
 Gate 7 is complete. The broader two-world / one-entity `G,Z` search retains 873 models satisfying the full Scott T2 recovery package; all satisfy `T2+`. Dropping any one of `A1-L`, `R+`, `COMP_P^G`, or `CONS_G^G` yields a countermodel in that bounded family. This is not promoted to global minimality.
 
@@ -59,6 +63,8 @@ fitting-bilateral-v0.2
 fitting-minimality-v0.2
 fitting-domain-v0.2
 fitting-entailment-v0.1
+fitting-actualist-quotient-v0.1
+fitting-quotient-filter-v0.1
 fitting-rigidity-v0.1
 fitting-converse-rigidity-v0.1
 ```
@@ -89,8 +95,12 @@ The entailment and rigidity milestones are locally validated with Lean 4.30.0 an
 - [x] locally validate the new `FittingEntailmentQuotient.lean` theorem block with Lean 4.30.0;
 - [x] freeze the general profile-closure operator results as machine-checked: extensivity, monotonicity, least quotient-respecting hull, idempotence, fixed-point characterization, and entailment descent under profile-compatible existence;
 - [x] freeze the general obstruction `GlobalEntailmentClosedAdm + Adm(bottom) => unrestricted Adm` and its consistency/Godlikeness corollary;
-- [ ] determine whether `ProfileExistenceSaturatedAdm` follows from a principled actualist-domain condition or should be built into an explicit quotient semantics;
-- [ ] define and assess a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra without automatically restoring `COMP`;
+- [x] construct the explicit Lean quotient of entities by positive profiles and prove bilateral extension push/pull round trips;
+- [x] characterize `ProfileExistenceSaturatedAdm` exactly as factorization of actual existence through every accessible source quotient;
+- [x] prove quotient-level actualist entailment equivalent to ordinary entailment on profile-respecting pullbacks;
+- [x] define truth-order delta-filters, prime delta-filters, and non-adjunctive two-filters on the quotient extension algebra;
+- [x] prove that every inhabited quotient carries a prime delta-filter designating `B` while leaving `N` complement-undecided;
+- [x] exhaust the two-point quotient algebra and retain a non-vacuous ordinary-filter fixture in which local `COMP` fails;
 - [x] derive positive reflection from `RPlusAdm`, and positive persistence from `RPlusAdm + Symmetric(R)`;
 - [x] finite-check the bridge exhaustively over the two-world / one-entity classical admissible fragment and retain separate countermodels when symmetry or `RPlusAdm` is dropped;
 - [x] replace symmetry by `RPlusConverseAdm`, the converse positivity transport actually consumed by the persistence proof;
@@ -127,6 +137,8 @@ Fitting admissible:
 
 The entailment experiment additionally has executable finite evidence that entailment closure does not generate the quotient. Its general Lean closure/fixed-point theorems and the subsequent rigidity bridge are locally build-validated.
 
+- [x] machine-check the paired-neighborhood modal clauses, exact Kripke embedding, and complement-dual classical recovery;
+- [x] exhaust the two-world local paired-frame space and separate principal, non-principal CD, and non-CD behavior;
 - [ ] rerun selected Scott/Anderson/Fitting results over broader paired-neighborhood semantics;
 - [ ] decide whether a bilateral negative exact-Godlikeness clause remains scientifically useful after the literature comparisons.
 
@@ -171,8 +183,9 @@ The major Scott/Anderson/Fitting comparative milestones are green. The Fitting b
 
 ### Gate 9 — Publication consolidation
 
-- [ ] perform a dedicated prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
+- [x] complete and log a first reproducible prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
+- [x] create a source-correspondence matrix separating direct source control, standard semantic background, and project-specific clauses;
 - [ ] audit exact correspondence with the frozen higher-order Scott baseline;
-- [ ] audit exact correspondence of Anderson/Fitting interfaces with the published formal developments;
+- [ ] audit exact line-by-line correspondence of Anderson/Fitting interfaces with the complete published formal developments;
 - [ ] sharpen the paper around the strongest verified structural comparison;
 - [ ] distinguish semantic theorems, machine-checked results, finite countermodels, bounded exhaustive evidence, and open global-minimality questions explicitly.

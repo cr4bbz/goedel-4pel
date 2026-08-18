@@ -96,9 +96,13 @@ fitting-bilateral-v0.2
 fitting-minimality-v0.2
 fitting-domain-v0.2
 fitting-entailment-v0.1
+fitting-actualist-quotient-v0.1
+fitting-quotient-filter-v0.1
+paired-neighborhood-bridge-v0.1
+v1-synthesis-v0.1
 fitting-rigidity-v0.1
 fitting-converse-rigidity-v0.1
-paper-v0.16
+paper-v0.19
 ```
 
 ### Anderson and Scott frame reduction
@@ -171,6 +175,37 @@ is sufficient for positive entailment to descend through profile saturation. A f
 
 The finite regressions and the root-imported Lean theorem block have now been validated locally with Lean 4.30.0. The closure/fixed-point, entailment-descent, and unrestricted-domain obstruction results are therefore promoted to the same machine-checked status as the earlier Gate-8 Lean results.
 
+### Explicit actualist quotient
+
+The follow-up milestone `fitting-actualist-quotient-v0.1` constructs the actual quotient type
+
+```text
+ProfileQuotient M w := Entity / PositiveProfileEqAdm(M,w)
+```
+
+in Lean. Bilateral extensions can be pushed to and pulled back from quotient classes, with both round trips proved up to bilateral extensional equivalence. The earlier existence condition receives an exact semantic characterization:
+
+```text
+ProfileExistenceSaturatedAdm M
+  <-> actual existence factors through every accessible source quotient.
+```
+
+On this quotient-respecting fragment, quotient-level actualist entailment is equivalent in both directions to ordinary entailment between pullbacks. The finite regression checks all 16 saturated extensions and all 256 ordered entailment pairs while retaining genuine `B` and `N` values; split existence prevents quotient factorization and reproduces the earlier descent failure.
+
+### Four-valued quotient filters
+
+Gate 10 defines proper truth-order delta-filters, prime delta-filters, and non-adjunctive two-filters on bilateral quotient extensions. Lean proves that point evaluation is a prime delta-filter which designates the glut extension `B` but leaves the gap extension `N` and its negation undesignated. Thus primeness no longer entails classical complement decision.
+
+The exhaustive two-point quotient algebra contains 15 ordinary delta-filters, 4 prime delta-filters, 112 proper two-filters, and 10 prime two-filters. All four prime ordinary filters are non-deciding. A separate ordinary-filter fixture has two non-vacuous Godlike points while a possessed `(T,N)` extension is neither positive nor negative in the filter sense, so local `COMP` fails in that bounded model.
+
+### Paired-neighborhood bridge
+
+Gate 11 now machine-checks the paired-neighborhood semantics that Gate 2 had retained as a controlled generalization. Lean proves bilateral modal duality, the exact relational representation of all four signed modal clauses, complement duality of relationally induced pairs, and classical modal recovery for arbitrary complement-dual paired frames.
+
+The complete local two-world space contains 256 pairs of universal/hit families: 16 are complement-dual, 4 are principal relational, and 12 are genuinely non-principal while still preserving classical modal bivalence. All 1024 bounded relational box/diamond comparisons agree exactly. Without complement duality, classically valued inputs realize all four outputs `T`, `F`, `B`, and `N`.
+
+The publication boundary and evidence ledger are frozen in `docs/V1_SYNTHESIS.md`. The next neighborhood task is theorem-specific transport of selected Scott, Anderson, and Fitting results rather than another change to the modal kernel.
+
 ### Fitting: derived rigidity bridge
 
 The newest milestone is frozen in `docs/FITTING_RIGIDITY_BRIDGE.md` as `fitting-rigidity-v0.1`. Lean proves the Fitting-typed bridge
@@ -215,6 +250,9 @@ python3 -m unittest discover -s formal/finite -p "test_*.py" -v
 python3 formal/finite/gate8_fitting_entailment.py
 python3 formal/finite/gate8_fitting_rigidity_bridge.py
 python3 formal/finite/gate8_fitting_converse_rigidity.py
+python3 formal/finite/gate8_fitting_actualist_quotient.py
+python3 formal/finite/gate10_quotient_delta_filters.py
+python3 formal/finite/gate11_paired_neighborhoods.py
 ```
 
 Lean:
@@ -229,8 +267,13 @@ The Lean package is pinned to Lean 4.30.0.
 ## Research gates
 
 - **Gates 0–7:** complete for the original control theory.
-- **Gate 8:** in progress. Current frontier: construct an explicit actualist profile quotient; determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions; define a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra; generalize to paired neighborhoods.
-- **Gate 9:** publication consolidation, prior-art audit, and exact source/HOL correspondence.
+- **Gate 8:** comparative branch complete through the explicit actualist quotient.
+- **Gate 9:** first publication consolidation, prior-art audit, and source-correspondence matrix complete; exact line-by-line audit remains open.
+- **Gate 10:** the first quotient delta-filter layer is machine-checked and finitely audited. Current frontier: determine which additional filter strength supports the Fitting essence/NE route without restoring complement decision.
+- **Gate 11:** the paired-neighborhood modal bridge and strict two-world hierarchy are machine-checked and finitely audited.
+- **Gate 12:** the v1 evidence ledger and publication boundary are frozen; selected higher-order neighborhood transports remain open.
+
+Gate 9 now has a first reproducible source pass in `docs/PRIOR_ART_SEARCH.md` and an attribution boundary in `docs/SOURCE_CORRESPONDENCE_MATRIX.md`. These establish source control for the FDE kernel, actualist existence relativization, Anderson's positive interfaces, and Fitting's intension/extension architecture. They deliberately retain the selected bilateral domain, profile quotient, and factorization theorems as project-specific results without a global novelty claim. Exact line-by-line HOL correspondence remains open.
 
 ## Paper
 
@@ -239,7 +282,7 @@ The living manuscript is in `paper/`.
 Current version:
 
 ```text
-paper-v0.16
+paper-v0.19
 ```
 
 The current compiled manuscript is available at [`paper/main.pdf`](paper/main.pdf).
@@ -263,4 +306,4 @@ latexmk -pdf main.tex
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; manuscript baseline `paper-v0.16`; newest verified research milestone `fitting-converse-rigidity-v0.1`.
+**Phase:** Gates 7–12 established through the first source, filter, paired-neighborhood, and synthesis checkpoints; manuscript baseline `paper-v0.19`; newest verified research milestone `paired-neighborhood-bridge-v0.1`.

@@ -95,4 +95,68 @@ Hence actualist Fitting entailment descends through the profile closure when act
 
 A second finite fixture shows why the existence premise matters. Two entities have the same positive-property profile, but at the sole accessible target world only one actually exists. An extension whose only positive member is the non-actual representative then entails an empty-positive extension vacuously. Profile closure transfers that positive membership to the equivalent actual representative, after which the saturated entailment fails. Thus the existence-compatibility condition is not merely a notational convenience, although the finite witness does not establish its global necessity for every alternative quotient construction.
 
-The resulting architecture is more precise than the initial entailment-closure hypothesis. Positivity-filter closure remains governed by \(A2_F^+\); the admissible property universe should not be closed indiscriminately under entailment; profile saturation is instead a fixed-point condition for a canonical closure operator; and actualist entailment is compatible with that quotient only when actual existence respects the relevant profile classes. This relocates the next open problem from property-domain entailment closure to the principled status of the actualist quotient condition and to the algebraic/filter structure of the closure fixed points.
+The quotient can now be made literal rather than represented only by fixed points. Lean defines
+\[
+  Q_w=E/{\approx_w^+}
+\]
+as a quotient type and the canonical projection \(x\mapsto[x]_w\). Every bilateral extension on \(Q_w\) pulls back to a profile-respecting extension on entities. Conversely, every profile-respecting bilateral extension pushes forward to \(Q_w\), with representative-independence proved separately for its positive and negative support channels. Both push--pull composites recover their input up to bilateral extensional equivalence. In particular, every profile closure \(Sat_w(Y)\) has an explicit quotient representation.
+
+The existence premise also receives an exact characterization. Write \(ExFact(w,z)\) when there is a predicate \(E^Q_{w,z}\) on \(Q_w\) such that
+\[
+  E^Q_{w,z}([x]_w)\leftrightarrow E(z,x).
+\]
+Lean proves
+\[
+\boxed{
+  ExSat_P
+  \Longleftrightarrow
+  \forall w,z\,(wRz\rightarrow ExFact(w,z)).
+}
+\]
+Thus profile-compatible actual existence is exactly what makes actualist quantification over quotient entities independent of representatives, rather than an unexplained auxiliary closure clause.
+
+Finally, define \(Entail_{F,Q}^+\) directly on quotient extensions, quantifying over accessible worlds and classes satisfying \(E^Q_{w,z}\). Lean proves
+\[
+\boxed{
+  Entail_{F,Q}^+(w,Q_X,Q_Y)
+  \Longleftrightarrow
+  Entail_F^+(w,\pi_w^*Q_X,\pi_w^*Q_Y).
+}
+\]
+For profile-respecting entity extensions, pushforward gives the converse representation as well. The earlier one-way closure-descent theorem is therefore subsumed by a two-way entailment equivalence on the quotient-respecting fragment.
+
+The finite regression realizes one non-singleton profile class. It checks all sixteen saturated bilateral extensions and all 256 ordered entailment pairs, while both \(\Both\) and \(\Neither\) remain possible quotient values. When actual existence splits the class, no representative-independent quotient existence predicate can be formed and the earlier entailment failure reappears.
+
+The resulting architecture is more precise than the initial entailment-closure hypothesis. Positivity-filter closure remains governed by \(A2_F^+\); the admissible property universe should not be closed indiscriminately under entailment; profile saturation is instead a fixed-point condition for a canonical closure operator; and actualist entailment is represented directly on the quotient exactly when actual existence factors through the relevant profile classes. The next open problem is the algebraic/filter structure of these quotient fixed points.
+
+\subsubsection{A four-valued delta-filter on quotient extensions}
+
+The explicit quotient makes the filter question precise. For bilateral quotient extensions define the FDE truth order by
+\[
+  X\leq_tY
+  \quad\Longleftrightarrow\quad
+  (+X\subseteq+Y)\land(-Y\subseteq-X).
+\]
+A positive quotient delta-filter is proper, upward closed in \(\leq_t\), and closed under FDE conjunction. Primeness adds
+\[
+  X\vee_FY\in F\Longrightarrow X\in F\text{ or }Y\in F.
+\]
+For classically coherent extensions, where negative membership is exactly absent positive membership, Lean proves that \(\leq_t\) reduces to ordinary positive-extension inclusion. Thus this is a genuine four-valued lift of the classical filter order rather than a replacement unrelated to it.
+
+The crucial separation is already general. For any quotient class \(q\), let
+\[
+  F_q(X)\Longleftrightarrow +X(q).
+\]
+Lean proves that \(F_q\) is a proper prime delta-filter. It designates the constant glut extension \(\Both\). The constant gap extension \(\Neither\) is fixed by FDE negation and neither it nor its negation is designated. Hence
+\[
+\boxed{
+  \text{prime delta-filter}
+  \not\Longrightarrow
+  \forall X\,(X\in F\lor\neg_FX\in F).
+}
+\]
+Every inhabited positive-profile quotient therefore carries a prime filter that does not return to the complement-decision route isolated earlier.
+
+The complete two-class quotient algebra provides a bounded structural audit. Among all families of its sixteen bilateral extensions, there are 166 proper truth-order upsets, 15 ordinary delta-filters, four prime delta-filters, 112 proper non-adjunctive two-filters, and ten prime two-filters. All four prime ordinary filters fail complement decision. The union of the two point-evaluation filters is a prime two-filter but not an ordinary filter. Conversely, the ordinary filter requiring positive membership at both classes has two non-vacuous Godlike points, while a \((\True,\Neither)\) extension is possessed at the first point but neither it nor its FDE negation belongs to the filter. Thus local \(COMP\) fails in that fixture.
+
+The filter question is consequently narrowed rather than closed: four-valued properness, conjunction closure, and even primeness preserve the decisive gap. What remains is to determine which additional filter strength supports the desired essence/necessary-existence inference without recreating complement decision.

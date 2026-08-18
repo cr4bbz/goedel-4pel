@@ -4,15 +4,15 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 ## Current status
 
-**Version:** `paper-v0.16`
+**Version:** `paper-v0.19`
 
 **Compiled manuscript:** [`main.pdf`](main.pdf)
 
 **Research gates represented:** Gate 0 through the current Gate-8 comparative/minimality/domain/entailment/converse-rigidity milestone
 
-**Newest research milestone:** `fitting-converse-rigidity-v0.1`
+**Newest research milestone:** `paired-neighborhood-bridge-v0.1` and `v1-synthesis-v0.1`
 
-**Next manuscript dependency:** explicit actualist quotient semantics, four-valued fixed-point filter analysis, and Gate-9 source/prior-art audit
+**Next manuscript dependency:** selected higher-order paired-neighborhood transport theorems, filter-strength analysis for the essence/NE route, and the remaining line-by-line Gate-9 source audit
 
 The manuscript is deliberately separated from `docs/`:
 
@@ -39,6 +39,8 @@ Gate 8 now adds:
 - FDE-algebra preservation of quotient-respecting extensions and a finite counterexample to the converse;
 - a literature-facing ultrafilter comparison showing that complement decision plus relevant consistency or `A1-R` returns to the classification route;
 - the new entailment/domain distinction and profile-closure construction described below;
+- an explicit actualist entity quotient, bilateral extension push/pull equivalences, and quotient-level entailment;
+- prime and non-adjunctive four-valued delta-filter candidates on the quotient algebra;
 - derivation of positive `G` reflection from forward admissible positivity transport and persistence from converse positivity transport, without frame symmetry;
 - complete-S5 Anderson and Fitting finite models with positive necessary Godlike existence but failure of positive modal collapse.
 
@@ -64,6 +66,24 @@ does not force positive-profile saturation.
 The positive construction is instead a canonical bilateral profile closure `Sat_w`. The newest Lean module implements its closure-operator properties and the characterization of profile-saturated admissible domains as fixed points of this operation. Because Fitting entailment is actualist, the manuscript isolates a further condition requiring actual existence to respect the same profile classes; under that condition the new module implements entailment descent through the profile closure. A finite counterexample demonstrates that this descent can fail when actual existence splits a profile class.
 
 **Verification status:** the finite entailment regressions and the root-imported Lean theorem block have been validated locally with Lean 4.30.0.
+
+### New in `paper-v0.17`: explicit actualist profile quotient
+
+The Lean development now constructs `ProfileQuotient M w`, the quotient of entities by positive admissible-property profiles at the source world. Every bilateral extension on quotient classes pulls back to a profile-respecting entity extension, and every profile-respecting extension pushes forward; both round trips are proved up to bilateral extensional equivalence.
+
+The earlier compatibility premise is characterized exactly: `ProfileExistenceSaturatedAdm` holds iff actual existence at every accessible target factors through the corresponding source quotient. Under this condition, actualist entailment evaluated directly on quotient classes is equivalent to ordinary entailment between pullbacks. A finite regression checks all 16 saturated bilateral extensions and all 256 ordered entailment comparisons, preserves both `B` and `N`, and confirms that split existence blocks factorization.
+
+### New in `paper-v0.18`: quotient delta-filters
+
+The quotient extension algebra now carries a truth-order delta-filter definition with a verified classical boundary. Lean proves that point evaluation is a proper prime delta-filter which designates `B` while leaving `N` and its negation undesignated. Primeness therefore does not entail complement decision in the four-valued algebra.
+
+The exhaustive two-point audit finds 166 proper upsets, 15 ordinary delta-filters, 4 prime delta-filters, 112 proper two-filters, and 10 prime two-filters. Every prime ordinary filter is non-deciding. A non-prime ordinary filter additionally supplies two non-vacuous Godlike points and a possessed extension for which local `COMP` fails.
+
+### New in `paper-v0.19`: paired-neighborhood bridge
+
+The previously semantic paired-neighborhood representation is now machine-checked. Lean proves all four clauses, bilateral box/diamond duality, exact relational embedding, complement duality of relational pairs, and classical recovery for arbitrary complement-dual frames.
+
+The bounded two-world audit exhausts all 256 local universal/hit family pairs. Sixteen are complement-dual, four are principal relational, and twelve are genuinely non-principal while retaining classical modal bivalence. Across arbitrary non-dual frames, classical inputs realize `T`, `F`, `B`, and `N`. The v1 synthesis document records which results are general theorems, bounded audits, explicit witnesses, or still-open publication dependencies.
 
 ### New in `paper-v0.14`: derived positive rigidity bridge
 
@@ -118,4 +138,4 @@ The manuscript distinguishes:
 - `open`: explicitly not yet settled;
 - `conjectural`: a research hypothesis awaiting proof or countermodel.
 
-No bounded finite search or fixture is promoted to an unbounded theorem. Exact higher-order correspondence with the frozen Scott/AFP control development and the published Anderson/Fitting formalizations remains part of the Gate-9 publication audit.
+No bounded finite search or fixture is promoted to an unbounded theorem. Gate 9 now includes a reproducible first prior-art pass and source-correspondence matrix; exact line-by-line higher-order correspondence with the frozen Scott/AFP control development and the complete Anderson/Fitting formalizations remains open.
