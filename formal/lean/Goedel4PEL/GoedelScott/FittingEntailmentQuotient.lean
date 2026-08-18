@@ -131,6 +131,26 @@ theorem profileSaturateAt_equivalent_of_respects
     · intro hx
       exact ⟨x, positiveProfileEqAdm_refl M w x, hx⟩
 
+/--
+Profile saturation is the least quotient-respecting bilateral extension above
+the original extension in the support-inclusion order.
+-/
+theorem profileSaturateAt_least_respecting
+    (M : AdmissibleSemantics World Entity)
+    (w : World) (X Y : Extension Entity)
+    (hXY : ExtensionSupportLe X Y)
+    (hY : RespectsProfileAt M w Y) :
+    ExtensionSupportLe (X.profileSaturateAt M w) Y := by
+  constructor
+  · intro x hx
+    rcases hx with ⟨y, hxy, hXy⟩
+    have hYy : Y.pos y := hXY.1 y hXy
+    exact (hY x y hxy).1.2 hYy
+  · intro x hx
+    rcases hx with ⟨y, hxy, hXy⟩
+    have hYy : Y.neg y := hXY.2 y hXy
+    exact (hY x y hxy).2.2 hYy
+
 /-- Profile saturation is idempotent up to bilateral extensional equivalence. -/
 theorem profileSaturateAt_idempotent
     (M : AdmissibleSemantics World Entity)
@@ -193,5 +213,39 @@ theorem entailPlus_profileSaturateAt
     (hExists w z x y hwz hxy).1 hxExists
   have hYy : Y.pos y := hEnt z hwz y hyExists hXy
   exact ⟨y, hxy, hYy⟩
+
+/--
+Naively closing the admissible property *domain* under arbitrary global
+entailment is too strong once FDE bottom is admitted: bottom positively entails
+every rigid extension, so the selected domain collapses to unrestricted
+bilateral comprehension.
+-/
+theorem globalEntailmentClosed_bot_implies_unrestricted
+    (M : AdmissibleSemantics World Entity)
+    (hClosed : GlobalEntailmentClosedAdm M)
+    (hBot : M.admissible (Extension.fdeBot (Entity := Entity))) :
+    ∀ Y : Extension Entity, M.admissible Y := by
+  intro Y
+  apply hClosed (Extension.fdeBot (Entity := Entity)) Y hBot
+  intro w z hwz x hxExists hBotX
+  exact False.elim hBotX
+
+/--
+Consequently, adding relevant exemplification consistency to that naive domain
+closure recreates the unrestricted-comprehension obstruction: no positive
+Fitting-Godlike witness can remain.
+-/
+theorem globalEntailmentClosed_bot_cons_excludes_god
+    (M : AdmissibleSemantics World Entity)
+    (hClosed : GlobalEntailmentClosedAdm M)
+    (hBot : M.admissible (Extension.fdeBot (Entity := Entity)))
+    (hCons : ConsGGAdm M) :
+    ∀ w x, ¬ GodPlusAdm M w x := by
+  intro w x hGod
+  have hAll : ∀ Y : Extension Entity, M.admissible Y :=
+    globalEntailmentClosed_bot_implies_unrestricted M hClosed hBot
+  let B : Extension Entity := universalGlutExtension
+  have hNoNeg : ¬ B.neg x := hCons w x B (hAll B) hGod (by trivial)
+  exact hNoNeg (by trivial)
 
 end Goedel4PEL.GoedelScott.Fitting
