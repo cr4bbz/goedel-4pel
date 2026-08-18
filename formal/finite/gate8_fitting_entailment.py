@@ -189,6 +189,43 @@ def validate_entailment_closure_does_not_force_profile_saturation():
     return True
 
 
+def validate_existence_saturation_is_needed_for_entailment_descent():
+    source = "u0"
+    target = "u1"
+    access = frozenset({(source, target)})
+    exists = frozenset({(target, "a")})
+
+    def entail_at_source(x_extension, y_extension):
+        return all(
+            (not pos(x_extension, x)) or pos(y_extension, x)
+            for z in (target,)
+            if (source, z) in access
+            for x in ENTITIES
+            if (z, x) in exists
+        )
+
+    # a and b still have the same positive-property profile, but actual
+    # existence splits the class at the accessible world.
+    assert positive_profile_eq("a", "b")
+    assert (target, "a") in exists
+    assert (target, "b") not in exists
+
+    only_b = (Val.F, Val.T)
+    empty = (Val.F, Val.F)
+
+    # The premise holds vacuously because b, the only positive member of X,
+    # is not actual at u1.
+    assert entail_at_source(only_b, empty)
+
+    # Saturation copies b's positive membership to the profile-equivalent a.
+    # Since a is actual at u1, the saturated entailment now fails.
+    assert pos(profile_saturate(only_b), "a")
+    assert not pos(profile_saturate(empty), "a")
+    assert not entail_at_source(profile_saturate(only_b), profile_saturate(empty))
+    return True
+
+
 if __name__ == "__main__":
     assert validate_entailment_closure_does_not_force_profile_saturation()
+    assert validate_existence_saturation_is_needed_for_entailment_descent()
     print("Gate 8 Fitting entailment closure vs profile quotient: OK")
