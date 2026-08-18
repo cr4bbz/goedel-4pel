@@ -1,0 +1,283 @@
+\begingroup
+% Lean identifiers are long and set in a typewriter font, which cannot
+% hyphenate. Allow a break after each underscore instead, and set the
+% correspondence lists ragged right so that a missed break underfills rather
+% than overflows the margin.
+\renewcommand{\_}{\textunderscore\discretionary{}{}{}}
+\raggedright
+
+\section{Formal Correspondence}
+\label{sec:correspondence}
+
+Every claim in this manuscript of the form ``Lean proves \(\dots\)'' refers to a
+named declaration in the accompanying development. This appendix gives the map.
+Lean modules are listed by file stem below
+\texttt{formal/lean/Goedel4PEL/}; finite fixtures are listed by function name
+below \texttt{formal/finite/}. Both tracks are run in CI, and the Lean package is
+pinned to Lean 4.30.0. No declaration below uses \texttt{sorry}, an added axiom,
+or \texttt{native\_decide}.
+
+Premise names in the Lean signatures are the definitions of the same name in the
+corresponding module; where this manuscript abbreviates a premise list as a
+``stack'', the authoritative list is the Lean signature.
+
+\subsection{Kernel, modality, and the collapse channel}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[\(\MCp\leftrightarrow\MCm\) (Section~\ref{sec:collapse})]
+  \texttt{Analysis/Collapse.mcPlus\_iff\_mcMinus}
+\item[Bilateral box/diamond duality (Section~\ref{sec:modal})]
+  \texttt{FourValued/PairedNeighborhood.diamondPlus\_iff\_boxNeg\_neg},
+  \texttt{.diamondNeg\_iff\_boxPlus\_neg},
+  \texttt{.boxPlus\_iff\_diamondNeg\_neg},
+  \texttt{.boxNeg\_iff\_diamondPlus\_neg}
+\item[Relational representation is definitional (Section~\ref{sec:modal})]
+  \texttt{FourValued/PairedNeighborhood.boxPlus\_ofRelation\_iff} and the three
+  further signed \texttt{\_ofRelation\_iff} simp lemmas
+\item[Every relational pair is complement-dual (Section~\ref{sec:modal})]
+  \texttt{FourValued/PairedNeighborhood.ofRelation\_complementDual}
+\item[Complement duality gives classical modal recovery (Section~\ref{sec:modal})]
+  \texttt{FourValued/PairedNeighborhood.boxNeg\_iff\_not\_boxPlus\_of\_complementDual},
+  \texttt{.diamondNeg\_iff\_not\_diamondPlus\_of\_complementDual}
+\end{description}
+
+\subsection{The Scott control chain}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[\(A1_R+A2^+\Rightarrow T1_T\) (Section~\ref{sec:reconstruction})]
+  \texttt{GoedelScott/T1.t1T\_of\_a1R\_a2Plus}
+\item[Sufficient \(T2^+\) recovery (Section~\ref{sec:reconstruction})]
+  \texttt{GoedelScott/T2.t2Plus\_of\_regG}
+\item[\(T3^+\) from symmetry alone (Section~\ref{sec:reconstruction})]
+  \texttt{GoedelScott/ScottFrames.t3Plus\_of\_possible\_t2\_a5\_symmetric};
+  the S5 presentation is \texttt{.t3Plus\_of\_possible\_t2\_a5\_s5\_reduced}
+  and the unreduced form is \texttt{GoedelScott/T3Collapse.t3Plus\_of\_possible\_t2\_a5}
+\item[\(T3^+\;\Rightarrow\;GW\) on reflexive frames (Section~\ref{sec:reconstruction})]
+  \texttt{GoedelScott/T3Collapse.gw\_of\_t3Plus}
+\item[Essence-compressed collapse (Section~\ref{sec:reconstruction})]
+  \texttt{GoedelScott/T3Collapse.formulaMCPlus\_of\_t2\_t3\_const}
+\item[Bilateral classical recovery (Section~\ref{sec:lean-layer})]
+  \texttt{Analysis/Recovery.posT\_iff\_pPos}, \texttt{.nentMinus\_iff\_not\_nentPlus},
+  \texttt{.godMinus\_iff\_not\_godPlus}, \texttt{.essMinus\_iff\_not\_essPlus},
+  \texttt{.neMinus\_iff\_not\_nePlus}
+\end{description}
+
+\subsection{Exact Godlikeness and the Anderson candidate}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[\(G\text{-exact}^+\Rightarrow G\text{-sup}^+\) (Section~\ref{sec:lean-layer})]
+  \texttt{GoedelScott/GodlikeVariants.godExactPlus\_implies\_godPlus}
+\item[Exact Godlikeness internalizes local reflection (Section~\ref{sec:lean-layer})]
+  \texttt{GoedelScott/GodlikeVariants.reflection\_of\_godExactPlus}
+\item[\(G\text{-exact}^++R^+\Rightarrow T2^+_{\mathrm{exact}}\) (Section~\ref{sec:lean-layer})]
+  \texttt{GoedelScott/GodlikeVariants.t2ExactPlus\_of\_rPlus}
+\item[Anderson essence and necessary existence (Section~\ref{sec:lean-layer})]
+  \texttt{GoedelScott/AndersonInterfaces.andersonGod\_has\_andersonEssence},
+  \texttt{.andersonGod\_implies\_boxGodExists},
+  \texttt{.andersonT3Plus\_of\_possibleGod}
+\item[Anderson \(T3\) from symmetry alone (Section~\ref{sec:lean-layer})]
+  \texttt{GoedelScott/AndersonFrames.andersonT3Plus\_of\_possibleGod\_symmetric};
+  the S5 presentation is \texttt{.andersonT3Plus\_of\_possibleGod\_s5\_reduced}
+\item[Anderson bilateral classical recovery (Section~\ref{sec:lean-layer})]
+  \texttt{GoedelScott/AndersonBilateral.andersonNecExMinus\_iff\_not\_plus} and the
+  four further \texttt{\_iff\_not\_plus} lemmas
+\end{description}
+
+\subsection{Fitting: comprehension obstruction and admissible repair}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[Unrestricted consistency excludes every Godlike witness (Section~\ref{sec:fitting-obstruction})]
+  \texttt{GoedelScott/FittingSemantics.consGG\_excludes\_god},
+  \texttt{.regG\_excludes\_god}
+\item[Admissible extensional essence theorem (Section~\ref{sec:fitting-admissible})]
+  \texttt{GoedelScott/FittingAdmissible.god\_has\_currentExtension\_essence\_admissible};
+  premises \texttt{GAdmissible}, \texttt{GRealizationAdm}, \texttt{A1LAdm}, \texttt{RegGAdm}
+\item[Admissible bilateral classical recovery (Section~\ref{sec:fitting-admissible})]
+  \texttt{GoedelScott/FittingAdmissible.godMinusAdm\_iff\_not\_godPlusAdm},
+  \texttt{.essMinusAdm\_iff\_not\_essPlusAdm},
+  \texttt{.neMinusAdm\_iff\_not\_nePlusAdm};
+  \texttt{GoedelScott/FittingAdmissibleRecovery.entailMinusAdm\_iff\_not\_entailPlus},
+  \texttt{.boxExistsMinusAdm\_iff\_not\_boxExistsPlus}
+\end{description}
+
+\subsection{Fitting: de re, de dicto, and the rigidity bridge}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[Frame-free de-re possibility to necessity (Section~\ref{sec:fitting-dere})]
+  \texttt{GoedelScott/FittingAdmissibleNecessaryExistence.possibleCurrentAdm\_implies\_necessary}
+\item[De-dicto lifting under full extension stability (Section~\ref{sec:fitting-dere})]
+  \texttt{GoedelScott/FittingAdmissibleNecessaryExistence.possibleGodDeDictoAdm\_implies\_necessary}
+\item[Bilateral stability implies positive stability (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingMinimality.gExtensionStableAlongRAdm\_implies\_gPosStable}
+\item[Minimized de-dicto theorem (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingMinimality.possibleGodDeDictoAdm\_implies\_necessary\_minimized}
+\item[\(R^+_{F,adm}\Rightarrow Refl_G^+\) (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingRigidityBridge.rPlusAdm\_implies\_gPosReflects}
+\item[\(R^{+\leftarrow}_{F,adm}\Rightarrow Pers_G^+\) (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingRigidityBridge.rPlusConverseAdm\_implies\_gPosPersists}
+\item[Symmetry entails converse transport (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingRigidityBridge.rPlusAdm\_symmetric\_implies\_rPlusConverseAdm}
+\item[Both transports give \(STAB_G^+\) with no frame premise (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingRigidityBridge.rPlusAdm\_rPlusConverseAdm\_implies\_gPosStable};
+  the de-dicto conclusion is \texttt{.possibleGodDeDictoAdm\_implies\_necessary\_rPlus\_bidirectional}
+\end{description}
+
+\subsection{Fitting: assumption minimization and the profile quotient}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[\(CONS^{G,adm}_{G,F}\Rightarrow NegCons^{adm}_{G,F}\) (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingMinimality.consGGAdm\_implies\_negClassConsistencyAdm}
+\item[Essence theorem on the targeted package (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingMinimality.god\_has\_currentExtension\_essence\_negClass}
+\item[\(A1_R\) reconstructs full consistency (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingMinimalityInteractions.a1R\_regGNegClassAdm\_implies\_consGGAdm},
+  \texttt{.a1R\_regGNegClassAdm\_implies\_regGAdm}
+\item[Classification-free indiscernibility route (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingAlternativeRecovery.god\_has\_currentExtension\_essence\_indiscernible};
+  the necessary-existence continuations are
+  \texttt{.possibleCurrentAdm\_implies\_necessary\_indiscernible} and
+  \texttt{.possibleGodDeDictoAdm\_implies\_necessary\_indiscernible}
+\item[\(\approx_w^+\) is an equivalence relation (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingAdmissibleStructure.positiveProfileEqAdm\_refl},
+  \texttt{.positiveProfileEqAdm\_symm}, \texttt{.positiveProfileEqAdm\_trans}
+\item[Godlike individuals share a profile class (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingAdmissibleStructure.godlike\_implies\_positiveProfileEqAdm}
+\item[\(Sat_P^{adm}\Rightarrow Ind_G^{adm}\) (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingAdmissibleStructure.positiveProfileSaturated\_implies\_godlikeIndiscernibility}
+\item[\(Sat_P^{adm}\Leftrightarrow Sat_\pm^{adm}\) (Sections~\ref{sec:fitting-minimality} and \ref{sec:fitting-domain-algebra})]
+  \texttt{GoedelScott/FittingAdmissibleStructure.positiveProfileSaturated\_iff\_bilateralProfileSaturated}
+\item[Complement decision reconstructs \(COMP\) (Section~\ref{sec:fitting-minimality})]
+  \texttt{GoedelScott/FittingAdmissibleStructure.complementDecision\_cons\_implies\_compPGAdm},
+  \texttt{.complementDecision\_a1R\_implies\_compPGAdm};
+  the intermediate reflection step is \texttt{.complementDecision\_cons\_implies\_positiveReflection}
+\end{description}
+
+\subsection{Fitting: quotient-domain algebra}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[Quotient factorization is closed under the FDE operations (Section~\ref{sec:fitting-domain-algebra})]
+  \texttt{GoedelScott/FittingAdmissibleAlgebra.respectsProfileAt\_negate},
+  \texttt{.respectsProfileAt\_fdeConj}, \texttt{.respectsProfileAt\_fdeDisj},
+  \texttt{.respectsProfileAt\_fdeTop}, \texttt{.respectsProfileAt\_fdeBot},
+  collected as \texttt{.profileFactorization\_closed\_under\_fde}
+\item[Admissible extensions respect the quotient under \(Sat_P^{adm}\) (Section~\ref{sec:fitting-domain-algebra})]
+  \texttt{GoedelScott/FittingAdmissibleAlgebra.admissible\_respectsProfileAt}
+\end{description}
+
+\subsection{Fitting: entailment, the explicit quotient, and filters}
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[Domain entailment closure forces unrestricted comprehension (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingEntailmentQuotient.globalEntailmentClosed\_bot\_implies\_unrestricted};
+  with relevant consistency, \texttt{.globalEntailmentClosed\_bot\_cons\_excludes\_god}
+\item[\(Sat_w\) is a closure operator (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingEntailmentQuotient.profileSaturateAt\_extensive},
+  \texttt{.profileSaturateAt\_mono}, \texttt{.profileSaturateAt\_idempotent},
+  \texttt{.profileSaturateAt\_respectsProfile}
+\item[Least quotient-respecting hull (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingEntailmentQuotient.profileSaturateAt\_least\_respecting}
+\item[Saturation is the fixed-point condition (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingEntailmentQuotient.positiveProfileSaturated\_iff\_fixedByProfileClosure}
+\item[Entailment descends through \(Sat_w\) (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingEntailmentQuotient.entailPlus\_profileSaturateAt}
+\item[Push/pull round trips on the quotient (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingActualistQuotient.from\_toProfileQuotient\_equivalent},
+  \texttt{.to\_fromProfileQuotient\_equivalent},
+  \texttt{.respectingExtension\_has\_quotientRepresentation},
+  \texttt{.profileSaturateAt\_has\_quotientRepresentation}
+\item[\(ExSat_P\) is exactly existence factorization (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingActualistQuotient.profileExistenceSaturated\_iff\_factors}
+\item[Quotient entailment equals entailment on pullbacks (Section~\ref{sec:fitting-entailment-quotient})]
+  \texttt{GoedelScott/FittingActualistQuotient.profileQuotientEntailPlus\_iff\_pullback},
+  \texttt{.entailPlus\_iff\_profileQuotient}
+\item[Point evaluation is a non-deciding prime filter (Section~\ref{sec:quotient-delta-filter})]
+  \texttt{GoedelScott/FittingQuotientDeltaFilter.evaluationFilter\_primeDeltaFilter},
+  \texttt{.evaluationFilter\_designates\_both},
+  \texttt{.evaluationFilter\_neither\_undecided},
+  \texttt{.evaluationFilter\_not\_complementDeciding},
+  \texttt{.profileQuotient\_has\_nondeciding\_primeDeltaFilter}
+\item[Truth order reduces to positive inclusion classically (Section~\ref{sec:quotient-delta-filter})]
+  \texttt{GoedelScott/FittingQuotientDeltaFilter.truthLE\_iff\_posSupportLE\_of\_classical}
+\item[Delta-filters satisfy the two-filter law (Section~\ref{sec:quotient-delta-filter})]
+  \texttt{GoedelScott/FittingQuotientDeltaFilter.positiveDeltaFilter\_implies\_twoFilter}
+\item[FDE operations are meet and join for \(\leq_t\) (Section~\ref{sec:fitting-delta-filter})]
+  \texttt{GoedelScott/FittingDeltaFilter.fdeConj\_truthLe\_left},
+  \texttt{.fdeConj\_truthLe\_right}, \texttt{.truthLe\_fdeConj},
+  \texttt{.left\_truthLe\_fdeDisj}, \texttt{.right\_truthLe\_fdeDisj},
+  \texttt{.fdeDisj\_truthLe}; negation reverses the order by
+  \texttt{.extensionTruthLe\_negate}
+\item[Classical recovery of the filter notion (Section~\ref{sec:fitting-delta-filter})]
+  \texttt{GoedelScott/FittingDeltaFilter.deltaFilter\_iff\_classicalDeltaFilter\_of\_classical}
+\item[Carrier extensions are closure fixed points (Section~\ref{sec:fitting-delta-filter})]
+  \texttt{GoedelScott/FittingDeltaFilter.profileDeltaFilter\_admissible\_fixed}
+\item[Polarity gives both A1 directions and the dual ideal (Section~\ref{sec:fitting-delta-filter})]
+  \texttt{GoedelScott/FittingDeltaFilter.bilateralProfileDeltaFilter\_implies\_a1L},
+  \texttt{.bilateralProfileDeltaFilter\_implies\_a1R},
+  \texttt{.bilateralProfileDeltaFilter\_bot\_negative},
+  \texttt{.bilateralProfileDeltaFilter\_top\_not\_negative},
+  \texttt{.bilateralProfileDeltaFilter\_negative\_downward},
+  \texttt{.bilateralProfileDeltaFilter\_negative\_disj}
+\item[Ultrafilter maximality reconstructs \(COMP\) (Section~\ref{sec:fitting-delta-filter})]
+  \texttt{GoedelScott/FittingDeltaFilter.profileDeltaUltrafilter\_cons\_implies\_compPGAdm},
+  \texttt{.profileDeltaUltrafilter\_a1R\_implies\_compPGAdm}. Both consume only the
+  \texttt{maximal} field, via \texttt{.profileDeltaUltrafilter\_implies\_complementDecision}
+\end{description}
+
+\subsection{Finite fixtures and bounded searches}
+
+All entries are functions in \texttt{formal/finite/}, executed by the regression
+suite \texttt{test\_checker.py}.
+
+\begin{description}[style=nextline,leftmargin=1.2em,font=\normalfont\itshape]
+\footnotesize
+\item[Glut and gap \(T2^+\) countermodels; 204-model control search]
+  \texttt{checker.t2\_glut\_countermodel}, \texttt{.t2\_gap\_countermodel},
+  \texttt{.exhaustive\_reg\_g\_implies\_t2},
+  \texttt{.exhaustive\_mc\_schema\_equivalence\_two\_world\_s5}
+\item[873-model bounded \(T2\) assumption search; unrestricted \(T1\) obstruction]
+  \texttt{gate7\_search.exhaustive\_t2\_assumption\_minimality},
+  \texttt{.validate\_t1\_glut\_countermodel}. The family fixes
+  \(P(G)=\True\) and \(P(\neg G)=\False\) at both worlds
+\item[Anderson and Scott S4 countermodels; no-collapse fixture]
+  \texttt{gate8\_anderson.validate\_anderson\_no\_collapse\_model},
+  \texttt{gate8\_frames.validate\_anderson\_s4\_countermodel},
+  \texttt{gate8\_scott\_frames.validate\_scott\_s4\_countermodel}
+\item[Fitting de-re/de-dicto separation; necessary God without collapse]
+  \texttt{gate8\_fitting.validate\_fitting\_admissible\_de\_re\_de\_dicto\_model},
+  \texttt{gate8\_fitting\_no\_collapse.validate\_fitting\_necessary\_god\_no\_collapse\_model}
+\item[Targeted consistency and positive-only stability strictness]
+  \texttt{gate8\_fitting\_minimality.validate\_neg\_class\_consistency\_strictness},
+  \texttt{.validate\_positive\_stability\_strictness}
+\item[\(COMP\)-free indiscernibility and profile-saturation fixtures]
+  \texttt{gate8\_fitting\_comp.validate\_indiscernibility\_route\_without\_comp},
+  \texttt{gate8\_fitting\_profile\_saturation.validate\_profile\_saturation\_route\_without\_comp}
+\item[FDE algebra closure does not force saturation]
+  \texttt{gate8\_fitting\_algebra.validate\_fde\_algebra\_does\_not\_force\_profile\_saturation}
+\item[Entailment closure and existence-split fixtures]
+  \texttt{gate8\_fitting\_entailment.validate\_entailment\_closure\_does\_not\_force\_profile\_saturation},
+  \texttt{.validate\_existence\_saturation\_is\_needed\_for\_entailment\_descent}
+\item[Rigidity bridge, 256 configurations]
+  \texttt{gate8\_fitting\_rigidity\_bridge.validate\_rigidity\_bridge\_exhaustive} and its two
+  separation fixtures;
+  \texttt{gate8\_fitting\_converse\_rigidity.validate\_converse\_rigidity\_exhaustive}
+  returns the tuple \((256,152,112,80,32)\)
+\item[Explicit actualist quotient, 16 extensions and 256 entailment pairs]
+  \texttt{gate8\_fitting\_actualist\_quotient.validate\_actualist\_profile\_quotient},
+  \texttt{.validate\_actualist\_quotient\_requires\_existence\_factorization}
+\item[Two-point filter audit (166/15/4/112/10)]
+  \texttt{gate10\_quotient\_delta\_filters.validate\_quotient\_delta\_filters}
+\item[Profile \(\delta\)-filter without maximality or \(COMP\)]
+  \texttt{gate8\_fitting\_delta\_filter.validate\_delta\_filter\_does\_not\_restore\_comp}
+\item[Paired-neighborhood audit (256/16/4/12/1024)]
+  \texttt{gate11\_paired\_neighborhoods.validate\_paired\_neighborhoods}
+\end{description}
+
+\endgroup

@@ -71,11 +71,16 @@ with no positivity-rigidity premise. This is a genuine structural difference fro
 
 Gate 8 then minimizes this Fitting route further. Full relevant exemplification consistency is stronger than the A1-L proof itself requires: it is sufficient to demand consistency only when positivity completeness classifies the currently possessed extension negatively. Writing this targeted condition as \(NegCons_{G,F}^{adm}\), Lean proves
 \[
-  A1_{L,F}^{adm}
+\begin{split}
+  &G\text{-admissible}
+  +G_F\text{-realization}
+  +A1_{L,F}^{adm}\\
+  &\qquad
   +COMP_{P,F}^{G,adm}
-  +NegCons_{G,F}^{adm}
-  \Longrightarrow
+  +NegCons_{G,F}^{adm}\\
+  &\qquad\Longrightarrow
   G_F^+(x,w)\Rightarrow Ess_F^+(ext_wG,x,w).
+\end{split}
 \]
 A finite glut model separates the targeted condition from full consistency on the A1-L-only route. The weakening is itself A1-sensitive: restoring \(A1_R\) allows Lean to reconstruct full relevant exemplification consistency from positivity completeness plus \(NegCons_{G,F}^{adm}\). Thus the two A1 channels again have distinct structural roles even inside the Fitting comparison.
 

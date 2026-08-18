@@ -129,6 +129,18 @@ cd ../formal/lean
 lake build
 ```
 
+## Formal correspondence appendix
+
+`sections/A_formal_correspondence.tex` maps every "Lean proves ..." claim in the manuscript to the named declaration that discharges it, and every bounded count to the fixture that produces it. Where the prose abbreviates a premise list as a "stack", the Lean signature named there is the authoritative statement.
+
+The appendix rots silently if a declaration is renamed, so it is checkable:
+
+```bash
+python paper/check_correspondence.py
+```
+
+The script resolves every identifier in the appendix against the actual Lean and Python sources and reports any that no longer exist. It currently checks 136 identifiers. It is not yet wired into CI.
+
 ## Status discipline
 
 The manuscript distinguishes:
