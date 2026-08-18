@@ -96,7 +96,9 @@ fitting-bilateral-v0.2
 fitting-minimality-v0.2
 fitting-domain-v0.2
 fitting-entailment-v0.1
-paper-v0.13
+fitting-rigidity-v0.1
+fitting-converse-rigidity-v0.1
+paper-v0.16
 ```
 
 ### Anderson and Scott frame reduction
@@ -167,7 +169,27 @@ ProfileExistenceSaturatedAdm:
 
 is sufficient for positive entailment to descend through profile saturation. A finite two-world countermodel shows that descent can fail when actual existence splits a profile class.
 
-**Verification note:** the finite regressions for this newest entailment milestone are implemented and have been separately checked. The new Lean theorem block is committed and root-imported, but awaits one local `lake build` confirmation before this README promotes those new general theorem claims to the same verified status as the earlier Gate-8 Lean results.
+The finite regressions and the root-imported Lean theorem block have now been validated locally with Lean 4.30.0. The closure/fixed-point, entailment-descent, and unrestricted-domain obstruction results are therefore promoted to the same machine-checked status as the earlier Gate-8 Lean results.
+
+### Fitting: derived rigidity bridge
+
+The newest milestone is frozen in `docs/FITTING_RIGIDITY_BRIDGE.md` as `fitting-rigidity-v0.1`. Lean proves the Fitting-typed bridge
+
+```text
+G realization + RPlusAdm
+  -> Refl_G+
+
+G realization + RPlusAdm + Symmetric(R)
+  -> Pers_G+
+
+therefore:
+G realization + RPlusAdm + Symmetric(R)
+  -> STAB_G+
+```
+
+Thus the direct de-dicto theorem remains frame-free when positive `G` stability is assumed primitively, while symmetry re-enters if that stability is derived from forward admissible positivity rigidity. An exhaustive two-world / one-entity regression checks all 256 configurations over the negation-closed classical admissible domain `{T,F}`; all 152 `RPlusAdm` cases satisfy reflection, and all 80 symmetric `RPlusAdm` cases also satisfy persistence. Separate fixtures show that `RPlusAdm` without symmetry need not force persistence and symmetry without `RPlusAdm` need not force either direction.
+
+The follow-up `fitting-converse-rigidity-v0.1` isolates what that persistence proof actually needs. `RPlusConverseAdm` transports target positivity back to the source along an existing edge without requiring a reverse edge. Lean proves that it directly yields `Pers_G+`, while `RPlusAdm + RPlusConverseAdm` yields the full `STAB_G+` interface and the minimized de-dicto theorem with no frame premise. In the same 256-case fragment, 112 candidates satisfy both transports and 32 of those are non-symmetric, giving a bounded strict separation from global symmetry.
 
 ### Ultrafilter comparison
 
@@ -191,6 +213,8 @@ From the repository root:
 ```bash
 python3 -m unittest discover -s formal/finite -p "test_*.py" -v
 python3 formal/finite/gate8_fitting_entailment.py
+python3 formal/finite/gate8_fitting_rigidity_bridge.py
+python3 formal/finite/gate8_fitting_converse_rigidity.py
 ```
 
 Lean:
@@ -205,7 +229,7 @@ The Lean package is pinned to Lean 4.30.0.
 ## Research gates
 
 - **Gates 0–7:** complete for the original control theory.
-- **Gate 8:** in progress. Current frontier: validate the new entailment-quotient Lean block; investigate a principled actualist quotient condition; define a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra; minimize positive G-stability; generalize to paired neighborhoods.
+- **Gate 8:** in progress. Current frontier: construct an explicit actualist profile quotient; determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions; define a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra; generalize to paired neighborhoods.
 - **Gate 9:** publication consolidation, prior-art audit, and exact source/HOL correspondence.
 
 ## Paper
@@ -215,8 +239,10 @@ The living manuscript is in `paper/`.
 Current version:
 
 ```text
-paper-v0.13
+paper-v0.16
 ```
+
+The current compiled manuscript is available at [`paper/main.pdf`](paper/main.pdf).
 
 Build from `paper/` with:
 
@@ -237,4 +263,4 @@ latexmk -pdf main.tex
 
 ## Status
 
-**Phase:** Gate 7 complete; Gate 8 in progress; manuscript baseline `paper-v0.13`; newest implemented research milestone `fitting-entailment-v0.1`, pending local Lean build confirmation.
+**Phase:** Gate 7 complete; Gate 8 in progress; manuscript baseline `paper-v0.16`; newest verified research milestone `fitting-converse-rigidity-v0.1`.

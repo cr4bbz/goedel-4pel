@@ -59,9 +59,11 @@ fitting-bilateral-v0.2
 fitting-minimality-v0.2
 fitting-domain-v0.2
 fitting-entailment-v0.1
+fitting-rigidity-v0.1
+fitting-converse-rigidity-v0.1
 ```
 
-The entailment milestone is implemented in Lean and finite-model code; the new Lean module still requires one local `lake build` confirmation before its new theorem claims are promoted from implementation status to verified status.
+The entailment and rigidity milestones are locally validated with Lean 4.30.0 and executable finite regressions.
 
 - [x] introduce distinct Lean types for bilateral extensions and world-indexed intensions;
 - [x] type Fitting positivity over extensions rather than intensions;
@@ -84,16 +86,20 @@ The entailment milestone is implemented in Lean and finite-model code; the new L
 - [x] isolate ultrafilter-style complement decision and show that with relevant consistency or `A1-R` it reconstructs the classification route;
 - [x] finite-check that even `A2+` + full domain-level entailment closure + FDE algebra closure + profile-compatible actual existence does not force profile saturation;
 - [x] finite-check that actualist entailment can fail to descend through profile saturation when actual existence splits a profile class;
-- [ ] locally validate the new `FittingEntailmentQuotient.lean` theorem block with Lean 4.30.0;
-- [ ] after that validation, freeze the general profile-closure operator results as machine-checked: extensivity, monotonicity, least quotient-respecting hull, idempotence, fixed-point characterization, and entailment descent under profile-compatible existence;
-- [ ] after that validation, freeze the general obstruction `GlobalEntailmentClosedAdm + Adm(bottom) => unrestricted Adm` and its consistency/Godlikeness corollary;
+- [x] locally validate the new `FittingEntailmentQuotient.lean` theorem block with Lean 4.30.0;
+- [x] freeze the general profile-closure operator results as machine-checked: extensivity, monotonicity, least quotient-respecting hull, idempotence, fixed-point characterization, and entailment descent under profile-compatible existence;
+- [x] freeze the general obstruction `GlobalEntailmentClosedAdm + Adm(bottom) => unrestricted Adm` and its consistency/Godlikeness corollary;
 - [ ] determine whether `ProfileExistenceSaturatedAdm` follows from a principled actualist-domain condition or should be built into an explicit quotient semantics;
 - [ ] define and assess a genuinely four-valued `delta`-filter/ultrafilter on the closure fixed-point algebra without automatically restoring `COMP`;
-- [ ] determine whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed together.
+- [x] derive positive reflection from `RPlusAdm`, and positive persistence from `RPlusAdm + Symmetric(R)`;
+- [x] finite-check the bridge exhaustively over the two-world / one-entity classical admissible fragment and retain separate countermodels when symmetry or `RPlusAdm` is dropped;
+- [x] replace symmetry by `RPlusConverseAdm`, the converse positivity transport actually consumed by the persistence proof;
+- [x] finite-check that bidirectional positivity transport can hold on asymmetric frames: 32 of 112 retained bidirectional models are non-symmetric;
+- [ ] determine whether `RPlusConverseAdm` can be restricted to G-triggered or quotient-selected extensions.
 
 ### Cross-variant comparison
 
-Current verified structural picture before the pending entailment-module build confirmation:
+Current verified structural picture:
 
 ```text
 Scott support:
@@ -114,10 +120,12 @@ Fitting admissible:
   FDE algebra preserves quotient factorization but does not generate it
   ultrafilter-style complement decision + consistency/A1-R reconstructs classification rather than bypassing it
   de-dicto lifting needs only positive G-extension stability
+  RPlusAdm derives positive G-reflection; converse positivity transport derives positive G-persistence
+  bidirectional positivity transport yields de-dicto lifting without frame symmetry
   necessary Godlikeness can coexist with MC+ failure
 ```
 
-The new entailment experiment additionally has executable finite evidence that entailment closure does not generate the quotient. Its general Lean closure/fixed-point theorems are pending the local build confirmation noted above.
+The entailment experiment additionally has executable finite evidence that entailment closure does not generate the quotient. Its general Lean closure/fixed-point theorems and the subsequent rigidity bridge are locally build-validated.
 
 - [ ] rerun selected Scott/Anderson/Fitting results over broader paired-neighborhood semantics;
 - [ ] decide whether a bilateral negative exact-Godlikeness clause remains scientifically useful after the literature comparisons.
@@ -159,7 +167,7 @@ The new entailment experiment additionally has executable finite evidence that e
 
 ### Gate 8 — Comparative variants — **in progress**
 
-The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now distinguishes positivity-filter closure, the selected admissible property domain, a profile-quotient fixed-point proposal, and actualist existence compatibility. The newest entailment-quotient theorem block is implemented and awaits one local Lean build confirmation.
+The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now distinguishes positivity-filter closure, the selected admissible property domain, a profile-quotient fixed-point proposal, actualist existence compatibility, and the trade-off between primitive positive `G` stability and its derivation from admissible positivity rigidity plus symmetry.
 
 ### Gate 9 — Publication consolidation
 

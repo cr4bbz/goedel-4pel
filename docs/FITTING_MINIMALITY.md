@@ -328,6 +328,18 @@ The regression is implemented in:
 formal/finite/gate8_fitting_minimality.py
 ```
 
+The subsequent `fitting-rigidity-v0.1` milestone derives the positive interface from a Fitting-typed rigidity condition:
+
+```text
+G realization + RPlusAdm
+-> positive G reflection
+
+G realization + RPlusAdm + symmetry
+-> positive G persistence
+```
+
+Hence `RPlusAdm + symmetry` derives all of `STAB_G+`. The direct theorem remains frame-free when `STAB_G+` is assumed primitively; symmetry re-enters only in the derived-rigidity route.
+
 ---
 
 ## 9. Current dependency picture
@@ -362,7 +374,7 @@ The next principled questions are:
 
 1. whether `GodlikeIndiscernibilityAdm` follows from a more independently motivated property-domain principle or should remain only a control alternative;
 2. whether there are weaker non-classificatory conditions between indiscernibility and the direct essence conclusion;
-3. whether positive persistence or positive reflection can be derived from other Fitting assumptions rather than assumed as `STAB_G^+`;
+3. whether positive persistence has a principled derivation weaker than the verified `RPlusAdm + symmetry` bridge;
 4. which closure principles on `Adm` interact with the two recovery routes;
 5. whether the same route separation survives paired-neighborhood semantics;
 6. whether a source-grounded Fitting reconstruction should retain both A1 directions in the four-valued candidate or treat the A1-L classification route independently.

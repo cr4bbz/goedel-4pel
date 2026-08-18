@@ -5,6 +5,7 @@ build/
 result/
 __pycache__/
 *.pyc
+formal/finite/renders/
 
 # LaTeX build artifacts
 *.aux
@@ -18,4 +19,3 @@ __pycache__/
 *.run.xml
 *.synctex.gz
 *.toc
-paper/main.pdf

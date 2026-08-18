@@ -6,6 +6,9 @@ from typing import Dict, Iterator
 from checker import FiniteModel, Val
 
 
+T2_RECOVERY_ASSUMPTIONS = ("A1-L", "R+", "COMP_P^G", "CONS_G^G")
+
+
 def a1_l(model: FiniteModel) -> bool:
     return all(
         (not model.pval(w, p).neg)
@@ -97,6 +100,40 @@ def _t2_minimality_models() -> Iterator[FiniteModel]:
             )
 
 
+def iter_t2_minimality_models() -> Iterator[FiniteModel]:
+    """Expose the matrix family used by the Gate-7 minimality oracle."""
+
+    yield from _t2_minimality_models()
+
+
+def is_t2_minimality_baseline(model: FiniteModel) -> bool:
+    """Return whether the model satisfies the fixed, non-dropped interfaces."""
+
+    return model.complement_extensions() and model.g_sup_definition()
+
+
+def t2_recovery_assumption_values(model: FiniteModel) -> Dict[str, bool]:
+    """Evaluate the four independently dropped T2 recovery assumptions."""
+
+    return {
+        "A1-L": a1_l(model),
+        "R+": model.r_plus(),
+        "COMP_P^G": model.comp_p_g(),
+        "CONS_G^G": model.cons_g_g(),
+    }
+
+
+def iter_t2_regular_models() -> Iterator[FiniteModel]:
+    """Yield the 873 models satisfying the complete current recovery package."""
+
+    for model in iter_t2_minimality_models():
+        if not is_t2_minimality_baseline(model):
+            continue
+        if all(t2_recovery_assumption_values(model).values()):
+            assert model.t2_plus(), _signature(model)
+            yield model
+
+
 def _signature(m: FiniteModel) -> Dict[str, str]:
     return {
         "G@w0": m.val("w0", "a", "G").name,
@@ -111,33 +148,31 @@ def _signature(m: FiniteModel) -> Dict[str, str]:
 
 
 def exhaustive_t2_assumption_minimality() -> tuple[int, Dict[str, Dict[str, str]]]:
-    assumption_names = ("A1-L", "R+", "COMP_P^G", "CONS_G^G")
     witnesses: Dict[str, Dict[str, str]] = {}
     retained = 0
 
-    for m in _t2_minimality_models():
-        if not m.complement_extensions() or not m.g_sup_definition():
+    for m in iter_t2_minimality_models():
+        if not is_t2_minimality_baseline(m):
             continue
 
-        values = {
-            "A1-L": a1_l(m),
-            "R+": m.r_plus(),
-            "COMP_P^G": m.comp_p_g(),
-            "CONS_G^G": m.cons_g_g(),
-        }
+        values = t2_recovery_assumption_values(m)
 
         if all(values.values()):
             retained += 1
             assert m.t2_plus(), _signature(m)
 
         if not m.t2_plus():
-            for dropped in assumption_names:
+            for dropped in T2_RECOVERY_ASSUMPTIONS:
                 if dropped in witnesses:
                     continue
-                if all(values[name] for name in assumption_names if name != dropped):
+                if all(
+                    values[name]
+                    for name in T2_RECOVERY_ASSUMPTIONS
+                    if name != dropped
+                ):
                     witnesses[dropped] = _signature(m)
 
-    assert set(witnesses) == set(assumption_names), witnesses
+    assert set(witnesses) == set(T2_RECOVERY_ASSUMPTIONS), witnesses
     return retained, witnesses
 
 
