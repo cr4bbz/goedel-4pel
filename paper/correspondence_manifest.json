@@ -1,0 +1,1370 @@
+{
+  "schema_version": 1,
+  "source": "paper/sections/A_formal_correspondence.tex",
+  "generated_from": "appendix items and texttt references",
+  "claim_count": 68,
+  "reference_count": 136,
+  "signature_gate_claims": 7,
+  "claims": [
+    {
+      "id": "claim-001",
+      "section": "Kernel, modality, and the collapse channel",
+      "claim": "\\(\\MCp\\leftrightarrow\\MCm\\) (Section~\\ref{sec:collapse})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "Analysis/Collapse",
+          "declaration": "mcPlus_iff_mcMinus"
+        }
+      ]
+    },
+    {
+      "id": "claim-002",
+      "section": "Kernel, modality, and the collapse channel",
+      "claim": "Bilateral box/diamond duality (Section~\\ref{sec:modal})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "diamondPlus_iff_boxNeg_neg"
+        },
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "diamondNeg_iff_boxPlus_neg"
+        },
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "boxPlus_iff_diamondNeg_neg"
+        },
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "boxNeg_iff_diamondPlus_neg"
+        }
+      ]
+    },
+    {
+      "id": "claim-003",
+      "section": "Kernel, modality, and the collapse channel",
+      "claim": "Relational representation is definitional (Section~\\ref{sec:modal})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "boxPlus_ofRelation_iff"
+        }
+      ]
+    },
+    {
+      "id": "claim-004",
+      "section": "Kernel, modality, and the collapse channel",
+      "claim": "Every relational pair is complement-dual (Section~\\ref{sec:modal})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "ofRelation_complementDual"
+        }
+      ]
+    },
+    {
+      "id": "claim-005",
+      "section": "Kernel, modality, and the collapse channel",
+      "claim": "Complement duality gives classical modal recovery (Section~\\ref{sec:modal})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "boxNeg_iff_not_boxPlus_of_complementDual"
+        },
+        {
+          "kind": "lean",
+          "module": "FourValued/PairedNeighborhood",
+          "declaration": "diamondNeg_iff_not_diamondPlus_of_complementDual"
+        }
+      ]
+    },
+    {
+      "id": "claim-006",
+      "section": "The Scott control chain",
+      "claim": "\\(A1_R+A2^+\\Rightarrow T1_T\\) (Section~\\ref{sec:reconstruction})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/T1",
+          "declaration": "t1T_of_a1R_a2Plus"
+        }
+      ]
+    },
+    {
+      "id": "claim-007",
+      "section": "The Scott control chain",
+      "claim": "Sufficient \\(T2^+\\) recovery (Section~\\ref{sec:reconstruction})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/T2",
+          "declaration": "t2Plus_of_regG"
+        }
+      ]
+    },
+    {
+      "id": "claim-008",
+      "section": "The Scott control chain",
+      "claim": "\\(T3^+\\) from symmetry alone (Section~\\ref{sec:reconstruction})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/ScottFrames",
+          "declaration": "t3Plus_of_possible_t2_a5_symmetric"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/ScottFrames",
+          "declaration": "t3Plus_of_possible_t2_a5_s5_reduced"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/T3Collapse",
+          "declaration": "t3Plus_of_possible_t2_a5"
+        }
+      ]
+    },
+    {
+      "id": "claim-009",
+      "section": "The Scott control chain",
+      "claim": "\\(T3^+\\;\\Rightarrow\\;GW\\) on reflexive frames (Section~\\ref{sec:reconstruction})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/T3Collapse",
+          "declaration": "gw_of_t3Plus"
+        }
+      ]
+    },
+    {
+      "id": "claim-010",
+      "section": "The Scott control chain",
+      "claim": "Essence-compressed collapse (Section~\\ref{sec:reconstruction})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/T3Collapse",
+          "declaration": "formulaMCPlus_of_t2_t3_const"
+        }
+      ]
+    },
+    {
+      "id": "claim-011",
+      "section": "The Scott control chain",
+      "claim": "Bilateral classical recovery (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "Analysis/Recovery",
+          "declaration": "posT_iff_pPos"
+        },
+        {
+          "kind": "lean",
+          "module": "Analysis/Recovery",
+          "declaration": "nentMinus_iff_not_nentPlus"
+        },
+        {
+          "kind": "lean",
+          "module": "Analysis/Recovery",
+          "declaration": "godMinus_iff_not_godPlus"
+        },
+        {
+          "kind": "lean",
+          "module": "Analysis/Recovery",
+          "declaration": "essMinus_iff_not_essPlus"
+        },
+        {
+          "kind": "lean",
+          "module": "Analysis/Recovery",
+          "declaration": "neMinus_iff_not_nePlus"
+        }
+      ]
+    },
+    {
+      "id": "claim-012",
+      "section": "Exact Godlikeness and the Anderson candidate",
+      "claim": "\\(G\\text{-exact}^+\\Rightarrow G\\text{-sup}^+\\) (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/GodlikeVariants",
+          "declaration": "godExactPlus_implies_godPlus"
+        }
+      ]
+    },
+    {
+      "id": "claim-013",
+      "section": "Exact Godlikeness and the Anderson candidate",
+      "claim": "Exact Godlikeness internalizes local reflection (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/GodlikeVariants",
+          "declaration": "reflection_of_godExactPlus"
+        }
+      ]
+    },
+    {
+      "id": "claim-014",
+      "section": "Exact Godlikeness and the Anderson candidate",
+      "claim": "\\(G\\text{-exact}^++R^+\\Rightarrow T2^+_{\\mathrm{exact}}\\) (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/GodlikeVariants",
+          "declaration": "t2ExactPlus_of_rPlus"
+        }
+      ]
+    },
+    {
+      "id": "claim-015",
+      "section": "Exact Godlikeness and the Anderson candidate",
+      "claim": "Anderson essence and necessary existence (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/AndersonInterfaces",
+          "declaration": "andersonGod_has_andersonEssence"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/AndersonInterfaces",
+          "declaration": "andersonGod_implies_boxGodExists"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/AndersonInterfaces",
+          "declaration": "andersonT3Plus_of_possibleGod"
+        }
+      ]
+    },
+    {
+      "id": "claim-016",
+      "section": "Exact Godlikeness and the Anderson candidate",
+      "claim": "Anderson \\(T3\\) from symmetry alone (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/AndersonFrames",
+          "declaration": "andersonT3Plus_of_possibleGod_symmetric"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/AndersonFrames",
+          "declaration": "andersonT3Plus_of_possibleGod_s5_reduced"
+        }
+      ]
+    },
+    {
+      "id": "claim-017",
+      "section": "Exact Godlikeness and the Anderson candidate",
+      "claim": "Anderson bilateral classical recovery (Section~\\ref{sec:lean-layer})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/AndersonBilateral",
+          "declaration": "andersonNecExMinus_iff_not_plus"
+        }
+      ]
+    },
+    {
+      "id": "claim-018",
+      "section": "Fitting: comprehension obstruction and admissible repair",
+      "claim": "Unrestricted consistency excludes every Godlike witness (Section~\\ref{sec:fitting-obstruction})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingSemantics",
+          "declaration": "consGG_excludes_god"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingSemantics",
+          "declaration": "regG_excludes_god"
+        }
+      ]
+    },
+    {
+      "id": "claim-019",
+      "section": "Fitting: comprehension obstruction and admissible repair",
+      "claim": "Admissible extensional essence theorem (Section~\\ref{sec:fitting-admissible})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissible",
+          "declaration": "god_has_currentExtension_essence_admissible"
+        }
+      ]
+    },
+    {
+      "id": "claim-020",
+      "section": "Fitting: comprehension obstruction and admissible repair",
+      "claim": "Admissible bilateral classical recovery (Section~\\ref{sec:fitting-admissible})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissible",
+          "declaration": "godMinusAdm_iff_not_godPlusAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissible",
+          "declaration": "essMinusAdm_iff_not_essPlusAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissible",
+          "declaration": "neMinusAdm_iff_not_nePlusAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleRecovery",
+          "declaration": "entailMinusAdm_iff_not_entailPlus"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleRecovery",
+          "declaration": "boxExistsMinusAdm_iff_not_boxExistsPlus"
+        }
+      ]
+    },
+    {
+      "id": "claim-021",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "Frame-free de-re possibility to necessity (Section~\\ref{sec:fitting-dere})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleNecessaryExistence",
+          "declaration": "possibleCurrentAdm_implies_necessary"
+        }
+      ]
+    },
+    {
+      "id": "claim-022",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "De-dicto lifting under full extension stability (Section~\\ref{sec:fitting-dere})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleNecessaryExistence",
+          "declaration": "possibleGodDeDictoAdm_implies_necessary"
+        }
+      ]
+    },
+    {
+      "id": "claim-023",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "Bilateral stability implies positive stability (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingMinimality",
+          "declaration": "gExtensionStableAlongRAdm_implies_gPosStable"
+        }
+      ]
+    },
+    {
+      "id": "claim-024",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "Minimized de-dicto theorem (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingMinimality",
+          "declaration": "possibleGodDeDictoAdm_implies_necessary_minimized"
+        }
+      ]
+    },
+    {
+      "id": "claim-025",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "\\(R^+_{F,adm}\\Rightarrow Refl_G^+\\) (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingRigidityBridge",
+          "declaration": "rPlusAdm_implies_gPosReflects"
+        }
+      ]
+    },
+    {
+      "id": "claim-026",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "\\(R^{+\\leftarrow}_{F,adm}\\Rightarrow Pers_G^+\\) (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingRigidityBridge",
+          "declaration": "rPlusConverseAdm_implies_gPosPersists"
+        }
+      ]
+    },
+    {
+      "id": "claim-027",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "Symmetry entails converse transport (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingRigidityBridge",
+          "declaration": "rPlusAdm_symmetric_implies_rPlusConverseAdm"
+        }
+      ]
+    },
+    {
+      "id": "claim-028",
+      "section": "Fitting: de re, de dicto, and the rigidity bridge",
+      "claim": "Both transports give \\(STAB_G^+\\) with no frame premise (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingRigidityBridge",
+          "declaration": "rPlusAdm_rPlusConverseAdm_implies_gPosStable"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingRigidityBridge",
+          "declaration": "possibleGodDeDictoAdm_implies_necessary_rPlus_bidirectional"
+        }
+      ]
+    },
+    {
+      "id": "claim-029",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "\\(CONS^{G,adm}_{G,F}\\Rightarrow NegCons^{adm}_{G,F}\\) (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingMinimality",
+          "declaration": "consGGAdm_implies_negClassConsistencyAdm"
+        }
+      ]
+    },
+    {
+      "id": "claim-030",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "Essence theorem on the targeted package (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingMinimality",
+          "declaration": "god_has_currentExtension_essence_negClass"
+        }
+      ]
+    },
+    {
+      "id": "claim-031",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "\\(A1_R\\) reconstructs full consistency (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingMinimalityInteractions",
+          "declaration": "a1R_regGNegClassAdm_implies_consGGAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingMinimalityInteractions",
+          "declaration": "a1R_regGNegClassAdm_implies_regGAdm"
+        }
+      ]
+    },
+    {
+      "id": "claim-032",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "Classification-free indiscernibility route (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAlternativeRecovery",
+          "declaration": "god_has_currentExtension_essence_indiscernible"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAlternativeRecovery",
+          "declaration": "possibleCurrentAdm_implies_necessary_indiscernible"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAlternativeRecovery",
+          "declaration": "possibleGodDeDictoAdm_implies_necessary_indiscernible"
+        }
+      ]
+    },
+    {
+      "id": "claim-033",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "\\(\\approx_w^+\\) is an equivalence relation (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "positiveProfileEqAdm_refl"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "positiveProfileEqAdm_symm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "positiveProfileEqAdm_trans"
+        }
+      ]
+    },
+    {
+      "id": "claim-034",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "Godlike individuals share a profile class (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "godlike_implies_positiveProfileEqAdm"
+        }
+      ]
+    },
+    {
+      "id": "claim-035",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "\\(Sat_P^{adm}\\Rightarrow Ind_G^{adm}\\) (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "positiveProfileSaturated_implies_godlikeIndiscernibility"
+        }
+      ]
+    },
+    {
+      "id": "claim-036",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "\\(Sat_P^{adm}\\Leftrightarrow Sat_\\pm^{adm}\\) (Sections~\\ref{sec:fitting-minimality} and \\ref{sec:fitting-domain-algebra})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "positiveProfileSaturated_iff_bilateralProfileSaturated"
+        }
+      ]
+    },
+    {
+      "id": "claim-037",
+      "section": "Fitting: assumption minimization and the profile quotient",
+      "claim": "Complement decision reconstructs \\(COMP\\) (Section~\\ref{sec:fitting-minimality})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "complementDecision_cons_implies_compPGAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "complementDecision_a1R_implies_compPGAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleStructure",
+          "declaration": "complementDecision_cons_implies_positiveReflection"
+        }
+      ]
+    },
+    {
+      "id": "claim-038",
+      "section": "Fitting: quotient-domain algebra",
+      "claim": "Quotient factorization is closed under the FDE operations (Section~\\ref{sec:fitting-domain-algebra})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "respectsProfileAt_negate"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "respectsProfileAt_fdeConj"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "respectsProfileAt_fdeDisj"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "respectsProfileAt_fdeTop"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "respectsProfileAt_fdeBot"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "profileFactorization_closed_under_fde"
+        }
+      ]
+    },
+    {
+      "id": "claim-039",
+      "section": "Fitting: quotient-domain algebra",
+      "claim": "Admissible extensions respect the quotient under \\(Sat_P^{adm}\\) (Section~\\ref{sec:fitting-domain-algebra})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingAdmissibleAlgebra",
+          "declaration": "admissible_respectsProfileAt"
+        }
+      ]
+    },
+    {
+      "id": "claim-040",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Domain entailment closure forces unrestricted comprehension (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "globalEntailmentClosed_bot_implies_unrestricted"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "globalEntailmentClosed_bot_cons_excludes_god"
+        }
+      ]
+    },
+    {
+      "id": "claim-041",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "\\(Sat_w\\) is a closure operator (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "profileSaturateAt_extensive"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "profileSaturateAt_mono"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "profileSaturateAt_idempotent"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "profileSaturateAt_respectsProfile"
+        }
+      ]
+    },
+    {
+      "id": "claim-042",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Least quotient-respecting hull (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "profileSaturateAt_least_respecting"
+        }
+      ]
+    },
+    {
+      "id": "claim-043",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Saturation is the fixed-point condition (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "positiveProfileSaturated_iff_fixedByProfileClosure"
+        }
+      ]
+    },
+    {
+      "id": "claim-044",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Entailment descends through \\(Sat_w\\) (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingEntailmentQuotient",
+          "declaration": "entailPlus_profileSaturateAt"
+        }
+      ]
+    },
+    {
+      "id": "claim-045",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Push/pull round trips on the quotient (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "from_toProfileQuotient_equivalent"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "to_fromProfileQuotient_equivalent"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "respectingExtension_has_quotientRepresentation"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "profileSaturateAt_has_quotientRepresentation"
+        }
+      ]
+    },
+    {
+      "id": "claim-046",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "\\(ExSat_P\\) is exactly existence factorization (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "profileExistenceSaturated_iff_factors"
+        }
+      ]
+    },
+    {
+      "id": "claim-047",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Quotient entailment equals entailment on pullbacks (Section~\\ref{sec:fitting-entailment-quotient})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "profileQuotientEntailPlus_iff_pullback"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingActualistQuotient",
+          "declaration": "entailPlus_iff_profileQuotient"
+        }
+      ]
+    },
+    {
+      "id": "claim-048",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Point evaluation is a non-deciding prime filter (Section~\\ref{sec:quotient-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": true,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "evaluationFilter_primeDeltaFilter"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "evaluationFilter_designates_both"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "evaluationFilter_neither_undecided"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "evaluationFilter_not_complementDeciding"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "profileQuotient_has_nondeciding_primeDeltaFilter"
+        }
+      ]
+    },
+    {
+      "id": "claim-049",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Truth order reduces to positive inclusion classically (Section~\\ref{sec:quotient-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "truthLE_iff_posSupportLE_of_classical"
+        }
+      ]
+    },
+    {
+      "id": "claim-050",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Delta-filters satisfy the two-filter law (Section~\\ref{sec:quotient-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingQuotientDeltaFilter",
+          "declaration": "positiveDeltaFilter_implies_twoFilter"
+        }
+      ]
+    },
+    {
+      "id": "claim-051",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "FDE operations are meet and join for \\(\\leq_t\\) (Section~\\ref{sec:fitting-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "fdeConj_truthLe_left"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "fdeConj_truthLe_right"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "truthLe_fdeConj"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "left_truthLe_fdeDisj"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "right_truthLe_fdeDisj"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "fdeDisj_truthLe"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "extensionTruthLe_negate"
+        }
+      ]
+    },
+    {
+      "id": "claim-052",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Classical recovery of the filter notion (Section~\\ref{sec:fitting-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "deltaFilter_iff_classicalDeltaFilter_of_classical"
+        }
+      ]
+    },
+    {
+      "id": "claim-053",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Carrier extensions are closure fixed points (Section~\\ref{sec:fitting-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "profileDeltaFilter_admissible_fixed"
+        }
+      ]
+    },
+    {
+      "id": "claim-054",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Polarity gives both A1 directions and the dual ideal (Section~\\ref{sec:fitting-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "bilateralProfileDeltaFilter_implies_a1L"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "bilateralProfileDeltaFilter_implies_a1R"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "bilateralProfileDeltaFilter_bot_negative"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "bilateralProfileDeltaFilter_top_not_negative"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "bilateralProfileDeltaFilter_negative_downward"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "bilateralProfileDeltaFilter_negative_disj"
+        }
+      ]
+    },
+    {
+      "id": "claim-055",
+      "section": "Fitting: entailment, the explicit quotient, and filters",
+      "claim": "Ultrafilter maximality reconstructs \\(COMP\\) (Section~\\ref{sec:fitting-delta-filter})",
+      "evidence": "machine-checked-general",
+      "scope": "general",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "profileDeltaUltrafilter_cons_implies_compPGAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "profileDeltaUltrafilter_a1R_implies_compPGAdm"
+        },
+        {
+          "kind": "lean",
+          "module": "GoedelScott/FittingDeltaFilter",
+          "declaration": "profileDeltaUltrafilter_implies_complementDecision"
+        }
+      ]
+    },
+    {
+      "id": "claim-056",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Glut and gap \\(T2^+\\) countermodels; 204-model control search",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "checker",
+          "declaration": "t2_glut_countermodel"
+        },
+        {
+          "kind": "finite",
+          "module": "checker",
+          "declaration": "t2_gap_countermodel"
+        },
+        {
+          "kind": "finite",
+          "module": "checker",
+          "declaration": "exhaustive_reg_g_implies_t2"
+        },
+        {
+          "kind": "finite",
+          "module": "checker",
+          "declaration": "exhaustive_mc_schema_equivalence_two_world_s5"
+        }
+      ]
+    },
+    {
+      "id": "claim-057",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "873-model bounded \\(T2\\) assumption search; unrestricted \\(T1\\) obstruction",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate7_search",
+          "declaration": "exhaustive_t2_assumption_minimality"
+        },
+        {
+          "kind": "finite",
+          "module": "gate7_search",
+          "declaration": "validate_t1_glut_countermodel"
+        }
+      ]
+    },
+    {
+      "id": "claim-058",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Anderson and Scott S4 countermodels; no-collapse fixture",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_anderson",
+          "declaration": "validate_anderson_no_collapse_model"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_frames",
+          "declaration": "validate_anderson_s4_countermodel"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_scott_frames",
+          "declaration": "validate_scott_s4_countermodel"
+        }
+      ]
+    },
+    {
+      "id": "claim-059",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Fitting de-re/de-dicto separation; necessary God without collapse",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting",
+          "declaration": "validate_fitting_admissible_de_re_de_dicto_model"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_no_collapse",
+          "declaration": "validate_fitting_necessary_god_no_collapse_model"
+        }
+      ]
+    },
+    {
+      "id": "claim-060",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Targeted consistency and positive-only stability strictness",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_minimality",
+          "declaration": "validate_neg_class_consistency_strictness"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_minimality",
+          "declaration": "validate_positive_stability_strictness"
+        }
+      ]
+    },
+    {
+      "id": "claim-061",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "\\(COMP\\)-free indiscernibility and profile-saturation fixtures",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_comp",
+          "declaration": "validate_indiscernibility_route_without_comp"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_profile_saturation",
+          "declaration": "validate_profile_saturation_route_without_comp"
+        }
+      ]
+    },
+    {
+      "id": "claim-062",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "FDE algebra closure does not force saturation",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_algebra",
+          "declaration": "validate_fde_algebra_does_not_force_profile_saturation"
+        }
+      ]
+    },
+    {
+      "id": "claim-063",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Entailment closure and existence-split fixtures",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_entailment",
+          "declaration": "validate_entailment_closure_does_not_force_profile_saturation"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_entailment",
+          "declaration": "validate_existence_saturation_is_needed_for_entailment_descent"
+        }
+      ]
+    },
+    {
+      "id": "claim-064",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Rigidity bridge, 256 configurations",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_rigidity_bridge",
+          "declaration": "validate_rigidity_bridge_exhaustive"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_converse_rigidity",
+          "declaration": "validate_converse_rigidity_exhaustive"
+        }
+      ]
+    },
+    {
+      "id": "claim-065",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Explicit actualist quotient, 16 extensions and 256 entailment pairs",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_actualist_quotient",
+          "declaration": "validate_actualist_profile_quotient"
+        },
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_actualist_quotient",
+          "declaration": "validate_actualist_quotient_requires_existence_factorization"
+        }
+      ]
+    },
+    {
+      "id": "claim-066",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Two-point filter audit (166/15/4/112/10)",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate10_quotient_delta_filters",
+          "declaration": "validate_quotient_delta_filters"
+        }
+      ]
+    },
+    {
+      "id": "claim-067",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Profile \\(\\delta\\)-filter without maximality or \\(COMP\\)",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate8_fitting_delta_filter",
+          "declaration": "validate_delta_filter_does_not_restore_comp"
+        }
+      ]
+    },
+    {
+      "id": "claim-068",
+      "section": "Finite fixtures and bounded searches",
+      "claim": "Paired-neighborhood audit (256/16/4/12/1024)",
+      "evidence": "bounded-finite",
+      "scope": "bounded",
+      "signature_gate": false,
+      "references": [
+        {
+          "kind": "finite",
+          "module": "gate11_paired_neighborhoods",
+          "declaration": "validate_paired_neighborhoods"
+        }
+      ]
+    }
+  ]
+}
