@@ -22,7 +22,7 @@ DECL = re.compile(
     re.M,
 )
 FUNC = re.compile(r"^def\s+(\w+)", re.M)
-TEXTTT = re.compile(r"texttt\\{([^}]*)\\}")
+TEXTTT = re.compile(r"texttt\{([^}]*)\}")
 SUBSECTION = re.compile(r"\\subsection\{([^}]*)\}")
 ITEM = re.compile(
     r"\\item\[(.*?)\]\s*([\s\S]*?)(?=\\item\[|\\end\{description\})"
@@ -70,7 +70,7 @@ def parse_appendix(text):
             ),
             "",
         )
-        claim = re.sub(r"\\s+", " ", match.group(1)).strip()
+        claim = re.sub(r"\s+", " ", match.group(1)).strip()
         references = []
 
         for raw in TEXTTT.findall(match.group(2)):
