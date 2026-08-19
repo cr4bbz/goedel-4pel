@@ -8,9 +8,9 @@ This directory contains the living manuscript for `goedel-4pel`.
 
 **Compiled manuscript:** [`main.pdf`](main.pdf)
 
-**Research gates represented:** Gate 0 through the current Gate-8 comparative/minimality/domain/entailment/converse-rigidity milestone
+**Research gates represented:** Gates 0–12; the comparative Gate-8 branch remains active
 
-**Newest research milestone:** `paired-neighborhood-bridge-v0.1` and `v1-synthesis-v0.1`
+**Newest research milestone:** `fitting-delta-filter-v0.1` / `paper-v0.20`
 
 **Next manuscript dependency:** selected higher-order paired-neighborhood transport theorems, filter-strength analysis for the essence/NE route, and the remaining line-by-line Gate-9 source audit
 
