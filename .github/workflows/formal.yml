@@ -7,15 +7,23 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   finite-models:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
       - name: Run finite-model regression tests
-        run: python3 -m unittest discover -s formal/finite -p 'test_*.py' -v
+        run: python -m unittest discover -s formal/finite -p 'test_*.py' -v
+      - name: Run finite-model regression tests under optimization
+        run: python -O -m unittest discover -s formal/finite -p 'test_*.py' -v
       - name: Run finite-model summary
-        run: python3 formal/finite/checker.py
+        run: python formal/finite/checker.py
 
   lean:
     runs-on: ubuntu-latest
@@ -28,3 +36,35 @@ jobs:
           build: true
           test: false
           use-github-cache: false
+
+  correspondence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check formal correspondence appendix
+        run: python paper/check_correspondence.py
+
+  paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install TeX and PDF tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk poppler-utils texlive-fonts-recommended texlive-latex-extra texlive-latex-recommended
+      - name: Build manuscript
+        working-directory: paper
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+      - name: Check manuscript version in generated PDF
+        working-directory: paper
+        run: pdftotext main.pdf - | grep -F "version 0.20"
+      - name: Upload manuscript artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: goedel-4pel-paper
+          path: paper/main.pdf
+          if-no-files-found: error
+          retention-days: 14
