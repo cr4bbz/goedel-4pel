@@ -19,6 +19,9 @@
 - **Gate 5:** `godlike-v0.1`, actualist quantification, `T1-T`, possible Godlike existence, `G-sup-v0.1`.
 - **Gate 6:** `essence-ne-v0.1`, bilateral essence/NE, glut-gap T2 countermodels, sufficient `REG_G` recovery, conditional T3/collapse.
 - **Gate 7:** `formal-v0.1`, Lean 4.30.0 theorem spine, classical recovery, executable countermodels, bounded T2 assumption search.
+
+### Gates 9–12 — publication consolidation
+
 - **Gate 9:** `source-audit-v0.1`, first source-correspondence matrix and reproducible prior-art pass.
 - **Gate 10:** `fitting-quotient-filter-v0.1`, four-valued quotient delta-filter audit.
 - **Gate 11:** `paired-neighborhood-bridge-v0.1`, machine-checked Kripke representation and CD recovery.
@@ -187,6 +190,8 @@ The entailment experiment additionally has executable finite evidence that entai
 The major Scott/Anderson/Fitting comparative milestones are green. The Fitting branch now distinguishes positivity-filter closure, the selected admissible property domain, a profile-quotient fixed-point proposal, actualist existence compatibility, and the trade-off between primitive positive `G` stability and its derivation from admissible positivity rigidity plus symmetry.
 
 ### Gate 9 — Publication consolidation
+
+The working source registry and provenance boundary are tracked in [`docs/SOURCE_AUDIT.md`](docs/SOURCE_AUDIT.md). Gate 9 remains open until the listed line-by-line crosswalks are completed.
 
 - [x] complete and log a first reproducible prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
 - [x] create a source-correspondence matrix separating direct source control, standard semantic background, and project-specific clauses;

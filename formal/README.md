@@ -158,7 +158,7 @@ The finite counterexample described above shows that entailment descent can fail
 
 ### Verification status of the newest module
 
-`FittingEntailmentQuotient.lean` is root-imported and its theorem block has been confirmed by a local Lean 4.30.0 `lake build`. These statements therefore carry the same machine-checked status as the earlier Gate-8 Lean spine.
+`FittingEntailmentQuotient.lean` is root-imported and its theorem block is checked by the repository's Lean CI. These statements therefore carry the same machine-checked status as the earlier Gate-8 Lean spine.
 
 Build locally:
 
@@ -169,7 +169,7 @@ lake build
 
 ## CI and discipline
 
-GitHub Actions runs both finite regressions and `lake build`, but the connector does not currently expose the newest push-triggered check run reliably. Accordingly, the repository status files distinguish the already verified Gate-8 theorem spine from the newest entailment-quotient implementation pending local build confirmation.
+GitHub Actions runs the finite regressions in normal and optimized Python mode, `lake build`, the formal-correspondence appendix check, and a LaTeX/PDF build. The paper job uploads the generated manuscript as a short-lived CI artifact and checks that it contains the declared manuscript version.
 
 Finite searches and fixtures are always reported with exact bounds. General claims are promoted to machine-checked status only after Lean accepts them.
 

@@ -32,3 +32,4 @@ import Goedel4PEL.GoedelScott.T3Collapse
 import Goedel4PEL.GoedelScott.ScottFrames
 import Goedel4PEL.Analysis.Collapse
 import Goedel4PEL.Analysis.Recovery
+import Goedel4PEL.PublicationCorrespondence
