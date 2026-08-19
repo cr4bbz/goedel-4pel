@@ -19,6 +19,9 @@
 - **Gate 5:** `godlike-v0.1`, actualist quantification, `T1-T`, possible Godlike existence, `G-sup-v0.1`.
 - **Gate 6:** `essence-ne-v0.1`, bilateral essence/NE, glut-gap T2 countermodels, sufficient `REG_G` recovery, conditional T3/collapse.
 - **Gate 7:** `formal-v0.1`, Lean 4.30.0 theorem spine, classical recovery, executable countermodels, bounded T2 assumption search.
+
+### Gates 9–12 — publication consolidation
+
 - **Gate 9:** `source-audit-v0.1`, first source-correspondence matrix and reproducible prior-art pass.
 - **Gate 10:** `fitting-quotient-filter-v0.1`, four-valued quotient delta-filter audit.
 - **Gate 11:** `paired-neighborhood-bridge-v0.1`, machine-checked Kripke representation and CD recovery.
