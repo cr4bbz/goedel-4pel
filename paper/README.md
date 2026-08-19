@@ -147,7 +147,7 @@ The appendix rots silently if a declaration is renamed, so it is checkable:
 python paper/check_correspondence.py
 ```
 
-The script resolves every identifier in the appendix against the actual Lean and Python sources and reports any that no longer exist. It currently checks 136 identifiers and runs in the dedicated CI correspondence job. The root-imported `Goedel4PEL.PublicationCorrespondence` module additionally compiles exact premise/conclusion signatures for the selected theorem-level claims.
+The script resolves every identifier in the appendix against the actual Lean and Python sources and reports any that no longer exist. It currently checks 136 identifiers and runs in the dedicated CI correspondence job. The machine-readable `paper/correspondence_manifest.json` records all 68 appendix claims, their 136 references, and whether each claim is a general Lean result or bounded finite evidence. The root-imported `Goedel4PEL.PublicationCorrespondence` module additionally compiles exact premise/conclusion signatures for seven selected theorem-level claims.
 
 ## Status discipline
 
