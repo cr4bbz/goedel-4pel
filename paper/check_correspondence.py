@@ -132,11 +132,24 @@ if manifest.get("schema_version") != 1:
     problems.append("claim matrix schema_version must be 1")
 if manifest.get("source") != "paper/sections/A_formal_correspondence.tex":
     problems.append("claim matrix source does not name the correspondence appendix")
+reference_count = sum(
+    len(claim.get("references", [])) for claim in manifest_claims
+)
+signature_claim_count = sum(
+    claim.get("signature_gate") is True for claim in manifest_claims
+)
+
 if len(appendix_claims) != len(manifest_claims):
     problems.append(
         f"claim count mismatch: appendix={len(appendix_claims)} "
         f"matrix={len(manifest_claims)}"
     )
+if manifest.get("claim_count") != len(manifest_claims):
+    problems.append("claim matrix claim_count is stale")
+if manifest.get("reference_count") != reference_count:
+    problems.append("claim matrix reference_count is stale")
+if manifest.get("signature_gate_claims") != signature_claim_count:
+    problems.append("claim matrix signature_gate_claims is stale")
 
 for expected, actual in zip(appendix_claims, manifest_claims):
     if expected["id"] != actual.get("id"):
@@ -220,9 +233,7 @@ for claim in manifest_claims:
             )
 
 print("claims in appendix:", len(appendix_claims))
-print("references in claim matrix:", sum(
-    len(claim.get("references", [])) for claim in manifest_claims
-))
+print("references in claim matrix:", reference_count)
 print("declarations checked:", checked)
 print("general claims:", sum(
     claim.get("evidence") == "machine-checked-general" for claim in manifest_claims
