@@ -65,7 +65,7 @@ does not force positive-profile saturation.
 
 The positive construction is instead a canonical bilateral profile closure `Sat_w`. The newest Lean module implements its closure-operator properties and the characterization of profile-saturated admissible domains as fixed points of this operation. Because Fitting entailment is actualist, the manuscript isolates a further condition requiring actual existence to respect the same profile classes; under that condition the new module implements entailment descent through the profile closure. A finite counterexample demonstrates that this descent can fail when actual existence splits a profile class.
 
-**Verification status:** the finite entailment regressions and the root-imported Lean theorem block have been validated locally with Lean 4.30.0.
+**Verification status:** the finite entailment regressions and the root-imported Lean theorem block are validated by Lean CI; the publication-correspondence signature gate is compiled through the root import.
 
 ### New in `paper-v0.17`: explicit actualist profile quotient
 
@@ -147,7 +147,7 @@ The appendix rots silently if a declaration is renamed, so it is checkable:
 python paper/check_correspondence.py
 ```
 
-The script resolves every identifier in the appendix against the actual Lean and Python sources and reports any that no longer exist. It currently checks 136 identifiers. It is not yet wired into CI.
+The script resolves every identifier in the appendix against the actual Lean and Python sources and reports any that no longer exist. It currently checks 136 identifiers and runs in the dedicated CI correspondence job. The root-imported `Goedel4PEL.PublicationCorrespondence` module additionally compiles exact premise/conclusion signatures for the selected theorem-level claims.
 
 ## Status discipline
 
