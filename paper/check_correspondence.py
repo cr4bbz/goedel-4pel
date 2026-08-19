@@ -1,6 +1,9 @@
-"""Verify that every identifier named in the correspondence appendix exists.
+"""Verify the correspondence appendix and support the publication CI gate.
 
-Run from the repository root. Not part of the build; delete after use.
+Run from the repository root. The check is executed in GitHub Actions and
+fails when an appendix identifier no longer resolves to the formal or finite
+source. Exact theorem-signature claims are compiled separately by
+``Goedel4PEL.PublicationCorrespondence``.
 """
 
 import re
