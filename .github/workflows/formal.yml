@@ -61,6 +61,23 @@ jobs:
       - name: Check manuscript version in generated PDF
         working-directory: paper
         run: pdftotext main.pdf - | grep -F "version 0.20"
+      - name: Check committed PDF content
+        run: |
+          git show HEAD:paper/main.pdf > /tmp/committed-main.pdf
+          pdftotext -nopgbrk -enc UTF-8 /tmp/committed-main.pdf /tmp/committed.txt
+          pdftotext -nopgbrk -enc UTF-8 paper/main.pdf /tmp/generated.txt
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          def normalized(path):
+              return re.sub(r"\s+", " ", Path(path).read_text(encoding="utf-8", errors="replace")).strip()
+
+          committed = normalized("/tmp/committed.txt")
+          generated = normalized("/tmp/generated.txt")
+          if committed != generated:
+              raise SystemExit("generated manuscript text differs from committed paper/main.pdf")
+          PY
       - name: Upload manuscript artifact
         uses: actions/upload-artifact@v4
         with:
