@@ -18,14 +18,14 @@ MANIFEST = ROOT / "paper" / "correspondence_manifest.json"
 SIGNATURE_FILE = LEAN / "PublicationCorrespondence.lean"
 
 DECL = re.compile(
-    r"^(?:@\\[[^\\]]*\\]\\s*)?(?:theorem|def|structure|abbrev|instance)\\s+([\\w'.]+)",
+    r"^(?:@\[[^\]]*\]\s*)?(?:theorem|def|structure|abbrev|instance)\s+([\w'.]+)",
     re.M,
 )
-FUNC = re.compile(r"^def\\s+(\\w+)", re.M)
+FUNC = re.compile(r"^def\s+(\w+)", re.M)
 TEXTTT = re.compile(r"texttt\\{([^}]*)\\}")
-SUBSECTION = re.compile(r"\\\\subsection\\{([^}]*)\\}")
+SUBSECTION = re.compile(r"\\subsection\{([^}]*)\}")
 ITEM = re.compile(
-    r"\\\\item\\[(.*?)\\]\\s*([\\s\\S]*?)(?=\\\\item\\[|\\\\end\\{description\\})"
+    r"\\item\[(.*?)\]\s*([\s\S]*?)(?=\\item\[|\\end\{description\})"
 )
 
 SIGNATURE_GATE_DECLS = {
@@ -55,7 +55,7 @@ def source_declarations():
 
 def parse_appendix(text):
     sections = [
-        (match.start(), re.sub(r"\\s+", " ", match.group(1)).strip())
+        (match.start(), re.sub(r"\s+", " ", match.group(1)).strip())
         for match in SUBSECTION.finditer(text)
     ]
     claims = []
@@ -74,7 +74,7 @@ def parse_appendix(text):
         references = []
 
         for raw in TEXTTT.findall(match.group(2)):
-            entry = raw.replace("\\\\_", "_")
+            entry = raw.replace("\\_", "_")
             if entry.startswith("."):
                 name = entry[1:]
                 if current_module is None or not name or name.startswith("_"):
