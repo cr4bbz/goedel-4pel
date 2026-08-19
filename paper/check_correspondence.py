@@ -68,3 +68,6 @@ print("identifiers checked:", checked)
 print("problems:", len(problems))
 for module, name, why in problems:
     print("   %-55s %-45s %s" % (module, name, why))
+
+if problems:
+    raise SystemExit(1)
