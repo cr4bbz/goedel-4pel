@@ -191,6 +191,8 @@ The major Scott/Anderson/Fitting comparative milestones are green. The Fitting b
 
 ### Gate 9 — Publication consolidation
 
+The working source registry and provenance boundary are tracked in [`docs/SOURCE_AUDIT.md`](docs/SOURCE_AUDIT.md). Gate 9 remains open until the listed line-by-line crosswalks are completed.
+
 - [x] complete and log a first reproducible prior-art search for four-valued/paraconsistent Gödel-style ontological arguments and non-classical positivity;
 - [x] create a source-correspondence matrix separating direct source control, standard semantic background, and project-specific clauses;
 - [ ] audit exact correspondence with the frozen higher-order Scott baseline;
